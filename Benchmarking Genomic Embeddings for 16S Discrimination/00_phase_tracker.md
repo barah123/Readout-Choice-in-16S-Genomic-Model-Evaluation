@@ -18,7 +18,7 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | 2-full | Scaled to the §6.2 block target: 31 declared blocks (26 eligible), 4 models, full readout hierarchy | **Done** — `phase2_pilot/phase2_full_report.md` |
 | 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | **Done** — `phase3_freeze/FREEZE.md` (binding) |
 | 4 | Scale: locked model × panel × region matrix on audited data | **Done** — `phase4_locked_test/`, 20/22 blocks eligible and scored |
-| 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | Not started |
+| 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | **Done** — `phase5_evaluate/phase5_results.md` |
 | 6 | Diagnose/report: exploratory analyses, reproducible release, conditional conclusions | Not started |
 
 ## Phase 1 deliverables (done)
@@ -128,6 +128,34 @@ underpowered, not spun.
 Three deviations from the protocol document are logged with justification in
 `phase3_freeze/DEVIATIONS.md` (margin tightened from the illustrative ±0.03; single pre-named
 arms; the development/test re-split).
+
+## Phase 5 — CONFIRMATORY RESULT (locked test, run once)
+
+Unsealing checklist verified by git, not asserted: `FREEZE.md` committed 07:20:42 and
+unmodified since; first locked-test record fetched 08:54:19, **94 minutes later**.
+
+**Primary endpoint — DNABERT-2:R2 − C_kmer over 20 independent blocks:
+mean −0.00211, 95% bootstrap CI [−0.00595, +0.00163].
+Verdict at the frozen ±0.010 margin: EQUIVALENT (practically negligible difference).**
+17 of 20 blocks tie within ±0.01. Achieved CI half-width 0.0038 vs 0.005 planned.
+
+This **replicates the development finding on entirely independent taxa** — 20 families
+disjoint from all 31 development blocks — with the opposite sign and a comparably narrow
+interval. Two block sets, 45 blocks total, same conclusion.
+
+Secondary (Holm-corrected): DNABERT-S and NTv2 also equivalent; **HyenaDNA is reliably
+slightly worse than k-mer** (−0.0088, Holm p=0.004) though below the practical margin;
+best-of-4 does not survive correction (p=0.075).
+
+**The most uncomfortable exploratory number:** `C_random`, a random projection of the k-mer
+space, tops the table at 0.9616 — nominally above every learned representation. Best-of-4
+minus C_random is +0.0021 [−0.0005, +0.0052]. At this difficulty most measured performance
+reflects classifier flexibility over a high-dimensional space, not representation content.
+
+Explicitly **not** supported: that gLMs contain no 16S information (all reach 0.95–0.96
+against a ~0.98 ceiling), that they are useless for 16S generally (one task, one readout
+family, clean sequences), or that classical methods are superior (the finding is
+equivalence, not superiority).
 
 ## What Phase 1 did *not* and could not fix
 

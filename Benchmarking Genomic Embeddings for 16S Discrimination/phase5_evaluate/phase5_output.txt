@@ -1,0 +1,83 @@
+============================================================================================================
+PHASE 5 - PRESPECIFIED ANALYSIS OF THE LOCKED TEST SET
+============================================================================================================
+eligible blocks entering confirmatory analysis: n = 20
+freeze precondition: >=14 for planned precision, <10 => report underpowered
+
+MISSING CELLS: 0 across 8 arms x 20 blocks (none)
+
+------------------------------------------------------------------------------------------------------------
+PER-BLOCK RESULTS (balanced accuracy; region chosen support-only, same region for both arms)
+------------------------------------------------------------------------------------------------------------
+block                        ceil   C_kmer  DNABERT-2    delta   DNA-S   Hyena    NTv2  C_rand
+acetobacteraceae            0.982    0.945      0.943   -0.002   0.948   0.928   0.928   0.943
+brucella_ochrobactrum       0.786    0.777      0.782   +0.004   0.779   0.779   0.772   0.779
+comamonadaceae              0.996    0.989      0.989   -0.000   0.991   0.995   0.993   0.989
+cutibacterium               1.000    0.997      0.997   +0.000   0.997   0.967   0.997   0.997
+flavobacteriaceae           1.000    1.000      1.000   +0.000   0.997   0.995   0.994   1.000
+francisella                 0.919    0.899      0.919   +0.020   0.899   0.902   0.919   0.899
+fusobacterium               1.000    1.000      1.000   +0.000   1.000   1.000   1.000   1.000
+granulicatella              1.000    0.993      0.983   -0.010   0.967   0.967   0.967   0.993
+leuconostoc                 1.000    1.000      1.000   +0.000   0.995   0.997   1.000   1.000
+methylobacterium            0.926    0.900      0.891   -0.009   0.911   0.907   0.898   0.911
+nocardia                    1.000    0.996      0.996   +0.000   0.990   0.993   0.994   0.998
+paenibacillus               1.000    0.992      0.974   -0.018   0.979   0.983   0.991   0.992
+porphyromonas               1.000    1.000      0.975   -0.025   1.000   0.955   1.000   1.000
+proteus_morganellaceae      0.988    0.982      0.983   +0.000   0.982   0.977   0.979   0.985
+rhizobium_agrobacterium     0.992    0.984      0.984   -0.001   0.978   0.976   0.976   0.984
+rothia_micrococcaceae       0.997    0.997      0.997   +0.000   0.997   0.975   0.996   0.996
+sphingomonas                0.994    0.968      0.972   +0.005   0.972   0.971   0.977   0.972
+stenotrophomonas            0.994    0.991      0.986   -0.005   0.992   0.982   0.978   0.991
+streptomyces                0.984    0.956      0.954   -0.002   0.970   0.950   0.952   0.952
+veillonella                 0.849    0.852      0.852   +0.000   0.852   0.844   0.852   0.852
+
+============================================================================================================
+PRIMARY ENDPOINT (prespecified, uncorrected): DNABERT-2:R2  minus  C_kmer
+============================================================================================================
+  n blocks                       : 20
+  mean paired difference         : -0.00211
+  95% bootstrap CI (2000, s=1729): [-0.00595, +0.00163]   half-width 0.00379
+  two-sided bootstrap p (H0: 0)  : 0.2530
+  blocks model>classical / < / tie(+-0.01): 1 / 2 / 17
+
+  VERDICT at frozen margin +-0.010 : EQUIVALENT (practically negligible difference)
+  sensitivity at protocol's +-0.030  : EQUIVALENT (practically negligible difference)
+
+============================================================================================================
+SECONDARY ENDPOINTS (4 tests, Holm-corrected within this family)
+============================================================================================================
+contrast                        mean                  95% CI    p raw   p Holm  verdict @ +-0.010
+dnabert_s:R2 - C_kmer        -0.0011       [-0.0047,+0.0021]   0.5800   0.5800  EQUIVALENT (practically negligible difference)
+hyenadna:R2 - C_kmer         -0.0088       [-0.0148,-0.0038]   0.0010   0.0040  INCONCLUSIVE at this margin
+ntv2:R2 - C_kmer             -0.0028       [-0.0068,+0.0011]   0.1680   0.3360  EQUIVALENT (practically negligible difference)
+best-of-4 R2 - C_kmer        +0.0029       [+0.0003,+0.0057]   0.0250   0.0750  EQUIVALENT (practically negligible difference)
+
+============================================================================================================
+EXPLORATORY (not confirmatory; never promoted to a confirmatory claim)
+============================================================================================================
+  dnabert2:R2      mean balanced accuracy over 20 blocks = 0.9588
+  dnabert_s:R2     mean balanced accuracy over 20 blocks = 0.9598
+  hyenadna:R2      mean balanced accuracy over 20 blocks = 0.9521
+  ntv2:R2          mean balanced accuracy over 20 blocks = 0.9581
+  C_kmer           mean balanced accuracy over 20 blocks = 0.9609
+  C_exact          mean balanced accuracy over 20 blocks = 0.9028
+  C_align          mean balanced accuracy over 20 blocks = 0.9429
+  C_random         mean balanced accuracy over 20 blocks = 0.9616
+
+  flexibility reference: best-of-4 R2 minus C_random = +0.0021 [-0.0005, +0.0052]
+
+  a-priori expected class vs measured ceiling (calibration):
+    expected A: n= 8  mean max-ceiling=0.998  range=[0.988, 1.000]
+    expected B: n= 7  mean max-ceiling=0.999  range=[0.994, 1.000]
+    expected C: n= 5  mean max-ceiling=0.914  range=[0.786, 1.000]
+
+  regions chosen by support-only selection across 100 folds: {'V2': 34, 'V6': 14, 'V1': 12, 'V8': 11, 'V4': 9, 'V5': 7, 'V3': 6, 'V7': 6, 'V9': 1}
+
+============================================================================================================
+BLOCK ACCOUNTING
+============================================================================================================
+  declared locked-test blocks        : 22
+  eligible and scored (confirmatory) : 20
+  descriptive-only (failed gate)     : 2  ['actinomyces', 'bartonella']
+
+wrote locked_test_results.json

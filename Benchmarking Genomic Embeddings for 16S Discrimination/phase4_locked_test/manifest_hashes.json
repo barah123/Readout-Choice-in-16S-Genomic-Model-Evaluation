@@ -1,0 +1,9 @@
+{
+  "n_records": 6933,
+  "n_accessions": 6926,
+  "n_isolate_groups": 6760,
+  "n_blocks": 22,
+  "accession_manifest_sha256": "a4f1aea327a5d053f535c6645812c3128af162ebf19206a37897c6816ca73029",
+  "test_blocks_json_sha256": "29cebfcf8ab16f1d5e787bf845f17d81e720d7c5ed1999158e912a5689e05e3b",
+  "split_definition": "StratifiedKFold(n_splits=5, shuffle=True, random_state=0) over isolate_group per block; deterministic given test_blocks.json"
+}
