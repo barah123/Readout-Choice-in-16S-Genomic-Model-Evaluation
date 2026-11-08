@@ -1,0 +1,18 @@
+ so where does this lead me in creating genomic large language model that can help predict which region to target per ther organism in question? are you persuing this same research question by what you have been doing so far?
+
+Good question to stop and clarify, because there's an important distinction buried in it.
+
+What I've been doing: testing whether existing, pretrained genomic language models (DNABERT-2 so far; HyenaDNA and Nucleotide Transformer v2 set up but not yet run) can — out of the box, with no training on your task — tell you which 16S region best separates organism X from its near neighbors. The workflow is: feed sequence through the pretrained model → get its embedding → train a cheap classifier (random forest) on top of that embedding → see if it beats simpler, older methods. This is the same research question you're describing ("predict which region to target per organism"), but the thing being tested is whether off-the-shelf gLMs already contain the right signal, not whether a purpose-built/trained one would.
+
+Where the evidence points so far: not well, for the gLM. On the one target where we finally got a legitimate, real-signal test (S. aureus vs. coagulase-negative staph, region V1), a 1990s-era method (count short DNA fragments, train a simple classifier) nearly solved it perfectly (99.7%), while DNABERT-2's embeddings were no better than a coin flip. On the other target tested, neither method found anything (correctly — that organism pair has no real genetic distinction at any region). So far: zero evidence that an existing gLM adds value over classical composition-based methods for this specific task.
+
+This matters for your actual goal. There are really two different projects hiding under "build something that predicts the best region":
+
+1. A recommendation tool that, per organism, tells you which region to sequence — using whichever method wins. If classical k-mer+classifier keeps winning, that tool doesn't need an LLM at all; it's simpler, cheaper, and (so far) more accurate. This is what regioneer (the planned R package) was scoped as.
+2. Actually training or fine-tuning a genomic LLM specifically for this discriminability task — a materially bigger undertaking: you'd need a training objective that rewards "separate same-species from near-neighbors," labeled data across many organism panels (not just the 1-2 we've tested), and a lot more compute/engineering. Nothing done so far builds toward this; it would be a new project.
+
+So: are you trying to build (1), a practical region-advisor tool that uses whatever method actually works best, or (2), specifically an LLM-based solution (including possibly fine-tuning one), even if that means more work than the classical approach currently needs?
+
+✻ Churned for 43s · done Friday 4:49 PM
+
+※ recap: Goal: build a tool that recommends which 16S region best identifies a target bacterium. We just found pretrained gLM embeddings fail where simple k-mer methods succeed, so I need you to clarify: are you building a practical recommender tool, or specifically pursuing an LLM-based approach? (disable recaps in /config)

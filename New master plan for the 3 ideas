@@ -1,0 +1,64 @@
+I recommend this order: benchmarking first, regioneer second, and task-specific model adaptation third. This sequence moves from establishing what works, to making it useful, to investigating whether it can be improved.
+
+Recommended order
+Order	Project	Main question	Why it belongs here
+1	Benchmarking Genomic Embeddings for 16S Discrimination — your third idea	Do existing pretrained representations preserve useful discriminatory information, and how do they compare with classical methods?	Establishes the evidence base, validates the evaluation framework, and identifies biological versus computational limitations before you commit to a particular method.
+2	Regioneer: target-specific 16S amplicon recommendation — your first idea	Can the best-supported methods recommend suitable amplicons for a target and its near neighbors?	Translates the benchmark into a practical tool. It can use classical methods, embeddings, or a combination—whichever your results support.
+3	Task-specific genomic model adaptation — your second idea	Can targeted adaptation improve the shortcomings identified in the benchmark and improve assay recommendations?	Requires a clearly demonstrated, potentially addressable limitation, strong comparators, and a protected evaluation set. It should be conditional, not inevitable.
+1. First: establish what works
+Complete the frozen-model benchmark before committing to a recommendation algorithm or training objective.
+
+Its key deliverables should be:
+
+Audited reference sequences and taxonomic labels.
+
+Genome- and copy-aware data organization.
+
+Valid biological holdouts.
+
+Matched observed-sequence ambiguity ceilings.
+
+Competitive classical baselines.
+
+Comparisons across models, organism panels, regions, and readouts.
+
+A clear account of where results are positive, negative, or inconclusive.
+
+This project should determine the next research decision—not merely provide preliminary figures for a method you have already decided to build.
+
+2. Second: turn the evidence into regioneer
+Build regioneer around the best-supported approach from the benchmark.
+
+For example:
+
+Benchmark finding	Regioneer direction
+Classical methods perform best	Build a classical-method recommender.
+Embeddings improve particular organism groups	Use them selectively, with explicitly supported scope.
+Different methods perform best under different conditions	Evaluate a conditional or combined strategy.
+No candidate adequately distinguishes a target	Return an unresolved or insufficient-evidence result rather than forcing a recommendation.
+You can develop the shared software infrastructure during Project 1. However, finalize the scientific recommendation logic only after the benchmark establishes which methods deserve to drive it.
+
+3. Third: adapt models only when the evidence justifies it
+Proceed to task-specific adaptation when the benchmark identifies a gap such as:
+
+“Classical methods distinguish these independent query sequences, but the tested frozen representations and readouts do not use that information effectively.”
+
+That supplies a concrete adaptation hypothesis.
+
+Do not make fine-tuning the response to every poor result. In your study design, poor performance could reflect sequence ambiguity, limited references, unreliable labels, or implementation problems rather than an encoder limitation.
+
+Also, if Project 1’s test results guide adaptation, treat those results as development information for Project 3 and obtain a new protected evaluation set.
+
+Important distinction: project order versus publication order
+These are three research stages, not automatically three separate papers.
+
+The benchmark can stand alone as the first manuscript.
+
+Regioneer could be part of that manuscript if it mainly packages the same methods and experiments.
+
+A separate regioneer paper would need a distinct contribution, such as new assay-selection evaluation, independent validation, or demonstrated user utility.
+
+The adaptation study becomes a separate manuscript only if it asks and answers a substantive new question.
+
+Your immediate priority should therefore be the benchmark—not more models without limits, but a bounded, audited comparison that establishes the scientific foundation for everything that follows.
+

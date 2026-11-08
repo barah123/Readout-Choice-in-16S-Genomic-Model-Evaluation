@@ -1,0 +1,74 @@
+{
+  "V1": {
+    "loo_acc": 0.8,
+    "silhouette": -0.16120929874134868,
+    "within_embed": -2.220446049250313e-16,
+    "between_embed": 0.11696730822734727,
+    "btwn_min_ident": 0.3103448275862069,
+    "spearman_ident_embed": -0.7492402730718756
+  },
+  "V2": {
+    "loo_acc": 0.75,
+    "silhouette": -0.21659568806173055,
+    "within_embed": 0.004314235692407942,
+    "between_embed": 0.034995153293346674,
+    "btwn_min_ident": 0.7445887445887446,
+    "spearman_ident_embed": -0.8924720131728718
+  },
+  "V3": {
+    "loo_acc": 0.3888888888888889,
+    "silhouette": -0.2900792744314351,
+    "within_embed": 0.013159573383764365,
+    "between_embed": 0.036445340134595126,
+    "btwn_min_ident": 0.8333333333333334,
+    "spearman_ident_embed": -0.7880145653062803
+  },
+  "V4": {
+    "loo_acc": 0.8055555555555556,
+    "silhouette": -0.26370886148601835,
+    "within_embed": 0.0012110841898553086,
+    "between_embed": 0.01486893810404387,
+    "btwn_min_ident": 0.9065420560747663,
+    "spearman_ident_embed": -0.649015902485385
+  },
+  "V5": {
+    "loo_acc": 0.7777777777777778,
+    "silhouette": -0.21984523449188387,
+    "within_embed": 0.010454645861163799,
+    "between_embed": 0.060205293118689385,
+    "btwn_min_ident": 0.7419354838709677,
+    "spearman_ident_embed": -0.7887323321066648
+  },
+  "V6": {
+    "loo_acc": 0.5277777777777778,
+    "silhouette": -0.09168132272686341,
+    "within_embed": 0.050526616853907004,
+    "between_embed": 0.08734702885585786,
+    "btwn_min_ident": 0.7758620689655172,
+    "spearman_ident_embed": -0.7145288377592858
+  },
+  "V7": {
+    "loo_acc": 0.7777777777777778,
+    "silhouette": -0.2108393015826152,
+    "within_embed": 0.009684055140537792,
+    "between_embed": 0.06349952173961379,
+    "btwn_min_ident": 0.6428571428571429,
+    "spearman_ident_embed": -0.7829144978947717
+  },
+  "V8": {
+    "loo_acc": 0.5277777777777778,
+    "silhouette": -0.30145687603157606,
+    "within_embed": 1.1102230246251565e-16,
+    "between_embed": 0.05168020338274116,
+    "btwn_min_ident": 0.6538461538461539,
+    "spearman_ident_embed": -0.707715854965797
+  },
+  "V9": {
+    "loo_acc": 0.6666666666666666,
+    "silhouette": -0.08974235435336832,
+    "within_embed": 0.05661352201215908,
+    "between_embed": 0.13316098901676557,
+    "btwn_min_ident": 0.6774193548387096,
+    "spearman_ident_embed": -0.8690856313497822
+  }
+}

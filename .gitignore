@@ -1,0 +1,8 @@
+# Downloaded model weights - large, reproducible via snapshot_download, not source.
+# The patched *.py files alongside this in dnabert2_local/ ARE tracked (that's the patch log).
+glm_prototype_bundle (1)/dnabert2_local/pytorch_model.bin
+
+# Standard hygiene
+__pycache__/
+*.pyc
+.DS_Store
