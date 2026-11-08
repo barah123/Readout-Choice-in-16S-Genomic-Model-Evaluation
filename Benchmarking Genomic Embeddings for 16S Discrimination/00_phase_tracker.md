@@ -16,7 +16,7 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | 1 | Audit: archive code, fix ceiling/tie/weight issues, synthetic fixtures, current-panel summaries | **Done** — see `phase1_audit/` and summary below |
 | 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | **Done** — `phase2_pilot/phase2_pilot_report.md` |
 | 2-full | Scaled to the §6.2 block target: 31 declared blocks (26 eligible), 4 models, full readout hierarchy | **Done** — `phase2_pilot/phase2_full_report.md` |
-| 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | Not started |
+| 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | **Done** — `phase3_freeze/FREEZE.md` (binding) |
 | 4 | Scale: locked model × panel × region matrix on audited data | Not started |
 | 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | Not started |
 | 6 | Diagnose/report: exploratory analyses, reproducible release, conditional conclusions | Not started |
@@ -101,6 +101,33 @@ ordering held (A 0.994 > B 0.975 > C 0.912), but textbook "16S-unresolvable" gro
 *E. coli*/*Shigella* 0.931, *Enterobacter* 0.934, *Acinetobacter* 0.990 — are substantially
 separable given ~100 isolates per class and the right region. Only campylobacter (0.782)
 behaves as the literature predicts.
+
+## Phase 3 freeze (binding) — `phase3_freeze/FREEZE.md`
+
+**The decision that mattered most: all 31 Phase 2 blocks are now development data and are
+burned for confirmatory use.** Readout choice, comparator set, pre-named arms, margin and
+precision plan were all derived by looking at them, so re-using them as a test set would be
+the "repeated test-guided model selection" failure protocol §18 names. Phase 2's results keep
+their full value as *development* findings — the frozen≈classical headline is now a
+hypothesis to be tested, not a confirmed result.
+
+Frozen: four checkpoints pinned by sha256 / hub revision; **R2 linear probe** as primary
+readout (development showed readout dominates model ~30-fold); primary estimand
+**DNABERT-2:R2 − C_kmer**, both arms pre-named from development (20/25 and 17/25) so no
+selection sits inside the statistic; isolate-grouped 5-fold CV; region chosen support-only
+and applied identically to both arms; **equivalence margin ±0.010** via bootstrap TOST;
+confirmatory family of exactly 5 tests (1 primary + 4 Holm-corrected), everything else
+explicitly exploratory; ≤3 h CPU budget; single-use unsealing checklist.
+
+Precision plan from development SD (0.01138): ≥14 eligible blocks gives an expected CI
+half-width ≈0.006, inside the ±0.010 margin. **22 locked-test blocks declared** across 22
+families with **zero family overlap** with development (94 species queries), assuming ~35%
+eligibility loss. If fewer than 10 prove eligible the primary analysis will be reported as
+underpowered, not spun.
+
+Three deviations from the protocol document are logged with justification in
+`phase3_freeze/DEVIATIONS.md` (margin tightened from the illustrative ±0.03; single pre-named
+arms; the development/test re-split).
 
 ## What Phase 1 did *not* and could not fix
 
