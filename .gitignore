@@ -10,3 +10,5 @@ __pycache__/
 
 # Phase 2 embedding caches - regenerable from embed_all_models.py
 Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/emb_*.npz
+Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/emb_full_*.npz
+Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/raw_species/

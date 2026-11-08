@@ -1,0 +1,188 @@
+154 species queries across 31 blocks
+[1/154] fetched staphylococcus                   Staphylococcus aureus                            records=  61 isolates=  61
+[2/154] fetched staphylococcus                   Staphylococcus epidermidis                       records= 117 isolates= 115
+[3/154] fetched staphylococcus                   Staphylococcus haemolyticus                      records=  80 isolates=  80
+[4/154] fetched staphylococcus                   Staphylococcus saprophyticus                     records= 139 isolates= 138
+[5/154] fetched staphylococcus                   Staphylococcus hominis                           records=  82 isolates=  82
+[6/154] fetched staphylococcus                   Staphylococcus lugdunensis                       records=  45 isolates=  43
+[7/154] fetched staphylococcus                   Staphylococcus capitis                           records= 272 isolates= 272
+[8/154] fetched bacillus_cereus_group            Bacillus anthracis                               records= 114 isolates= 114
+[9/154] fetched bacillus_cereus_group            Bacillus cereus                                  records= 128 isolates= 128
+[10/154] fetched bacillus_cereus_group            Bacillus thuringiensis                           records= 122 isolates= 122
+[11/154] fetched bacillus_cereus_group            Bacillus weihenstephanensis                      records= 105 isolates= 105
+[12/154] fetched bacillus_cereus_group            Bacillus mycoides                                records= 105 isolates= 105
+[13/154] fetched streptococcus_mitis_group        Streptococcus pneumoniae                         records= 196 isolates= 195
+[14/154] fetched streptococcus_mitis_group        Streptococcus mitis                              records= 165 isolates= 161
+[15/154] fetched streptococcus_mitis_group        Streptococcus oralis                             records= 115 isolates= 112
+[16/154] fetched streptococcus_mitis_group        Streptococcus pseudopneumoniae                   records=  37 isolates=  37
+[17/154] fetched streptococcus_mitis_group        Streptococcus sanguinis                          records= 150 isolates= 148
+[18/154] fetched enterococcus                     Enterococcus faecalis                            records= 141 isolates= 140
+[19/154] fetched enterococcus                     Enterococcus faecium                             records=  97 isolates=  97
+[20/154] fetched enterococcus                     Enterococcus durans                              records= 180 isolates= 180
+[21/154] fetched enterococcus                     Enterococcus hirae                               records= 134 isolates= 134
+[22/154] fetched enterococcus                     Enterococcus gallinarum                          records= 150 isolates= 149
+[23/154] fetched listeria                         Listeria monocytogenes                           records=  76 isolates=  70
+[24/154] fetched listeria                         Listeria innocua                                 records=  95 isolates=  89
+[25/154] fetched listeria                         Listeria welshimeri                              records=  19 isolates=  17
+[26/154] fetched listeria                         Listeria seeligeri                               records=  14 isolates=  13
+[27/154] fetched listeria                         Listeria ivanovii                                records=  11 isolates=  11
+[28/154] fetched clostridium                      Clostridioides difficile                         records=  81 isolates=  80
+[29/154] fetched clostridium                      Clostridium perfringens                          records= 231 isolates= 231
+[30/154] fetched clostridium                      Clostridium butyricum                            records= 150 isolates= 145
+[31/154] fetched clostridium                      Clostridium sporogenes                           records=  86 isolates=  85
+[32/154] fetched clostridium                      Clostridium septicum                             records=  36 isolates=  36
+[33/154] fetched lactobacillus_vaginal            Lactobacillus crispatus                          records= 239 isolates= 239
+[34/154] fetched lactobacillus_vaginal            Lactobacillus iners                              records=   5 isolates=   5
+[35/154] fetched lactobacillus_vaginal            Lactobacillus gasseri                            records= 202 isolates= 201
+[36/154] fetched lactobacillus_vaginal            Lactobacillus jensenii                           records=  39 isolates=  37
+[37/154] fetched lactobacillus_vaginal            Lactobacillus johnsonii                          records= 297 isolates= 297
+[38/154] fetched mycobacterium                    Mycobacterium tuberculosis                       records= 103 isolates= 102
+[39/154] fetched mycobacterium                    Mycobacterium avium                              records=  67 isolates=  62
+[40/154] fetched mycobacterium                    Mycobacterium intracellulare                     records= 251 isolates= 251
+[41/154] fetched mycobacterium                    Mycobacterium kansasii                           records=  71 isolates=  68
+[42/154] fetched mycobacterium                    Mycobacterium abscessus                          records= 155 isolates= 155
+[43/154] fetched corynebacterium                  Corynebacterium diphtheriae                      records=  17 isolates=  17
+[44/154] fetched corynebacterium                  Corynebacterium ulcerans                         records=  20 isolates=  20
+[45/154] fetched corynebacterium                  Corynebacterium pseudotuberculosis               records=  55 isolates=  53
+[46/154] fetched corynebacterium                  Corynebacterium striatum                         records=  39 isolates=  38
+[47/154] fetched corynebacterium                  Corynebacterium amycolatum                       records=  50 isolates=  49
+[48/154] fetched bifidobacterium_species          Bifidobacterium longum                           records=  30 isolates=  30
+[49/154] fetched bifidobacterium_species          Bifidobacterium breve                            records=  12 isolates=  12
+[50/154] fetched bifidobacterium_species          Bifidobacterium bifidum                          records=  43 isolates=  43
+[51/154] fetched bifidobacterium_species          Bifidobacterium adolescentis                     records=  36 isolates=  36
+[52/154] fetched bifidobacterium_species          Bifidobacterium animalis                         records=  36 isolates=  36
+[53/154] fetched bifidobacterium_longum_subsp     Bifidobacterium longum subsp. infantis           records=  22 isolates=  22
+[54/154] fetched bifidobacterium_longum_subsp     Bifidobacterium longum subsp. longum             records=  50 isolates=  50
+[55/154] fetched bifidobacterium_longum_subsp     Bifidobacterium longum subsp. suis               records=  12 isolates=  11
+[56/154] fetched escherichia_shigella             Escherichia coli                                 records= 141 isolates= 141
+[57/154] fetched escherichia_shigella             Shigella flexneri                                records= 160 isolates= 160
+[58/154] fetched escherichia_shigella             Shigella sonnei                                  records= 107 isolates= 107
+[59/154] fetched escherichia_shigella             Shigella dysenteriae                             records=  85 isolates=  85
+[60/154] fetched escherichia_shigella             Shigella boydii                                  records=  63 isolates=  63
+[61/154] fetched klebsiella                       Klebsiella pneumoniae                            records= 114 isolates= 114
+[62/154] fetched klebsiella                       Klebsiella oxytoca                               records=  87 isolates=  86
+[63/154] fetched klebsiella                       Klebsiella variicola                             records= 122 isolates= 122
+[64/154] fetched klebsiella                       Klebsiella aerogenes                             records= 103 isolates= 103
+[65/154] fetched klebsiella                       Klebsiella quasipneumoniae                       records= 121 isolates= 120
+[66/154] fetched enterobacter                     Enterobacter cloacae                             records=  91 isolates=  91
+[67/154] fetched enterobacter                     Enterobacter hormaechei                          records= 162 isolates= 161
+[68/154] fetched enterobacter                     Enterobacter asburiae                            records= 114 isolates= 113
+[69/154] fetched enterobacter                     Enterobacter kobei                               records=  90 isolates=  90
+[70/154] fetched enterobacter                     Cronobacter sakazakii                            records= 106 isolates= 104
+[71/154] fetched salmonella_citrobacter           Salmonella enterica                              records=  72 isolates=  72
+[72/154] fetched salmonella_citrobacter           Citrobacter freundii                             records= 101 isolates= 101
+[73/154] fetched salmonella_citrobacter           Citrobacter koseri                               records=  91 isolates=  89
+[74/154] fetched salmonella_citrobacter           Citrobacter braakii                              records= 202 isolates= 200
+[75/154] fetched pseudomonas                      Pseudomonas aeruginosa                           records=  67 isolates=  67
+[76/154] fetched pseudomonas                      Pseudomonas fluorescens                          records=  96 isolates=  95
+[77/154] fetched pseudomonas                      Pseudomonas putida                               records= 110 isolates= 109
+[78/154] fetched pseudomonas                      Pseudomonas stutzeri                             records= 112 isolates= 111
+[79/154] fetched pseudomonas                      Pseudomonas syringae                             records= 105 isolates= 104
+[80/154] fetched acinetobacter                    Acinetobacter baumannii                          records=  55 isolates=  55
+[81/154] fetched acinetobacter                    Acinetobacter calcoaceticus                      records= 136 isolates= 134
+[82/154] fetched acinetobacter                    Acinetobacter pittii                             records= 144 isolates= 140
+[83/154] fetched acinetobacter                    Acinetobacter nosocomialis                       records=  54 isolates=  53
+[84/154] fetched acinetobacter                    Acinetobacter lwoffii                            records= 103 isolates= 103
+[85/154] fetched haemophilus                      Haemophilus influenzae                           records=  63 isolates=  63
+[86/154] fetched haemophilus                      Haemophilus parainfluenzae                       records=  18 isolates=  16
+[87/154] fetched haemophilus                      Haemophilus haemolyticus                         records=  37 isolates=  36
+[88/154] fetched haemophilus                      Haemophilus ducreyi                              records=   7 isolates=   6
+[89/154] fetched haemophilus                      Haemophilus parahaemolyticus                     records=   9 isolates=   9
+[90/154] fetched vibrio                           Vibrio cholerae                                  records= 163 isolates= 163
+[91/154] fetched vibrio                           Vibrio parahaemolyticus                          records= 155 isolates= 152
+[92/154] fetched vibrio                           Vibrio vulnificus                                records= 125 isolates= 121
+[93/154] fetched vibrio                           Vibrio alginolyticus                             records= 150 isolates= 148
+[94/154] fetched vibrio                           Vibrio mimicus                                   records=  18 isolates=  18
+[95/154] fetched legionella                       Legionella pneumophila                           records=  56 isolates=  55
+[96/154] fetched legionella                       Legionella longbeachae                           records=   3 isolates=   2
+[97/154] fetched legionella                       Legionella micdadei                              records=   3 isolates=   3
+[98/154] fetched legionella                       Legionella bozemanae                             records=   0 isolates=   0
+[99/154] fetched legionella                       Legionella dumoffii                              records=   3 isolates=   3
+[100/154] fetched yersinia                         Yersinia pestis                                  records=   6 isolates=   5
+[101/154] fetched yersinia                         Yersinia pseudotuberculosis                      records=  30 isolates=  25
+[102/154] fetched yersinia                         Yersinia enterocolitica                          records= 111 isolates= 104
+[103/154] fetched yersinia                         Yersinia frederiksenii                           records=  24 isolates=  22
+[104/154] fetched yersinia                         Yersinia intermedia                              records=  21 isolates=  19
+[105/154] fetched aeromonas                        Aeromonas hydrophila                             records= 113 isolates= 111
+[106/154] fetched aeromonas                        Aeromonas caviae                                 records=  95 isolates=  94
+[107/154] fetched aeromonas                        Aeromonas veronii                                records= 137 isolates= 135
+[108/154] fetched aeromonas                        Aeromonas salmonicida                            records=  82 isolates=  81
+[109/154] fetched aeromonas                        Aeromonas media                                  records= 179 isolates= 179
+[110/154] fetched burkholderia                     Burkholderia pseudomallei                        records= 202 isolates= 202
+[111/154] fetched burkholderia                     Burkholderia thailandensis                       records=  22 isolates=  18
+[112/154] fetched burkholderia                     Burkholderia cepacia                             records= 145 isolates= 145
+[113/154] fetched burkholderia                     Burkholderia multivorans                         records=  34 isolates=  34
+[114/154] fetched burkholderia                     Burkholderia cenocepacia                         records= 141 isolates= 141
+[115/154] fetched neisseria                        Neisseria meningitidis                           records= 234 isolates= 234
+[116/154] fetched neisseria                        Neisseria gonorrhoeae                            records=  34 isolates=  34
+[117/154] fetched neisseria                        Neisseria lactamica                              records=   4 isolates=   4
+[118/154] fetched neisseria                        Neisseria sicca                                  records=  12 isolates=  12
+[119/154] fetched neisseria                        Neisseria mucosa                                 records=  43 isolates=  43
+[120/154] fetched bordetella                       Bordetella pertussis                             records=   6 isolates=   6
+[121/154] fetched bordetella                       Bordetella parapertussis                         records=   4 isolates=   4
+[122/154] fetched bordetella                       Bordetella bronchiseptica                        records=  39 isolates=  39
+[123/154] fetched bordetella                       Bordetella holmesii                              records=  12 isolates=  11
+[124/154] fetched bordetella                       Bordetella avium                                 records=  12 isolates=  10
+[125/154] fetched campylobacter                    Campylobacter jejuni                             records=  78 isolates=  78
+[126/154] fetched campylobacter                    Campylobacter coli                               records= 102 isolates=  99
+[127/154] fetched campylobacter                    Campylobacter lari                               records=  40 isolates=  34
+[128/154] fetched campylobacter                    Campylobacter fetus                              records=  65 isolates=  60
+[129/154] fetched campylobacter                    Campylobacter upsaliensis                        records=  16 isolates=  14
+[130/154] fetched helicobacter                     Helicobacter pylori                              records=  46 isolates=  46
+[131/154] fetched helicobacter                     Helicobacter hepaticus                           records=   9 isolates=   9
+[132/154] fetched helicobacter                     Helicobacter bilis                               records=  12 isolates=  12
+[133/154] fetched helicobacter                     Helicobacter cinaedi                             records=  17 isolates=  17
+[134/154] fetched helicobacter                     Helicobacter felis                               records=  11 isolates=  11
+[135/154] fetched bacteroides                      Bacteroides fragilis                             records= 151 isolates= 151
+[136/154] fetched bacteroides                      Bacteroides thetaiotaomicron                     records= 111 isolates= 109
+[137/154] fetched bacteroides                      Bacteroides ovatus                               records= 116 isolates= 111
+[138/154] fetched bacteroides                      Bacteroides uniformis                            records=  74 isolates=  71
+[139/154] fetched bacteroides                      Bacteroides vulgatus                             records= 135 isolates= 133
+[140/154] fetched prevotella                       Prevotella melaninogenica                        records=  37 isolates=  34
+[141/154] fetched prevotella                       Prevotella intermedia                            records=  84 isolates=  83
+[142/154] fetched prevotella                       Prevotella bivia                                 records=  15 isolates=  12
+[143/154] fetched prevotella                       Prevotella denticola                             records=  18 isolates=  16
+[144/154] fetched prevotella                       Prevotella nigrescens                            records=  66 isolates=  65
+[145/154] fetched borrelia                         Borrelia burgdorferi                             records=   7 isolates=   6
+[146/154] fetched borrelia                         Borrelia afzelii                                 records=   9 isolates=   9
+[147/154] fetched borrelia                         Borrelia garinii                                 records=  12 isolates=  11
+[148/154] fetched borrelia                         Borrelia hermsii                                 records=   4 isolates=   3
+[149/154] fetched borrelia                         Borrelia miyamotoi                               records=  15 isolates=  15
+[150/154] fetched leptospira                       Leptospira interrogans                           records=   4 isolates=   4
+[151/154] fetched leptospira                       Leptospira borgpetersenii                        records=  16 isolates=  15
+[152/154] fetched leptospira                       Leptospira biflexa                               records=  12 isolates=  10
+[153/154] fetched leptospira                       Leptospira kirschneri                            records=  17 isolates=  15
+[154/154] fetched leptospira                       Leptospira santarosai                            records=   6 isolates=   6
+
+--- per-block target support ---
+staphylococcus                   target_isolates=  61  neighbour_species_with_ge5_isolates=6/6
+bacillus_cereus_group            target_isolates= 114  neighbour_species_with_ge5_isolates=4/4
+streptococcus_mitis_group        target_isolates= 195  neighbour_species_with_ge5_isolates=4/4
+enterococcus                     target_isolates= 140  neighbour_species_with_ge5_isolates=4/4
+listeria                         target_isolates=  70  neighbour_species_with_ge5_isolates=4/4
+clostridium                      target_isolates=  80  neighbour_species_with_ge5_isolates=4/4
+lactobacillus_vaginal            target_isolates= 239  neighbour_species_with_ge5_isolates=4/4
+mycobacterium                    target_isolates= 102  neighbour_species_with_ge5_isolates=4/4
+corynebacterium                  target_isolates=  17  neighbour_species_with_ge5_isolates=4/4
+bifidobacterium_species          target_isolates=  30  neighbour_species_with_ge5_isolates=4/4
+bifidobacterium_longum_subsp     target_isolates=  22  neighbour_species_with_ge5_isolates=2/2
+escherichia_shigella             target_isolates= 141  neighbour_species_with_ge5_isolates=4/4
+klebsiella                       target_isolates= 114  neighbour_species_with_ge5_isolates=4/4
+enterobacter                     target_isolates=  91  neighbour_species_with_ge5_isolates=4/4
+salmonella_citrobacter           target_isolates=  72  neighbour_species_with_ge5_isolates=3/3
+pseudomonas                      target_isolates=  67  neighbour_species_with_ge5_isolates=4/4
+acinetobacter                    target_isolates=  55  neighbour_species_with_ge5_isolates=4/4
+haemophilus                      target_isolates=  63  neighbour_species_with_ge5_isolates=4/4
+vibrio                           target_isolates= 163  neighbour_species_with_ge5_isolates=4/4
+legionella                       target_isolates=  55  neighbour_species_with_ge5_isolates=0/4
+yersinia                         target_isolates=   5  neighbour_species_with_ge5_isolates=4/4
+aeromonas                        target_isolates= 111  neighbour_species_with_ge5_isolates=4/4
+burkholderia                     target_isolates= 202  neighbour_species_with_ge5_isolates=4/4
+neisseria                        target_isolates= 234  neighbour_species_with_ge5_isolates=3/4
+bordetella                       target_isolates=   6  neighbour_species_with_ge5_isolates=3/4
+campylobacter                    target_isolates=  78  neighbour_species_with_ge5_isolates=4/4
+helicobacter                     target_isolates=  46  neighbour_species_with_ge5_isolates=4/4
+bacteroides                      target_isolates= 151  neighbour_species_with_ge5_isolates=4/4
+prevotella                       target_isolates=  34  neighbour_species_with_ge5_isolates=4/4
+borrelia                         target_isolates=   6  neighbour_species_with_ge5_isolates=3/4
+leptospira                       target_isolates=   4  neighbour_species_with_ge5_isolates=4/4

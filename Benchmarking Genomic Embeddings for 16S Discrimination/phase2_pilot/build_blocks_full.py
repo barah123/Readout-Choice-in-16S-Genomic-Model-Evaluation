@@ -105,14 +105,25 @@ def main():
             per_nb = Counter(sp for _, sp, is_t, _ in iso_rows if not is_t)
             nb_ok = sum(1 for v in per_nb.values() if v >= MIN_NEIGHBOUR_ISOLATES)
 
+            # distinct status codes, never collapsed to a single "no signal" (protocol §19)
+            if n_t == 0 or n_n == 0:
+                status = "no_coverage_one_class"      # slicing QA removed an entire class
+            elif n_t < MIN_TARGET_ISOLATES:
+                status = "insufficient_target_isolates"
+            elif nb_ok < MIN_NEIGHBOUR_SPECIES:
+                status = "insufficient_neighbour_species"
+            else:
+                status = "eligible"
+
             binfo["regions"][region] = dict(
                 n_isolates=len(iso_rows), target_isolates=n_t, neighbour_isolates=n_n,
+                n_records_sliced=len(present), n_records_dropped=len(recs) - len(present),
                 hap_target=len({sl for _, _, t, sl in iso_rows if t}),
                 hap_neighbour=len({sl for _, _, t, sl in iso_rows if not t}),
                 ambiguous_haplotypes=sum(1 for v in cnt.values() if v[0] and v[1]),
                 ceiling_acc_isolate=acc, ceiling_bal_isolate=bal,
-                neighbour_species_ok=nb_ok,
-                eligible=bool(n_t >= MIN_TARGET_ISOLATES and nb_ok >= MIN_NEIGHBOUR_SPECIES),
+                neighbour_species_ok=nb_ok, status=status,
+                eligible=bool(status == "eligible"),
             )
             for iso, sp, is_t, sl in iso_rows:
                 all_rows.append(dict(block_id=b["block_id"], region=region,
