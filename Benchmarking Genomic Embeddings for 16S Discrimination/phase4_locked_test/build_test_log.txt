@@ -1,0 +1,25 @@
+streptomyces                 recs=  384 eligible_regions=8/9 max_ceiling=0.984
+nocardia                     recs=  427 eligible_regions=8/9 max_ceiling=1.000
+cutibacterium                recs=  219 eligible_regions=7/9 max_ceiling=1.000
+rothia_micrococcaceae        recs=  406 eligible_regions=7/9 max_ceiling=1.000
+actinomyces                  recs=  136 eligible_regions=0/9 max_ceiling=1.000
+paenibacillus                recs=  528 eligible_regions=9/9 max_ceiling=1.000
+leuconostoc                  recs=  656 eligible_regions=9/9 max_ceiling=1.000
+veillonella                  recs=  102 eligible_regions=8/9 max_ceiling=0.881
+granulicatella               recs=  173 eligible_regions=9/9 max_ceiling=1.000
+proteus_morganellaceae       recs=  692 eligible_regions=9/9 max_ceiling=0.988
+stenotrophomonas             recs=  471 eligible_regions=9/9 max_ceiling=0.994
+brucella_ochrobactrum        recs=  311 eligible_regions=7/9 max_ceiling=0.786
+francisella                  recs=   63 eligible_regions=8/9 max_ceiling=0.919
+bartonella                   recs=   36 eligible_regions=0/9 max_ceiling=1.000
+sphingomonas                 recs=  189 eligible_regions=7/9 max_ceiling=0.994
+rhizobium_agrobacterium      recs=  440 eligible_regions=7/9 max_ceiling=1.000
+comamonadaceae               recs=  525 eligible_regions=8/9 max_ceiling=1.000
+methylobacterium             recs=  326 eligible_regions=7/9 max_ceiling=1.000
+acetobacteraceae             recs=  243 eligible_regions=6/9 max_ceiling=1.000
+porphyromonas                recs=   63 eligible_regions=8/9 max_ceiling=1.000
+flavobacteriaceae            recs=  377 eligible_regions=7/9 max_ceiling=1.000
+fusobacterium                recs=  166 eligible_regions=7/9 max_ceiling=1.000
+
+wrote test_blocks.json (50100 isolate x region rows)
+ELIGIBLE BLOCKS: 20/22  (freeze requires >=14 for planned precision; <10 => underpowered)

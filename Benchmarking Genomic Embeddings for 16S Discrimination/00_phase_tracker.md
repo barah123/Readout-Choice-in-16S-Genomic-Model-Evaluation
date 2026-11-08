@@ -17,7 +17,7 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | **Done** — `phase2_pilot/phase2_pilot_report.md` |
 | 2-full | Scaled to the §6.2 block target: 31 declared blocks (26 eligible), 4 models, full readout hierarchy | **Done** — `phase2_pilot/phase2_full_report.md` |
 | 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | **Done** — `phase3_freeze/FREEZE.md` (binding) |
-| 4 | Scale: locked model × panel × region matrix on audited data | Not started |
+| 4 | Scale: locked model × panel × region matrix on audited data | **Done** — `phase4_locked_test/`, 20/22 blocks eligible and scored |
 | 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | Not started |
 | 6 | Diagnose/report: exploratory analyses, reproducible release, conditional conclusions | Not started |
 

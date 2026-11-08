@@ -1,0 +1,9 @@
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done   5 tasks      | elapsed:    7.7s
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:   13.7s
+[Parallel(n_jobs=4)]: Done  18 out of  22 | elapsed:   22.7s remaining:    5.0s
+[Parallel(n_jobs=4)]: Done  22 out of  22 | elapsed:   26.8s finished
+scoring 22 locked-test blocks under the frozen plan
+
+wrote locked_test_scores.json  (20 eligible blocks scored)
+Primary contrast and equivalence test are Phase 5, not computed here.
