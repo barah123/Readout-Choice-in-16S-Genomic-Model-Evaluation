@@ -1,0 +1,222 @@
+{
+  "staph_CoNS": {
+    "V1": {
+      "n_records": 690,
+      "n_isolates": 686,
+      "target_isolates": 57,
+      "neighbor_isolates": 629,
+      "hap_target": 8,
+      "hap_neighbor": 48,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9956268221574344,
+      "ceiling_bal_isolate": 0.9816612277912569,
+      "ceiling_bal_record": 0.9816662509353963
+    },
+    "V2": {
+      "n_records": 794,
+      "n_isolates": 789,
+      "target_isolates": 61,
+      "neighbor_isolates": 728,
+      "hap_target": 9,
+      "hap_neighbor": 65,
+      "ambiguous_haplotypes": 1,
+      "ceiling_acc_isolate": 0.9974651457541192,
+      "ceiling_bal_isolate": 0.9986263736263735,
+      "ceiling_bal_record": 0.9986357435197827
+    },
+    "V3": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 7,
+      "hap_neighbor": 41,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9911504424778761,
+      "ceiling_bal_isolate": 0.9876936896474294,
+      "ceiling_bal_record": 0.9877216460354649
+    },
+    "V4": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 7,
+      "hap_neighbor": 49,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9292035398230089,
+      "ceiling_bal_isolate": 0.6280821917808231,
+      "ceiling_bal_record": 0.62857142857143
+    },
+    "V5": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 6,
+      "hap_neighbor": 26,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9292035398230089,
+      "ceiling_bal_isolate": 0.5478104648551544,
+      "ceiling_bal_record": 0.5478197836511665
+    },
+    "V6": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 9,
+      "hap_neighbor": 49,
+      "ambiguous_haplotypes": 4,
+      "ceiling_acc_isolate": 0.9292035398230089,
+      "ceiling_bal_isolate": 0.9342914888838993,
+      "ceiling_bal_record": 0.934626965540316
+    },
+    "V7": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 4,
+      "hap_neighbor": 27,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9304677623261695,
+      "ceiling_bal_isolate": 0.6273972602739732,
+      "ceiling_bal_record": 0.6285714285714297
+    },
+    "V8": {
+      "n_records": 796,
+      "n_isolates": 791,
+      "target_isolates": 61,
+      "neighbor_isolates": 730,
+      "hap_target": 4,
+      "hap_neighbor": 20,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9254108723135271,
+      "ceiling_bal_isolate": 0.815775881428251,
+      "ceiling_bal_record": 0.8142522582803619
+    },
+    "V9": {
+      "n_records": 163,
+      "n_isolates": 161,
+      "target_isolates": 21,
+      "neighbor_isolates": 140,
+      "hap_target": 3,
+      "hap_neighbor": 17,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.9875776397515528,
+      "ceiling_bal_isolate": 0.9928571428571428,
+      "ceiling_bal_record": 0.9929577464788731
+    }
+  },
+  "cereus_group": {
+    "V1": {
+      "n_records": 349,
+      "n_isolates": 349,
+      "target_isolates": 92,
+      "neighbor_isolates": 257,
+      "hap_target": 17,
+      "hap_neighbor": 42,
+      "ambiguous_haplotypes": 8,
+      "ceiling_acc_isolate": 0.7707736389684814,
+      "ceiling_bal_isolate": 0.6307519878193198,
+      "ceiling_bal_record": 0.6307519878193198
+    },
+    "V2": {
+      "n_records": 468,
+      "n_isolates": 468,
+      "target_isolates": 113,
+      "neighbor_isolates": 355,
+      "hap_target": 24,
+      "hap_neighbor": 60,
+      "ambiguous_haplotypes": 9,
+      "ceiling_acc_isolate": 0.8012820512820513,
+      "ceiling_bal_isolate": 0.7374548173999752,
+      "ceiling_bal_record": 0.7374548173999752
+    },
+    "V3": {
+      "n_records": 468,
+      "n_isolates": 468,
+      "target_isolates": 113,
+      "neighbor_isolates": 355,
+      "hap_target": 10,
+      "hap_neighbor": 34,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.7756410256410257,
+      "ceiling_bal_isolate": 0.5492957746478873,
+      "ceiling_bal_record": 0.5492957746478873
+    },
+    "V4": {
+      "n_records": 469,
+      "n_isolates": 469,
+      "target_isolates": 114,
+      "neighbor_isolates": 355,
+      "hap_target": 20,
+      "hap_neighbor": 49,
+      "ambiguous_haplotypes": 4,
+      "ceiling_acc_isolate": 0.791044776119403,
+      "ceiling_bal_isolate": 0.5733135656041514,
+      "ceiling_bal_record": 0.5733135656041514
+    },
+    "V5": {
+      "n_records": 468,
+      "n_isolates": 468,
+      "target_isolates": 113,
+      "neighbor_isolates": 355,
+      "hap_target": 14,
+      "hap_neighbor": 41,
+      "ambiguous_haplotypes": 3,
+      "ceiling_acc_isolate": 0.7863247863247863,
+      "ceiling_bal_isolate": 0.5607378785990278,
+      "ceiling_bal_record": 0.5607378785990278
+    },
+    "V6": {
+      "n_records": 469,
+      "n_isolates": 469,
+      "target_isolates": 114,
+      "neighbor_isolates": 355,
+      "hap_target": 17,
+      "hap_neighbor": 49,
+      "ambiguous_haplotypes": 4,
+      "ceiling_acc_isolate": 0.8635394456289979,
+      "ceiling_bal_isolate": 0.8399678774400792,
+      "ceiling_bal_record": 0.8399678774400792
+    },
+    "V7": {
+      "n_records": 469,
+      "n_isolates": 469,
+      "target_isolates": 114,
+      "neighbor_isolates": 355,
+      "hap_target": 22,
+      "hap_neighbor": 40,
+      "ambiguous_haplotypes": 8,
+      "ceiling_acc_isolate": 0.8464818763326226,
+      "ceiling_bal_isolate": 0.7574005436125527,
+      "ceiling_bal_record": 0.7574005436125527
+    },
+    "V8": {
+      "n_records": 469,
+      "n_isolates": 469,
+      "target_isolates": 114,
+      "neighbor_isolates": 355,
+      "hap_target": 18,
+      "hap_neighbor": 35,
+      "ambiguous_haplotypes": 2,
+      "ceiling_acc_isolate": 0.7931769722814499,
+      "ceiling_bal_isolate": 0.5761304670126021,
+      "ceiling_bal_record": 0.5761304670126021
+    },
+    "V9": {
+      "n_records": 131,
+      "n_isolates": 131,
+      "target_isolates": 34,
+      "neighbor_isolates": 97,
+      "hap_target": 10,
+      "hap_neighbor": 23,
+      "ambiguous_haplotypes": 5,
+      "ceiling_acc_isolate": 0.7786259541984732,
+      "ceiling_bal_isolate": 0.6318981200727711,
+      "ceiling_bal_record": 0.6318981200727711
+    }
+  }
+}

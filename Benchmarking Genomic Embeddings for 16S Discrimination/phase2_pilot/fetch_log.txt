@@ -1,0 +1,24 @@
+S_aureus: NCBI total hits=5536, retrieved ids=300
+S_aureus: kept 61 full-length records
+S_epidermidis: NCBI total hits=4173, retrieved ids=300
+S_epidermidis: kept 117 full-length records
+S_haemolyticus: NCBI total hits=1541, retrieved ids=300
+S_haemolyticus: kept 80 full-length records
+S_saprophyticus: NCBI total hits=1802, retrieved ids=300
+S_saprophyticus: kept 139 full-length records
+S_hominis: NCBI total hits=1661, retrieved ids=300
+S_hominis: kept 82 full-length records
+S_lugdunensis: NCBI total hits=184, retrieved ids=184
+S_lugdunensis: kept 45 full-length records
+S_capitis: NCBI total hits=688, retrieved ids=300
+S_capitis: kept 272 full-length records
+wrote staph_panel_meta.json: 796 records
+B_anthracis: NCBI total hits=1508, retrieved ids=300
+B_anthracis: kept 114 full-length records
+B_cereus: NCBI total hits=17282, retrieved ids=300
+B_cereus: kept 128 full-length records
+B_thuringiensis: NCBI total hits=6552, retrieved ids=300
+B_thuringiensis: kept 122 full-length records
+B_weihenstephanensis: NCBI total hits=1516, retrieved ids=300
+B_weihenstephanensis: kept 105 full-length records
+wrote cereus_panel_meta.json: 469 records

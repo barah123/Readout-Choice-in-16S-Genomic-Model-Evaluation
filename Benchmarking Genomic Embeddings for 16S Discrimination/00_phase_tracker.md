@@ -14,7 +14,7 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | Phase | Work | Status |
 |---|---|---|
 | 1 | Audit: archive code, fix ceiling/tie/weight issues, synthetic fixtures, current-panel summaries | **Done** — see `phase1_audit/` and summary below |
-| 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | Not started |
+| 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | **Done** — see `phase2_pilot/phase2_pilot_report.md` |
 | 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | Not started |
 | 4 | Scale: locked model × panel × region matrix on audited data | Not started |
 | 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | Not started |
@@ -47,6 +47,30 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
   env) — same MosaicBERT codebase as DNABERT-2, the same 4 documented patches transferred
   directly, loaded and ran cleanly on the first attempt. All four Phase 2 core models
   (DNABERT-2, DNABERT-S, HyenaDNA, NTv2) are now confirmed runnable.
+
+## Phase 2 headline (full detail in `phase2_pilot/phase2_pilot_report.md`)
+
+**The Phase 3a result this project treated as its cleanest finding does not survive.** Phase 3a
+reported DNABERT-2 at staph V1 as "exactly chance, 0.500" against k-mer's 0.997. Re-run with a
+linear probe (R2) instead of RF-on-raw-embeddings, on 57 target isolates instead of 19:
+DNABERT-2 = **0.964**, HyenaDNA = **0.979**, against a ceiling of 0.982. The representation did
+contain the information; the prior readout could not reach it. This is exactly the error the
+protocol's claim ladder (§4) and decision table (§22) exist to prevent, and it is a correction
+to our own prior claim rather than a new result about any model.
+
+Three further pilot findings:
+- **R0 (unsupervised geometry) misranks representations** and must be diagnostic-only: DNABERT-S
+  scores 0.542 at staph V1 by geometry but 0.945 by probe; several cereus regions score R0 ≈ 0.8
+  where the ceiling is only ≈ 0.55, i.e. the geometry is separating something that is not the
+  class label.
+- **Frozen models vs. classical is close to a tie** under a matched probe — mean Δ of +0.007
+  (cereus) and +0.002 (staph), no region exceeding +0.025. And `C_random` (random projection of
+  the k-mer space) nearly matches `C_kmer`, so small deltas between high-dimensional feature
+  sets should not be over-read.
+- **The cereus panel is not uniformly null.** At 92–114 target isolates rather than 9, V6 (0.80)
+  and V7 (0.70) support real discrimination, while V3/V4/V5/V8 remain near their low ceilings.
+  V6 is where Chakravorty et al.'s original anthracis/cereus claim sat — at this sample size it
+  partially replicates, where `prototype_report.md` had recorded it as failing to.
 
 ## What Phase 1 did *not* and could not fix
 

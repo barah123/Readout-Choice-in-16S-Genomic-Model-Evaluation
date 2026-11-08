@@ -1,0 +1,40 @@
+{
+  "V1": {
+    "n_unique": 105,
+    "dim": 768
+  },
+  "V2": {
+    "n_unique": 148,
+    "dim": 768
+  },
+  "V3": {
+    "n_unique": 88,
+    "dim": 768
+  },
+  "V4": {
+    "n_unique": 119,
+    "dim": 768
+  },
+  "V5": {
+    "n_unique": 81,
+    "dim": 768
+  },
+  "V6": {
+    "n_unique": 116,
+    "dim": 768
+  },
+  "V7": {
+    "n_unique": 83,
+    "dim": 768
+  },
+  "V8": {
+    "n_unique": 73,
+    "dim": 768
+  },
+  "V9": {
+    "n_unique": 46,
+    "dim": 768
+  },
+  "_elapsed_s": 5.7,
+  "_model_path": "../../glm_prototype_bundle (1)/dnabert2_local"
+}

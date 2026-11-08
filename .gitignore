@@ -7,3 +7,6 @@ glm_prototype_bundle (1)/dnabert_s_local/pytorch_model.bin
 __pycache__/
 *.pyc
 .DS_Store
+
+# Phase 2 embedding caches - regenerable from embed_all_models.py
+Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/emb_*.npz

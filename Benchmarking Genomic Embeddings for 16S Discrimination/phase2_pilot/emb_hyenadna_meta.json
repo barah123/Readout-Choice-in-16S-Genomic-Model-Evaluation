@@ -1,0 +1,40 @@
+{
+  "V1": {
+    "n_unique": 105,
+    "dim": 256
+  },
+  "V2": {
+    "n_unique": 148,
+    "dim": 256
+  },
+  "V3": {
+    "n_unique": 88,
+    "dim": 256
+  },
+  "V4": {
+    "n_unique": 119,
+    "dim": 256
+  },
+  "V5": {
+    "n_unique": 81,
+    "dim": 256
+  },
+  "V6": {
+    "n_unique": 116,
+    "dim": 256
+  },
+  "V7": {
+    "n_unique": 83,
+    "dim": 256
+  },
+  "V8": {
+    "n_unique": 73,
+    "dim": 256
+  },
+  "V9": {
+    "n_unique": 46,
+    "dim": 256
+  },
+  "_elapsed_s": 48.6,
+  "_model_path": "LongSafari/hyenadna-medium-160k-seqlen-hf"
+}

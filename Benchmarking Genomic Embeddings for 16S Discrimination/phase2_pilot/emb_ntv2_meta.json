@@ -1,0 +1,40 @@
+{
+  "V1": {
+    "n_unique": 105,
+    "dim": 1024
+  },
+  "V2": {
+    "n_unique": 148,
+    "dim": 1024
+  },
+  "V3": {
+    "n_unique": 88,
+    "dim": 1024
+  },
+  "V4": {
+    "n_unique": 119,
+    "dim": 1024
+  },
+  "V5": {
+    "n_unique": 81,
+    "dim": 1024
+  },
+  "V6": {
+    "n_unique": 116,
+    "dim": 1024
+  },
+  "V7": {
+    "n_unique": 83,
+    "dim": 1024
+  },
+  "V8": {
+    "n_unique": 73,
+    "dim": 1024
+  },
+  "V9": {
+    "n_unique": 46,
+    "dim": 1024
+  },
+  "_elapsed_s": 16.2,
+  "_model_path": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
+}

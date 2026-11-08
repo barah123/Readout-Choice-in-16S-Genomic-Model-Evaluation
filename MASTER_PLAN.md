@@ -45,6 +45,14 @@ below), and is now the place future phases should continue from.
 | 5 | Primer coverage layer | Not started (plan says move earlier — see §6) | — |
 | 6 | R package + manuscript | Not started | — |
 
+> **SUPERSEDED IN PART (2026-11-07).** The Phase 3a result referenced throughout §2–§5
+> below — "DNABERT-2 at staph V1 = 0.500, exact chance" — does not survive re-analysis under
+> Protocol 3. Under a linear probe with 57 target isolates (vs. 19), DNABERT-2 = 0.964 and
+> HyenaDNA = 0.979 against a 0.982 ceiling. The kill-switch discussion below is therefore
+> **not** currently triggered. Protocol 3 work (idea 3, the frozen-representation benchmark)
+> is now tracked in `Benchmarking Genomic Embeddings for 16S Discrimination/00_phase_tracker.md`;
+> this file remains the record for ideas 1 and 2.
+
 **Kill-switch status (plan §9):** **partially triggered, pending a second model — see §5.**
 Phase 1's B1 baseline on the anthracis panel recovered the underlying biology correctly
 (clonal within-anthracis identity, outgroup separation) — it just revealed the *published* V6

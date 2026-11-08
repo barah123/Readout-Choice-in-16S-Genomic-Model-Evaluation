@@ -1,0 +1,19 @@
+done cereus_group V1
+done cereus_group V2
+done cereus_group V3
+done cereus_group V4
+done cereus_group V5
+done cereus_group V6
+done cereus_group V7
+done cereus_group V8
+done cereus_group V9
+done staph_CoNS V1
+done staph_CoNS V2
+done staph_CoNS V3
+done staph_CoNS V4
+done staph_CoNS V5
+done staph_CoNS V6
+done staph_CoNS V7
+done staph_CoNS V8
+done staph_CoNS V9
+wrote readout_results.json

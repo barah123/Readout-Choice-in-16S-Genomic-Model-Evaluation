@@ -1,3 +1,13 @@
+> **SUPERSEDED (2026-11-07) — do not cite §4's headline without this caveat.**
+> The central claim below ("DNABERT-2 at V1 is at exact chance, 0.500") does **not** survive
+> re-analysis under the Protocol 3 benchmark. With a linear probe instead of RF-on-raw-
+> embeddings, and 57 target isolates instead of 19, DNABERT-2 scores **0.964** and HyenaDNA
+> **0.979** at staph V1, against a ceiling of 0.982. The numbers below were correctly computed
+> for the readout they measured; the error was treating one readout at n=19 isolates as a
+> statement about what the representation encodes. See
+> `../Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/phase2_pilot_report.md`
+> (Result 1). The isolate-grouping and ceiling machinery in this report remain valid.
+
 # Phase 3a Report — S. aureus vs. coagulase-negative staphylococci: the first real (non-null) head-to-head
 
 **Date:** 2026-11-06

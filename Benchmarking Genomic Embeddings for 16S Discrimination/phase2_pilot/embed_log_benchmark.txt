@@ -1,0 +1,72 @@
+W1107 22:28:42.889000 94714 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/phil/.cache/huggingface/modules/transformers_modules/dnabert2_local/0f3d03ec8d52d1bc/bert_layers.py:126: UserWarning: Unable to import Triton; defaulting MosaicBERT attention implementation to pytorch (this will reduce throughput when using this model).
+  warnings.warn(
+
+Loading weights:   0%|          | 0/136 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 136/136 [00:00<00:00, 28434.54it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: ../../glm_prototype_bundle (1)/dnabert2_local
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.decoder.bias               | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+pooler.dense.weight                        | MISSING    | 
+pooler.dense.bias                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+/Users/phil/.cache/huggingface/modules/transformers_modules/dnabert_s_local/94504220ff3de8b6/bert_layers.py:126: UserWarning: Unable to import Triton; defaulting MosaicBERT attention implementation to pytorch (this will reduce throughput when using this model).
+  warnings.warn(
+
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 138/138 [00:00<00:00, 58178.10it/s]
+/opt/homebrew/Caskroom/miniconda/base/envs/glm-benchmark/lib/python3.11/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 10736.88it/s]
+[transformers] [1mHyenaDNAModel LOAD REPORT[0m from: LongSafari/hyenadna-medium-160k-seqlen-hf
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+dnabert2 V1: 105 unique slices -> dim 768
+dnabert2 V2: 148 unique slices -> dim 768
+dnabert2 V3: 88 unique slices -> dim 768
+dnabert2 V4: 119 unique slices -> dim 768
+dnabert2 V5: 81 unique slices -> dim 768
+dnabert2 V6: 116 unique slices -> dim 768
+dnabert2 V7: 83 unique slices -> dim 768
+dnabert2 V8: 73 unique slices -> dim 768
+dnabert2 V9: 46 unique slices -> dim 768
+saved emb_dnabert2.npz  (5.7s)
+
+dnabert_s V1: 105 unique slices -> dim 768
+dnabert_s V2: 148 unique slices -> dim 768
+dnabert_s V3: 88 unique slices -> dim 768
+dnabert_s V4: 119 unique slices -> dim 768
+dnabert_s V5: 81 unique slices -> dim 768
+dnabert_s V6: 116 unique slices -> dim 768
+dnabert_s V7: 83 unique slices -> dim 768
+dnabert_s V8: 73 unique slices -> dim 768
+dnabert_s V9: 46 unique slices -> dim 768
+saved emb_dnabert_s.npz  (5.6s)
+
+hyenadna V1: 105 unique slices -> dim 256
+hyenadna V2: 148 unique slices -> dim 256
+hyenadna V3: 88 unique slices -> dim 256
+hyenadna V4: 119 unique slices -> dim 256
+hyenadna V5: 81 unique slices -> dim 256
+hyenadna V6: 116 unique slices -> dim 256
+hyenadna V7: 83 unique slices -> dim 256
+hyenadna V8: 73 unique slices -> dim 256
+hyenadna V9: 46 unique slices -> dim 256
+saved emb_hyenadna.npz  (48.6s)
+
