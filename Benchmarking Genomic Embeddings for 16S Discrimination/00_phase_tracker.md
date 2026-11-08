@@ -19,7 +19,7 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | **Done** — `phase3_freeze/FREEZE.md` (binding) |
 | 4 | Scale: locked model × panel × region matrix on audited data | **Done** — `phase4_locked_test/`, 20/22 blocks eligible and scored |
 | 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | **Done** — `phase5_evaluate/phase5_results.md` |
-| 6 | Diagnose/report: exploratory analyses, reproducible release, conditional conclusions | Not started |
+| 6 | Diagnose/report: exploratory analyses, reproducible release, conditional conclusions | **Done** — `phase6_report/FINAL_REPORT.md`, `README.md` |
 
 ## Phase 1 deliverables (done)
 
@@ -156,6 +156,26 @@ Explicitly **not** supported: that gLMs contain no 16S information (all reach 0.
 against a ~0.98 ceiling), that they are useless for 16S generally (one task, one readout
 family, clean sequences), or that classical methods are superior (the finding is
 equivalence, not superiority).
+
+## Phase 6 — diagnostics and final report
+
+**Diagnostic A (difficulty stratification) is the most important follow-up.** Half the locked
+test blocks (10/20) were saturated — classical error under 1%, so no method could differ.
+Restricted to the 5 genuinely hard blocks the difference is +0.0026 [−0.0046, +0.0120]:
+centred near zero but wide. And the gLM advantage **increases with task difficulty**
+(Spearman rho = +0.595, p = 0.006 for best-of-4). Exploratory, found after the fact, n=5 —
+but it is the strongest lead for future work and the reason the report does not conclude
+that these models are useless here. It also means the equivalence verdict is tight on easy
+problems and genuinely uncertain on hard ones, which is now stated explicitly.
+
+**Diagnostic B (pooling sensitivity)** on the same hard blocks: CLS token, max pooling and
+mean+max concatenation all land within ±0.003 of k-mer. No pooling choice rescues the gLM arm.
+Intermediate *layers* were deliberately not tested — MosaicBERT stores them unpadded
+internally, and extracting them correctly would mean reimplementing part of the model, so the
+check was abandoned rather than done wrongly. Recorded as an explicit open limitation.
+
+**Release:** `README.md` (how to reproduce, ~3 h on a laptop) and
+`phase6_report/FINAL_REPORT.md` (findings in plain language, no jargon).
 
 ## What Phase 1 did *not* and could not fix
 

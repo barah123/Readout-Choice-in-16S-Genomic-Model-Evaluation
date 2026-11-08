@@ -1,0 +1,47 @@
+{
+  "brucella_ochrobactrum": {
+    "C_kmer": 0.7774423516986446,
+    "mean_frozen": 0.7817901777856011,
+    "cls_token": 0.7748107727512762,
+    "max_pool": 0.7774423516986446,
+    "mean_plus_max": 0.7817901777856011,
+    "_region": "V6",
+    "_frozen_dnabert2": 0.7817901777856011
+  },
+  "veillonella": {
+    "C_kmer": 0.85239898989899,
+    "mean_frozen": 0.85239898989899,
+    "cls_token": 0.85239898989899,
+    "max_pool": 0.85239898989899,
+    "mean_plus_max": 0.85239898989899,
+    "_region": "V8",
+    "_frozen_dnabert2": 0.85239898989899
+  },
+  "francisella": {
+    "C_kmer": 0.9190476190476191,
+    "mean_frozen": 0.9190476190476191,
+    "cls_token": 0.8990476190476191,
+    "max_pool": 0.8990476190476191,
+    "mean_plus_max": 0.8990476190476191,
+    "_region": "V4",
+    "_frozen_dnabert2": 0.9190476190476191
+  },
+  "methylobacterium": {
+    "C_kmer": 0.899652988520913,
+    "mean_frozen": 0.8905983639002507,
+    "cls_token": 0.8924488718828343,
+    "max_pool": 0.9034628578968202,
+    "mean_plus_max": 0.8996892729911599,
+    "_region": "V8",
+    "_frozen_dnabert2": 0.8905983639002507
+  },
+  "acetobacteraceae": {
+    "C_kmer": 0.9308943089430894,
+    "mean_frozen": 0.9284552845528455,
+    "cls_token": 0.9475609756097562,
+    "max_pool": 0.9308943089430894,
+    "mean_plus_max": 0.9308943089430894,
+    "_region": "V2",
+    "_frozen_dnabert2": 0.9427380952380953
+  }
+}

@@ -1,0 +1,41 @@
+================================================================================================
+EXPLORATORY DIAGNOSTIC A - is equivalence an artifact of easy blocks?
+================================================================================================
+block                       ceiling   C_kmer  kmer error  headroom  delta(D2) delta(best)
+brucella_ochrobactrum         0.786    0.777       0.223     0.009     +0.004      +0.004
+veillonella                   0.849    0.852       0.148    -0.003     +0.000      +0.000
+francisella                   0.919    0.899       0.101     0.020     +0.020      +0.020
+methylobacterium              0.926    0.900       0.100     0.026     -0.009      +0.011
+acetobacteraceae              0.982    0.945       0.055     0.037     -0.002      +0.002
+streptomyces                  0.984    0.956       0.044     0.028     -0.002      +0.014
+sphingomonas                  0.994    0.968       0.032     0.026     +0.005      +0.010
+proteus_morganellaceae        0.988    0.982       0.018     0.005     +0.000      +0.000
+rhizobium_agrobacterium       0.992    0.984       0.016     0.007     -0.001      -0.001
+comamonadaceae                0.996    0.989       0.011     0.007     -0.000      +0.005
+stenotrophomonas              0.994    0.991       0.009     0.003     -0.005      +0.001
+paenibacillus                 1.000    0.992       0.008     0.008     -0.018      -0.000
+granulicatella                1.000    0.993       0.007     0.007     -0.010      -0.010
+nocardia                      1.000    0.996       0.004     0.004     +0.000      +0.000
+cutibacterium                 1.000    0.997       0.003     0.003     +0.000      +0.000
+rothia_micrococcaceae         0.997    0.997       0.003     0.000     +0.000      +0.000
+leuconostoc                   1.000    1.000       0.000     0.000     +0.000      +0.000
+porphyromonas                 1.000    1.000       0.000    -0.000     -0.025      +0.000
+flavobacteriaceae             1.000    1.000       0.000    -0.000     +0.000      +0.000
+fusobacterium                 1.000    1.000       0.000    -0.000     +0.000      +0.000
+
+blocks where classical error > 5% (real headroom): 5 / 20
+blocks where classical error < 1% (saturated)   : 10 / 20
+
+mean DNABERT-2 minus C_kmer, stratified by how much room there is to improve:
+  HARD   (kmer error >5%)    n= 5  mean=+0.0026  CI=[-0.0046, +0.0120]
+  MIDDLE (1-5%)              n= 5  mean=+0.0004  CI=[-0.0012, +0.0027]
+  EASY   (kmer error <1%)    n=10  mean=-0.0057  CI=[-0.0114, -0.0010]
+
+Spearman(classical error, delta) - does the gap grow where the task is harder?
+  DNABERT-2 : rho=+0.214  p=0.364
+  best-of-4 : rho=+0.595  p=0.006
+
+Interpretation guide (stated before reading the numbers):
+  - If the HARD stratum also shows ~0 difference, equivalence is a real finding.
+  - If HARD shows a large |difference| hidden by saturated EASY blocks, the pooled
+    equivalence verdict is misleading and must be qualified.
