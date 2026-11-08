@@ -12,3 +12,5 @@ __pycache__/
 Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/emb_*.npz
 Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/emb_full_*.npz
 Benchmarking Genomic Embeddings for 16S Discrimination/phase2_pilot/raw_species/
+Benchmarking Genomic Embeddings for 16S Discrimination/phase4_locked_test/emb_test_*.npz
+Benchmarking Genomic Embeddings for 16S Discrimination/phase4_locked_test/raw_species_test/
