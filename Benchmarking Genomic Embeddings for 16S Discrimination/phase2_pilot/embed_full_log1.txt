@@ -1,0 +1,73 @@
+W1107 22:54:06.072000 4003 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/phil/.cache/huggingface/modules/transformers_modules/dnabert2_local/0f3d03ec8d52d1bc/bert_layers.py:126: UserWarning: Unable to import Triton; defaulting MosaicBERT attention implementation to pytorch (this will reduce throughput when using this model).
+  warnings.warn(
+
+Loading weights:   0%|          | 0/136 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 136/136 [00:00<00:00, 33570.23it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: ../../glm_prototype_bundle (1)/dnabert2_local
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.decoder.bias               | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+pooler.dense.weight                        | MISSING    | 
+pooler.dense.bias                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+/Users/phil/.cache/huggingface/modules/transformers_modules/dnabert_s_local/94504220ff3de8b6/bert_layers.py:126: UserWarning: Unable to import Triton; defaulting MosaicBERT attention implementation to pytorch (this will reduce throughput when using this model).
+  warnings.warn(
+
+Loading weights:   0%|          | 0/138 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 138/138 [00:00<00:00, 69669.47it/s]
+/opt/homebrew/Caskroom/miniconda/base/envs/glm-benchmark/lib/python3.11/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 211/211 [00:00<00:00, 10045.72it/s]
+[transformers] [1mHyenaDNAModel LOAD REPORT[0m from: LongSafari/hyenadna-medium-160k-seqlen-hf
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+{'V1': 886, 'V2': 1320, 'V3': 1002, 'V4': 1028, 'V5': 721, 'V6': 1039, 'V7': 647, 'V8': 662, 'V9': 573}
+dnabert2 V1: 886 unique -> dim 768 (4s elapsed)
+dnabert2 V2: 1320 unique -> dim 768 (13s elapsed)
+dnabert2 V3: 1002 unique -> dim 768 (19s elapsed)
+dnabert2 V4: 1028 unique -> dim 768 (26s elapsed)
+dnabert2 V5: 721 unique -> dim 768 (30s elapsed)
+dnabert2 V6: 1039 unique -> dim 768 (36s elapsed)
+dnabert2 V7: 647 unique -> dim 768 (39s elapsed)
+dnabert2 V8: 662 unique -> dim 768 (43s elapsed)
+dnabert2 V9: 573 unique -> dim 768 (45s elapsed)
+saved emb_full_dnabert2.npz (45.4s)
+
+dnabert_s V1: 886 unique -> dim 768 (4s elapsed)
+dnabert_s V2: 1320 unique -> dim 768 (14s elapsed)
+dnabert_s V3: 1002 unique -> dim 768 (21s elapsed)
+dnabert_s V4: 1028 unique -> dim 768 (32s elapsed)
+dnabert_s V5: 721 unique -> dim 768 (38s elapsed)
+dnabert_s V6: 1039 unique -> dim 768 (47s elapsed)
+dnabert_s V7: 647 unique -> dim 768 (53s elapsed)
+dnabert_s V8: 662 unique -> dim 768 (58s elapsed)
+dnabert_s V9: 573 unique -> dim 768 (61s elapsed)
+saved emb_full_dnabert_s.npz (62.0s)
+
+hyenadna V1: 886 unique -> dim 256 (29s elapsed)
+hyenadna V2: 1320 unique -> dim 256 (160s elapsed)
+hyenadna V3: 1002 unique -> dim 256 (215s elapsed)
+hyenadna V4: 1028 unique -> dim 256 (304s elapsed)
+hyenadna V5: 721 unique -> dim 256 (341s elapsed)
+hyenadna V6: 1039 unique -> dim 256 (394s elapsed)
+hyenadna V7: 647 unique -> dim 256 (426s elapsed)
+hyenadna V8: 662 unique -> dim 256 (457s elapsed)
+hyenadna V9: 573 unique -> dim 256 (474s elapsed)
+saved emb_full_hyenadna.npz (473.8s)
+

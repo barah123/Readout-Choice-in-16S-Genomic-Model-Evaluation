@@ -1,0 +1,34 @@
+staphylococcus                   recs=  796 eligible_regions=9/9 max_ceiling=0.999
+bacillus_cereus_group            recs=  574 eligible_regions=9/9 max_ceiling=0.848
+streptococcus_mitis_group        recs=  663 eligible_regions=9/9 max_ceiling=0.929
+enterococcus                     recs=  702 eligible_regions=9/9 max_ceiling=0.992
+listeria                         recs=  215 eligible_regions=8/9 max_ceiling=0.960
+clostridium                      recs=  584 eligible_regions=7/9 max_ceiling=1.000
+lactobacillus_vaginal            recs=  782 eligible_regions=8/9 max_ceiling=1.000
+mycobacterium                    recs=  647 eligible_regions=8/9 max_ceiling=1.000
+corynebacterium                  recs=  181 eligible_regions=7/9 max_ceiling=1.000
+bifidobacterium_species          recs=  157 eligible_regions=7/9 max_ceiling=1.000
+bifidobacterium_longum_subsp     recs=   84 eligible_regions=7/9 max_ceiling=0.930
+escherichia_shigella             recs=  556 eligible_regions=9/9 max_ceiling=0.931
+klebsiella                       recs=  547 eligible_regions=9/9 max_ceiling=0.854
+enterobacter                     recs=  563 eligible_regions=9/9 max_ceiling=0.934
+salmonella_citrobacter           recs=  466 eligible_regions=9/9 max_ceiling=0.992
+pseudomonas                      recs=  490 eligible_regions=9/9 max_ceiling=0.990
+acinetobacter                    recs=  492 eligible_regions=9/9 max_ceiling=0.991
+haemophilus                      recs=  134 eligible_regions=9/9 max_ceiling=1.000
+vibrio                           recs=  611 eligible_regions=9/9 max_ceiling=0.981
+legionella                       recs=   65 eligible_regions=0/9 max_ceiling=1.000
+yersinia                         recs=  192 eligible_regions=0/9 max_ceiling=0.956
+aeromonas                        recs=  606 eligible_regions=9/9 max_ceiling=0.857
+burkholderia                     recs=  544 eligible_regions=9/9 max_ceiling=0.997
+neisseria                        recs=  327 eligible_regions=9/9 max_ceiling=1.000
+bordetella                       recs=   73 eligible_regions=0/9 max_ceiling=0.914
+campylobacter                    recs=  301 eligible_regions=7/9 max_ceiling=0.782
+helicobacter                     recs=   95 eligible_regions=8/9 max_ceiling=1.000
+bacteroides                      recs=  587 eligible_regions=8/9 max_ceiling=0.997
+prevotella                       recs=  220 eligible_regions=8/9 max_ceiling=1.000
+borrelia                         recs=   47 eligible_regions=0/9 max_ceiling=1.000
+leptospira                       recs=   55 eligible_regions=0/9 max_ceiling=1.000
+
+wrote blocks_full.json (97621 isolate x region rows)
+blocks with >=1 confirmatory-eligible region: 26/31

@@ -225,7 +225,17 @@ def main():
 
     jobs = []
     for (bid, region), rs in sorted(by.items()):
-        emb = {m: lut_cache[(m, region)] for m in emb_store if (m, region) in lut_cache}
+        # Restrict each cell's lookup to just the slices that cell uses. Passing the whole
+        # per-region table would re-pickle several MB per model to every worker, per cell.
+        need = {r["slice"] for r in rs}
+        emb = {}
+        for m in emb_store:
+            full = lut_cache.get((m, region))
+            if full is None:
+                continue
+            sub = {s: full[s] for s in need if s in full}
+            if sub:
+                emb[m] = sub
         if not emb:
             continue
         binfo = summary.get(bid, {}).get("regions", {}).get(region, {})

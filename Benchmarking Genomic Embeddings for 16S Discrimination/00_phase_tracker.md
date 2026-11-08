@@ -14,7 +14,8 @@ This file tracks the six phases in protocol §18. Update at the end of each phas
 | Phase | Work | Status |
 |---|---|---|
 | 1 | Audit: archive code, fix ceiling/tie/weight issues, synthetic fixtures, current-panel summaries | **Done** — see `phase1_audit/` and summary below |
-| 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | **Done** — see `phase2_pilot/phase2_pilot_report.md` |
+| 2 | Pilot: DNABERT-2, HyenaDNA, NTv2, DNABERT-S if runnable; classical controls; 3–5 dev blocks; primary + linear-probe readouts | **Done** — `phase2_pilot/phase2_pilot_report.md` |
+| 2-full | Scaled to the §6.2 block target: 31 declared blocks (26 eligible), 4 models, full readout hierarchy | **Done** — `phase2_pilot/phase2_full_report.md` |
 | 3 | Freeze: final model/checkpoint list, panel eligibility, primary metric, readout rule, multiplicity plan, margins, compute budget | Not started |
 | 4 | Scale: locked model × panel × region matrix on audited data | Not started |
 | 5 | Evaluate: freeze predictions, unseal labels, prespecified summaries | Not started |
@@ -71,6 +72,35 @@ Three further pilot findings:
   and V7 (0.70) support real discrimination, while V3/V4/V5/V8 remain near their low ceilings.
   V6 is where Chakravorty et al.'s original anthracis/cereus claim sat — at this sample size it
   partially replicates, where `prototype_report.md` had recorded it as failing to.
+
+## Phase 2-full headline (detail in `phase2_pilot/phase2_full_report.md`)
+
+Scaled from 2 panels to **31 pre-declared taxonomic blocks** (committed before fetching,
+commit `1918e6f`), 154 species, 12,356 records, 277 scored cells. **26 blocks pass the
+pre-declared eligibility gate**; the 5 failures are thin-reference organisms (*Y. pestis*,
+*B. pertussis*, Borrelia, Leptospira, Legionella neighbours) retained as descriptive-only.
+
+**Primary contrast, 25 independent species-rank blocks:** best linear probe on frozen
+embeddings minus best classical control = **+0.0014, 95% bootstrap CI [−0.0032, +0.0057]**;
+family-grouped stringent version −0.0001. 18 of 25 blocks are ties within ±0.01. Under §15's
+vocabulary this is *evidence of practically negligible improvement* — a narrow interval
+excluding gains above ~0.006 — **not** "inconclusive" and **not** evidence that the
+representations lack information. The flexibility reference matters: the models beat a random
+projection of the k-mer space by only +0.0036.
+
+**The dominant effect is the readout, not the model.** Spread across R0→R1→R2 within a model
+is ~0.21–0.27; spread across the four models within R2 is 0.007 — about thirty-fold. Any
+benchmark reporting a single pooled-embedding-distance number measures its readout far more
+than its representation, which is exactly how this project's own Phase 3a went wrong.
+DNABERT-S, the one model contrastively trained for species-aware embeddings, does **not**
+beat DNABERT-2 here (0.942 vs 0.946) — its 10 kbp training does not automatically transfer to
+short conserved 16S windows, answering an open question from the protocol's §2.2.
+
+**Our a-priori ambiguity predictions were systematically pessimistic.** Expected-class
+ordering held (A 0.994 > B 0.975 > C 0.912), but textbook "16S-unresolvable" groups —
+*E. coli*/*Shigella* 0.931, *Enterobacter* 0.934, *Acinetobacter* 0.990 — are substantially
+separable given ~100 isolates per class and the right region. Only campylobacter (0.782)
+behaves as the literature predicts.
 
 ## What Phase 1 did *not* and could not fix
 
