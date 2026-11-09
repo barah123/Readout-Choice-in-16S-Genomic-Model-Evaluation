@@ -136,3 +136,27 @@ real PCR and sequencing artefacts, and will be described as such.
 - **Additional tasks.** The region-ranking task (T2) is defined in the protocol and partially
   implemented; open-set rejection needs a separate unknown-taxon dataset. Both are worthwhile
   but neither addresses a limitation that currently threatens the main conclusion.
+
+---
+
+## Amendment A-1 — screening round 2 (logged 2026-11-08, before any model result on these panels)
+
+**Change:** re-screen the 11 round-1 candidates that returned INSUFFICIENT DATA using
+`retmax=300` instead of `retmax=100`, and add 12 new candidates of the type round 1 found
+reliably hard (subspecies and tight species complexes).
+
+**Reason:** round 1 selected only 5 hard panels, below the pre-set minimum of 8. But 11 of
+the 30 candidates failed on *insufficient data at the cheap screening sample*, not on
+difficulty — a data-collection shortfall. The original plan explicitly described the screen
+as "a cheap sample (`retmax=100`)" with a full fetch to follow, so deepening it completes the
+screen rather than altering it.
+
+**What is NOT changed:** the selection criteria (ceiling ≤ 0.97 AND k-mer ≤ 0.95), the
+classical-only screening rule, the primary endpoint, the analysis, and the ≥12 / <8 power
+thresholds all stand exactly as written.
+
+**Contamination check:** screening uses no genomic language model, and no model has been run
+on any round-1 or round-2 candidate panel. Nothing about model performance has influenced
+this amendment.
+
+**If the total is still below 8:** Extension A is reported as underpowered, as pre-committed.

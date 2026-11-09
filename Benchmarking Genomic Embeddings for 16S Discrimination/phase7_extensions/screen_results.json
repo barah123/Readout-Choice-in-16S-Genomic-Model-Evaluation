@@ -1,0 +1,352 @@
+{
+  "rickettsia": {
+    "status": "screened",
+    "family": "Rickettsiaceae",
+    "hard": false,
+    "target": "Rickettsia rickettsii",
+    "neighbours": [
+      "Rickettsia conorii",
+      "Rickettsia prowazekii",
+      "Rickettsia typhi",
+      "Rickettsia felis"
+    ],
+    "region": "V6",
+    "ceiling": 0.9999999999999999,
+    "kmer": 1.0,
+    "n_target": 17,
+    "n_neighbour": 19
+  },
+  "ehrlichia_anaplasma": {
+    "status": "insufficient_data",
+    "family": "Anaplasmataceae"
+  },
+  "chlamydia": {
+    "status": "screened",
+    "family": "Chlamydiaceae",
+    "hard": false,
+    "target": "Chlamydia trachomatis",
+    "neighbours": [
+      "Chlamydia muridarum",
+      "Chlamydia suis",
+      "Chlamydia psittaci",
+      "Chlamydia pneumoniae"
+    ],
+    "region": "V2",
+    "ceiling": 1.0,
+    "kmer": 1.0,
+    "n_target": 24,
+    "n_neighbour": 17
+  },
+  "coxiella_rickettsiella": {
+    "status": "insufficient_data",
+    "family": "Coxiellaceae"
+  },
+  "treponema": {
+    "status": "insufficient_data",
+    "family": "Spirochaetaceae"
+  },
+  "brachyspira": {
+    "status": "screened",
+    "family": "Brachyspiraceae",
+    "hard": false,
+    "target": "Brachyspira hyodysenteriae",
+    "neighbours": [
+      "Brachyspira pilosicoli",
+      "Brachyspira innocens",
+      "Brachyspira murdochii"
+    ],
+    "region": "V2",
+    "ceiling": 0.9852941176470585,
+    "kmer": 0.9703296703296704,
+    "n_target": 34,
+    "n_neighbour": 68
+  },
+  "mycoplasma": {
+    "status": "insufficient_data",
+    "family": "Mycoplasmataceae"
+  },
+  "spiroplasma": {
+    "status": "screened",
+    "family": "Spiroplasmataceae",
+    "hard": false,
+    "target": "Spiroplasma citri",
+    "neighbours": [
+      "Spiroplasma melliferum",
+      "Spiroplasma kunkelii",
+      "Spiroplasma apis"
+    ],
+    "region": "V4",
+    "ceiling": 0.9999999999999999,
+    "kmer": 1.0,
+    "n_target": 10,
+    "n_neighbour": 10
+  },
+  "pectobacterium_dickeya": {
+    "status": "screened",
+    "family": "Pectobacteriaceae",
+    "hard": true,
+    "target": "Pectobacterium carotovorum",
+    "neighbours": [
+      "Pectobacterium atrosepticum",
+      "Dickeya dadantii",
+      "Dickeya solani",
+      "Pectobacterium brasiliense"
+    ],
+    "region": "V6",
+    "ceiling": 0.9618055555555554,
+    "kmer": 0.9294984326018809,
+    "n_target": 54,
+    "n_neighbour": 144
+  },
+  "erwinia_pantoea": {
+    "status": "screened",
+    "family": "Erwiniaceae",
+    "hard": false,
+    "target": "Erwinia amylovora",
+    "neighbours": [
+      "Erwinia pyrifoliae",
+      "Pantoea agglomerans",
+      "Pantoea ananatis",
+      "Erwinia tasmaniensis"
+    ],
+    "region": "V6",
+    "ceiling": 0.9948453608247415,
+    "kmer": 0.97,
+    "n_target": 18,
+    "n_neighbour": 97
+  },
+  "xylella": {
+    "status": "screened",
+    "family": "Xanthomonadaceae*",
+    "hard": false,
+    "target": "Xylella fastidiosa",
+    "neighbours": [
+      "Xanthomonas oryzae",
+      "Xanthomonas citri",
+      "Xylella taiwanensis"
+    ],
+    "region": "V2",
+    "ceiling": 1.0000000000000004,
+    "kmer": 1.0,
+    "n_target": 39,
+    "n_neighbour": 57
+  },
+  "bradyrhizobium": {
+    "status": "screened",
+    "family": "Nitrobacteraceae",
+    "hard": true,
+    "target": "Bradyrhizobium japonicum",
+    "neighbours": [
+      "Bradyrhizobium elkanii",
+      "Bradyrhizobium diazoefficiens",
+      "Nitrobacter winogradskyi"
+    ],
+    "region": "V9",
+    "ceiling": 0.8928571428571428,
+    "kmer": 0.8933333333333333,
+    "n_target": 28,
+    "n_neighbour": 36
+  },
+  "synechococcus_prochlorococcus": {
+    "status": "screened",
+    "family": "Synechococcaceae",
+    "hard": false,
+    "target": "Prochlorococcus marinus",
+    "neighbours": [
+      "Synechococcus elongatus",
+      "Synechococcus sp.",
+      "Cyanobium gracile"
+    ],
+    "region": "V4",
+    "ceiling": 0.9999999999999999,
+    "kmer": 1.0,
+    "n_target": 13,
+    "n_neighbour": 22
+  },
+  "nostoc_anabaena": {
+    "status": "screened",
+    "family": "Nostocaceae",
+    "hard": true,
+    "target": "Nostoc punctiforme",
+    "neighbours": [
+      "Anabaena variabilis",
+      "Nostoc commune",
+      "Aphanizomenon flos-aquae"
+    ],
+    "region": "V8",
+    "ceiling": 0.9492753623188407,
+    "kmer": 0.8584249084249084,
+    "n_target": 32,
+    "n_neighbour": 69
+  },
+  "desulfovibrio": {
+    "status": "screened",
+    "family": "Desulfovibrionaceae",
+    "hard": false,
+    "target": "Desulfovibrio vulgaris",
+    "neighbours": [
+      "Desulfovibrio desulfuricans",
+      "Desulfovibrio piger",
+      "Desulfovibrio gigas"
+    ],
+    "region": "V2",
+    "ceiling": 0.9999999999999998,
+    "kmer": 1.0,
+    "n_target": 11,
+    "n_neighbour": 90
+  },
+  "geobacter": {
+    "status": "insufficient_data",
+    "family": "Geobacteraceae"
+  },
+  "nitrosomonas": {
+    "status": "insufficient_data",
+    "family": "Nitrosomonadaceae"
+  },
+  "rhodobacter_paracoccus": {
+    "status": "screened",
+    "family": "Rhodobacteraceae",
+    "hard": false,
+    "target": "Paracoccus denitrificans",
+    "neighbours": [
+      "Rhodobacter sphaeroides",
+      "Rhodobacter capsulatus",
+      "Paracoccus yeei"
+    ],
+    "region": "V2",
+    "ceiling": 1.0,
+    "kmer": 1.0,
+    "n_target": 21,
+    "n_neighbour": 84
+  },
+  "halomonas": {
+    "status": "screened",
+    "family": "Halomonadaceae",
+    "hard": false,
+    "target": "Halomonas elongata",
+    "neighbours": [
+      "Halomonas halodenitrificans",
+      "Chromohalobacter salexigens",
+      "Halomonas meridiana"
+    ],
+    "region": "V1",
+    "ceiling": 1.0000000000000007,
+    "kmer": 1.0,
+    "n_target": 82,
+    "n_neighbour": 87
+  },
+  "alteromonas": {
+    "status": "screened",
+    "family": "Alteromonadaceae",
+    "hard": false,
+    "target": "Alteromonas macleodii",
+    "neighbours": [
+      "Pseudoalteromonas haloplanktis",
+      "Pseudoalteromonas atlantica",
+      "Marinobacter hydrocarbonoclasticus"
+    ],
+    "region": "V2",
+    "ceiling": 0.9999999999999998,
+    "kmer": 1.0,
+    "n_target": 42,
+    "n_neighbour": 112
+  },
+  "methylococcus": {
+    "status": "insufficient_data",
+    "family": "Methylococcaceae"
+  },
+  "thermus_deinococcus": {
+    "status": "screened",
+    "family": "Thermaceae",
+    "hard": false,
+    "target": "Thermus thermophilus",
+    "neighbours": [
+      "Thermus aquaticus",
+      "Deinococcus radiodurans",
+      "Meiothermus ruber"
+    ],
+    "region": "V2",
+    "ceiling": 0.9999999999999999,
+    "kmer": 1.0,
+    "n_target": 98,
+    "n_neighbour": 19
+  },
+  "arcobacter": {
+    "status": "insufficient_data",
+    "family": "Arcobacteraceae"
+  },
+  "akkermansia_verruco": {
+    "status": "insufficient_data",
+    "family": "Akkermansiaceae"
+  },
+  "eggerthella_atopobium": {
+    "status": "screened",
+    "family": "Eggerthellaceae",
+    "hard": false,
+    "target": "Eggerthella lenta",
+    "neighbours": [
+      "Atopobium vaginae",
+      "Olsenella uli",
+      "Gordonibacter pamelaeae"
+    ],
+    "region": "V2",
+    "ceiling": 1.0000000000000002,
+    "kmer": 1.0,
+    "n_target": 47,
+    "n_neighbour": 30
+  },
+  "tannerella": {
+    "status": "insufficient_data",
+    "family": "Tannerellaceae"
+  },
+  "myxococcus": {
+    "status": "screened",
+    "family": "Myxococcaceae",
+    "hard": false,
+    "target": "Myxococcus xanthus",
+    "neighbours": [
+      "Corallococcus coralloides",
+      "Stigmatella aurantiaca",
+      "Myxococcus fulvus"
+    ],
+    "region": "V2",
+    "ceiling": 0.993150684931507,
+    "kmer": 0.9933333333333334,
+    "n_target": 37,
+    "n_neighbour": 73
+  },
+  "mycobacterium_abscessus_subsp": {
+    "status": "screened",
+    "family": "Mycobacteriaceae*",
+    "hard": true,
+    "target": "Mycobacterium abscessus subsp. abscessus",
+    "neighbours": [
+      "Mycobacterium abscessus subsp. massiliense",
+      "Mycobacterium abscessus subsp. bolletii"
+    ],
+    "region": "V6",
+    "ceiling": 0.5767543859649122,
+    "kmer": 0.5752777777777778,
+    "n_target": 76,
+    "n_neighbour": 42
+  },
+  "francisella_tularensis_subsp": {
+    "status": "insufficient_data",
+    "family": "Francisellaceae*"
+  },
+  "lactobacillus_delbrueckii_subsp": {
+    "status": "screened",
+    "family": "Lactobacillaceae*",
+    "hard": true,
+    "target": "Lactobacillus delbrueckii subsp. bulgaricus",
+    "neighbours": [
+      "Lactobacillus delbrueckii subsp. lactis",
+      "Lactobacillus delbrueckii subsp. delbrueckii"
+    ],
+    "region": "V4",
+    "ceiling": 0.9423076923076923,
+    "kmer": 0.9025000000000001,
+    "n_target": 26,
+    "n_neighbour": 41
+  }
+}

@@ -1,0 +1,38 @@
+rickettsia                         reg=V6  ceiling=1.000 kmer=1.000 n_t=  17 
+ehrlichia_anaplasma                INSUFFICIENT DATA
+chlamydia                          reg=V2  ceiling=1.000 kmer=1.000 n_t=  24 
+coxiella_rickettsiella             INSUFFICIENT DATA
+treponema                          INSUFFICIENT DATA
+brachyspira                        reg=V2  ceiling=0.985 kmer=0.970 n_t=  34 
+mycoplasma                         INSUFFICIENT DATA
+spiroplasma                        reg=V4  ceiling=1.000 kmer=1.000 n_t=  10 
+pectobacterium_dickeya             reg=V6  ceiling=0.962 kmer=0.929 n_t=  54 <== HARD
+erwinia_pantoea                    reg=V6  ceiling=0.995 kmer=0.970 n_t=  18 
+xylella                            reg=V2  ceiling=1.000 kmer=1.000 n_t=  39 
+bradyrhizobium                     reg=V9  ceiling=0.893 kmer=0.893 n_t=  28 <== HARD
+synechococcus_prochlorococcus      reg=V4  ceiling=1.000 kmer=1.000 n_t=  13 
+nostoc_anabaena                    reg=V8  ceiling=0.949 kmer=0.858 n_t=  32 <== HARD
+desulfovibrio                      reg=V2  ceiling=1.000 kmer=1.000 n_t=  11 
+geobacter                          INSUFFICIENT DATA
+nitrosomonas                       INSUFFICIENT DATA
+rhodobacter_paracoccus             reg=V2  ceiling=1.000 kmer=1.000 n_t=  21 
+halomonas                          reg=V1  ceiling=1.000 kmer=1.000 n_t=  82 
+alteromonas                        reg=V2  ceiling=1.000 kmer=1.000 n_t=  42 
+methylococcus                      INSUFFICIENT DATA
+thermus_deinococcus                reg=V2  ceiling=1.000 kmer=1.000 n_t=  98 
+arcobacter                         INSUFFICIENT DATA
+akkermansia_verruco                INSUFFICIENT DATA
+eggerthella_atopobium              reg=V2  ceiling=1.000 kmer=1.000 n_t=  47 
+tannerella                         INSUFFICIENT DATA
+myxococcus                         reg=V2  ceiling=0.993 kmer=0.993 n_t=  37 
+mycobacterium_abscessus_subsp      reg=V6  ceiling=0.577 kmer=0.575 n_t=  76 <== HARD
+francisella_tularensis_subsp       INSUFFICIENT DATA
+lactobacillus_delbrueckii_subsp    reg=V4  ceiling=0.942 kmer=0.903 n_t=  26 <== HARD
+
+selected HARD panels: 5/30
+target >=12 for planned precision; <8 => underpowered
+  pectobacterium_dickeya
+  bradyrhizobium
+  nostoc_anabaena
+  mycobacterium_abscessus_subsp
+  lactobacillus_delbrueckii_subsp
