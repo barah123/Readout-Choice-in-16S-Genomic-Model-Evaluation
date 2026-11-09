@@ -65,6 +65,10 @@ language models larger than about 0.2 percentage points, and any disadvantage la
 about 0.6. The threshold agreed in advance, below which a difference would not change any
 practical decision, was 1 percentage point — so the whole interval sits comfortably inside it.
 
+A formal two one-sided tests (TOST) procedure against the pre-set ±1-point margin gives
+**p = 0.0001**, so equivalence is supported by a test, not only by inspecting an interval.
+The 90% interval conventionally used for TOST at α = 0.05 is [−0.53, +0.11], narrower still.
+
 This is not "we couldn't find a difference because the study was too small." The study was
 designed in advance to detect a 1-point difference and achieved better precision than
 planned. There is nothing meaningful there to find.
@@ -88,27 +92,53 @@ bacteria, different difficulty levels, same conclusion.
 
 ## 4. Findings that matter more than the headline
 
-### 4.1 A random method scores at the top of the table
+### 4.1 A random projection of k-mer counts matches every learned representation
 
-The top row is a control: k-mer counts deliberately scrambled through a random projection,
-destroying their biological meaning. It scored 96.2% — nominally higher than every language
-model.
+The top row is a control: k-mer counts passed through a random Gaussian projection to 256
+dimensions. It scored 96.2% — nominally higher than every language model.
 
-This is not a flaw in the models. It shows that **at this level of difficulty, most of the
-measured accuracy comes from the flexibility of the classifier, not from the biological
-content of the representation**. Any future claim that one representation beats another on
-this kind of task should be checked against a random control first. Without it, two methods
-can appear to differ when neither is contributing anything specific.
+**A correction to an earlier version of this report.** That version described the projection
+as "destroying biological meaning" and concluded that most measured accuracy therefore came
+from classifier flexibility rather than from biological content. Both statements were wrong.
+A random projection approximately preserves pairwise distances (the Johnson–Lindenstrauss
+property), so it is a distance-preserving compression of the k-mer features, not a
+destruction of them. It retains k-mer information, and nothing about its score speaks to
+flexibility versus biology.
+
+The control that does test that question is a **label permutation** through the complete
+supervised pipeline — same features, same probe, same cross-validation, labels shuffled
+within each group. Run on the locked test (20 groups × 20 permutations):
+
+| arm | observed | permuted labels |
+|---|---|---|
+| k-mer counting | 96.3% | **50.1%** |
+| Random projection of k-mer counts | 96.2% | **50.1%** |
+| DNABERT-2 | 96.2% | **50.2%** |
+
+Permuted accuracy is exactly chance for every arm. **The measured accuracy reflects genuine
+sequence-to-label signal, not a classifier fitting noise.** The earlier flexibility claim is
+withdrawn.
+
+What the random-projection control does show is narrower but still useful: **the specific
+identity and weighting of individual k-mer features is not what carries the signal.** A
+random linear mixture of those counts performs identically, which indicates substantial
+redundancy in the k-mer feature space. Any claim that one representation beats another by a
+small margin should be checked against both controls — a random projection for redundancy,
+and a label permutation for whether the task is being learned at all.
 
 ### 4.2 How you read the model matters far more than which model you use
 
 A neural network's output can be turned into a usable representation in several ways. Three
 were tested:
 
-- Across these three reading methods, accuracy varied by **21 to 27 percentage points**.
+- Within each model, accuracy varied by **20.5 to 26.9 percentage points** across the three
+  reading methods.
 - Across the four models, using the best reading method, accuracy varied by **0.7 points**.
 
-**How you read the model matters roughly thirty times more than which model you pick.** Any
+**Readout-associated variation exceeded between-model variation by roughly thirty-fold**
+(31× comparing mean ranges). The ratio depends on how the ranges are defined, so both
+numbers are reported rather than the ratio alone; the qualitative conclusion — readout
+choice matters far more than model choice — does not depend on that definition. Any
 study reporting that a DNA language model "failed" a task, based on one simple reading
 method, may be measuring its own method rather than the model.
 
@@ -186,9 +216,11 @@ group (63%), the *Pseudomonas fluorescens* group (77%), the *Burkholderia cepaci
 
 This is the third independent time in this project that the textbook claim "16S cannot
 separate these organisms" has failed to hold up given enough isolates and the right region.
-**When judging whether 16S can resolve a group, the rank of the comparison predicts
-difficulty far better than the genus's reputation does.** Species-level comparisons are
-usually tractable; subspecies-level ones usually are not.
+Within the groups screened here, **the lowest accuracies occurred in subspecies and
+species-complex comparisons, and genera with a reputation for conserved 16S were separable**.
+Taxonomic rank was not a prespecified variable and was not formally modelled, so this is a
+description of these panels rather than a general rule. It is offered as a hypothesis worth
+testing directly: that rank predicts 16S difficulty better than a genus's reputation does.
 
 ### 4.6 Layer depth barely matters — which sharpens the readout finding
 
@@ -234,8 +266,10 @@ than an acknowledged gap.
 
 **Not supported:**
 - *That these models contain no useful information about 16S sequences.* They do: all four
-  reach 95–96%, close to the 97% maximum achievable for these data (limited by species that
-  share identical sequences in the section being read).
+  reach 95–96%, against an empirical ceiling of 97.0% for this reference population. That
+  ceiling is reference-specific, not a universal maximum: it is computed on the same isolate
+  unit, the same species-balanced weighting, and the same regions as the reported accuracy,
+  and it would change with different reference sampling or class weights.
 - *That DNA language models are not useful for genomics.* One task, one family of reading
   methods, four models.
 - *That k-mer counting is better.* The finding is equivalence, not superiority.

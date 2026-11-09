@@ -1,0 +1,268 @@
+{
+  "per_block": [
+    {
+      "block": "streptomyces",
+      "C_kmer|observed": 0.9628015370383547,
+      "C_random|observed": 0.9606276239948766,
+      "dnabert2:R2|observed": 0.9584999644204085,
+      "C_kmer|perm_mean": 0.4938433074788301,
+      "C_kmer|perm_p95": 0.533667900092507,
+      "C_random|perm_mean": 0.49401907066106887,
+      "C_random|perm_p95": 0.5267723973528784,
+      "dnabert2:R2|perm_mean": 0.4932219099124742,
+      "dnabert2:R2|perm_p95": 0.5369414004127232
+    },
+    {
+      "block": "nocardia",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.5027355581576894,
+      "C_kmer|perm_p95": 0.5562427790788446,
+      "C_random|perm_mean": 0.5038229898516783,
+      "C_random|perm_p95": 0.5516475409836065,
+      "dnabert2:R2|perm_mean": 0.5017406323185012,
+      "dnabert2:R2|perm_p95": 0.5533596799375488
+    },
+    {
+      "block": "cutibacterium",
+      "C_kmer|observed": 0.9965517241379309,
+      "C_random|observed": 0.9965517241379309,
+      "dnabert2:R2|observed": 0.9965517241379309,
+      "C_kmer|perm_mean": 0.5192126436781609,
+      "C_kmer|perm_p95": 0.5766149425287356,
+      "C_random|perm_mean": 0.5170229885057471,
+      "C_random|perm_p95": 0.5635316091954022,
+      "dnabert2:R2|perm_mean": 0.5148132183908046,
+      "dnabert2:R2|perm_p95": 0.567617816091954
+    },
+    {
+      "block": "rothia_micrococcaceae",
+      "C_kmer|observed": 0.9973333333333333,
+      "C_random|observed": 0.9960000000000001,
+      "dnabert2:R2|observed": 0.9973333333333333,
+      "C_kmer|perm_mean": 0.49905789473684214,
+      "C_kmer|perm_p95": 0.615488596491228,
+      "C_random|perm_mean": 0.49828859649122814,
+      "C_random|perm_p95": 0.6226228070175438,
+      "dnabert2:R2|perm_mean": 0.5008508771929824,
+      "dnabert2:R2|perm_p95": 0.6206043859649124
+    },
+    {
+      "block": "paenibacillus",
+      "C_kmer|observed": 0.9916666666666666,
+      "C_random|observed": 0.9873188405797102,
+      "dnabert2:R2|observed": 0.9825922266139658,
+      "C_kmer|perm_mean": 0.5008852108036892,
+      "C_kmer|perm_p95": 0.5554545454545454,
+      "C_random|perm_mean": 0.4988924571805007,
+      "C_random|perm_p95": 0.5479833662714098,
+      "dnabert2:R2|perm_mean": 0.49775774044795773,
+      "dnabert2:R2|perm_p95": 0.5458736824769433
+    },
+    {
+      "block": "leuconostoc",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.4814032677521484,
+      "C_kmer|perm_p95": 0.5544365388964271,
+      "C_random|perm_mean": 0.48085781320669374,
+      "C_random|perm_p95": 0.5516742141564902,
+      "dnabert2:R2|perm_mean": 0.48212010967887825,
+      "dnabert2:R2|perm_p95": 0.5595339213025781
+    },
+    {
+      "block": "veillonella",
+      "C_kmer|observed": 0.85239898989899,
+      "C_random|observed": 0.85239898989899,
+      "dnabert2:R2|observed": 0.85239898989899,
+      "C_kmer|perm_mean": 0.5126325757575758,
+      "C_kmer|perm_p95": 0.5655997474747475,
+      "C_random|perm_mean": 0.5120075757575758,
+      "C_random|perm_p95": 0.5655997474747475,
+      "dnabert2:R2|perm_mean": 0.5130871212121213,
+      "dnabert2:R2|perm_p95": 0.5655997474747475
+    },
+    {
+      "block": "granulicatella",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.5068103448275862,
+      "C_kmer|perm_p95": 0.5765090311986865,
+      "C_random|perm_mean": 0.5053095238095239,
+      "C_random|perm_p95": 0.5796124794745484,
+      "dnabert2:R2|perm_mean": 0.5053624794745486,
+      "dnabert2:R2|perm_p95": 0.5794400656814449
+    },
+    {
+      "block": "proteus_morganellaceae",
+      "C_kmer|observed": 0.9824286104286104,
+      "C_random|observed": 0.9851313131313131,
+      "dnabert2:R2|observed": 0.9825036855036855,
+      "C_kmer|perm_mean": 0.4994607152607152,
+      "C_kmer|perm_p95": 0.5537507644007643,
+      "C_random|perm_mean": 0.5006945536445537,
+      "C_random|perm_p95": 0.5475513513513514,
+      "dnabert2:R2|perm_mean": 0.5035196833196832,
+      "dnabert2:R2|perm_p95": 0.5452666666666667
+    },
+    {
+      "block": "stenotrophomonas",
+      "C_kmer|observed": 0.9910714285714286,
+      "C_random|observed": 0.9896825396825397,
+      "dnabert2:R2|observed": 0.9863095238095239,
+      "C_kmer|perm_mean": 0.5040061327561328,
+      "C_kmer|perm_p95": 0.562158189033189,
+      "C_random|perm_mean": 0.5027705627705628,
+      "C_random|perm_p95": 0.5591405122655123,
+      "dnabert2:R2|perm_mean": 0.4915629509379508,
+      "dnabert2:R2|perm_p95": 0.5405023448773448
+    },
+    {
+      "block": "brucella_ochrobactrum",
+      "C_kmer|observed": 0.7774423516986446,
+      "C_random|observed": 0.7791585988382327,
+      "dnabert2:R2|observed": 0.7817901777856011,
+      "C_kmer|perm_mean": 0.5047449366042042,
+      "C_kmer|perm_p95": 0.5445101827996564,
+      "C_random|perm_mean": 0.5087903591450503,
+      "C_random|perm_p95": 0.54447225733839,
+      "dnabert2:R2|perm_mean": 0.50755674150411,
+      "dnabert2:R2|perm_p95": 0.5466941372891029
+    },
+    {
+      "block": "francisella",
+      "C_kmer|observed": 0.9190476190476191,
+      "C_random|observed": 0.8990476190476191,
+      "dnabert2:R2|observed": 0.9190476190476191,
+      "C_kmer|perm_mean": 0.5129404761904761,
+      "C_kmer|perm_p95": 0.6208571428571429,
+      "C_random|perm_mean": 0.5141666666666667,
+      "C_random|perm_p95": 0.6375238095238095,
+      "dnabert2:R2|perm_mean": 0.5120476190476191,
+      "dnabert2:R2|perm_p95": 0.6208571428571429
+    },
+    {
+      "block": "sphingomonas",
+      "C_kmer|observed": 0.9823214285714286,
+      "C_random|observed": 0.9823214285714286,
+      "dnabert2:R2|observed": 0.9823214285714286,
+      "C_kmer|perm_mean": 0.492282738095238,
+      "C_kmer|perm_p95": 0.5445238095238094,
+      "C_random|perm_mean": 0.4891696428571429,
+      "C_random|perm_p95": 0.5540148809523808,
+      "dnabert2:R2|perm_mean": 0.4918541666666666,
+      "dnabert2:R2|perm_p95": 0.5478154761904762
+    },
+    {
+      "block": "rhizobium_agrobacterium",
+      "C_kmer|observed": 0.9846784363177805,
+      "C_random|observed": 0.9863177805800758,
+      "dnabert2:R2|observed": 0.9824716267339217,
+      "C_kmer|perm_mean": 0.4929142496847415,
+      "C_kmer|perm_p95": 0.5412269861286255,
+      "C_random|perm_mean": 0.49483833543505684,
+      "C_random|perm_p95": 0.5423288776796974,
+      "dnabert2:R2|perm_mean": 0.49428234552332906,
+      "dnabert2:R2|perm_p95": 0.5385147540983606
+    },
+    {
+      "block": "comamonadaceae",
+      "C_kmer|observed": 0.9903846153846153,
+      "C_random|observed": 0.9916666666666668,
+      "dnabert2:R2|observed": 0.9904008438818565,
+      "C_kmer|perm_mean": 0.5135402385589094,
+      "C_kmer|perm_p95": 0.5512647679324895,
+      "C_random|perm_mean": 0.5126594368711458,
+      "C_random|perm_p95": 0.5525314021421617,
+      "dnabert2:R2|perm_mean": 0.5135258519961051,
+      "dnabert2:R2|perm_p95": 0.5490412203829925
+    },
+    {
+      "block": "methylobacterium",
+      "C_kmer|observed": 0.899652988520913,
+      "C_random|observed": 0.9106306900646525,
+      "dnabert2:R2|observed": 0.8905983639002507,
+      "C_kmer|perm_mean": 0.4997293178519593,
+      "C_kmer|perm_p95": 0.5677224567884945,
+      "C_random|perm_mean": 0.49977088006333287,
+      "C_random|perm_p95": 0.5628646259400977,
+      "dnabert2:R2|perm_mean": 0.5013745876764745,
+      "dnabert2:R2|perm_p95": 0.5648820424858161
+    },
+    {
+      "block": "acetobacteraceae",
+      "C_kmer|observed": 0.9308943089430894,
+      "C_random|observed": 0.9308943089430894,
+      "dnabert2:R2|observed": 0.9284552845528455,
+      "C_kmer|perm_mean": 0.5088414634146343,
+      "C_kmer|perm_p95": 0.6110731707317073,
+      "C_random|perm_mean": 0.5142398373983739,
+      "C_random|perm_p95": 0.6090000000000001,
+      "dnabert2:R2|perm_mean": 0.5146219512195123,
+      "dnabert2:R2|perm_p95": 0.6110731707317073
+    },
+    {
+      "block": "porphyromonas",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.46275000000000005,
+      "C_kmer|perm_p95": 0.6165833333333334,
+      "C_random|perm_mean": 0.4713333333333334,
+      "C_random|perm_p95": 0.6324166666666667,
+      "dnabert2:R2|perm_mean": 0.4875,
+      "dnabert2:R2|perm_p95": 0.6164166666666667
+    },
+    {
+      "block": "flavobacteriaceae",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.49332995951417,
+      "C_kmer|perm_p95": 0.5599527665317139,
+      "C_random|perm_mean": 0.4933974358974359,
+      "C_random|perm_p95": 0.5666869095816465,
+      "dnabert2:R2|perm_mean": 0.4942172739541161,
+      "dnabert2:R2|perm_p95": 0.5637989203778677
+    },
+    {
+      "block": "fusobacterium",
+      "C_kmer|observed": 1.0,
+      "C_random|observed": 1.0,
+      "dnabert2:R2|observed": 1.0,
+      "C_kmer|perm_mean": 0.5179003759398497,
+      "C_kmer|perm_p95": 0.6100338345864661,
+      "C_random|perm_mean": 0.5121798245614035,
+      "C_random|perm_p95": 0.6107481203007519,
+      "dnabert2:R2|perm_mean": 0.5104674185463659,
+      "dnabert2:R2|perm_p95": 0.6072098997493733
+    }
+  ],
+  "summary": {
+    "C_kmer": {
+      "observed": 0.9629337019279702,
+      "permuted": 0.5009510703531777,
+      "perm_p95": 0.5708835742931556,
+      "gap": 0.4619826315747926,
+      "n": 20
+    },
+    "C_random": {
+      "observed": 0.9623874062068563,
+      "permuted": 0.5012115942054038,
+      "perm_p95": 0.5714361787834545,
+      "gap": 0.4611758120014524,
+      "n": 20
+    },
+    "dnabert2:R2": {
+      "observed": 0.961563739609568,
+      "permuted": 0.5015742339510101,
+      "perm_p95": 0.5690521570858185,
+      "gap": 0.4599895056585579,
+      "n": 20
+    }
+  },
+  "n_perm": 20
+}

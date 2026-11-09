@@ -255,8 +255,19 @@ def fig3_methods_and_random():
     ax.set_yticks(y); ax.set_yticklabels(labels)
     ax.set_xlim(88, 99)
     ax.set_xlabel("balanced accuracy (%), locked test")
-    ax.set_title("A random control matches every learned representation",
+    ax.set_title("A random projection of k-mer counts matches\nevery learned representation",
                  loc="left", fontweight="bold", fontsize=9.5)
+
+    # label-permutation control: the test that shows the task is actually learned
+    pp = os.path.join(RES, "label_permutation_control.json")
+    if os.path.exists(pp):
+        s = load(pp)["summary"]
+        perm = np.mean([v["permuted"] for v in s.values()]) * 100
+        ax.axvline(perm, color="#B00020", ls="-", lw=1.4, zorder=4)
+        ax.text(perm + 0.25, y[-1] - 0.2,
+                f"permuted labels\n{perm:.1f}% (chance)",
+                fontsize=7, color="#B00020", va="center")
+        ax.set_xlim(min(48, perm - 2), 99)
     fig.tight_layout()
     save(fig, "fig3_methods_and_random")
 
