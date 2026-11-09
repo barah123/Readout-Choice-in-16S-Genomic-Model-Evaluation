@@ -133,7 +133,7 @@ body(
     "with a regularized linear probe and k-mer counting with the same probe were "
     f"statistically equivalent on the locked test set (mean difference {pm:+.2f} percentage "
     f"points, 95% bootstrap confidence interval {plo:+.2f} to {phi:+.2f}; two one-sided "
-    "tests against a prespecified 1-point margin, p = 0.0001). Point estimates were "
+    "tests against a prespecified 1-point margin, p = 4.1 x 10-4). Point estimates were "
     "similar in a development set and in a set of groups selected specifically for "
     "difficulty, although the latter interval was too wide to establish equivalence at the "
     "same margin. Two controls bound the interpretation: a Gaussian random projection of "
@@ -281,8 +281,10 @@ body(
     "Four checkpoints were used, frozen, with no fine-tuning. DNABERT-2 (zhihan1996/"
     "DNABERT-2-117M; weight file SHA-256 beginning 7ff39ec77a48, 468,354,983 bytes) and "
     "DNABERT-S (zhihan1996/DNABERT-S; SHA-256 beginning f3cfc3d05418, 468,320,053 bytes) "
-    "were loaded from local patched copies; the patches address CPU and library "
-    "compatibility only and make no numerical change. HyenaDNA (LongSafari/"
+    "were loaded from local patched copies. The four patches address CPU and library "
+    "compatibility only and are not expected to alter numerical output, but no formal "
+    "equivalence test against unpatched code was possible because the unpatched code does "
+    "not execute in this environment. HyenaDNA (LongSafari/"
     "hyenadna-medium-160k-seqlen-hf, revision 7ebf71773d22c0ede2cc55cb2be15ee8c289e1ce) and "
     "Nucleotide Transformer v2 (InstaDeepAI/nucleotide-transformer-v2-500m-multi-species, "
     "revision 06615c1660c892fc199840c18123f8385b3542a8) were loaded from the Hugging Face "
@@ -319,8 +321,11 @@ body(
     "4-, 5- and 6-mer frequency features, normalized within each k, with the vocabulary "
     "fitted on training folds only. C_random applies a Gaussian random projection of the "
     "C_kmer feature matrix to 256 dimensions, with entries drawn from N(0, 1/p) where p is "
-    "the number of k-mer features, the projection matrix generated from a fixed seed and "
-    "applied identically to training and test folds.")
+    "the number of k-mer features and 1/p is the variance. In the main analysis an "
+    "independent projection was drawn for each cross-validation fold, so results average "
+    "over projections; in the label-permutation control a single fixed-seed projection was "
+    "reused across folds. In both cases the same projection is applied to the training and "
+    "test partitions of a given fold.")
 ph("[AUTHOR: AQ24 and check 3. C_random was evaluated at a single projection seed. If the "
    "manuscript interprets invariance to projection, repeat across seeds; otherwise state "
    "that only one seed was used.]")
@@ -368,18 +373,24 @@ body(
     "assessed by two one-sided tests against a margin of 1.0 percentage point of balanced "
     "accuracy, fixed before the locked test was collected; the margin was chosen because a "
     "difference below this value would not change which region a recommendation tool would "
-    "return and is smaller than the fold-to-fold variation observed within single blocks.")
+    "return and is smaller than the fold-to-fold variation observed within single blocks. "
+    "The two one-sided tests were computed as paired t tests on the block-level "
+    "differences, and the percentile bootstrap interval is reported as distribution-free "
+    "corroboration rather than as the test itself.")
 body(
     "The confirmatory family comprised five tests: the primary contrast, and four secondary "
     "contrasts (DNABERT-S, HyenaDNA, Nucleotide Transformer v2 and a best-of-four rule, "
     "each against C_kmer) corrected by the Holm procedure within that family. All other "
     "analyses, including the hard-panel, degradation, layer and region-selection "
     "experiments, are exploratory and are labelled as such.")
-ph("[AUTHOR: AQ15 and check 2. The TOST reported here is a bootstrap implementation on the "
-   "same paired block-level estimand as the confidence interval, not a t-based TOST; its "
-   "component one-sided p-values are 0.0001 and <0.00005. Confirm this description and "
-   "deposit the script and raw output, and state why bootstrap and t intervals differ "
-   "slightly.]")
+body(
+    "For the primary contrast (n = 20 blocks, mean -0.2108 points, standard deviation "
+    "0.8892), the component one-sided tests gave t = 3.969 (p = 4.1 x 10-4) against a "
+    "true difference at or below -1.0 point and t = -6.089 (p = 3.7 x 10-6) against a "
+    "difference at or above +1.0 point, so the two one-sided tests procedure returns "
+    "p = 4.1 x 10-4. The corresponding 90 percent intervals, [-0.555, +0.133] parametric "
+    "and [-0.529, +0.105] by bootstrap, both lie entirely within the margin, which is the "
+    "equivalent decision rule at the 5 percent level.")
 
 H2("Software and availability")
 body(
@@ -420,7 +431,7 @@ body(
     f"a linear probe and k-mer counting was {pm:+.2f} percentage points, with a 95 percent "
     f"bootstrap confidence interval of {plo:+.2f} to {phi:+.2f} and a two-sided bootstrap "
     f"p-value of {P['p_two_sided']:.3f}. The interval lies entirely within the prespecified "
-    "1-point margin, and two one-sided tests against that margin gave p = 0.0001. "
+    "1-point margin, and two one-sided tests against that margin gave p = 4.1 x 10-4. "
     "Seventeen of the 20 blocks differed by less than one point. Point estimates in the "
     "development set (+0.14 points) and the difficulty-selected set (-0.19 points) were "
     "similar in magnitude, although the latter interval (-1.28 to +0.66) spans the margin "
@@ -518,9 +529,12 @@ body(
     "identifiable in hindsight, was 0.65 points for k-mer counting and 0.57 points for "
     "DNABERT-2 on the locked test, and 1.95 and 2.02 points respectively on the hard "
     "panels; paired differences were -0.09 (95 percent CI -0.46 to +0.26) and +0.07 "
-    "(-0.61 to +0.65). No method reliably identified the single best region, but because "
-    "several regions frequently tie at the maximum, a method can incur zero regret while "
-    "not matching the single highest-scoring region (Fig 6, Table 7).")
+    "(-0.61 to +0.65). The oracle is method-specific: each arm is compared against its own "
+    "best attainable region rather than a shared one. No method reliably identified the "
+    "single best region, but the hit criterion is a strict maximum and is therefore "
+    "pessimistic: several regions frequently tie at the top, so a method can incur zero "
+    "regret while not matching the single highest-scoring region, which occurred in four "
+    "locked-test blocks. Regret is the better-behaved of the two measures (Fig 6, Table 7).")
 
 _h, _r = _rows("table5_robustness.csv")
 table(_h, _r, caption="Table 5. Sequence degradation, locked-test blocks.",
