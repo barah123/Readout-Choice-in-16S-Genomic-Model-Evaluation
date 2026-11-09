@@ -1,0 +1,23 @@
+# Versions verified in the environments used for the published analysis.
+# Two environments are required: Nucleotide Transformer v2 needs an older
+# transformers release and cannot share the main environment.
+
+# --- main environment (DNABERT-2, DNABERT-S, HyenaDNA, all analysis) ---
+# python==3.11.18
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.1
+torch==2.15.0
+transformers==5.22.1
+biopython==1.88
+joblib==1.6.0
+matplotlib
+pandas
+python-docx          # manuscript build only
+Pillow               # TIFF export only
+
+# --- second environment, Nucleotide Transformer v2 only ---
+# python==3.11.18
+# torch==2.15.0
+# transformers==4.34.1
+# biopython, einops, accelerate

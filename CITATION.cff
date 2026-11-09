@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite the archived release."
+title: >-
+  Readout choice, not model choice, determines whether pretrained genomic
+  language models help: a pre-registered benchmark on fine-scale 16S rRNA
+  discrimination
+abstract: >-
+  Analysis code, pre-registered plans, derived data and manuscript materials
+  for a benchmark comparing four pretrained genomic language models
+  (DNABERT-2, DNABERT-S, HyenaDNA, Nucleotide Transformer v2) against k-mer
+  counting on target-versus-neighbour discrimination within single 16S rRNA
+  hypervariable regions, across 58 analysable bacterial groups in three
+  experiments with a locked confirmatory test set.
+type: software
+authors:
+  # AUTHOR: replace with the full author list before creating the Zenodo release.
+  # Zenodo reads this file to populate the record's creator metadata.
+  - family-names: "REPLACE-SURNAME"
+    given-names: "REPLACE-GIVEN-NAMES"
+    orcid: "https://orcid.org/REPLACE-ORCID"
+    affiliation: "REPLACE-AFFILIATION"
+repository-code: "https://github.com/barah123/Readout-Choice-in-16S-Genomic-Model-Evaluation"
+license: MIT
+keywords:
+  - 16S rRNA
+  - genomic language models
+  - DNABERT
+  - HyenaDNA
+  - Nucleotide Transformer
+  - benchmarking
+  - pre-registration
+  - equivalence testing
+  - bacterial taxonomy

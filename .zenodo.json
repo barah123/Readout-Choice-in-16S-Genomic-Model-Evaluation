@@ -1,0 +1,35 @@
+{
+  "title": "Readout choice, not model choice, determines whether pretrained genomic language models help: a pre-registered benchmark on fine-scale 16S rRNA discrimination",
+  "description": "<p>Analysis code, pre-registered plans, derived data, figures and manuscript materials for a benchmark comparing four pretrained genomic language models (DNABERT-2, DNABERT-S, HyenaDNA, Nucleotide Transformer v2) against k-mer counting on target-versus-neighbour discrimination within single 16S rRNA hypervariable regions.</p><p>Across 58 analysable bacterial groups in three experiments, the two approaches were statistically equivalent on a locked confirmatory test set (mean difference -0.21 percentage points, 95% CI -0.60 to +0.16; paired-t TOST against a prespecified 1-point margin, p = 4.1e-4). Two controls bound the interpretation: a random projection of k-mer counts matched every learned representation, while permuting labels reduced every method to chance. Among readouts measured on a common endpoint, moving from nearest-reference assignment to a linear probe changed accuracy about four times more than the choice of model.</p><p>The repository preserves the full analysis history, including analysis plans and panel definitions committed before the corresponding data were retrieved. Commit timestamps are author-recorded and were not independently certified before this deposit; see supplementary document S10 for what the history does and does not establish.</p>",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "keywords": [
+    "16S rRNA",
+    "genomic language models",
+    "DNABERT-2",
+    "DNABERT-S",
+    "HyenaDNA",
+    "Nucleotide Transformer",
+    "benchmarking",
+    "pre-registration",
+    "equivalence testing",
+    "bacterial taxonomy",
+    "k-mer",
+    "representation learning"
+  ],
+  "creators": [
+    {
+      "name": "REPLACE-SURNAME, REPLACE-GIVEN-NAMES",
+      "affiliation": "REPLACE-AFFILIATION",
+      "orcid": "REPLACE-ORCID"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/barah123/Readout-Choice-in-16S-Genomic-Model-Evaluation",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
