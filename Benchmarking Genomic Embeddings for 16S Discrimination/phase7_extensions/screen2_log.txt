@@ -1,0 +1,43 @@
+round 2: 23 candidates (11 re-screened deeper, 12 new)
+
+ehrlichia_anaplasma                reg=V1  ceiling=1.000 kmer=1.000 n_t=  11 
+coxiella_rickettsiella             INSUFFICIENT_DATA
+treponema                          INSUFFICIENT_DATA
+mycoplasma                         INSUFFICIENT_DATA
+geobacter                          INSUFFICIENT_DATA
+nitrosomonas                       INSUFFICIENT_DATA
+methylococcus                      INSUFFICIENT_DATA
+arcobacter                         reg=V2  ceiling=1.000 kmer=1.000 n_t=  27 
+akkermansia_verruco                INSUFFICIENT_DATA
+tannerella                         reg=V2  ceiling=1.000 kmer=1.000 n_t=  10 
+francisella_tularensis_subsp       INSUFFICIENT_DATA
+lactobacillus_casei_group          reg=V1  ceiling=0.846 kmer=0.807 n_t=  54 <== HARD
+lactococcus_lactis_subsp           reg=V1  ceiling=0.898 kmer=0.895 n_t= 144 <== HARD
+bacillus_subtilis_subsp            reg=V2  ceiling=0.862 kmer=0.835 n_t= 120 <== HARD
+bifidobacterium_animalis_subsp     reg=V3  ceiling=0.972 kmer=0.975 n_t=  34 
+salmonella_subspecies              reg=V6  ceiling=0.962 kmer=0.856 n_t=  53 <== HARD
+streptococcus_dysgalactiae_subsp   reg=V1  ceiling=0.949 kmer=0.950 n_t=  29 <== HARD
+campylobacter_jejuni_subsp         reg=V6  ceiling=0.760 kmer=0.755 n_t=  50 <== HARD
+clostridium_botulinum_groups       reg=V1  ceiling=0.881 kmer=0.865 n_t=  59 <== HARD
+burkholderia_cepacia_complex       reg=V3  ceiling=0.840 kmer=0.816 n_t= 141 <== HARD
+yersinia_enterocolitica_subsp      INSUFFICIENT_DATA
+xanthomonas_campestris_pv          reg=V8  ceiling=0.647 kmer=0.640 n_t= 114 <== HARD
+pseudomonas_fluorescens_group      reg=V4  ceiling=0.841 kmer=0.802 n_t=  95 <== HARD
+
+round 1 hard: 5  round 2 hard: 10  TOTAL: 15
+target >=12 for planned precision; <8 => report underpowered
+  pectobacterium_dickeya
+  bradyrhizobium
+  nostoc_anabaena
+  mycobacterium_abscessus_subsp
+  lactobacillus_delbrueckii_subsp
+  lactobacillus_casei_group
+  lactococcus_lactis_subsp
+  bacillus_subtilis_subsp
+  salmonella_subspecies
+  streptococcus_dysgalactiae_subsp
+  campylobacter_jejuni_subsp
+  clostridium_botulinum_groups
+  burkholderia_cepacia_complex
+  xanthomonas_campestris_pv
+  pseudomonas_fluorescens_group
