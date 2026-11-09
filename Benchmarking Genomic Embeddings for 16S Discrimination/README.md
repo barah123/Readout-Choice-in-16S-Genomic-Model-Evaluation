@@ -17,7 +17,9 @@ Read in this order:
 | `05_Third_Idea_Critical_Review_and_Benchmark_Protocol.md` | the protocol this followed |
 | `phase3_freeze/FREEZE.md` | the analysis plan, fixed before the final data was collected |
 | `phase5_evaluate/phase5_results.md` | the confirmatory result |
-| `00_phase_tracker.md` | running log of all six phases |
+| `phase7_extensions/extension_A_results.md` | follow-up: hard groups |
+| `phase7_extensions/extension_B_results.md` | follow-up: imperfect sequences |
+| `00_phase_tracker.md` | running log of every phase |
 
 ## Why the results can be trusted
 
@@ -27,9 +29,11 @@ record was downloaded at 08:54:19 the same day — 94 minutes later. The plan wa
 afterwards. This matters because it rules out the most common way benchmarks mislead:
 adjusting the method until the numbers look good.
 
-The study also used two completely separate sets of bacteria. The first (31 groups) was used
-to make every design decision. The second (22 groups, from entirely different bacterial
-families) was used once, to test those decisions. Both gave the same answer.
+The study used three separate sets of bacteria, 58 groups in total. The first (25 groups)
+made every design decision. The second (20 groups, from entirely different bacterial
+families) tested those decisions once. The third (13 groups) was chosen specifically because
+the task is hard there, to check that the answer was not an artifact of easy cases. All three
+gave the same answer, as did a fourth run on deliberately degraded sequences.
 
 ## Reproducing the work
 
@@ -64,6 +68,16 @@ python analyze_locked_test.py
 cd ../phase6_report
 python diag_difficulty.py
 python diag_layers.py
+
+# Phase 7 extensions, each pre-registered before its data was collected
+cd ../phase7_extensions
+python screen_hard_panels.py          # difficulty screen, classical methods only
+python screen_round2.py               # deeper screen (Amendment A-1)
+python run_extension_A.py all         # fetch + build the selected hard panels
+python score_extension_A.py embed dnabert2 dnabert_s hyenadna
+conda run -n glm-ntv2 python score_extension_A.py embed ntv2
+python score_extension_A.py score     # Extension A: hard panels
+python robustness_perturbation.py     # Extension B: degraded sequences
 ```
 
 Expected total runtime: roughly 3 hours on a laptop (Apple M4, 16 GB, no GPU). Downloading
