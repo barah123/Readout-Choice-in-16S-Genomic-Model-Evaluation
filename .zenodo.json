@@ -20,9 +20,29 @@
   ],
   "creators": [
     {
-      "name": "REPLACE-SURNAME, REPLACE-GIVEN-NAMES",
-      "affiliation": "REPLACE-AFFILIATION",
-      "orcid": "REPLACE-ORCID"
+      "name": "Appiah, Philip Yamoah",
+      "affiliation": "Department of Biostatistics and Bioinformatics, Computational Biology Institute, Milken Institute School of Public Health, The George Washington University, Washington, DC 20052, USA; Department of Exercise and Nutrition Sciences, Milken Institute School of Public Health, The George Washington University, Washington, DC 20052, USA",
+      "orcid": "0009-0002-0706-2506"
+    },
+    {
+      "name": "Tettey, Ruth Barkey",
+      "affiliation": "Ghana Health Service, Oyoko Health Center, Eastern Region, Ghana",
+      "orcid": "0009-0001-1448-0688"
+    },
+    {
+      "name": "Nutase, Bernice",
+      "affiliation": "Ghana Health Service, Madina Polyclinic, Greater Accra, Ghana",
+      "orcid": "0009-0004-5574-6798"
+    },
+    {
+      "name": "Ortega-Santos, Carmen Patricia",
+      "affiliation": "Department of Exercise and Nutrition Sciences, Milken Institute School of Public Health, The George Washington University, Washington, DC 20052, USA",
+      "orcid": "0000-0002-0071-1190"
+    },
+    {
+      "name": "Pérez-Losada, Marcos",
+      "affiliation": "Department of Biostatistics and Bioinformatics, Computational Biology Institute, Milken Institute School of Public Health, The George Washington University, Washington, DC 20052, USA",
+      "orcid": "0000-0002-2585-4657"
     }
   ],
   "related_identifiers": [

@@ -115,8 +115,49 @@ r = p.add_run("Readout choice, not model choice, determines whether pretrained g
 r.bold = True
 r.font.size = Pt(16)
 
-ph("[AUTHOR: Author names, ORCID iDs, numbered affiliations, and corresponding-author "
-   "email. PLOS requires these on the title page. AQ22.]")
+# ---- authors, PLOS title-page format ----
+pa = doc.add_paragraph()
+pa.add_run("Philip Yamoah Appiah").bold = True
+pa.add_run("\u00B9\u00B2, ")
+pa.add_run("Ruth Barkey Tettey").bold = True
+pa.add_run("\u00B3, ")
+pa.add_run("Bernice Nutase").bold = True
+pa.add_run("\u2074, ")
+pa.add_run("Carmen Patricia Ortega-Santos").bold = True
+pa.add_run("\u00B2, ")
+pa.add_run("Marcos P\u00E9rez-Losada").bold = True
+pa.add_run("\u00B9*")
+
+for num, aff in [
+    ("1", "Department of Biostatistics and Bioinformatics, Computational Biology Institute, "
+          "Milken Institute School of Public Health, The George Washington University, "
+          "Washington, DC 20052, United States of America"),
+    ("2", "Department of Exercise and Nutrition Sciences, Milken Institute School of Public "
+          "Health, The George Washington University, Washington, DC 20052, United States of "
+          "America"),
+    ("3", "Ghana Health Service, Oyoko Health Center, Eastern Region, Ghana"),
+    ("4", "Ghana Health Service, Madina Polyclinic, Greater Accra, Ghana"),
+]:
+    q = doc.add_paragraph()
+    q.paragraph_format.space_after = Pt(2)
+    rr = q.add_run(f"{num} ")
+    rr.bold = True
+    rr.font.size = Pt(9)
+    rr2 = q.add_run(aff)
+    rr2.font.size = Pt(9)
+
+q = doc.add_paragraph()
+q.paragraph_format.space_before = Pt(6)
+rr = q.add_run("ORCID iDs: ")
+rr.bold = True
+rr.font.size = Pt(9)
+q.add_run(
+    "Appiah 0009-0002-0706-2506; Tettey 0009-0001-1448-0688; "
+    "Nutase 0009-0004-5574-6798; Ortega-Santos 0000-0002-0071-1190; "
+    "P\u00E9rez-Losada 0000-0002-2585-4657").font.size = Pt(9)
+
+ph("[AUTHOR: * marks the corresponding author, currently placed on the final author. "
+   "Confirm who corresponds and supply that address. AQ22.]")
 ph("[AUTHOR: Short title, 50 characters maximum. AQ22.]")
 
 # ============================================================ ABSTRACT
