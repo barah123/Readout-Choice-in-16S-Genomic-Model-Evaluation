@@ -781,27 +781,40 @@ ph("[AUTHOR: AQ23. Verify every reference against the publisher record, includin
 
 H("Figure legends")
 for n, t_ in [
-    ("Fig 1", "Paired differences between DNABERT-2 with a linear probe and k-mer counting. "
-              "(a) Per-block differences on the locked test, ordered by magnitude; the "
-              "shaded band is the prespecified 1-point equivalence margin. (b) Mean "
-              "differences with 95 percent bootstrap intervals for the development, locked "
-              "test and hard-panel sets."),
-    ("Fig 2", "Readout, model and layer effects, with metrics kept separate. (a) R0 "
-              "unsupervised geometry, reported as a pair-level area under the curve on its "
-              "own axis because it is not comparable to accuracy. (b) Change from "
-              "nearest-reference assignment to the linear probe, both balanced accuracy. "
-              "(c) Balanced accuracy across models at the probe readout. (d) The two "
-              "same-metric spreads on one axis; the layer bar is shaded differently because "
-              "it was measured on the hard panels."),
-    ("Fig 3", "Balanced accuracy of all methods on the locked test, bounded below by the "
-              "permuted-label value and above by the empirical ambiguity ceiling."),
-    ("Fig 4", "Task difficulty. (a) Per-block difference against k-mer error on the locked "
-              "test, showing that half the blocks are saturated. (b) Per-block differences "
-              "on the 13 difficulty-selected blocks."),
+    ("Fig 1", "Paired differences between DNABERT-2 with a linear probe and k-mer counting, in "
+              "percentage points of balanced accuracy. (a) Per-block differences on the locked "
+              "test set, ordered by magnitude; orange bars favour DNABERT-2 and blue bars "
+              "favour k-mer counting. The grey shaded band spans the prespecified equivalence "
+              "margin of plus or minus 1 percentage point. (b) Mean paired difference with "
+              "95 percent bootstrap confidence intervals for the development, locked-test and "
+              "hard-panel sets; the development point is shown without an interval because it "
+              "informed the analysis plan. The shaded band again marks the margin."),
+    ("Fig 2", "Readout, model and layer effects on the development set, with metrics kept "
+              "strictly separate. (a) R0 unsupervised geometry for each model, reported as a "
+              "pair-level area under the curve on its own axis because it is not comparable "
+              "to balanced accuracy and must not be subtracted from it. (b) Change from "
+              "nearest-reference assignment (R1) to the linear probe (R2), both in balanced "
+              "accuracy; the paired effect for DNABERT-2 is plus 2.83 points, 95 percent "
+              "confidence interval plus 1.37 to plus 4.57. (c) Balanced accuracy across the "
+              "four models at the R2 readout, spanning 0.73 points. (d) The same-metric "
+              "spreads on a common axis; the layer bar is shaded grey because it was measured "
+              "on the hard panels rather than the development set."),
+    ("Fig 3", "Balanced accuracy of every method on the locked test set. The solid red vertical "
+              "line at 50.1 percent is the mean accuracy obtained when class labels are "
+              "permuted through the complete pipeline, and the dashed black line at 97.0 "
+              "percent is the mean empirical ambiguity ceiling for these blocks. Together they "
+              "bound what any method could achieve on these data."),
+    ("Fig 4", "Task difficulty. (a) Per-block difference between DNABERT-2 and k-mer counting "
+              "plotted against k-mer error on the locked test set; the dotted vertical line at "
+              "1 percentage point of error marks the saturation threshold, below which 10 of "
+              "the 20 blocks fall. (b) Per-block differences on the 13 difficulty-selected "
+              "hard panels, ordered by magnitude."),
     ("Fig 5", "Balanced accuracy of k-mer counting and DNABERT-2 under six sequence "
               "degradation conditions, with identical degraded sequences supplied to both."),
-    ("Fig 6", "Regret in the region-selection task, defined as balanced accuracy lost "
-              "relative to the best region identifiable in hindsight."),
+    ("Fig 6", "Regret in the region-selection task, defined as balanced accuracy lost relative "
+              "to the best region identifiable in hindsight for that method; lower is better. "
+              "(a) Locked-test set, 20 blocks. (b) Difficulty-selected hard panels, 13 blocks. "
+              "Note the differing horizontal scales."),
     ("Fig 7", "Achieved balanced accuracy against the empirical ambiguity ceiling for each "
               "block; the diagonal marks the ceiling."),
 ]:

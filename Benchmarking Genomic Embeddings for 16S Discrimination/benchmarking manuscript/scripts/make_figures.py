@@ -32,6 +32,7 @@ mpl.rcParams.update({
     "font.size": 9,
     "axes.titlesize": 10,
     "axes.labelsize": 9,
+    "axes.labelweight": "bold",
     "axes.spines.top": False,
     "axes.spines.right": False,
     "axes.linewidth": 0.8,
@@ -128,12 +129,8 @@ def fig1_main_result():
     ax.set_yticks(y)
     ax.set_yticklabels([n.replace("_", " ") for n in names])
     ax.set_xlabel("DNABERT-2 − k-mer  (percentage points)")
-    ax.set_title("a   Per-group difference, locked test (n = 20)", loc="left",
-                 fontweight="bold")
+    ax.set_title("a", loc="left", fontweight="bold", fontsize=12)
     ax.axvspan(-1, 1, color="k", alpha=0.055, zorder=0)
-    ax.text(0.02, 0.055, "shaded band: ±1 pt, the threshold fixed in advance\n"
-            "for a difference large enough to matter",
-            transform=ax.transAxes, fontsize=7, ha="left", va="bottom", color="#444")
     ax.set_ylim(-1.3, len(names) - 0.3)
 
     # replication panel
@@ -163,7 +160,7 @@ def fig1_main_result():
     ax2.set_yticklabels([x[0] for x in reps])
     ax2.set_ylim(-0.6, len(reps) - 0.4)
     ax2.set_xlabel("mean difference (pts)")
-    ax2.set_title("b   Replication", loc="left", fontweight="bold")
+    ax2.set_title("b", loc="left", fontweight="bold", fontsize=12)
 
     fig.tight_layout(w_pad=2.2)
     save(fig, "fig1_main_result")
@@ -204,8 +201,7 @@ def fig2_readout_dominates():
     ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=30, ha="right", fontsize=8)
     ax.set_ylim(0.5, 0.85)
     ax.set_ylabel("pair AUC")
-    ax.set_title("a   R0 geometry\n(pair AUC — different\nmetric, not comparable)",
-                 loc="left", fontweight="bold", fontsize=9.5)
+    ax.set_title("a", loc="left", fontweight="bold", fontsize=12)
 
     # (b) R1 -> R2, SAME endpoint
     ax = axes[1]
@@ -218,9 +214,7 @@ def fig2_readout_dominates():
     ax.set_ylim(0.90, 0.96)
     ax.set_ylabel("balanced accuracy")
     mu, lo, hi, n = paired_ci("dnabert2:R1", "dnabert2:R2")
-    ax.set_title(f"b   Readout, same endpoint\n+{mu*100:.1f} pts "
-                 f"[{lo*100:+.1f}, {hi*100:+.1f}]", loc="left", fontweight="bold",
-                 fontsize=8.6)
+    ax.set_title("b", loc="left", fontweight="bold", fontsize=12)
     ax.legend(loc="lower right", fontsize=8)
 
     # (c) model choice at R2
@@ -231,8 +225,7 @@ def fig2_readout_dominates():
     ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=30, ha="right", fontsize=8)
     ax.set_ylim(0.90, 0.96)
     ax.set_ylabel("balanced accuracy")
-    ax.set_title(f"c   Model choice at R2\nspread {(max(vals)-min(vals))*100:.2f} pts",
-                 loc="left", fontweight="bold", fontsize=9.5)
+    ax.set_title("c", loc="left", fontweight="bold", fontsize=12)
 
     # (d) same axis, balanced-accuracy points only
     ax = axes[3]
@@ -260,8 +253,7 @@ def fig2_readout_dominates():
     ax.set_yticks(yy); ax.set_yticklabels(labs, fontsize=8)
     ax.set_xlabel("spread (balanced-accuracy pts)")
     ax.set_xlim(0, max(v for v in bars if v == v) * 1.38)
-    ax.set_title(f"d   Same metric, same axis\nreadout ~{readout/model:.0f}x model",
-                 loc="left", fontweight="bold", fontsize=9.5)
+    ax.set_title("d", loc="left", fontweight="bold", fontsize=12)
     ax.text(0.02, -0.52, "grey: measured on the hard panels,\nnot the development set",
             transform=ax.transAxes, fontsize=7.5, color="#555", va="top")
 
@@ -303,8 +295,7 @@ def fig3_methods_and_random():
     ax.set_yticks(y); ax.set_yticklabels(labels)
     ax.set_xlim(88, 99)
     ax.set_xlabel("balanced accuracy (%), locked test")
-    ax.set_title("A random projection of k-mer counts matches\nevery learned representation",
-                 loc="left", fontweight="bold", fontsize=9.5)
+
 
     # label-permutation control: the test that shows the task is actually learned
     pp = os.path.join(RES, "label_permutation_control.json")
@@ -312,9 +303,6 @@ def fig3_methods_and_random():
         s = load(pp)["summary"]
         perm = np.mean([v["permuted"] for v in s.values()]) * 100
         ax.axvline(perm, color="#B00020", ls="-", lw=1.4, zorder=4)
-        ax.text(perm + 0.25, y[-1] - 0.2,
-                f"permuted labels\n{perm:.1f}% (chance)",
-                fontsize=7, color="#B00020", va="center")
         ax.set_xlim(min(48, perm - 2), 99)
     fig.tight_layout()
     save(fig, "fig3_methods_and_random")
@@ -339,8 +327,7 @@ def fig4_difficulty():
             color="#444", va="top")
     ax.set_xlabel("k-mer error (pts) — how much room there is")
     ax.set_ylabel("DNABERT-2 − k-mer (pts)")
-    ax.set_title("a   Locked test: half the groups\n     leave no room to differ",
-                 loc="left", fontweight="bold")
+    ax.set_title("a", loc="left", fontweight="bold", fontsize=12)
 
     ax = axes[1]
     try:
@@ -367,10 +354,7 @@ def fig4_difficulty():
                  "bradyrhizobium": "Bradyrhizobium"}
         ax.set_yticklabels([short.get(n, n.replace("_", " ")) for n in names], fontsize=7.2)
         ax.set_xlabel("DNABERT-2 − k-mer (pts)")
-        ax.set_title(f"b   Hard groups only (n = {a['n']}):\n     mean "
-                     f"{a['mean']*100:+.1f} pts, CI "
-                     f"[{a['ci'][0]*100:+.1f}, {a['ci'][1]*100:+.1f}]",
-                     loc="left", fontweight="bold")
+        ax.set_title("b", loc="left", fontweight="bold", fontsize=12)
     except FileNotFoundError:
         pass
     fig.tight_layout(w_pad=2.0)
@@ -397,8 +381,7 @@ def fig5_robustness():
     ax.set_ylim(86, 98)
     ax.set_ylabel("balanced accuracy (%)")
     ax.legend(loc="upper right")
-    ax.set_title("Both methods degrade together; losing read length costs most",
-                 loc="left", fontweight="bold", fontsize=9.5)
+
     fig.tight_layout()
     save(fig, "fig5_robustness")
 
@@ -413,7 +396,7 @@ def fig6_region_ranking():
     s = load(p)
     sets = [k for k in ("locked_test", "hard_panels") if k in s]
     fig, axes = plt.subplots(1, len(sets), figsize=(3.6 * len(sets), 3.3), squeeze=False)
-    for ax, setname in zip(axes[0], sets):
+    for i, (ax, setname) in enumerate(zip(axes[0], sets)):
         d = s[setname]
         arms = [a for a in ["C_kmer"] + [f"{m}:R2" for m in MODELS] if a in d]
         reg = [d[a]["regret"] * 100 for a in arms]
@@ -423,11 +406,8 @@ def fig6_region_ranking():
         ax.barh(y, reg, color=cols, height=0.66)
         ax.set_yticks(y); ax.set_yticklabels(labs)
         ax.set_xlabel("regret (pts) — lower is better")
-        ax.set_title(f"{setname.replace('_', ' ')}  (n = {d[arms[0]]['n']})",
-                     loc="left", fontweight="bold")
-    fig.suptitle("Region ranking: accuracy lost by choosing the wrong region",
-                 x=0.01, ha="left", fontweight="bold", fontsize=9.5)
-    fig.tight_layout(rect=[0, 0, 1, 0.93], w_pad=2.0)
+        ax.set_title("ab"[i], loc="left", fontweight="bold", fontsize=12)
+    fig.tight_layout(w_pad=2.0)
     save(fig, "fig6_region_ranking")
 
 
@@ -468,8 +448,7 @@ def fig7_ceiling():
     ax.set_xlabel("information ceiling (%)")
     ax.set_ylabel("achieved balanced accuracy (%)")
     ax.legend(loc="lower right")
-    ax.set_title("Methods sit close to the information ceiling",
-                 loc="left", fontweight="bold", fontsize=9.5)
+
     fig.tight_layout()
     save(fig, "fig7_ceiling")
 
