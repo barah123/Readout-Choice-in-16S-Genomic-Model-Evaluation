@@ -190,6 +190,34 @@ separate these organisms" has failed to hold up given enough isolates and the ri
 difficulty far better than the genus's reputation does.** Species-level comparisons are
 usually tractable; subspecies-level ones usually are not.
 
+### 4.6 Layer depth barely matters — which sharpens the readout finding
+
+Section 4.2 claims that how you read a model matters far more than which model you use. That
+claim had an obvious weak point: every result used the **final layer** of each network, so
+the conclusion could itself have been limited by that one choice.
+
+This was tested directly on the two models whose internals can be read safely. Both were
+first checked to confirm the extracted final layer exactly reproduces the standard output —
+the check whose absence caused this analysis to be deferred earlier.
+
+| model | layers tested | best layer | gain over the final layer |
+|---|---|---|---|
+| HyenaDNA | 5 of 10 | layer 8 | **+0.16 points** (interval −0.07 to +0.43) |
+| NTv2 | 5 of 30 | **the final layer** | **0.00 points** |
+
+And those figures are *upper bounds*: the best layer was picked by looking at the same data,
+which biases it upward.
+
+**Layer choice is a minor factor.** Accuracy varied by about 0.5 points across five depths,
+against 21–27 points across readout *types*. **Readout type matters roughly fifty times more
+than layer depth.** This strengthens rather than weakens section 4.2: what matters is whether
+you train a classifier on the representation at all, not which layer you draw it from.
+
+DNABERT-2 and DNABERT-S remain untested here, and that is stated as a limitation rather than
+glossed. The attempt was not made because extracting their intermediate layers correctly
+requires reimplementing part of the model, and a silently wrong representation would be worse
+than an acknowledged gap.
+
 ## 5. What this study does and does not show
 
 **Supported:**
@@ -242,11 +270,11 @@ marked below.
 - ~~Clean reference sequences only.~~ **Addressed** by experiment 4, which degraded sequences
   six ways and reached the same conclusion. The error model used (uniform random base changes)
   is still a crude stand-in for real sequencing artefacts.
-- **Only the final layer of each model was tested.** Intermediate layers might work better.
-  The attempt was abandoned rather than botched: DNABERT-2 stores intermediate layers in a
-  compressed internal format, and extracting them correctly would have meant reimplementing
-  part of the model, risking a silently wrong result. Four ways of summarising the final layer
-  were tested instead; none helped.
+- ~~Only the final layer of each model was tested.~~ **Partly addressed** (see 4.6). Tested
+  for HyenaDNA and NTv2 across five depths each: the final layer was as good as any
+  intermediate one. Still untested for DNABERT-2 and DNABERT-S, which store intermediate
+  layers in a compressed internal format that cannot be extracted without reimplementing part
+  of the model.
 - **Four models.** Newer and larger ones exist and were not tested. Given that model choice
   matters about thirty times less than reading method, this is a lower priority than it looks.
 - **One task.** Closed-group identification, where the right answer is always among the
@@ -265,8 +293,9 @@ sequences. 58 bacterial groups in total.
 
 The more useful findings are methodological and practical: a random control scores as highly
 as any real method; how a model is read matters about thirty times more than which model is
-chosen; read length matters more than either; and the organisms that are genuinely hard to
-tell apart by 16S are not the ones with that reputation.
+chosen, and about fifty times more than which layer you read it from; read length matters
+more than any of these; and the organisms that are genuinely hard to tell apart by 16S are
+not the ones with that reputation.
 
 Three times during this work a confident-looking conclusion turned out to be an artifact —
 once from a poor reading method, once from a single small group driving an average, and once

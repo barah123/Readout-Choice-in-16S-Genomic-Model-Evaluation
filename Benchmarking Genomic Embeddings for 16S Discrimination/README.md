@@ -19,6 +19,7 @@ Read in this order:
 | `phase5_evaluate/phase5_results.md` | the confirmatory result |
 | `phase7_extensions/extension_A_results.md` | follow-up: hard groups |
 | `phase7_extensions/extension_B_results.md` | follow-up: imperfect sequences |
+| `phase7_extensions/extension_C_results.md` | follow-up: intermediate model layers |
 | `00_phase_tracker.md` | running log of every phase |
 
 ## Why the results can be trusted
@@ -78,6 +79,9 @@ python score_extension_A.py embed dnabert2 dnabert_s hyenadna
 conda run -n glm-ntv2 python score_extension_A.py embed ntv2
 python score_extension_A.py score     # Extension A: hard panels
 python robustness_perturbation.py     # Extension B: degraded sequences
+python extension_C_layers.py hyenadna # Extension C: layer sweep
+conda run -n glm-ntv2 python extension_C_layers.py ntv2 embed
+python extension_C_layers.py ntv2 score
 ```
 
 Expected total runtime: roughly 3 hours on a laptop (Apple M4, 16 GB, no GPU). Downloading
