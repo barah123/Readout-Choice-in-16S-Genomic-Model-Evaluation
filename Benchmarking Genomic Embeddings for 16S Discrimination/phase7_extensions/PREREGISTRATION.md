@@ -160,3 +160,57 @@ on any round-1 or round-2 candidate panel. Nothing about model performance has i
 this amendment.
 
 **If the total is still below 8:** Extension A is reported as underpowered, as pre-committed.
+
+---
+
+## Extension C — are intermediate layers better than the final layer?
+
+**Pre-registered 2026-11-08, before any layer sweep was run.**
+
+### Why this is required, not optional
+
+The project's headline methodological claim is that *how you read a model* matters ~30× more
+than *which model* you use. Every result so far used the **final layer only**. That is a
+direct internal tension: a reviewer can reasonably say the conclusion is itself
+readout-limited. Phase 6 deferred this because DNABERT-2/DNABERT-S store intermediate layers
+in an unpadded internal format and extracting them risked a silently wrong representation.
+
+HyenaDNA and NTv2 use standard interfaces. Both were probed before pre-registering, and both
+pass the mandatory correctness check: **the extracted final layer is numerically identical to
+the standard forward pass output** (`torch.allclose`, atol 1e-6). HyenaDNA exposes 10 layer
+outputs, NTv2 exposes 30.
+
+### Scope
+
+Two of four models. DNABERT-2 and DNABERT-S remain untested and will continue to be reported
+as a limitation. Testing half the models does not settle the question, but it converts "we
+did not look" into "we looked where we safely could, and here is what we found."
+
+### Design
+
+- **Panels:** the 13 screened-hard panels. Chosen because they are the only set with
+  meaningful headroom — the locked-test panels are mostly saturated, so no layer could show
+  an advantage there.
+- **Layers:** 5 evenly spaced depths per model, always including the final layer, so the
+  frozen result appears as one point on the curve and acts as an internal control.
+- **Everything else frozen:** same masked-mean pooling, same linear probe, same
+  isolate-grouped 5-fold CV, same seed. Only the layer changes.
+- **Correctness gate, enforced in code:** the run aborts unless the extracted final layer
+  reproduces the standard forward output.
+
+### Declared outcomes
+
+1. **Final layer is best or tied** → the frozen choice was right; the readout claim stands and
+   the layer limitation is substantially retired for these two models.
+2. **An intermediate layer is clearly better** → *strengthens* the readout thesis (readout
+   choice matters even more than reported), but means the main comparison understated the
+   models. The equivalence result would need re-running with the better layer before the
+   paper's central claim could stand.
+3. **Differences are small and noisy** → layer choice is a minor factor relative to the
+   readout-type effect already measured.
+
+### Pre-committed
+
+Outcome 2 is the one that would cost the most work, and it will be reported and acted on if
+it occurs. No layer will be selected using the hard-panel results and then presented as if it
+had been chosen in advance.
