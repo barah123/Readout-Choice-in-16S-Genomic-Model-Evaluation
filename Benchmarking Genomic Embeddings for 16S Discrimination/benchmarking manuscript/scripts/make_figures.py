@@ -254,8 +254,6 @@ def fig2_readout_dominates():
     ax.set_xlabel("spread (balanced-accuracy pts)")
     ax.set_xlim(0, max(v for v in bars if v == v) * 1.38)
     ax.set_title("d", loc="left", fontweight="bold", fontsize=12)
-    ax.text(0.02, -0.52, "grey: measured on the hard panels,\nnot the development set",
-            transform=ax.transAxes, fontsize=7.5, color="#555", va="top")
 
     fig.tight_layout(w_pad=2.0, h_pad=2.4)
     save(fig, "fig2_readout_dominates")
