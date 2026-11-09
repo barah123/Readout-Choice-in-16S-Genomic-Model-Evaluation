@@ -1,0 +1,1358 @@
+[
+  {
+    "block": "streptomyces",
+    "n_regions": 8,
+    "C_kmer|acc": 0.9558563375159121,
+    "dnabert2:R2|acc": 0.9548754444154536,
+    "dnabert_s:R2|acc": 0.9706362948731126,
+    "hyenadna:R2|acc": 0.9551274144706152,
+    "ntv2:R2|acc": 0.956958777748787,
+    "C_kmer|regret": 0.009927559951611742,
+    "dnabert2:R2|regret": 0.004792189488998,
+    "dnabert_s:R2|regret": 0.0,
+    "hyenadna:R2|regret": 0.006382978723404276,
+    "ntv2:R2|regret": 0.0005811965811965747,
+    "C_kmer|hit": 0.2,
+    "dnabert2:R2|hit": 0.6,
+    "dnabert_s:R2|hit": 1.0,
+    "hyenadna:R2|hit": 0.6,
+    "ntv2:R2|hit": 0.6,
+    "C_kmer|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V6",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V8",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ]
+  },
+  {
+    "block": "nocardia",
+    "n_regions": 8,
+    "C_kmer|acc": 0.9956306306306306,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 0.9879279279279279,
+    "hyenadna:R2|acc": 0.9983333333333334,
+    "ntv2:R2|acc": 0.9802380952380952,
+    "C_kmer|regret": 0.004369369369369358,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.01207207207207206,
+    "hyenadna:R2|regret": 0.0016666666666666607,
+    "ntv2:R2|regret": 0.01976190476190478,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 1.0,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.0,
+    "C_kmer|picks": [
+      [
+        "V5",
+        3
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V1",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V5",
+        2
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V5",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V5",
+        2
+      ],
+      [
+        "V1",
+        1
+      ],
+      [
+        "V4",
+        1
+      ],
+      [
+        "V2",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "cutibacterium",
+    "n_regions": 7,
+    "C_kmer|acc": 0.9966666666666667,
+    "dnabert2:R2|acc": 0.9966666666666667,
+    "dnabert_s:R2|acc": 0.9966666666666667,
+    "hyenadna:R2|acc": 1.0,
+    "ntv2:R2|acc": 0.9935483870967742,
+    "C_kmer|regret": 0.00010752688172042114,
+    "dnabert2:R2|regret": 0.00010752688172042114,
+    "dnabert_s:R2|regret": 0.00010752688172042114,
+    "hyenadna:R2|regret": 0.0,
+    "ntv2:R2|regret": 0.0064516129032258,
+    "C_kmer|hit": 0.2,
+    "dnabert2:R2|hit": 0.2,
+    "dnabert_s:R2|hit": 0.4,
+    "hyenadna:R2|hit": 1.0,
+    "ntv2:R2|hit": 0.0,
+    "C_kmer|picks": [
+      [
+        "V2",
+        2
+      ],
+      [
+        "V4",
+        2
+      ],
+      [
+        "V9",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V5",
+        2
+      ],
+      [
+        "V2",
+        2
+      ],
+      [
+        "V6",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V5",
+        2
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "rothia_micrococcaceae",
+    "n_regions": 7,
+    "C_kmer|acc": 0.9973333333333333,
+    "dnabert2:R2|acc": 0.9973333333333333,
+    "dnabert_s:R2|acc": 0.9973333333333333,
+    "hyenadna:R2|acc": 0.9360175438596492,
+    "ntv2:R2|acc": 0.9710000000000001,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.001333333333333342,
+    "hyenadna:R2|regret": 0.059999999999999984,
+    "ntv2:R2|regret": 0.02633333333333334,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 0.0,
+    "dnabert_s:R2|hit": 0.2,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V7",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V7",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V7",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V4",
+        3
+      ],
+      [
+        "V6",
+        1
+      ],
+      [
+        "V7",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V7",
+        4
+      ],
+      [
+        "V6",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "paenibacillus",
+    "n_regions": 9,
+    "C_kmer|acc": 0.9916666666666666,
+    "dnabert2:R2|acc": 0.9867179487179488,
+    "dnabert_s:R2|acc": 0.9774679487179487,
+    "hyenadna:R2|acc": 1.0,
+    "ntv2:R2|acc": 0.9827179487179487,
+    "C_kmer|regret": 0.003067510548523211,
+    "dnabert2:R2|regret": 0.009282051282051285,
+    "dnabert_s:R2|regret": 0.018532051282051286,
+    "hyenadna:R2|regret": 0.0,
+    "ntv2:R2|regret": 0.01311538461538464,
+    "C_kmer|hit": 0.8,
+    "dnabert2:R2|hit": 0.2,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.4,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V1",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V7",
+        2
+      ],
+      [
+        "V3",
+        2
+      ],
+      [
+        "V8",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V8",
+        2
+      ],
+      [
+        "V3",
+        2
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V3",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V7",
+        2
+      ],
+      [
+        "V1",
+        1
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V8",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "leuconostoc",
+    "n_regions": 9,
+    "C_kmer|acc": 1.0,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 0.9947368421052631,
+    "hyenadna:R2|acc": 0.993767507002801,
+    "ntv2:R2|acc": 0.9985294117647058,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.0052631578947368585,
+    "hyenadna:R2|regret": 0.00623249299719888,
+    "ntv2:R2|regret": 0.0014705882352941124,
+    "C_kmer|hit": 1.0,
+    "dnabert2:R2|hit": 1.0,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.8,
+    "C_kmer|picks": [
+      [
+        "V1",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V1",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V5",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V7",
+        2
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V5",
+        1
+      ],
+      [
+        "V9",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V1",
+        4
+      ],
+      [
+        "V9",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "veillonella",
+    "n_regions": 8,
+    "C_kmer|acc": 0.85239898989899,
+    "dnabert2:R2|acc": 0.85239898989899,
+    "dnabert_s:R2|acc": 0.85239898989899,
+    "hyenadna:R2|acc": 0.7974747474747474,
+    "ntv2:R2|acc": 0.85239898989899,
+    "C_kmer|regret": 0.0340909090909091,
+    "dnabert2:R2|regret": 0.016666666666666653,
+    "dnabert_s:R2|regret": 0.016666666666666653,
+    "hyenadna:R2|regret": 0.08901515151515152,
+    "ntv2:R2|regret": 0.025757575757575757,
+    "C_kmer|hit": 0.4,
+    "dnabert2:R2|hit": 0.6,
+    "dnabert_s:R2|hit": 0.8,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.6,
+    "C_kmer|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V8",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ]
+  },
+  {
+    "block": "granulicatella",
+    "n_regions": 9,
+    "C_kmer|acc": 0.9928571428571429,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 1.0,
+    "hyenadna:R2|acc": 0.9666666666666666,
+    "ntv2:R2|acc": 0.9666666666666666,
+    "C_kmer|regret": 0.00714285714285714,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.0,
+    "hyenadna:R2|regret": 0.03333333333333335,
+    "ntv2:R2|regret": 0.03333333333333335,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 0.0,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.0,
+    "C_kmer|picks": [
+      [
+        "V3",
+        4
+      ],
+      [
+        "V1",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V3",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V3",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V1",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V3",
+        4
+      ],
+      [
+        "V1",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "proteus_morganellaceae",
+    "n_regions": 9,
+    "C_kmer|acc": 0.9824286104286104,
+    "dnabert2:R2|acc": 0.9750131040131041,
+    "dnabert_s:R2|acc": 0.9824286104286104,
+    "hyenadna:R2|acc": 0.9766956046956047,
+    "ntv2:R2|acc": 0.9787158067158067,
+    "C_kmer|regret": 0.0006825006825006641,
+    "dnabert2:R2|regret": 0.012895986895986922,
+    "dnabert_s:R2|regret": 0.005480480480480487,
+    "hyenadna:R2|regret": 0.010203385203385196,
+    "ntv2:R2|regret": 0.004470379470379471,
+    "C_kmer|hit": 0.8,
+    "dnabert2:R2|hit": 0.0,
+    "dnabert_s:R2|hit": 0.6,
+    "hyenadna:R2|hit": 0.6,
+    "ntv2:R2|hit": 0.4,
+    "C_kmer|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V3",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ]
+  },
+  {
+    "block": "stenotrophomonas",
+    "n_regions": 9,
+    "C_kmer|acc": 0.9910714285714286,
+    "dnabert2:R2|acc": 0.9863095238095239,
+    "dnabert_s:R2|acc": 0.9865259740259742,
+    "hyenadna:R2|acc": 0.9910714285714286,
+    "ntv2:R2|acc": 0.9807539682539682,
+    "C_kmer|regret": 0.002777777777777768,
+    "dnabert2:R2|regret": 0.0075396825396825354,
+    "dnabert_s:R2|regret": 0.00732323232323231,
+    "hyenadna:R2|regret": 0.001388888888888884,
+    "ntv2:R2|regret": 0.008928571428571442,
+    "C_kmer|hit": 0.4,
+    "dnabert2:R2|hit": 0.0,
+    "dnabert_s:R2|hit": 0.2,
+    "hyenadna:R2|hit": 0.6,
+    "ntv2:R2|hit": 0.4,
+    "C_kmer|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V4",
+        1
+      ],
+      [
+        "V3",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V2",
+        2
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V2",
+        2
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V4",
+        1
+      ],
+      [
+        "V2",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "brucella_ochrobactrum",
+    "n_regions": 7,
+    "C_kmer|acc": 0.7774423516986446,
+    "dnabert2:R2|acc": 0.7817901777856011,
+    "dnabert_s:R2|acc": 0.7660007041013907,
+    "hyenadna:R2|acc": 0.7791585988382327,
+    "ntv2:R2|acc": 0.7686322830487591,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.01578947368421051,
+    "hyenadna:R2|regret": 0.0,
+    "ntv2:R2|regret": 0.006178489702517176,
+    "C_kmer|hit": 0.4,
+    "dnabert2:R2|hit": 0.6,
+    "dnabert_s:R2|hit": 0.2,
+    "hyenadna:R2|hit": 0.4,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V6",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V6",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V5",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V6",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V5",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "francisella",
+    "n_regions": 8,
+    "C_kmer|acc": 0.8990476190476191,
+    "dnabert2:R2|acc": 0.9190476190476191,
+    "dnabert_s:R2|acc": 0.8990476190476191,
+    "hyenadna:R2|acc": 0.9190476190476191,
+    "ntv2:R2|acc": 0.9190476190476191,
+    "C_kmer|regret": 0.019999999999999973,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.019999999999999973,
+    "hyenadna:R2|regret": 0.0,
+    "ntv2:R2|regret": 0.0,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 1.0,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 1.0,
+    "C_kmer|picks": [
+      [
+        "V4",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V4",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V4",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ]
+  },
+  {
+    "block": "sphingomonas",
+    "n_regions": 7,
+    "C_kmer|acc": 0.9675595238095239,
+    "dnabert2:R2|acc": 0.9723214285714287,
+    "dnabert_s:R2|acc": 0.9723214285714287,
+    "hyenadna:R2|acc": 0.9654166666666667,
+    "ntv2:R2|acc": 0.9641666666666667,
+    "C_kmer|regret": 0.02619047619047621,
+    "dnabert2:R2|regret": 0.021428571428571443,
+    "dnabert_s:R2|regret": 0.016666666666666673,
+    "hyenadna:R2|regret": 0.028333333333333342,
+    "ntv2:R2|regret": 0.02482142857142857,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 0.2,
+    "dnabert_s:R2|hit": 0.0,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.0,
+    "C_kmer|picks": [
+      [
+        "V6",
+        3
+      ],
+      [
+        "V4",
+        1
+      ],
+      [
+        "V7",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V4",
+        2
+      ],
+      [
+        "V6",
+        2
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V6",
+        2
+      ],
+      [
+        "V2",
+        2
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V8",
+        2
+      ],
+      [
+        "V6",
+        1
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "rhizobium_agrobacterium",
+    "n_regions": 7,
+    "C_kmer|acc": 0.9844134481800498,
+    "dnabert2:R2|acc": 0.9837477076965824,
+    "dnabert_s:R2|acc": 0.9816947442665699,
+    "hyenadna:R2|acc": 0.9743177805800757,
+    "ntv2:R2|acc": 0.9783177805800758,
+    "C_kmer|regret": 0.003543676662320716,
+    "dnabert2:R2|regret": 0.0025700728834932686,
+    "dnabert_s:R2|regret": 0.0039017248380960323,
+    "hyenadna:R2|regret": 0.006360655737704879,
+    "ntv2:R2|regret": 0.007999999999999962,
+    "C_kmer|hit": 0.2,
+    "dnabert2:R2|hit": 0.2,
+    "dnabert_s:R2|hit": 0.6,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V6",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V6",
+        3
+      ],
+      [
+        "V2",
+        2
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V6",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "comamonadaceae",
+    "n_regions": 8,
+    "C_kmer|acc": 0.9891350210970465,
+    "dnabert2:R2|acc": 0.9903846153846153,
+    "dnabert_s:R2|acc": 0.9961700746510873,
+    "hyenadna:R2|acc": 0.987852969814995,
+    "ntv2:R2|acc": 0.9958333333333333,
+    "C_kmer|regret": 0.005432489451476785,
+    "dnabert2:R2|regret": 0.005448717948717929,
+    "dnabert_s:R2|regret": 0.0038299253489126883,
+    "hyenadna:R2|regret": 0.007980363518338241,
+    "ntv2:R2|regret": 0.004166666666666652,
+    "C_kmer|hit": 0.0,
+    "dnabert2:R2|hit": 0.0,
+    "dnabert_s:R2|hit": 0.4,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V5",
+        2
+      ],
+      [
+        "V3",
+        1
+      ],
+      [
+        "V2",
+        1
+      ],
+      [
+        "V8",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V8",
+        4
+      ],
+      [
+        "V3",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V3",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V5",
+        3
+      ],
+      [
+        "V3",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V8",
+        3
+      ],
+      [
+        "V3",
+        1
+      ],
+      [
+        "V5",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "methylobacterium",
+    "n_regions": 7,
+    "C_kmer|acc": 0.899652988520913,
+    "dnabert2:R2|acc": 0.8905983639002507,
+    "dnabert_s:R2|acc": 0.9106306900646525,
+    "hyenadna:R2|acc": 0.906857105158992,
+    "ntv2:R2|acc": 0.8977661960680828,
+    "C_kmer|regret": 0.008530149096186856,
+    "dnabert2:R2|regret": 0.008493864625940106,
+    "dnabert_s:R2|regret": 0.0,
+    "hyenadna:R2|regret": 0.0,
+    "ntv2:R2|regret": 0.00524475524475525,
+    "C_kmer|hit": 0.6,
+    "dnabert2:R2|hit": 0.6,
+    "dnabert_s:R2|hit": 1.0,
+    "hyenadna:R2|hit": 1.0,
+    "ntv2:R2|hit": 0.8,
+    "C_kmer|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V8",
+        5
+      ]
+    ]
+  },
+  {
+    "block": "acetobacteraceae",
+    "n_regions": 6,
+    "C_kmer|acc": 0.9451190476190476,
+    "dnabert2:R2|acc": 0.9260714285714287,
+    "dnabert_s:R2|acc": 0.9426800232288037,
+    "hyenadna:R2|acc": 0.9283943089430894,
+    "ntv2:R2|acc": 0.928452380952381,
+    "C_kmer|regret": 0.0048809523809523634,
+    "dnabert2:R2|regret": 0.02392857142857141,
+    "dnabert_s:R2|regret": 0.0048809523809523634,
+    "hyenadna:R2|regret": 0.019166666666666644,
+    "ntv2:R2|regret": 0.03577526132404181,
+    "C_kmer|hit": 0.4,
+    "dnabert2:R2|hit": 0.2,
+    "dnabert_s:R2|hit": 0.2,
+    "hyenadna:R2|hit": 0.2,
+    "ntv2:R2|hit": 0.0,
+    "C_kmer|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V6",
+        1
+      ],
+      [
+        "V5",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V7",
+        1
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V7",
+        2
+      ],
+      [
+        "V5",
+        2
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V7",
+        2
+      ],
+      [
+        "V5",
+        1
+      ],
+      [
+        "V6",
+        1
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V7",
+        1
+      ],
+      [
+        "V5",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "porphyromonas",
+    "n_regions": 8,
+    "C_kmer|acc": 1.0,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 1.0,
+    "hyenadna:R2|acc": 0.9550000000000001,
+    "ntv2:R2|acc": 1.0,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.0,
+    "hyenadna:R2|regret": 0.045,
+    "ntv2:R2|regret": 0.0,
+    "C_kmer|hit": 0.2,
+    "dnabert2:R2|hit": 0.4,
+    "dnabert_s:R2|hit": 0.4,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V1",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V3",
+        2
+      ],
+      [
+        "V2",
+        2
+      ],
+      [
+        "V1",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        3
+      ],
+      [
+        "V3",
+        1
+      ],
+      [
+        "V1",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "flavobacteriaceae",
+    "n_regions": 7,
+    "C_kmer|acc": 1.0,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 0.9972972972972972,
+    "hyenadna:R2|acc": 0.9979166666666666,
+    "ntv2:R2|acc": 0.9976190476190476,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.002702702702702697,
+    "hyenadna:R2|regret": 0.002083333333333348,
+    "ntv2:R2|regret": 0.0023809523809523725,
+    "C_kmer|hit": 1.0,
+    "dnabert2:R2|hit": 1.0,
+    "dnabert_s:R2|hit": 0.2,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.2,
+    "C_kmer|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V3",
+        3
+      ],
+      [
+        "V2",
+        2
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V7",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V3",
+        2
+      ],
+      [
+        "V2",
+        2
+      ],
+      [
+        "V4",
+        1
+      ]
+    ]
+  },
+  {
+    "block": "fusobacterium",
+    "n_regions": 7,
+    "C_kmer|acc": 1.0,
+    "dnabert2:R2|acc": 1.0,
+    "dnabert_s:R2|acc": 1.0,
+    "hyenadna:R2|acc": 0.9947368421052631,
+    "ntv2:R2|acc": 0.9875,
+    "C_kmer|regret": 0.0,
+    "dnabert2:R2|regret": 0.0,
+    "dnabert_s:R2|regret": 0.0,
+    "hyenadna:R2|regret": 0.0052631578947368585,
+    "ntv2:R2|regret": 0.0125,
+    "C_kmer|hit": 0.8,
+    "dnabert2:R2|hit": 1.0,
+    "dnabert_s:R2|hit": 0.8,
+    "hyenadna:R2|hit": 0.0,
+    "ntv2:R2|hit": 0.8,
+    "C_kmer|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V5",
+        1
+      ]
+    ],
+    "dnabert2:R2|picks": [
+      [
+        "V2",
+        5
+      ]
+    ],
+    "dnabert_s:R2|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ],
+    "hyenadna:R2|picks": [
+      [
+        "V4",
+        4
+      ],
+      [
+        "V2",
+        1
+      ]
+    ],
+    "ntv2:R2|picks": [
+      [
+        "V2",
+        4
+      ],
+      [
+        "V4",
+        1
+      ]
+    ]
+  }
+]

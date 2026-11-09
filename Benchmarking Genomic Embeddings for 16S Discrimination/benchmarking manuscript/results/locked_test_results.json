@@ -1,0 +1,184 @@
+{
+  "n_blocks": 20,
+  "primary": {
+    "contrast": "dnabert2:R2 - C_kmer",
+    "mean": -0.002107730076512421,
+    "ci95": [
+      -0.005949046106311794,
+      0.0016252556407515355
+    ],
+    "p_two_sided": 0.253,
+    "margin": 0.01,
+    "verdict": "EQUIVALENT (practically negligible difference)",
+    "verdict_sensitivity_0.03": "EQUIVALENT (practically negligible difference)"
+  },
+  "secondary": {
+    "dnabert_s:R2 - C_kmer": {
+      "mean": -0.0010641135214538243,
+      "ci95": [
+        -0.00468412099036552,
+        0.0020705816882513406
+      ],
+      "p_raw": 0.58,
+      "p_holm": 0.58,
+      "verdict": "EQUIVALENT (practically negligible difference)"
+    },
+    "hyenadna:R2 - C_kmer": {
+      "mean": -0.00884567732402422,
+      "ci95": [
+        -0.014830970937721157,
+        -0.0037731176154393335
+      ],
+      "p_raw": 0.001,
+      "p_holm": 0.004,
+      "verdict": "INCONCLUSIVE at this margin"
+    },
+    "ntv2:R2 - C_kmer": {
+      "mean": -0.0028083808341480276,
+      "ci95": [
+        -0.006832716098233437,
+        0.0011317302892643374
+      ],
+      "p_raw": 0.168,
+      "p_holm": 0.336,
+      "verdict": "EQUIVALENT (practically negligible difference)"
+    },
+    "best-of-4 R2 - C_kmer": {
+      "mean": 0.0028617961094579646,
+      "ci95": [
+        0.0002611559187582986,
+        0.005705482107122362
+      ],
+      "p_raw": 0.025,
+      "p_holm": 0.07500000000000001,
+      "verdict": "EQUIVALENT (practically negligible difference)"
+    }
+  },
+  "per_block": {
+    "acetobacteraceae": {
+      "ceiling": 0.9821428571428572,
+      "C_kmer": 0.9451190476190476,
+      "dnabert2_R2": 0.9427380952380953,
+      "delta": -0.0023809523809523725
+    },
+    "brucella_ochrobactrum": {
+      "ceiling": 0.7861899513180856,
+      "C_kmer": 0.7774423516986446,
+      "dnabert2_R2": 0.7817901777856011,
+      "delta": 0.004347826086956497
+    },
+    "comamonadaceae": {
+      "ceiling": 0.9958677685950416,
+      "C_kmer": 0.9891350210970465,
+      "dnabert2_R2": 0.9891187925998054,
+      "delta": -1.622849724114417e-05
+    },
+    "cutibacterium": {
+      "ceiling": 0.9999999999999999,
+      "C_kmer": 0.9966666666666667,
+      "dnabert2_R2": 0.9966666666666667,
+      "delta": 0.0
+    },
+    "flavobacteriaceae": {
+      "ceiling": 0.9999999999999991,
+      "C_kmer": 1.0,
+      "dnabert2_R2": 1.0,
+      "delta": 0.0
+    },
+    "francisella": {
+      "ceiling": 0.9193548387096775,
+      "C_kmer": 0.8990476190476191,
+      "dnabert2_R2": 0.9190476190476191,
+      "delta": 0.020000000000000018
+    },
+    "fusobacterium": {
+      "ceiling": 0.9999999999999996,
+      "C_kmer": 1.0,
+      "dnabert2_R2": 1.0,
+      "delta": 0.0
+    },
+    "granulicatella": {
+      "ceiling": 1.0000000000000002,
+      "C_kmer": 0.9928571428571429,
+      "dnabert2_R2": 0.9833333333333334,
+      "delta": -0.00952380952380949
+    },
+    "leuconostoc": {
+      "ceiling": 1.0000000000000004,
+      "C_kmer": 1.0,
+      "dnabert2_R2": 1.0,
+      "delta": 0.0
+    },
+    "methylobacterium": {
+      "ceiling": 0.9259259259259256,
+      "C_kmer": 0.899652988520913,
+      "dnabert2_R2": 0.8905983639002507,
+      "delta": -0.00905462462066231
+    },
+    "nocardia": {
+      "ceiling": 0.9999999999999996,
+      "C_kmer": 0.9956306306306306,
+      "dnabert2_R2": 0.9956306306306306,
+      "delta": 0.0
+    },
+    "paenibacillus": {
+      "ceiling": 1.0000000000000002,
+      "C_kmer": 0.9916666666666666,
+      "dnabert2_R2": 0.9738138528138528,
+      "delta": -0.017852813852813787
+    },
+    "porphyromonas": {
+      "ceiling": 0.9999999999999996,
+      "C_kmer": 1.0,
+      "dnabert2_R2": 0.975,
+      "delta": -0.025000000000000022
+    },
+    "proteus_morganellaceae": {
+      "ceiling": 0.9879032258064507,
+      "C_kmer": 0.9824286104286104,
+      "dnabert2_R2": 0.9825036855036855,
+      "delta": 7.507507507509281e-05
+    },
+    "rhizobium_agrobacterium": {
+      "ceiling": 0.9918032786885241,
+      "C_kmer": 0.9844134481800498,
+      "dnabert2_R2": 0.9837477076965824,
+      "delta": -0.0006657404834674585
+    },
+    "rothia_micrococcaceae": {
+      "ceiling": 0.9973544973544965,
+      "C_kmer": 0.9973333333333333,
+      "dnabert2_R2": 0.9973333333333333,
+      "delta": 0.0
+    },
+    "sphingomonas": {
+      "ceiling": 0.9935064935064928,
+      "C_kmer": 0.9675595238095239,
+      "dnabert2_R2": 0.9723214285714287,
+      "delta": 0.004761904761904745
+    },
+    "stenotrophomonas": {
+      "ceiling": 0.9939814814814815,
+      "C_kmer": 0.9910714285714286,
+      "dnabert2_R2": 0.9863095238095239,
+      "delta": -0.004761904761904745
+    },
+    "streptomyces": {
+      "ceiling": 0.9841880341880334,
+      "C_kmer": 0.9558563375159121,
+      "dnabert2_R2": 0.9537730041825787,
+      "delta": -0.002083333333333437
+    },
+    "veillonella": {
+      "ceiling": 0.8493795464270433,
+      "C_kmer": 0.85239898989899,
+      "dnabert2_R2": 0.85239898989899,
+      "delta": 0.0
+    }
+  },
+  "missing_cells": 0,
+  "ineligible_blocks": [
+    "actinomyces",
+    "bartonella"
+  ]
+}

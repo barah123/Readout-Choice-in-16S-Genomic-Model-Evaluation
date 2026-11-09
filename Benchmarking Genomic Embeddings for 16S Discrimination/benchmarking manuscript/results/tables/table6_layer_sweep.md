@@ -1,0 +1,14 @@
+| Model | Layer | Relative depth | Balanced accuracy (%) | vs k-mer (pts) | Note |
+|---|---|---|---|---|---|
+| HyenaDNA | 2 | 0.22 | 82.86 | +0.07 |  |
+| HyenaDNA | 4 | 0.44 | 82.93 | +0.13 |  |
+| HyenaDNA | 7 | 0.78 | 83.11 | +0.32 |  |
+| HyenaDNA | 8 | 0.89 | 83.40 | +0.60 |  |
+| HyenaDNA | 9 | 1.00 | 83.24 | +0.44 | final layer |
+| NTv2 | 7 | 0.24 | 82.22 | -0.57 |  |
+| NTv2 | 14 | 0.48 | 82.11 | -0.68 |  |
+| NTv2 | 22 | 0.76 | 82.63 | -0.17 |  |
+| NTv2 | 26 | 0.90 | 82.33 | -0.46 |  |
+| NTv2 | 29 | 1.00 | 82.64 | -0.15 | final layer |
+
+13 hard groups. DNABERT-2 and DNABERT-S could not be tested: they store intermediate layers unpadded internally, and extracting them safely would require reimplementing part of the model.

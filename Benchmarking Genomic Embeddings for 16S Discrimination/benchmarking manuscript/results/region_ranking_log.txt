@@ -1,0 +1,33 @@
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:   30.4s
+[Parallel(n_jobs=4)]: Done  18 out of  20 | elapsed:   52.4s remaining:    5.8s
+[Parallel(n_jobs=4)]: Done  20 out of  20 | elapsed:   55.6s finished
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done   9 out of  13 | elapsed:   26.2s remaining:   11.6s
+[Parallel(n_jobs=4)]: Done  13 out of  13 | elapsed:   42.2s finished
+
+=== locked_test: 20 panels ===
+
+arm             chosen-region acc    regret  picked best
+C_kmer                     0.9609    0.0065        37.0%
+dnabert2:R2                0.9607    0.0057        44.0%
+dnabert_s:R2               0.9606    0.0067        35.0%
+hyenadna:R2                0.9512    0.0161        29.0%
+ntv2:R2                    0.9549    0.0120        34.0%
+
+regret difference (DNABERT-2 − k-mer), n=20 panels: -0.0009 [-0.0046, +0.0026]
+  negative = the model picks better regions
+
+=== hard_panels: 13 panels ===
+
+arm             chosen-region acc    regret  picked best
+C_kmer                     0.8166    0.0195        60.0%
+dnabert2:R2                0.8150    0.0202        60.0%
+dnabert_s:R2               0.8163    0.0189        61.5%
+hyenadna:R2                0.8173    0.0137        66.2%
+ntv2:R2                    0.8207    0.0161        61.5%
+
+regret difference (DNABERT-2 − k-mer), n=13 panels: +0.0007 [-0.0061, +0.0065]
+  negative = the model picks better regions
+
+wrote results/region_ranking_*.json

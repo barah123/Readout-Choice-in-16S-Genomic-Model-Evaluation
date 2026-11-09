@@ -1,0 +1,7 @@
+Condition,k-mer (%),DNABERT-2 (%),k-mer change,DNABERT-2 change,Difference (pts)
+Clean reference sequences,96.3,96.2,+0.0,+0.0,-0.14
+0.1% substitution error,96.0,95.7,-0.3,-0.4,-0.28
+1% substitution error,93.5,94.3,-2.8,-1.8,+0.85
+Intragenomic copy variation,92.9,93.2,-3.4,-2.9,+0.37
+10 bases trimmed each end,92.1,91.8,-4.2,-4.4,-0.32
+1% error + trimming,90.8,91.2,-5.5,-5.0,+0.34

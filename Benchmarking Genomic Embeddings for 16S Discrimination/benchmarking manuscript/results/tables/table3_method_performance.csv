@@ -1,0 +1,9 @@
+Method,Mean balanced accuracy (%),SD across groups,n groups
+Random projection of k-mer counts (control),96.2,5.9,20
+k-mer counting (4/5/6-mer) + linear probe,96.1,6.0,20
+DNABERT-S + linear probe,96.0,5.8,20
+DNABERT-2 + linear probe,95.9,5.7,20
+Nucleotide Transformer v2 + linear probe,95.8,5.9,20
+HyenaDNA + linear probe,95.2,5.6,20
+"Pairwise alignment, tie-aware 1-NN",94.3,8.8,20
+Exact sequence match,90.3,7.7,20
