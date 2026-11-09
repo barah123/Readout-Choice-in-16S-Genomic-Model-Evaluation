@@ -1,0 +1,17 @@
+/opt/homebrew/Caskroom/miniconda/base/envs/glm-ntv2/lib/python3.11/site-packages/transformers/utils/generic.py:311: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+W1108 20:18:03.541000 18562 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/opt/homebrew/Caskroom/miniconda/base/envs/glm-ntv2/lib/python3.11/site-packages/transformers/utils/generic.py:311: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+{'V1': 264, 'V2': 413, 'V3': 308, 'V4': 420, 'V5': 280, 'V6': 401, 'V7': 241, 'V8': 231, 'V9': 219}
+ntv2 V1: 264 unique (5s)
+ntv2 V2: 413 unique (22s)
+ntv2 V3: 308 unique (30s)
+ntv2 V4: 420 unique (43s)
+ntv2 V5: 280 unique (49s)
+ntv2 V6: 401 unique (58s)
+ntv2 V7: 241 unique (63s)
+ntv2 V8: 231 unique (67s)
+ntv2 V9: 219 unique (71s)
+saved emb_hard_ntv2.npz
+

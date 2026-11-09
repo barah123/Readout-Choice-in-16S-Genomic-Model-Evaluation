@@ -1,0 +1,87 @@
+{
+  "n": 13,
+  "mean": -0.0019091379940167842,
+  "ci": [
+    -0.012748114717514806,
+    0.00660273317171494
+  ],
+  "verdict": "H1 NOT SUPPORTED - CI contains zero",
+  "best_of_4": {
+    "mean": 0.006995543067167798,
+    "ci": [
+      -0.0009893441878230005,
+      0.013542919056679528
+    ]
+  },
+  "loo_range": [
+    -0.0031234276320463348,
+    0.0021036947825760766
+  ],
+  "per_panel": {
+    "bacillus_subtilis_subsp": {
+      "C_kmer": 0.8383027663393519,
+      "dnabert2": 0.8496867806989759,
+      "delta": 0.011384014359623995
+    },
+    "bradyrhizobium": {
+      "C_kmer": 0.917602495543672,
+      "dnabert2": 0.8675393642305409,
+      "delta": -0.050063131313131115
+    },
+    "burkholderia_cepacia_complex": {
+      "C_kmer": 0.8057171107226726,
+      "dnabert2": 0.8055665907445663,
+      "delta": -0.00015051997810633377
+    },
+    "clostridium_botulinum_groups": {
+      "C_kmer": 0.8008119658119659,
+      "dnabert2": 0.8128952991452992,
+      "delta": 0.012083333333333335
+    },
+    "lactobacillus_casei_group": {
+      "C_kmer": 0.8172650764141309,
+      "dnabert2": 0.8299274140764688,
+      "delta": 0.01266233766233782
+    },
+    "lactobacillus_delbrueckii_subsp": {
+      "C_kmer": 0.928941798941799,
+      "dnabert2": 0.9363492063492064,
+      "delta": 0.007407407407407418
+    },
+    "lactococcus_lactis_subsp": {
+      "C_kmer": 0.8827231518481519,
+      "dnabert2": 0.878876998001998,
+      "delta": -0.0038461538461538325
+    },
+    "mycobacterium_abscessus_subsp": {
+      "C_kmer": 0.5516666666666666,
+      "dnabert2": 0.5516666666666666,
+      "delta": 0.0
+    },
+    "nostoc_anabaena": {
+      "C_kmer": 0.8508403361344538,
+      "dnabert2": 0.8257703081232493,
+      "delta": -0.025070028011204504
+    },
+    "pectobacterium_dickeya": {
+      "C_kmer": 0.8786417088708876,
+      "dnabert2": 0.8893636713563449,
+      "delta": 0.010721962485457315
+    },
+    "pseudomonas_fluorescens_group": {
+      "C_kmer": 0.7659346429453917,
+      "dnabert2": 0.7540390000823656,
+      "delta": -0.011895642863026135
+    },
+    "streptococcus_dysgalactiae_subsp": {
+      "C_kmer": 0.9441632928475034,
+      "dnabert2": 0.9518556005398111,
+      "delta": 0.007692307692307665
+    },
+    "xanthomonas_campestris_pv": {
+      "C_kmer": 0.6338226740111569,
+      "dnabert2": 0.6380779931600931,
+      "delta": 0.004255319148936176
+    }
+  }
+}

@@ -177,6 +177,42 @@ check was abandoned rather than done wrongly. Recorded as an explicit open limit
 **Release:** `README.md` (how to reproduce, ~3 h on a laptop) and
 `phase6_report/FINAL_REPORT.md` (findings in plain language, no jargon).
 
+## Phase 7 — two pre-registered extensions, both negative
+
+**Extension A (hard panels): hypothesis NOT supported.** Phase 6 suggested the models might
+gain ground as problems get harder (rho=+0.595, p=0.006, n=5). Tested properly on 13 panels
+screened for difficulty using classical methods only (mean k-mer accuracy 0.818 vs 0.961 in
+Phase 5; hardest 0.552): mean DNABERT-2 − k-mer = **−0.0019 [−0.0128, +0.0066]**. 4 panels
+favour the model, 3 favour k-mer, 6 tie. Leave-one-out shows no hidden single-panel effect.
+**The Phase 6 correlation is reported as not replicated**, with no regrouping to rescue it,
+as pre-committed. Equivalence now holds across **58 independent groups** spanning easy to
+genuinely hard.
+
+One loose end: best-of-4 minus k-mer = +0.0070 [−0.0010, +0.0135]. Most likely upward bias
+from taking the maximum of four noisy arms; distinguishing that from real model
+complementarity needs a pre-registered test with the selection rule fixed in advance.
+
+**Extension B (imperfect sequences): equivalence robust.** Six degradation conditions, both
+arms given identical damaged sequences. No condition produced a difference both meaningful
+and supported. The practical finding is unrelated to the models: **read truncation costs
+~4 points, more than a tenfold increase in sequencing error (~2–3 points)** — primer
+placement matters more than classifier choice.
+
+Extension B also required a self-correction. Three conditions appeared to show the model
+tolerating noise better, with a clean mechanism (one base change alters up to 15 k-mer
+counts). It was driven **entirely by one small panel** (*francisella*, 63 records, +0.21
+shift); excluding it moved the estimate from +0.0099 to −0.0006, and leave-one-out flipped
+the sign. In the worst-case condition the mean pointed one way while 10 of 16 panels pointed
+the other.
+
+**Incidental finding, model-independent and arguably the most useful for practitioners:**
+groups picked specifically for reputedly conserved 16S (*Rickettsia*, *Chlamydia*, *Xylella*,
+*Synechococcus*/*Prochlorococcus*, *Desulfovibrio*, *Thermus*) all screened at ceiling 1.000
+and k-mer 1.000. Genuine difficulty sits almost entirely in **subspecies comparisons and
+tight species complexes** (*M. abscessus* subsp. 0.577, *X. campestris* group 0.647). Third
+independent time this project has found the "16S cannot separate these" claim to fail given
+adequate isolates and the right region.
+
 ## What Phase 1 did *not* and could not fix
 
 The genome/isolate-identity gap (finding 1 above) is the one real blocker carried into Phase 2:

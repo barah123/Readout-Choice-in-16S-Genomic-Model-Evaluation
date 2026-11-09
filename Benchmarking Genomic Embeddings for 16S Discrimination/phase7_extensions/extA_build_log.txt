@@ -1,0 +1,82 @@
+Extension A: 15 screened-hard panels
+
+--- fetch ---
+  fetched pectobacterium_dickeya           Pectobacterium carotovorum                        144 records
+  fetched pectobacterium_dickeya           Pectobacterium atrosepticum                       105 records
+  fetched pectobacterium_dickeya           Dickeya dadantii                                   37 records
+  fetched pectobacterium_dickeya           Dickeya solani                                      6 records
+  fetched pectobacterium_dickeya           Pectobacterium brasiliense                        199 records
+  fetched bradyrhizobium                   Bradyrhizobium japonicum                          109 records
+  fetched bradyrhizobium                   Bradyrhizobium elkanii                            118 records
+  fetched bradyrhizobium                   Bradyrhizobium diazoefficiens                      63 records
+  fetched bradyrhizobium                   Nitrobacter winogradskyi                            9 records
+  fetched nostoc_anabaena                  Nostoc punctiforme                                 34 records
+  fetched nostoc_anabaena                  Anabaena variabilis                                32 records
+  fetched nostoc_anabaena                  Nostoc commune                                     30 records
+  fetched nostoc_anabaena                  Aphanizomenon flos-aquae                           26 records
+  fetched mycobacterium_abscessus_subsp    Mycobacterium abscessus subsp. abscessus           76 records
+  fetched mycobacterium_abscessus_subsp    Mycobacterium abscessus subsp. massiliense         37 records
+  fetched mycobacterium_abscessus_subsp    Mycobacterium abscessus subsp. bolletii             7 records
+  fetched lactobacillus_delbrueckii_subsp  Lactobacillus delbrueckii subsp. bulgaricus       138 records
+  fetched lactobacillus_delbrueckii_subsp  Lactobacillus delbrueckii subsp. lactis            40 records
+  fetched lactobacillus_delbrueckii_subsp  Lactobacillus delbrueckii subsp. delbrueckii        8 records
+  fetched lactobacillus_casei_group        Lacticaseibacillus casei                          126 records
+  fetched lactobacillus_casei_group        Lacticaseibacillus paracasei                      200 records
+  fetched lactobacillus_casei_group        Lacticaseibacillus rhamnosus                      194 records
+  fetched lactobacillus_casei_group        Lacticaseibacillus zeae                            31 records
+  fetched lactococcus_lactis_subsp         Lactococcus lactis subsp. lactis                  224 records
+  fetched lactococcus_lactis_subsp         Lactococcus lactis subsp. cremoris                171 records
+  fetched lactococcus_lactis_subsp         Lactococcus lactis subsp. hordniae                 86 records
+  fetched bacillus_subtilis_subsp          Bacillus subtilis subsp. subtilis                 127 records
+  fetched bacillus_subtilis_subsp          Bacillus subtilis subsp. spizizenii               122 records
+  fetched bacillus_subtilis_subsp          Bacillus subtilis subsp. inaquosorum              175 records
+  fetched bacillus_subtilis_subsp          Bacillus amyloliquefaciens                        128 records
+  fetched salmonella_subspecies            Salmonella enterica subsp. enterica                53 records
+  fetched salmonella_subspecies            Salmonella enterica subsp. salamae                  5 records
+  fetched salmonella_subspecies            Salmonella enterica subsp. arizonae                 7 records
+  fetched salmonella_subspecies            Salmonella enterica subsp. diarizonae               2 records
+  fetched salmonella_subspecies            Salmonella enterica subsp. houtenae                 4 records
+  fetched streptococcus_dysgalactiae_subsp Streptococcus dysgalactiae subsp. equisimilis      42 records
+  fetched streptococcus_dysgalactiae_subsp Streptococcus dysgalactiae subsp. dysgalactiae     14 records
+  fetched streptococcus_dysgalactiae_subsp Streptococcus canis                                51 records
+  fetched streptococcus_dysgalactiae_subsp Streptococcus pyogenes                            132 records
+  fetched campylobacter_jejuni_subsp       Campylobacter jejuni subsp. jejuni                 51 records
+  fetched campylobacter_jejuni_subsp       Campylobacter jejuni subsp. doylei                  1 records
+  fetched campylobacter_jejuni_subsp       Campylobacter coli                                102 records
+  fetched clostridium_botulinum_groups     Clostridium botulinum                              79 records
+  fetched clostridium_botulinum_groups     Clostridium sporogenes                             86 records
+  fetched clostridium_botulinum_groups     Clostridium novyi                                  12 records
+  fetched clostridium_botulinum_groups     Clostridium haemolyticum                            4 records
+  fetched burkholderia_cepacia_complex     Burkholderia cenocepacia                          141 records
+  fetched burkholderia_cepacia_complex     Burkholderia multivorans                           34 records
+  fetched burkholderia_cepacia_complex     Burkholderia vietnamiensis                         88 records
+  fetched burkholderia_cepacia_complex     Burkholderia ambifaria                            125 records
+  fetched burkholderia_cepacia_complex     Burkholderia stabilis                              75 records
+  fetched xanthomonas_campestris_pv        Xanthomonas campestris                            114 records
+  fetched xanthomonas_campestris_pv        Xanthomonas axonopodis                             68 records
+  fetched xanthomonas_campestris_pv        Xanthomonas vesicatoria                            15 records
+  fetched xanthomonas_campestris_pv        Xanthomonas arboricola                            153 records
+  fetched pseudomonas_fluorescens_group    Pseudomonas fluorescens                            96 records
+  fetched pseudomonas_fluorescens_group    Pseudomonas putida                                110 records
+  fetched pseudomonas_fluorescens_group    Pseudomonas chlororaphis                           91 records
+  fetched pseudomonas_fluorescens_group    Pseudomonas protegens                             117 records
+  fetched pseudomonas_fluorescens_group    Pseudomonas synxantha                              46 records
+
+--- build ---
+pectobacterium_dickeya           recs=  491 eligible=9/9 max_ceiling=0.941
+bradyrhizobium                   recs=  299 eligible=7/9 max_ceiling=1.000
+nostoc_anabaena                  recs=  122 eligible=7/9 max_ceiling=1.000
+mycobacterium_abscessus_subsp    recs=  120 eligible=7/9 max_ceiling=0.577
+lactobacillus_delbrueckii_subsp  recs=  186 eligible=7/9 max_ceiling=0.960
+lactobacillus_casei_group        recs=  551 eligible=9/9 max_ceiling=0.846
+lactococcus_lactis_subsp         recs=  481 eligible=9/9 max_ceiling=0.898
+bacillus_subtilis_subsp          recs=  552 eligible=9/9 max_ceiling=0.862
+salmonella_subspecies            recs=   71 eligible=0/9 max_ceiling=0.962
+streptococcus_dysgalactiae_subsp recs=  239 eligible=8/9 max_ceiling=0.966
+campylobacter_jejuni_subsp       recs=  154 eligible=0/9 max_ceiling=0.760
+clostridium_botulinum_groups     recs=  181 eligible=8/9 max_ceiling=0.886
+burkholderia_cepacia_complex     recs=  463 eligible=9/9 max_ceiling=0.840
+xanthomonas_campestris_pv        recs=  350 eligible=9/9 max_ceiling=0.648
+pseudomonas_fluorescens_group    recs=  460 eligible=9/9 max_ceiling=0.841
+
+wrote hard_blocks.json (37050 rows); eligible blocks: 13/15
