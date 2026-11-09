@@ -58,11 +58,51 @@ PRETTY = {"dnabert2": "DNABERT-2", "dnabert_s": "DNABERT-S",
           "hyenadna": "HyenaDNA", "ntv2": "NTv2"}
 
 
+PLOS_NUM = {"fig1_main_result": 1, "fig2_readout_dominates": 2,
+            "fig3_methods_and_random": 3, "fig4_difficulty": 4,
+            "fig5_robustness": 5, "fig6_region_ranking": 6, "fig7_ceiling": 7}
+
+
 def save(fig, name):
+    """Working copies as PNG/PDF, plus a PLOS submission TIFF.
+
+    PLOS Computational Biology requires TIFF or EPS, 300-600 dpi, width between 2.63 and
+    7.5 inches, height at most 8.75 inches, and LZW compression for TIFF. Files are named
+    Fig1.tiff ... Fig7.tiff as the journal expects.
+    """
     for ext in ("png", "pdf"):
         fig.savefig(os.path.join(FIG, f"{name}.{ext}"))
+    n = PLOS_NUM.get(name)
+    if n:
+        tif_dir = os.path.join(FIG, "plos_tiff")
+        os.makedirs(tif_dir, exist_ok=True)
+        path = os.path.join(tif_dir, f"Fig{n}.tiff")
+        # Render to RGBA then flatten onto white. Saving straight to TIFF leaves an alpha
+        # channel, which PLOS production does not expect and which can render
+        # unpredictably in print.
+        import io
+        from PIL import Image
+        buf = io.BytesIO()
+        fig.savefig(buf, dpi=300, format="png", facecolor="white")
+        buf.seek(0)
+        im = Image.open(buf)
+        if im.mode in ("RGBA", "LA", "P"):
+            im = im.convert("RGBA")
+            bg = Image.new("RGB", im.size, (255, 255, 255))
+            bg.paste(im, mask=im.split()[-1])
+            im = bg
+        else:
+            im = im.convert("RGB")
+        im.save(path, format="TIFF", compression="tiff_lzw", dpi=(300, 300))
+        buf.close()
+        w, h = fig.get_size_inches()
+        ok_w = 2.63 <= w <= 7.5
+        ok_h = h <= 8.75
+        mb = os.path.getsize(path) / 1e6
+        flag = "" if (ok_w and ok_h and mb < 10) else "   <-- CHECK"
+        print(f"  Fig{n}.tiff  {w:.2f} x {h:.2f} in  {mb:.1f} MB"
+              f"  width_ok={ok_w} height_ok={ok_h}{flag}")
     plt.close(fig)
-    print(f"  wrote {name}.png / .pdf")
 
 
 def load(p):
@@ -153,19 +193,19 @@ def fig2_readout_dominates():
         dr = d[rng.integers(0, len(d), size=(4000, len(d)))].mean(axis=1)
         return d.mean(), np.percentile(dr, 2.5), np.percentile(dr, 97.5), len(d)
 
-    fig, axes = plt.subplots(1, 4, figsize=(9.6, 3.2),
-                             gridspec_kw={"width_ratios": [0.8, 1, 1, 0.95]})
+    fig, axgrid = plt.subplots(2, 2, figsize=(7.2, 6.2))
+    axes = [axgrid[0, 0], axgrid[0, 1], axgrid[1, 0], axgrid[1, 1]]
 
     # (a) R0 — DIFFERENT METRIC, own axis
     ax = axes[0]
     vals = [mean_of(f"{m}:R0") for m in MODELS]
     ax.bar(range(4), vals, color=[C[m] for m in MODELS], width=0.62)
     ax.set_xticks(range(4))
-    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=38, ha="right", fontsize=7)
+    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=30, ha="right", fontsize=8)
     ax.set_ylim(0.5, 0.85)
     ax.set_ylabel("pair AUC")
     ax.set_title("a   R0 geometry\n(pair AUC — different\nmetric, not comparable)",
-                 loc="left", fontweight="bold", fontsize=8.6)
+                 loc="left", fontweight="bold", fontsize=9.5)
 
     # (b) R1 -> R2, SAME endpoint
     ax = axes[1]
@@ -181,18 +221,18 @@ def fig2_readout_dominates():
     ax.set_title(f"b   Readout, same endpoint\n+{mu*100:.1f} pts "
                  f"[{lo*100:+.1f}, {hi*100:+.1f}]", loc="left", fontweight="bold",
                  fontsize=8.6)
-    ax.legend(loc="lower right", fontsize=7)
+    ax.legend(loc="lower right", fontsize=8)
 
     # (c) model choice at R2
     ax = axes[2]
     vals = [mean_of(f"{m}:R2") for m in MODELS]
     ax.bar(range(4), vals, color=[C[m] for m in MODELS], width=0.62)
     ax.set_xticks(range(4))
-    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=38, ha="right", fontsize=7)
+    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=30, ha="right", fontsize=8)
     ax.set_ylim(0.90, 0.96)
     ax.set_ylabel("balanced accuracy")
     ax.set_title(f"c   Model choice at R2\nspread {(max(vals)-min(vals))*100:.2f} pts",
-                 loc="left", fontweight="bold", fontsize=8.6)
+                 loc="left", fontweight="bold", fontsize=9.5)
 
     # (d) same axis, balanced-accuracy points only
     ax = axes[3]
@@ -217,15 +257,15 @@ def fig2_readout_dominates():
     for y_, v in zip(yy, bars):
         if v == v:
             ax.text(v + 0.09, y_, f"{v:.2f}", va="center", fontsize=8, fontweight="bold")
-    ax.set_yticks(yy); ax.set_yticklabels(labs, fontsize=7.6)
+    ax.set_yticks(yy); ax.set_yticklabels(labs, fontsize=8)
     ax.set_xlabel("spread (balanced-accuracy pts)")
     ax.set_xlim(0, max(v for v in bars if v == v) * 1.38)
     ax.set_title(f"d   Same metric, same axis\nreadout ~{readout/model:.0f}x model",
-                 loc="left", fontweight="bold", fontsize=8.6)
+                 loc="left", fontweight="bold", fontsize=9.5)
     ax.text(0.02, -0.52, "grey: measured on the hard panels,\nnot the development set",
-            transform=ax.transAxes, fontsize=6.6, color="#555", va="top")
+            transform=ax.transAxes, fontsize=7.5, color="#555", va="top")
 
-    fig.tight_layout(w_pad=1.5)
+    fig.tight_layout(w_pad=2.0, h_pad=2.4)
     save(fig, "fig2_readout_dominates")
 
 
