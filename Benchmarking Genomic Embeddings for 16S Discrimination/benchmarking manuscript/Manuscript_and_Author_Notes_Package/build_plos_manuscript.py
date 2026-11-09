@@ -118,7 +118,7 @@ r.font.size = Pt(16)
 # ---- authors, PLOS title-page format ----
 pa = doc.add_paragraph()
 pa.add_run("Philip Yamoah Appiah").bold = True
-pa.add_run("\u00B9\u00B2, ")
+pa.add_run("\u00B9\u00B2*, ")
 pa.add_run("Ruth Barkey Tettey").bold = True
 pa.add_run("\u00B3, ")
 pa.add_run("Bernice Nutase").bold = True
@@ -126,7 +126,7 @@ pa.add_run("\u2074, ")
 pa.add_run("Carmen Patricia Ortega-Santos").bold = True
 pa.add_run("\u00B2, ")
 pa.add_run("Marcos P\u00E9rez-Losada").bold = True
-pa.add_run("\u00B9*")
+pa.add_run("\u00B9")
 
 for num, aff in [
     ("1", "Department of Biostatistics and Bioinformatics, Computational Biology Institute, "
@@ -156,8 +156,12 @@ q.add_run(
     "Nutase 0009-0004-5574-6798; Ortega-Santos 0000-0002-0071-1190; "
     "P\u00E9rez-Losada 0000-0002-2585-4657").font.size = Pt(9)
 
-ph("[AUTHOR: * marks the corresponding author, currently placed on the final author. "
-   "Confirm who corresponds and supply that address. AQ22.]")
+q = doc.add_paragraph()
+q.paragraph_format.space_before = Pt(6)
+rr = q.add_run("* Corresponding author: ")
+rr.bold = True
+rr.font.size = Pt(9)
+q.add_run("p.appiah@gwmail.gwu.edu (PYA)").font.size = Pt(9)
 ph("[AUTHOR: Short title, 50 characters maximum. AQ22.]")
 
 # ============================================================ ABSTRACT
