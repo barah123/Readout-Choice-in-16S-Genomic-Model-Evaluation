@@ -1,0 +1,38 @@
+W1108 19:59:09.597000 12936 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+
+Loading weights:   0%|          | 0/136 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 136/136 [00:00<00:00, 36766.06it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: ../../glm_prototype_bundle (1)/dnabert2_local
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.decoder.bias               | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+pooler.dense.bias                          | MISSING    | 
+pooler.dense.weight                        | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+clean       n= 20  C_kmer=0.9629  DNABERT-2=0.9616  delta=-0.0014 [-0.0027, -0.0000]
+err_0.1%    n= 20  C_kmer=0.9602  DNABERT-2=0.9574  delta=-0.0028 [-0.0056, -0.0004]
+err_1%      n= 20  C_kmer=0.9348  DNABERT-2=0.9434  delta=+0.0085 [-0.0068, +0.0323]
+trim_10     n= 20  C_kmer=0.9212  DNABERT-2=0.9180  delta=-0.0032 [-0.0069, -0.0004]
+copy_var    n= 20  C_kmer=0.9287  DNABERT-2=0.9324  delta=+0.0037 [-0.0051, +0.0149]
+combined    n= 20  C_kmer=0.9081  DNABERT-2=0.9115  delta=+0.0034 [-0.0076, +0.0204]
+
+============================================================================================
+How much each arm degrades relative to its own clean baseline
+============================================================================================
+condition      C_kmer drop   DNABERT-2 drop   delta shift
+clean              +0.0000          +0.0000       +0.0000
+err_0.1%           -0.0028          -0.0042       -0.0014
+err_1%             -0.0281          -0.0182       +0.0099
+trim_10            -0.0417          -0.0436       -0.0019
+copy_var           -0.0342          -0.0291       +0.0051
+combined           -0.0548          -0.0500       +0.0048
+
+wrote robustness_results.json
