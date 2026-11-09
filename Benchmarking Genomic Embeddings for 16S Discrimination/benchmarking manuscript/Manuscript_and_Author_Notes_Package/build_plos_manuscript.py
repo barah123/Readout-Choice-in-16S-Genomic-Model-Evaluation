@@ -212,12 +212,24 @@ body(
     "first two. Two further analyses examined sequence degradation and intermediate model "
     "layers. Table 1 gives the accounting.")
 body(
-    "The analysis plan for the locked test was committed to version control at 07:20:42 on "
-    "8 November 2026 and the first locked-test sequence record was retrieved at 08:54:19 "
-    "the same day, 94 minutes later; the plan was not modified afterwards. Panel "
-    "definitions for each experiment were likewise committed before the corresponding "
-    "sequences were retrieved. The repository records every protocol deviation with its "
-    "date and justification (S3 Text).")
+    "The analysis plan for the locked test was committed to a version-controlled repository "
+    "at 07:20:42 on 8 November 2026, and the first locked-test sequence record was "
+    "retrieved at 08:54:19 the same day, 94 minutes later. The commit added the plan, the "
+    "locked-test panel definitions and the deviation log and nothing else, and the plan has "
+    "a single entry in its file history, indicating it was not edited afterwards. Panel "
+    "definitions for the development and hard-panel experiments were likewise committed "
+    "before the corresponding sequences were retrieved.")
+body(
+    "These are author-recorded timestamps in a repository that was not pushed to a remote "
+    "server, so they document the intended sequence rather than provide independent "
+    "certification; git commit dates are set by the committer and are not externally "
+    "verifiable. Two features of the record are nonetheless consistent with genuine "
+    "pre-declaration: 2 of 22 pre-declared locked-test blocks and 5 of 31 development "
+    "blocks subsequently failed the authors' own eligibility criteria, and a "
+    "pre-registered directional hypothesis did not replicate and is reported as such. The "
+    "complete history, the verification commands and a statement of their limits are given "
+    "in S10 Text, and every protocol deviation is logged with its date and justification "
+    "in S3 Text.")
 
 H2("Sequence retrieval and taxonomic panels")
 body(
@@ -628,6 +640,9 @@ for s, d in [
                 "the confirmatory analysis and all extensions."),
     ("S2 Code", "Synthetic validation fixtures with hand-computed expected values for the "
                 "ceiling formula, grouped cross-validation and tie handling."),
+    ("S10 Text", "Evidence for the pre-registration claim: commit identifiers, timestamps, "
+                 "verification commands, and an explicit statement of what the repository "
+                 "history does and does not establish."),
 ]:
     p = doc.add_paragraph()
     r = p.add_run(f"{s}. ")
@@ -636,9 +651,13 @@ for s, d in [
 
 H("Data and code availability")
 ph("[AUTHOR: AQ02, AQ20. Insert the public repository URL, archived release DOI, access "
-   "date and licences for code, derived data and model weights. The analysis repository "
-   "currently has 25 commits and tagged milestones for each phase; cite the commit hash "
-   "corresponding to the submitted version.]")
+   "date and licences for code, derived data and model weights. The analysis repository has "
+   "27 commits with tagged milestones for each phase; cite the commit hash corresponding to "
+   "the submitted version. NOTE: the repository has no remote, so no commit carries a "
+   "third-party timestamp. Depositing it now (Zenodo or OSF) fixes the history at a "
+   "verifiable date, and cryptographically anchoring the freeze commit hash (for example "
+   "via OpenTimestamps) would strengthen the pre-registration claim. Neither acts "
+   "retroactively. See S10 Text.]")
 
 H("Ethics statement")
 ph("[AUTHOR: AQ21. All sequences are public database records and no human or animal "
