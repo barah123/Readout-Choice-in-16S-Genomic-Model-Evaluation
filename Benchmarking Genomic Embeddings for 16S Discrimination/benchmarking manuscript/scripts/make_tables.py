@@ -99,27 +99,38 @@ def table3():
           "Locked test. Mean information ceiling for these groups is 97.0%.")
 
 
-# T4 — readout hierarchy
+# T4 — readout hierarchy, metrics kept separate
 def table4():
+    import numpy as np
     bl = load(os.path.join(ROOT, "phase2_pilot", "block_level_results.json"))
     sp = {k: v for k, v in bl.items() if v["rank"] == "species"}
+
+    def mean_of(key):
+        v = [b[key] for b in sp.values() if b.get(key) == b.get(key)]
+        return float(np.mean(v)) if v else float("nan")
+
     rows = []
     for m in MODELS:
-        vals = []
-        for lv in ("R0", "R1", "R2"):
-            x = [v[f"{m}:{lv}"] for v in sp.values()
-                 if v.get(f"{m}:{lv}") == v.get(f"{m}:{lv}")]
-            vals.append(np.mean(x) * 100 if x else float("nan"))
-        rows.append([PRETTY[m]] + [f"{v:.1f}" for v in vals] +
-                    [f"{vals[2]-vals[0]:+.1f}"])
+        r0, r1, r2 = (mean_of(f"{m}:R0"), mean_of(f"{m}:R1"), mean_of(f"{m}:R2"))
+        d = np.array([b[f"{m}:R2"] - b[f"{m}:R1"] for b in sp.values()
+                      if b.get(f"{m}:R1") == b.get(f"{m}:R1")
+                      and b.get(f"{m}:R2") == b.get(f"{m}:R2")])
+        rng = np.random.default_rng(1729)
+        dr = d[rng.integers(0, len(d), size=(4000, len(d)))].mean(axis=1)
+        rows.append([PRETTY[m], f"{r0:.3f}", f"{r1*100:.1f}", f"{r2*100:.1f}",
+                     f"{d.mean()*100:+.2f}",
+                     f"[{np.percentile(dr,2.5)*100:+.2f}, {np.percentile(dr,97.5)*100:+.2f}]"])
     cl = np.mean([v["classical"] for v in sp.values()]) * 100
-    rows.append(["k-mer counting", "—", "—", f"{cl:.1f}", "—"])
+    rows.append(["k-mer counting", "—", "—", f"{cl:.1f}", "—", "—"])
     write("table4_readout_hierarchy",
-          ["Model", "R0 geometry (%)", "R1 nearest reference (%)",
-           "R2 linear probe (%)", "R2 − R0"], rows,
-          "Development set, 25 groups. R0 is unsupervised cosine separation; R1 is "
-          "nearest-reference lookup; R2 trains a linear probe. Spread across readouts "
-          "(21-27 pts) is ~30x the spread across models at R2 (0.7 pts).")
+          ["Model", "R0 geometry (pair AUC)", "R1 nearest reference (% bal. acc.)",
+           "R2 linear probe (% bal. acc.)", "R2 − R1 (pts)", "95% CI"], rows,
+          "Development set, 25 groups. **R0 is a pair-level AUC and R1/R2 are "
+          "isolate-level balanced accuracy; R0 must not be subtracted from R1 or R2.** "
+          "The same-endpoint readout effect is R1 to R2: +2.8 to +3.0 pts, against a "
+          "0.73 pt spread across the four models at R2 (~4x). R0 is reported because "
+          "geometric separation and supervised performance can disagree, not as a "
+          "comparable accuracy.")
 
 
 # T5 — degradation robustness

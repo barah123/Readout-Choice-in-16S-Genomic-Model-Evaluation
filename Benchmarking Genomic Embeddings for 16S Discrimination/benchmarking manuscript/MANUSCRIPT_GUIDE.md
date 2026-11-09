@@ -30,10 +30,11 @@ before the confirmatory data were collected. Under a matched linear probe the tw
 were statistically equivalent (−0.2 pts, 95% CI −0.6 to +0.2), and this held on an
 independent locked test set, on groups selected specifically for difficulty, and under
 simulated sequencing degradation. Two methodological findings explain why such comparisons
-often mislead: the choice of how a representation is read from a model affected accuracy
-roughly thirty times more than the choice of model, and a random projection of k-mer counts
-matched every learned representation. We also found that 16S difficulty tracks taxonomic
-rank rather than a genus's reputation for conservation.
+often mislead: on a like-for-like endpoint the choice of how a representation is read from a model
+affected accuracy about four times more than the choice of model, and a random projection of
+k-mer counts matched every learned representation while permuted labels collapsed every
+method to chance. Within these panels the lowest accuracies occurred in subspecies and
+species-complex comparisons rather than in genera reputed to have conserved 16S.
 
 ---
 
@@ -42,8 +43,8 @@ rank rather than a genus's reputation for conservation.
 | file | shows | key numbers |
 |---|---|---|
 | `fig1_main_result` | **Main result.** Per-group differences on the locked test + the three replications | −0.2 pts, CI −0.6 to +0.2; 17/20 within ±1 pt |
-| `fig2_readout_dominates` | **Central methodological finding.** Readout type vs model choice vs layer depth, panel d on a common axis | 22.7 vs 0.7 vs 0.5 pts |
-| `fig3_methods_and_random` | All methods with the random-projection control and the ceiling | random 96.2%, k-mer 96.1%, best model 96.0% |
+| `fig2_readout_dominates` | Readout vs model vs layer, **metrics kept separate** (R0 is pair AUC; R1/R2 are balanced accuracy) | R1→R2 +2.9 vs model 0.73 pts (~4x) |
+| `fig3_methods_and_random` | All methods, bounded by the permuted-label floor and the empirical ceiling | chance 50.1%, random proj. 96.2%, k-mer 96.1%, ceiling 97.0% |
 | `fig4_difficulty` | Saturation on the locked test; the hard-panel replication | 10/20 saturated; hard-panel mean −0.2, CI −1.3 to +0.7 |
 | `fig5_robustness` | Degradation: both arms fall together | truncation −4 pts vs 1% error −2.8 pts |
 | `fig6_region_ranking` | Task T2: regret from choosing the wrong region | locked test ~0.6 pts; hard panels ~2 pts |
@@ -51,9 +52,10 @@ rank rather than a genus's reputation for conservation.
 
 All figures are 300 dpi PNG plus vector PDF, Okabe-Ito colourblind-safe palette.
 
-**Figure 2 is the one to lead with.** Panel d exists because panels a–c use different y-ranges
-for legibility, which would otherwise make the three factors look comparably variable when
-the entire point is that they are not.
+**Figure 2 keeps metrics strictly separate.** R0 is a pair-level AUC and sits on its own
+axis, explicitly labelled as not comparable; every quantitative statement uses R1 vs R2,
+which share an endpoint. Panel d puts only balanced-accuracy quantities on one axis, with
+the layer bar shaded differently because it was measured on the hard panels.
 
 ## Tables
 
@@ -62,7 +64,7 @@ the entire point is that they are not.
 | `table1_study_design` | three experiments, groups declared/eligible/analysed, record counts |
 | `table2_endpoints` | primary + four Holm-corrected secondary contrasts with CIs and verdicts |
 | `table3_method_performance` | all eight methods, mean accuracy and SD |
-| `table4_readout_hierarchy` | R0/R1/R2 per model — the source of the 30× claim |
+| `table4_readout_hierarchy` | R0/R1/R2 per model, metrics labelled; R1→R2 paired effect with CI |
 | `table5_robustness` | six degradation conditions, both arms |
 | `table6_layer_sweep` | HyenaDNA and NTv2 across five depths |
 | `table7_region_ranking` | task T2: chosen-region accuracy, regret, hit rate |
@@ -96,15 +98,22 @@ Each exists as `.csv` (for typesetting) and `.md` (for reading).
   best-of-4 +0.29, does not survive correction (p = 0.075).
 - Source: `results/tables/table2_endpoints.csv`.
 
-### Methodological finding 1 — the random control
+### Methodological finding 1 — the two controls
 - Random projection of k-mer counts: **96.2%**, nominally above every learned representation.
-- Best-of-4 minus random projection: +0.21 pts [−0.05, +0.52] — indistinguishable.
-- Source: `results/tables/table3_method_performance.csv`; `phase5_output.txt`.
+  It is a distance-preserving compression (Johnson–Lindenstrauss), so it shows **redundancy
+  in the k-mer feature space**, NOT that accuracy comes from classifier flexibility.
+- **Label permutation** through the full pipeline: every arm falls to **50.1%** (chance),
+  so the measured accuracy is genuine sequence-to-label signal.
+- Sources: `results/tables/table3_method_performance.csv`,
+  `results/label_permutation_control.json`.
 
-### Methodological finding 2 — readout dominates
-- Readout type spread **22.7 pts**; model choice **0.7 pts**; layer depth **0.5 pts**.
-- Source: `results/tables/table4_readout_hierarchy.csv`,
-  `results/extension_C_*.json`.
+### Methodological finding 2 — readout matters more than model
+- **R0 is a pair-level AUC; R1 and R2 are isolate-level balanced accuracy. Never subtract
+  across them.** An earlier draft did, producing an invalid "30x" claim.
+- Same-endpoint effect, R1 → R2: **+2.8 to +3.0 pts** (DNABERT-2 +2.83 [+1.37, +4.57]).
+- Spread across models at R2: **0.73 pts**. Ratio **~4x**.
+- Layer depth: 0.53 pts, but measured on the hard panels, not the development set.
+- Source: `results/tables/table4_readout_hierarchy.csv`, `results/extension_C_*.json`.
 
 ### The self-correction (worth a paragraph in Discussion)
 - An earlier analysis in this project reported DNABERT-2 at **0.500 (chance)** on
@@ -152,8 +161,8 @@ Each exists as `.csv` (for typesetting) and `.md` (for reading).
 
 **Make:**
 - Equivalence within ±1 pt, replicated three times, robust to degradation.
-- Readout choice dominates model choice by ~30×, layer depth by ~50×.
-- A random projection matches learned representations at this difficulty.
+- Readout choice matters ~4x more than model choice, on a like-for-like comparison.
+- A random projection of k-mer counts matches learned representations (redundancy), while permuted labels collapse to chance (the signal is real).
 - Difficulty tracks taxonomic rank, not genus reputation.
 - No accuracy case for a language model in a 16S region-recommendation tool.
 
@@ -173,7 +182,7 @@ Each exists as `.csv` (for typesetting) and `.md` (for reading).
 | "Only one task" | Region ranking (T2) — `results/tables/table7` |
 | "You tuned until it worked" | Plan committed 94 min before the first confirmatory sequence; `supplementary/S2`, `S3` |
 | "Negative results are unreliable" | Equivalence testing with a pre-set margin, not a non-significant p-value |
-| "Newer models might differ" | Open limitation; mitigated by model choice mattering ~30× less than readout |
+| "Newer models might differ" | Open limitation; mitigated by model choice mattering ~4x less than readout |
 
 ## Still to do before submission
 

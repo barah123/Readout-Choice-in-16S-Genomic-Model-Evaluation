@@ -126,21 +126,40 @@ redundancy in the k-mer feature space. Any claim that one representation beats a
 small margin should be checked against both controls — a random projection for redundancy,
 and a label permutation for whether the task is being learned at all.
 
-### 4.2 How you read the model matters far more than which model you use
+### 4.2 How you read the model matters more than which model you use
 
 A neural network's output can be turned into a usable representation in several ways. Three
-were tested:
+were tested: R0 (unsupervised geometry), R1 (nearest-reference lookup), and R2 (a trained
+linear probe).
 
-- Within each model, accuracy varied by **20.5 to 26.9 percentage points** across the three
-  reading methods.
-- Across the four models, using the best reading method, accuracy varied by **0.7 points**.
+**A correction to an earlier version of this report.** That version reported a spread of
+"21 to 27 percentage points" across readouts and a thirty-fold ratio over model choice. That
+comparison was invalid. **R0 is a pair-level AUC, while R1 and R2 are isolate-level balanced
+accuracy.** These are different quantities on different units and cannot be subtracted. The
+large apparent gap was substantially an artifact of mixing metrics.
 
-**Readout-associated variation exceeded between-model variation by roughly thirty-fold**
-(31× comparing mean ranges). The ratio depends on how the ranges are defined, so both
-numbers are reported rather than the ratio alone; the qualitative conclusion — readout
-choice matters far more than model choice — does not depend on that definition. Any
-study reporting that a DNA language model "failed" a task, based on one simple reading
-method, may be measuring its own method rather than the model.
+The defensible comparison uses R1 and R2, which share an endpoint:
+
+| | effect |
+|---|---|
+| R1 → R2 (same metric, paired, 25 groups) | **+2.8 to +3.0 pts**; DNABERT-2 +2.83 [+1.37, +4.57] |
+| Spread across the four models at R2 | **0.73 pts** |
+| Ratio | **~4×**, not 30× |
+
+**Readout choice still matters about four times more than model choice, and the readout
+effect is statistically supported while the model effect is not.** That is a weaker claim
+than the original but it rests on a like-for-like comparison.
+
+R0 remains worth reporting for a different reason: geometric separation and supervised
+performance disagree. DNABERT-S scores 0.542 by pair AUC at staphylococcal V1 yet 0.945 by
+probe, and several *Bacillus* regions show high R0 where the ceiling and supervised accuracy
+are both low. **A model that looks poor under raw embedding geometry can be fully competitive
+under a trained probe** — which is the substantive point, and it does not require any
+cross-metric subtraction.
+
+The practical implication is unchanged: a study reporting that a DNA language model "failed"
+a task, based on one simple reading method, may be measuring its own method rather than the
+model.
 
 This project made exactly that error. An earlier analysis concluded DNABERT-2 performed at
 chance (50%) on *Staphylococcus aureus*. Re-examined with a better reading method and more
@@ -310,7 +329,7 @@ marked below.
   layers in a compressed internal format that cannot be extracted without reimplementing part
   of the model.
 - **Four models.** Newer and larger ones exist and were not tested. Given that model choice
-  matters about thirty times less than reading method, this is a lower priority than it looks.
+  matters about four times less than reading method, this is a lower priority than it looks.
 - **One task.** Closed-group identification, where the right answer is always among the
   listed candidates.
 - **The very hardest comparisons are excluded by design.** Groups need at least 10 target
@@ -325,11 +344,11 @@ fixed in advance, confirmed on an independent set of bacteria, confirmed again o
 chosen specifically because they are difficult, and confirmed again on deliberately degraded
 sequences. 58 bacterial groups in total.
 
-The more useful findings are methodological and practical: a random control scores as highly
-as any real method; how a model is read matters about thirty times more than which model is
-chosen, and about fifty times more than which layer you read it from; read length matters
-more than any of these; and the organisms that are genuinely hard to tell apart by 16S are
-not the ones with that reputation.
+The more useful findings are methodological and practical: a random projection of k-mer
+counts matches every learned representation, while permuted labels collapse every method to
+chance; how a model is read matters about four times more than which model is chosen, on a
+like-for-like comparison; read length matters more than either; and the organisms that are
+genuinely hard to tell apart by 16S are not the ones with that reputation.
 
 Three times during this work a confident-looking conclusion turned out to be an artifact —
 once from a poor reading method, once from a single small group driving an average, and once

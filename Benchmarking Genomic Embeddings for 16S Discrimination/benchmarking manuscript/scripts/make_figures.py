@@ -131,93 +131,101 @@ def fig1_main_result():
 
 # ================================================================ Figure 2
 def fig2_readout_dominates():
-    """The central methodological finding: readout type >> model choice >> layer depth."""
+    """Readout vs model vs layer — with metrics kept strictly separate.
+
+    R0 is a PAIR-LEVEL AUC. R1 and R2 are ISOLATE-LEVEL BALANCED ACCURACY. An earlier
+    version of this figure plotted all three on one accuracy axis and derived a ~30x
+    ratio from the R0-R2 gap. That subtraction is invalid across different metrics.
+    R0 is now shown on its own axis and explicitly labelled; every quantitative
+    comparison uses R1 vs R2, which share an endpoint.
+    """
     bl = load(os.path.join(ROOT, "phase2_pilot", "block_level_results.json"))
     sp = {k: v for k, v in bl.items() if v["rank"] == "species"}
 
-    fig, axes = plt.subplots(1, 4, figsize=(9.2, 3.1),
-                             gridspec_kw={"width_ratios": [1, 1, 1, 0.85]})
+    def mean_of(key):
+        v = [b[key] for b in sp.values() if b.get(key) == b.get(key)]
+        return float(np.mean(v)) if v else float("nan")
 
-    # (a) readout type
+    def paired_ci(a_key, b_key, seed=1729):
+        d = np.array([b[b_key] - b[a_key] for b in sp.values()
+                      if b.get(a_key) == b.get(a_key) and b.get(b_key) == b.get(b_key)])
+        rng = np.random.default_rng(seed)
+        dr = d[rng.integers(0, len(d), size=(4000, len(d)))].mean(axis=1)
+        return d.mean(), np.percentile(dr, 2.5), np.percentile(dr, 97.5), len(d)
+
+    fig, axes = plt.subplots(1, 4, figsize=(9.6, 3.2),
+                             gridspec_kw={"width_ratios": [0.8, 1, 1, 0.95]})
+
+    # (a) R0 — DIFFERENT METRIC, own axis
     ax = axes[0]
-    levels = [("R0", "R0\ngeometry"), ("R1", "R1\nnearest ref."), ("R2", "R2\nlinear probe")]
-    for m in MODELS:
-        vals = [np.mean([v[f"{m}:{lv}"] for v in sp.values()
-                         if v.get(f"{m}:{lv}") == v.get(f"{m}:{lv}")]) for lv, _ in levels]
-        ax.plot(range(3), vals, "o-", color=C[m], label=PRETTY[m], ms=5)
-    ax.set_xticks(range(3)); ax.set_xticklabels([t for _, t in levels])
-    ax.set_ylabel("balanced accuracy")
-    ax.set_ylim(0.60, 1.0)
-    ax.set_title("a   Readout type\nspread ≈ 21–27 pts", loc="left", fontweight="bold")
-    ax.legend(loc="lower right")
-
-    # (b) model choice at R2
-    ax = axes[1]
-    vals = [np.mean([v[f"{m}:R2"] for v in sp.values()
-                     if v.get(f"{m}:R2") == v.get(f"{m}:R2")]) for m in MODELS]
-    ax.bar(range(4), vals, color=[C[m] for m in MODELS], width=0.64)
+    vals = [mean_of(f"{m}:R0") for m in MODELS]
+    ax.bar(range(4), vals, color=[C[m] for m in MODELS], width=0.62)
     ax.set_xticks(range(4))
-    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=30, ha="right")
-    ax.set_ylim(0.90, 0.97)
+    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=38, ha="right", fontsize=7)
+    ax.set_ylim(0.5, 0.85)
+    ax.set_ylabel("pair AUC")
+    ax.set_title("a   R0 geometry\n(pair AUC — different\nmetric, not comparable)",
+                 loc="left", fontweight="bold", fontsize=8.6)
+
+    # (b) R1 -> R2, SAME endpoint
+    ax = axes[1]
+    for m in MODELS:
+        ax.plot([0, 1], [mean_of(f"{m}:R1"), mean_of(f"{m}:R2")], "o-",
+                color=C[m], label=PRETTY[m], ms=5)
+    ax.set_xticks([0, 1])
+    ax.set_xticklabels(["R1\nnearest ref.", "R2\nlinear probe"])
+    ax.set_xlim(-0.25, 1.25)
+    ax.set_ylim(0.90, 0.96)
     ax.set_ylabel("balanced accuracy")
-    ax.set_title("b   Model choice (R2)\nspread 0.7 pts", loc="left", fontweight="bold")
+    mu, lo, hi, n = paired_ci("dnabert2:R1", "dnabert2:R2")
+    ax.set_title(f"b   Readout, same endpoint\n+{mu*100:.1f} pts "
+                 f"[{lo*100:+.1f}, {hi*100:+.1f}]", loc="left", fontweight="bold",
+                 fontsize=8.6)
+    ax.legend(loc="lower right", fontsize=7)
 
-    # (c) layer depth
+    # (c) model choice at R2
     ax = axes[2]
-    plotted = False
-    for m in ["hyenadna", "ntv2"]:
-        p = os.path.join(ROOT, "phase7_extensions", f"extension_C_{m}.json")
-        if not os.path.exists(p):
-            continue
-        e = load(p)
-        deps, pb = e["depths"], e["per_block"]
-        vals = [np.mean([pb[b][f"layer_{d}"] for b in pb]) for d in deps]
-        xs = [d / e["last"] for d in deps]
-        ax.plot(xs, vals, "o-", color=C[m], label=PRETTY[m], ms=5)
-        plotted = True
-    if plotted:
-        ax.set_xlabel("relative depth (1.0 = final layer)")
-        ax.set_ylabel("balanced accuracy")
-        ax.set_ylim(0.80, 0.86)
-        ax.legend(loc="lower right")
-    ax.set_title("c   Layer depth\nspread 0.5 pts", loc="left", fontweight="bold")
+    vals = [mean_of(f"{m}:R2") for m in MODELS]
+    ax.bar(range(4), vals, color=[C[m] for m in MODELS], width=0.62)
+    ax.set_xticks(range(4))
+    ax.set_xticklabels([PRETTY[m] for m in MODELS], rotation=38, ha="right", fontsize=7)
+    ax.set_ylim(0.90, 0.96)
+    ax.set_ylabel("balanced accuracy")
+    ax.set_title(f"c   Model choice at R2\nspread {(max(vals)-min(vals))*100:.2f} pts",
+                 loc="left", fontweight="bold", fontsize=8.6)
 
-    # (d) the three spreads on ONE common axis.
-    # Panels a-c use different y-ranges for legibility, which makes the three factors look
-    # comparably variable. They are not. This panel puts them on the same scale so the
-    # 30-50x difference is visible rather than asserted.
+    # (d) same axis, balanced-accuracy points only
     ax = axes[3]
-    r0 = [np.mean([v[f"{m}:R0"] for v in sp.values()
-                   if v.get(f"{m}:R0") == v.get(f"{m}:R0")]) for m in MODELS]
-    r2 = [np.mean([v[f"{m}:R2"] for v in sp.values()
-                   if v.get(f"{m}:R2") == v.get(f"{m}:R2")]) for m in MODELS]
-    spread_readout = (np.mean(r2) - np.mean(r0)) * 100
-    spread_model = (max(r2) - min(r2)) * 100
-    spread_layer = np.nan
-    depths_vals = []
+    readout = np.mean([mean_of(f"{m}:R2") - mean_of(f"{m}:R1") for m in MODELS]) * 100
+    model = (max(vals) - min(vals)) * 100
+    layer = np.nan
+    lv = []
     for m in ["hyenadna", "ntv2"]:
         pth = os.path.join(ROOT, "phase7_extensions", f"extension_C_{m}.json")
         if os.path.exists(pth):
             e = load(pth); pb = e["per_block"]
             vv = [np.mean([pb[b][f"layer_{d}"] for b in pb]) for d in e["depths"]]
-            depths_vals.append((max(vv) - min(vv)) * 100)
-    if depths_vals:
-        spread_layer = float(np.mean(depths_vals))
+            lv.append((max(vv) - min(vv)) * 100)
+    if lv:
+        layer = float(np.mean(lv))
 
-    labs = ["readout\ntype", "model\nchoice", "layer\ndepth"]
-    vals = [spread_readout, spread_model, spread_layer]
-    cols = ["#444444", C["kmer"], C["hyenadna"]]
+    labs = ["readout\n(R1 to R2)", "model\nchoice", "layer depth\n(hard panels)"]
+    bars = [readout, model, layer]
+    cols = ["#444444", C["kmer"], "#BBBBBB"]
     yy = np.arange(3)[::-1]
-    ax.barh(yy, vals, color=cols, height=0.6)
-    for y_, v in zip(yy, vals):
+    ax.barh(yy, bars, color=cols, height=0.58)
+    for y_, v in zip(yy, bars):
         if v == v:
-            ax.text(v + 0.6, y_, f"{v:.1f}", va="center", fontsize=8, fontweight="bold")
-    ax.set_yticks(yy); ax.set_yticklabels(labs)
-    ax.set_xlabel("spread in accuracy (pts)")
-    ax.set_xlim(0, max(v for v in vals if v == v) * 1.28)
-    ax.set_title("d   Same axis:\nhow much each matters", loc="left", fontweight="bold")
+            ax.text(v + 0.09, y_, f"{v:.2f}", va="center", fontsize=8, fontweight="bold")
+    ax.set_yticks(yy); ax.set_yticklabels(labs, fontsize=7.6)
+    ax.set_xlabel("spread (balanced-accuracy pts)")
+    ax.set_xlim(0, max(v for v in bars if v == v) * 1.38)
+    ax.set_title(f"d   Same metric, same axis\nreadout ~{readout/model:.0f}x model",
+                 loc="left", fontweight="bold", fontsize=8.6)
+    ax.text(0.02, -0.52, "grey: measured on the hard panels,\nnot the development set",
+            transform=ax.transAxes, fontsize=6.6, color="#555", va="top")
 
-    fig.tight_layout(w_pad=1.6)
+    fig.tight_layout(w_pad=1.5)
     save(fig, "fig2_readout_dominates")
 
 

@@ -57,7 +57,9 @@ replicated across 58 bacterial groups in three experiments and robust to sequenc
 degradation.
 
 The more reusable findings are methodological: **how a representation is read from a model
-matters ~30× more than which model is used**, and **a random projection of k-mer counts
-matches every learned representation** at this difficulty. Both are easy to overlook, and
-overlooking either can produce a confident but wrong conclusion — as happened three times
-during this work, each documented rather than removed.
+matters about four times more than which model is used** (+2.9 vs 0.73 accuracy points, on a
+like-for-like comparison), and the result is bounded by two controls — a random projection of
+k-mer counts matches every learned representation, while permuted labels collapse every
+method to chance. Both controls are easy to omit, and omitting either can produce a confident
+but wrong conclusion, as happened several times during this work. Each is documented rather
+than removed.
