@@ -1,0 +1,354 @@
+{
+  "summary": {
+    "threshold": 0.99,
+    "linkage": "single (connected components)",
+    "n_evaluable": 9,
+    "n_not_evaluable": 11,
+    "primary_contrast_dnabert2_minus_kmer": {
+      "n": 9,
+      "mean": -0.014713811603277425,
+      "sd": 0.04354783278977498,
+      "ci95": [
+        -0.04406094904894902,
+        0.009166151643279816
+      ],
+      "verdict": "INCONCLUSIVE at this margin"
+    },
+    "mean_accuracy": {
+      "C_kmer": 0.8700878978734017,
+      "dnabert2:R2": 0.8553740862701242,
+      "dnabert_s:R2": 0.8338043039749314,
+      "hyenadna:R2": 0.8246677721664486,
+      "ntv2:R2": 0.7838630699818236
+    },
+    "audit": {
+      "max_cross_fold_identity_over_all_blocks": 0.9893617021276596,
+      "all_blocks_below_threshold": true
+    }
+  },
+  "blocks": {
+    "acetobacteraceae": {
+      "region": "V2",
+      "n_isolates": 233,
+      "n_haplotypes": 31,
+      "n_clusters_99": 28,
+      "clusters_target": 10,
+      "clusters_neighbour": 19,
+      "median_slice_len": 94,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.8726190476190476,
+        "dnabert2:R2": 0.8797619047619047,
+        "dnabert_s:R2": 0.7857142857142858,
+        "hyenadna:R2": 0.9047619047619048,
+        "ntv2:R2": 0.9273809523809524,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9893617021276596,
+        "_audit_below_threshold": true
+      }
+    },
+    "comamonadaceae": {
+      "region": "V5",
+      "n_isolates": 515,
+      "n_haplotypes": 23,
+      "n_clusters_99": 18,
+      "clusters_target": 9,
+      "clusters_neighbour": 10,
+      "median_slice_len": 57,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.8933333333333333,
+        "dnabert2:R2": 0.9133333333333333,
+        "dnabert_s:R2": 0.9127868852459017,
+        "hyenadna:R2": 0.9133333333333333,
+        "ntv2:R2": 0.6733333333333333,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9827586206896551,
+        "_audit_below_threshold": true
+      }
+    },
+    "flavobacteriaceae": {
+      "region": "V2",
+      "n_isolates": 324,
+      "n_haplotypes": 65,
+      "n_clusters_99": 27,
+      "clusters_target": 5,
+      "clusters_neighbour": 22,
+      "median_slice_len": 107,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 1.0,
+        "dnabert2:R2": 1.0,
+        "dnabert_s:R2": 0.9076923076923077,
+        "hyenadna:R2": 0.9852380952380952,
+        "ntv2:R2": 0.795,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9813084112149533,
+        "_audit_below_threshold": true
+      }
+    },
+    "methylobacterium": {
+      "region": "V8",
+      "n_isolates": 317,
+      "n_haplotypes": 21,
+      "n_clusters_99": 19,
+      "clusters_target": 7,
+      "clusters_neighbour": 14,
+      "median_slice_len": 51,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.6382352941176471,
+        "dnabert2:R2": 0.5287581699346406,
+        "dnabert_s:R2": 0.5323529411764706,
+        "hyenadna:R2": 0.7130718954248366,
+        "ntv2:R2": 0.6856209150326797,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9803921568627451,
+        "_audit_below_threshold": true
+      }
+    },
+    "paenibacillus": {
+      "region": "V1",
+      "n_isolates": 233,
+      "n_haplotypes": 85,
+      "n_clusters_99": 85,
+      "clusters_target": 49,
+      "clusters_neighbour": 36,
+      "median_slice_len": 31,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": true,
+      "similarity_disjoint": {
+        "C_kmer": 0.890909090909091,
+        "dnabert2:R2": 0.9263504611330697,
+        "dnabert_s:R2": 0.9632034632034632,
+        "hyenadna:R2": 0.9497647280255975,
+        "ntv2:R2": 0.8813852813852815,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9846153846153847,
+        "_audit_below_threshold": true
+      }
+    },
+    "rhizobium_agrobacterium": {
+      "region": "V6",
+      "n_isolates": 433,
+      "n_haplotypes": 36,
+      "n_clusters_99": 30,
+      "clusters_target": 13,
+      "clusters_neighbour": 19,
+      "median_slice_len": 60,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.9618421052631578,
+        "dnabert2:R2": 0.9592105263157894,
+        "dnabert_s:R2": 0.8868421052631579,
+        "hyenadna:R2": 0.8907894736842105,
+        "ntv2:R2": 0.8407894736842104,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9838709677419355,
+        "_audit_below_threshold": true
+      }
+    },
+    "sphingomonas": {
+      "region": "V6",
+      "n_isolates": 181,
+      "n_haplotypes": 35,
+      "n_clusters_99": 29,
+      "clusters_target": 17,
+      "clusters_neighbour": 13,
+      "median_slice_len": 60,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.949047619047619,
+        "dnabert2:R2": 0.8990476190476191,
+        "dnabert_s:R2": 0.9129365079365079,
+        "hyenadna:R2": 0.7076190476190476,
+        "ntv2:R2": 0.7503968253968254,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.9833333333333333,
+        "_audit_below_threshold": true
+      }
+    },
+    "stenotrophomonas": {
+      "region": "V2",
+      "n_isolates": 468,
+      "n_haplotypes": 52,
+      "n_clusters_99": 29,
+      "clusters_target": 9,
+      "clusters_neighbour": 22,
+      "median_slice_len": 106,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.9490307810469101,
+        "dnabert2:R2": 0.9188095238095236,
+        "dnabert_s:R2": 0.8533563748079878,
+        "hyenadna:R2": 0.7281310918388938,
+        "ntv2:R2": 0.8396022219840674,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.985781990521327,
+        "_audit_below_threshold": true
+      }
+    },
+    "streptomyces": {
+      "region": "V2",
+      "n_isolates": 364,
+      "n_haplotypes": 76,
+      "n_clusters_99": 48,
+      "clusters_target": 12,
+      "clusters_neighbour": 40,
+      "median_slice_len": 107,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "similarity_disjoint": {
+        "C_kmer": 0.6757738095238095,
+        "dnabert2:R2": 0.6730952380952381,
+        "dnabert_s:R2": 0.7493538647342994,
+        "hyenadna:R2": 0.6293003795721187,
+        "ntv2:R2": 0.6612586266390614,
+        "_n_folds": 5,
+        "_max_cross_fold_identity": 0.985781990521327,
+        "_audit_below_threshold": true
+      }
+    }
+  },
+  "not_evaluable": {
+    "brucella_ochrobactrum": {
+      "region": "V6",
+      "n_isolates": 305,
+      "n_haplotypes": 18,
+      "n_clusters_99": 16,
+      "clusters_target": 4,
+      "clusters_neighbour": 14,
+      "median_slice_len": 62,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "cutibacterium": {
+      "region": "V2",
+      "n_isolates": 206,
+      "n_haplotypes": 16,
+      "n_clusters_99": 7,
+      "clusters_target": 3,
+      "clusters_neighbour": 4,
+      "median_slice_len": 107,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "francisella": {
+      "region": "V4",
+      "n_isolates": 55,
+      "n_haplotypes": 3,
+      "n_clusters_99": 1,
+      "clusters_target": 1,
+      "clusters_neighbour": 1,
+      "median_slice_len": 107,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "fusobacterium": {
+      "region": "V2",
+      "n_isolates": 129,
+      "n_haplotypes": 44,
+      "n_clusters_99": 20,
+      "clusters_target": 16,
+      "clusters_neighbour": 4,
+      "median_slice_len": 109,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "granulicatella": {
+      "region": "V3",
+      "n_isolates": 171,
+      "n_haplotypes": 9,
+      "n_clusters_99": 9,
+      "clusters_target": 2,
+      "clusters_neighbour": 7,
+      "median_slice_len": 65,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": true,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "leuconostoc": {
+      "region": "V1",
+      "n_isolates": 409,
+      "n_haplotypes": 24,
+      "n_clusters_99": 24,
+      "clusters_target": 3,
+      "clusters_neighbour": 21,
+      "median_slice_len": 30,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": true,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "nocardia": {
+      "region": "V5",
+      "n_isolates": 405,
+      "n_haplotypes": 13,
+      "n_clusters_99": 9,
+      "clusters_target": 2,
+      "clusters_neighbour": 7,
+      "median_slice_len": 61,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "porphyromonas": {
+      "region": "V2",
+      "n_isolates": 50,
+      "n_haplotypes": 18,
+      "n_clusters_99": 9,
+      "clusters_target": 3,
+      "clusters_neighbour": 6,
+      "median_slice_len": 108,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "proteus_morganellaceae": {
+      "region": "V2",
+      "n_isolates": 679,
+      "n_haplotypes": 71,
+      "n_clusters_99": 25,
+      "clusters_target": 4,
+      "clusters_neighbour": 22,
+      "median_slice_len": 106,
+      "mismatch_tolerance_at_99pct": 1,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "rothia_micrococcaceae": {
+      "region": "V7",
+      "n_isolates": 402,
+      "n_haplotypes": 37,
+      "n_clusters_99": 36,
+      "clusters_target": 4,
+      "clusters_neighbour": 33,
+      "median_slice_len": 58,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": false,
+      "reason": "fewer than 5 clusters in a class"
+    },
+    "veillonella": {
+      "region": "V8",
+      "n_isolates": 98,
+      "n_haplotypes": 4,
+      "n_clusters_99": 4,
+      "clusters_target": 2,
+      "clusters_neighbour": 4,
+      "median_slice_len": 52,
+      "mismatch_tolerance_at_99pct": 0,
+      "collapses_to_exact": true,
+      "reason": "fewer than 5 clusters in a class"
+    }
+  }
+}

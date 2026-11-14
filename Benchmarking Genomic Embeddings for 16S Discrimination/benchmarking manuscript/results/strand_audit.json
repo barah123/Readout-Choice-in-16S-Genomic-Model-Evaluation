@@ -1,0 +1,709 @@
+{
+  "minus_strand_records": {
+    "development": [
+      {
+        "accession": "AY349154.1",
+        "block_id": "bacteroides",
+        "species_query": "Bacteroides uniformis",
+        "isolate_group": "Bacteroides uniformis|ACC:AY349154.1",
+        "slen": 1408,
+        "score_forward": 142.0,
+        "score_reverse_complement": 1306.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "JX888452.1",
+        "block_id": "borrelia",
+        "species_query": "Borrelia afzelii",
+        "isolate_group": "Borrelia afzelii|ACC:JX888452.1",
+        "slen": 1541,
+        "score_forward": 152.0,
+        "score_reverse_complement": 1754.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "MF523223.1",
+        "block_id": "burkholderia",
+        "species_query": "Burkholderia pseudomallei",
+        "isolate_group": "Burkholderia pseudomallei|13052",
+        "slen": 1382,
+        "score_forward": 83.0,
+        "score_reverse_complement": 1661.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "KY776568.1",
+        "block_id": "escherichia_shigella",
+        "species_query": "Shigella boydii",
+        "isolate_group": "Shigella boydii|FC1851_2",
+        "slen": 1503,
+        "score_forward": 171.0,
+        "score_reverse_complement": 2880.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF103882.1",
+        "block_id": "helicobacter",
+        "species_query": "Helicobacter felis",
+        "isolate_group": "Helicobacter felis|1136-7",
+        "slen": 1412,
+        "score_forward": 98.0,
+        "score_reverse_complement": 1478.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF103881.1",
+        "block_id": "helicobacter",
+        "species_query": "Helicobacter felis",
+        "isolate_group": "Helicobacter felis|144-10",
+        "slen": 1418,
+        "score_forward": 107.0,
+        "score_reverse_complement": 1481.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF103879.1",
+        "block_id": "helicobacter",
+        "species_query": "Helicobacter felis",
+        "isolate_group": "Helicobacter felis|937-12",
+        "slen": 1424,
+        "score_forward": 113.0,
+        "score_reverse_complement": 1526.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF129524.1",
+        "block_id": "legionella",
+        "species_query": "Legionella pneumophila",
+        "isolate_group": "Legionella pneumophila|E5C1; ATCC700713",
+        "slen": 1432,
+        "score_forward": 127.0,
+        "score_reverse_complement": 1903.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF129523.1",
+        "block_id": "legionella",
+        "species_query": "Legionella pneumophila",
+        "isolate_group": "Legionella pneumophila|CA1",
+        "slen": 1454,
+        "score_forward": 146.0,
+        "score_reverse_complement": 1970.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "JN867300.1",
+        "block_id": "prevotella",
+        "species_query": "Prevotella bivia",
+        "isolate_group": "Prevotella bivia|SEQ227",
+        "slen": 1406,
+        "score_forward": 107.0,
+        "score_reverse_complement": 1271.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      }
+    ],
+    "locked_test": [
+      {
+        "accession": "L35101.1",
+        "block_id": "bartonella",
+        "species_query": "Bartonella henselae",
+        "isolate_group": "Bartonella henselae|Houston",
+        "slen": 1351,
+        "score_forward": 46.0,
+        "score_reverse_complement": 64.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF369529.1",
+        "block_id": "bartonella",
+        "species_query": "Bartonella henselae",
+        "isolate_group": "Bartonella henselae|San Ant 2",
+        "slen": 1382,
+        "score_forward": 83.0,
+        "score_reverse_complement": 104.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF369528.1",
+        "block_id": "bartonella",
+        "species_query": "Bartonella henselae",
+        "isolate_group": "Bartonella henselae|90-615",
+        "slen": 1352,
+        "score_forward": 47.0,
+        "score_reverse_complement": 65.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AF312496.1",
+        "block_id": "bartonella",
+        "species_query": "Bartonella henselae",
+        "isolate_group": "Bartonella henselae|ACC:AF312496.1",
+        "slen": 1352,
+        "score_forward": 50.0,
+        "score_reverse_complement": 71.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "AY962604.1",
+        "block_id": "comamonadaceae",
+        "species_query": "Delftia acidovorans",
+        "isolate_group": "Delftia acidovorans|I14",
+        "slen": 1441,
+        "score_forward": 139.0,
+        "score_reverse_complement": 1831.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236369.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RLa00301",
+        "slen": 1419,
+        "score_forward": 153.0,
+        "score_reverse_complement": 1767.0,
+        "regions_retained_despite_wrong_strand": [
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236364.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RPh00501",
+        "slen": 1435,
+        "score_forward": 163.0,
+        "score_reverse_complement": 1819.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236349.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RVi00101",
+        "slen": 1426,
+        "score_forward": 145.0,
+        "score_reverse_complement": 1783.0,
+        "regions_retained_despite_wrong_strand": [
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236334.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RVi00401",
+        "slen": 1419,
+        "score_forward": 153.0,
+        "score_reverse_complement": 1767.0,
+        "regions_retained_despite_wrong_strand": [
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236327.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RVi00701",
+        "slen": 1429,
+        "score_forward": 151.0,
+        "score_reverse_complement": 1795.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236316.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RVi00601",
+        "slen": 1431,
+        "score_forward": 156.0,
+        "score_reverse_complement": 1803.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      },
+      {
+        "accession": "OQ236313.1",
+        "block_id": "rhizobium_agrobacterium",
+        "species_query": "Rhizobium leguminosarum",
+        "isolate_group": "Rhizobium leguminosarum|RVi00501",
+        "slen": 1372,
+        "score_forward": 100.0,
+        "score_reverse_complement": 1600.0,
+        "regions_retained_despite_wrong_strand": [
+          "V1",
+          "V2",
+          "V3",
+          "V4",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ]
+      }
+    ],
+    "hard_panels": []
+  },
+  "isolate_groups_dropped": [
+    "Bartonella henselae|90-615",
+    "Bartonella henselae|ACC:AF312496.1",
+    "Bartonella henselae|Houston",
+    "Bartonella henselae|San Ant 2",
+    "Delftia acidovorans|I14",
+    "Rhizobium leguminosarum|RLa00301",
+    "Rhizobium leguminosarum|RPh00501",
+    "Rhizobium leguminosarum|RVi00101",
+    "Rhizobium leguminosarum|RVi00401",
+    "Rhizobium leguminosarum|RVi00501",
+    "Rhizobium leguminosarum|RVi00601",
+    "Rhizobium leguminosarum|RVi00701"
+  ],
+  "locked_test_block_rerun": {
+    "bartonella": {
+      "as_run": {
+        "_block": "bartonella",
+        "_family": "Bartonellaceae",
+        "_rank": "species",
+        "_expected_class": "B",
+        "_eligible_regions": [],
+        "_block_eligible": false,
+        "_ceilings": {
+          "V1": 1.0,
+          "V2": 0.9999999999999998,
+          "V3": 1.0,
+          "V4": 1.0,
+          "V5": 0.9999999999999999,
+          "V6": 0.9999999999999999,
+          "V7": 0.9999999999999999,
+          "V8": 0.8076923076923075,
+          "V9": 1.0
+        },
+        "_status": "no_eligible_region"
+      },
+      "minus_strand_dropped": {
+        "_block": "bartonella",
+        "_family": "Bartonellaceae",
+        "_rank": "species",
+        "_expected_class": "B",
+        "_eligible_regions": [],
+        "_block_eligible": false,
+        "_ceilings": {
+          "V1": 1.0,
+          "V2": 0.9999999999999998,
+          "V3": 1.0,
+          "V4": 1.0,
+          "V5": 0.9999999999999999,
+          "V6": 0.9999999999999999,
+          "V7": 0.9999999999999999,
+          "V8": 0.8076923076923075,
+          "V9": 1.0
+        },
+        "_status": "no_eligible_region"
+      }
+    },
+    "comamonadaceae": {
+      "as_run": {
+        "_block": "comamonadaceae",
+        "_family": "Comamonadaceae",
+        "_rank": "species",
+        "_expected_class": "A",
+        "_eligible_regions": [
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ],
+        "_block_eligible": true,
+        "_ceilings": {
+          "V1": 0.9999999999999999,
+          "V2": 1.0,
+          "V3": 0.9999999999999999,
+          "V4": 1.0000000000000002,
+          "V5": 0.9958677685950416,
+          "V6": 0.9961928934010157,
+          "V7": 0.8834794646977391,
+          "V8": 1.0000000000000002,
+          "V9": 0.8989227290863153
+        },
+        "C_kmer": 0.9891350210970465,
+        "C_random": 0.9891350210970465,
+        "C_exact": 0.9730271603487448,
+        "C_align": 0.9887945584169942,
+        "dnabert2:R2": 0.9891187925998054,
+        "dnabert_s:R2": 0.9907375851996105,
+        "hyenadna:R2": 0.9945675105485232,
+        "ntv2:R2": 0.9933016877637131,
+        "_chosen_regions": [
+          "V5",
+          "V5",
+          "V3",
+          "V2",
+          "V8"
+        ],
+        "_n_outer_folds": 5,
+        "_status": "ok"
+      },
+      "minus_strand_dropped": {
+        "_block": "comamonadaceae",
+        "_family": "Comamonadaceae",
+        "_rank": "species",
+        "_expected_class": "A",
+        "_eligible_regions": [
+          "V2",
+          "V3",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ],
+        "_block_eligible": true,
+        "_ceilings": {
+          "V1": 0.9999999999999999,
+          "V2": 1.0,
+          "V3": 0.9999999999999999,
+          "V4": 1.0000000000000002,
+          "V5": 0.9958677685950416,
+          "V6": 0.9961928934010157,
+          "V7": 0.8834794646977391,
+          "V8": 1.0000000000000002,
+          "V9": 0.8989227290863153
+        },
+        "C_kmer": 0.9933016877637131,
+        "C_random": 0.9933016877637131,
+        "C_exact": 0.9717613375639346,
+        "C_align": 0.9929612250836607,
+        "dnabert2:R2": 0.9932854592664719,
+        "dnabert_s:R2": 0.9933016877637131,
+        "hyenadna:R2": 0.9891350210970465,
+        "ntv2:R2": 0.9945675105485232,
+        "_chosen_regions": [
+          "V5",
+          "V3",
+          "V3",
+          "V2",
+          "V8"
+        ],
+        "_n_outer_folds": 5,
+        "_status": "ok"
+      }
+    },
+    "rhizobium_agrobacterium": {
+      "as_run": {
+        "_block": "rhizobium_agrobacterium",
+        "_family": "Rhizobiaceae",
+        "_rank": "species",
+        "_expected_class": "B",
+        "_eligible_regions": [
+          "V2",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ],
+        "_block_eligible": true,
+        "_ceilings": {
+          "V1": 1.0,
+          "V2": 0.9933993399339928,
+          "V3": NaN,
+          "V4": 0.9879273096962762,
+          "V5": 0.6990131578947372,
+          "V6": 0.9918032786885241,
+          "V7": 0.9299529800482907,
+          "V8": 0.9758546193925527,
+          "V9": 0.5777777777777778
+        },
+        "C_kmer": 0.9844134481800498,
+        "C_random": 0.9837477076965824,
+        "C_exact": 0.9362426303293304,
+        "C_align": 0.9666133773628678,
+        "dnabert2:R2": 0.9837477076965824,
+        "dnabert_s:R2": 0.9782622095881333,
+        "hyenadna:R2": 0.9757477076965824,
+        "ntv2:R2": 0.9757477076965824,
+        "_chosen_regions": [
+          "V6",
+          "V6",
+          "V6",
+          "V6",
+          "V2"
+        ],
+        "_n_outer_folds": 5,
+        "_status": "ok"
+      },
+      "minus_strand_dropped": {
+        "_block": "rhizobium_agrobacterium",
+        "_family": "Rhizobiaceae",
+        "_rank": "species",
+        "_expected_class": "B",
+        "_eligible_regions": [
+          "V2",
+          "V4",
+          "V5",
+          "V6",
+          "V7",
+          "V8",
+          "V9"
+        ],
+        "_block_eligible": true,
+        "_ceilings": {
+          "V1": 1.0,
+          "V2": 0.9933993399339928,
+          "V3": NaN,
+          "V4": 0.9879273096962762,
+          "V5": 0.6990131578947372,
+          "V6": 0.9918032786885241,
+          "V7": 0.9299529800482907,
+          "V8": 0.9758546193925527,
+          "V9": 0.5777777777777778
+        },
+        "C_kmer": 0.9858870056497174,
+        "C_random": 0.9858870056497174,
+        "C_exact": 0.9414149468779988,
+        "C_align": 0.9664219799466329,
+        "dnabert2:R2": 0.9858870056497174,
+        "dnabert_s:R2": 0.9740408518035636,
+        "hyenadna:R2": 0.9778870056497176,
+        "ntv2:R2": 0.9818870056497175,
+        "_chosen_regions": [
+          "V6",
+          "V6",
+          "V6",
+          "V6",
+          "V6"
+        ],
+        "_n_outer_folds": 5,
+        "_status": "ok"
+      }
+    }
+  },
+  "primary_sensitivity": {
+    "n_blocks": 20,
+    "blocks_changed": [
+      "rhizobium_agrobacterium"
+    ],
+    "primary_as_run": {
+      "mean": -0.002107730076512421,
+      "ci95": [
+        -0.005949046106311794,
+        0.0016252556407515355
+      ],
+      "p": 0.253,
+      "verdict": "EQUIVALENT (practically negligible difference)"
+    },
+    "primary_minus_strand_dropped": {
+      "mean": -0.0020744430523390476,
+      "ci95": [
+        -0.0059157590821384215,
+        0.0016966620605044947
+      ],
+      "p": 0.257,
+      "verdict": "EQUIVALENT (practically negligible difference)"
+    },
+    "largest_single_block_shift_pp": 0.06657404834674585,
+    "shift_in_primary_pp": 0.0033287024173373272,
+    "margin": 0.01
+  }
+}

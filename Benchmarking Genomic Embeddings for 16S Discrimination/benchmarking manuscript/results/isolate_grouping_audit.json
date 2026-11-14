@@ -1,0 +1,57 @@
+{
+  "development": {
+    "records": 12356,
+    "accessions": 12243,
+    "records_with_strain": 11999,
+    "isolate_groups": 12188,
+    "groups_after_aggressive_norm": 12159,
+    "groups_with_multiple_records": 135,
+    "records_in_multi_record_groups": 303,
+    "largest_group": 5,
+    "cross_species_accessions": 113,
+    "cross_species_within_one_block": 105,
+    "strain_coverage_pct": 97.11,
+    "groups_merged_by_aggressive_norm": 29
+  },
+  "locked_test": {
+    "records": 6933,
+    "accessions": 6926,
+    "records_with_strain": 6785,
+    "isolate_groups": 6760,
+    "groups_after_aggressive_norm": 6752,
+    "groups_with_multiple_records": 128,
+    "records_in_multi_record_groups": 301,
+    "largest_group": 6,
+    "cross_species_accessions": 7,
+    "cross_species_within_one_block": 7,
+    "strain_coverage_pct": 97.87,
+    "groups_merged_by_aggressive_norm": 8
+  },
+  "hard_panels": {
+    "records": 4720,
+    "accessions": 4720,
+    "records_with_strain": 4675,
+    "isolate_groups": 4657,
+    "groups_after_aggressive_norm": 4649,
+    "groups_with_multiple_records": 50,
+    "records_in_multi_record_groups": 113,
+    "largest_group": 5,
+    "cross_species_accessions": 0,
+    "cross_species_within_one_block": 0,
+    "strain_coverage_pct": 99.05,
+    "groups_merged_by_aggressive_norm": 8
+  },
+  "total_analysed": {
+    "records": 24009,
+    "records_with_strain": 23459,
+    "isolate_groups": 23605,
+    "groups_after_aggressive_norm": 23560,
+    "groups_with_multiple_records": 313,
+    "records_in_multi_record_groups": 717,
+    "cross_species_accessions": 120,
+    "cross_species_within_one_block": 112,
+    "strain_coverage_pct": 97.71,
+    "groups_merged_by_aggressive_norm": 45,
+    "pct_groups_merged_by_aggressive_norm": 0.19
+  }
+}

@@ -185,7 +185,8 @@ body(
     "k-mer counts matched every learned representation, whereas permuting labels through "
     "the complete pipeline reduced every method to chance. Among classification readouts "
     "measured on a common endpoint, moving from nearest-reference assignment to a linear "
-    "probe changed balanced accuracy by about 2.9 points, roughly four times the 0.73-point "
+    "probe changed balanced accuracy by about 2.9 points on the development set, roughly "
+    "four times the 0.73-point "
     "spread across the four models. Within these panels, the lowest accuracies occurred in "
     "subspecies and species-complex comparisons rather than in genera reputed to have "
     "conserved 16S sequences. For this task, frozen genomic language models offered no "
@@ -293,21 +294,86 @@ body(
     "taxonomy has split a clade, so that no species appears in two blocks. Blocks are "
     "additionally tagged by family; development and locked-test families are disjoint. "
     "Species-level and subspecies-level panels are separate strata and are never pooled.")
+body(
+    "Panel membership was declared in version-controlled definition files before the "
+    "corresponding sequences were retrieved, and each of the 53 declared development and "
+    "locked-test blocks carries a recorded one-line rationale for its target and its "
+    "neighbours (S1 Data). Four of those rationales name a specific primary source, in "
+    "each case the region-by-region analysis of Chakravorty and colleagues [1]; the "
+    "remaining rationales state the reasoning, such as reported identity above the level "
+    "at which 16S separates species, a clonal lineage nested within a parent species, or "
+    "a taxonomic split through a clade, without citing a publication for that panel. "
+    "Neighbour selection is therefore expert selection informed by the 16S identification "
+    "literature, not a procedure traceable to a named source for each panel, and we report "
+    "it as such rather than attaching citations retrospectively.")
+body(
+    "The 15 hard panels were not selected from the literature. Candidate genera and "
+    "species complexes with documented 16S conservation were screened against a rule fixed "
+    "before screening began: a candidate qualified as hard if, at its best region, the "
+    "observed-sequence ambiguity ceiling was at most 0.97 and k-mer balanced accuracy was "
+    "at most 0.95. The screen used classical methods only, so no genomic language model "
+    "could influence which difficult panels entered the analysis.")
 
 H2("Isolate grouping")
 body(
-    "The unit of independence is the isolate group, defined as the pair (species, strain) "
-    "where esummary reported a usable strain field, and otherwise as the individual "
-    "accession. Bare culture-collection prefixes without a catalogue number (for example "
-    "\"ATCC\" alone) were treated as missing rather than as a shared group, because merging "
-    "them would combine unrelated deposits. Strain metadata was available for essentially "
-    "all records (794 of 796 in an early staphylococcal panel; 469 of 469 in a Bacillus "
-    "panel).")
-ph("[AUTHOR: AQ04 and check 6. The isolate group is derived from the NCBI strain string. "
-   "This is deposited metadata, not verified independent provenance, and standalone 16S "
-   "deposits are not linked to a parent genome assembly. State this explicitly as a "
-   "limitation and confirm whether any normalization of collection identifiers was "
-   "performed beyond the prefix rule described above.]")
+    "The unit of independence is the isolate group. For each record the strain field "
+    "returned by esummary was taken, or where that field was absent, the value of the "
+    "strain key parsed from the record's paired subtype and subname fields. The string was "
+    "stripped of surrounding whitespace and treated as missing if it was empty, if it "
+    "matched any of the placeholder values -, na, n/a, none, unknown or missing "
+    "case-insensitively, or if it consisted of a bare culture-collection prefix carrying "
+    "no catalogue number (ATCC, DSM, NCTC, CECT, JCM, KCTC, CIP, LMG, NBRC, CGMCC, BCRC, "
+    "NRRL, CCUG, VTT, CCM, IFO, KACC or BAA), since pooling every deposit labelled only "
+    "\"ATCC\" would merge unrelated isolates into one unit. The isolate group is then the "
+    "queried species name joined to the retained strain string, and the species name "
+    "joined to the accession where no usable strain string remained, so a record without "
+    "strain metadata forms a group of its own.")
+body(
+    "No normalization was applied beyond those rules. Strain strings were not case-folded, "
+    "punctuation and internal spacing were not standardised, and no value was "
+    "cross-referenced against a culture-collection catalogue, so two deposits of one "
+    "isolate held under different catalogue numbers, for example an ATCC number and its "
+    "DSM equivalent, remain separate groups. The formatting component of this is small and "
+    "measurable: re-deriving the groups after upper-casing every strain string and "
+    "deleting every non-alphanumeric character merges 45 of the 23,605 isolate groups in "
+    "the three analysed sets, a change of 0.19 percent. The catalogue-equivalence "
+    "component cannot be bounded from the records themselves.")
+body(
+    "A usable strain string was present for 23,459 of the 24,009 analysed records, 97.7 "
+    "percent overall and 97.1, 97.9 and 99.0 percent of the development, locked-test and "
+    "hard-panel records respectively. Grouping binds on a small minority: 313 of the "
+    "23,605 groups hold more than one record, together accounting for 717 records, and no "
+    "group holds more than six. Grouped cross-validation therefore departs from "
+    "record-level cross-validation only for those records, and the independence of the "
+    "remainder rests on the deposits being genuinely distinct rather than on any check "
+    "performed here. Within an isolate group, one modal region sequence represents the "
+    "group, so a group contributes exactly one unit per region regardless of how many "
+    "records it contains.")
+body(
+    "A single accession can be returned by more than one species query where NCBI organism "
+    "annotation overlaps, and such records were not merged: 113 development and 7 "
+    "locked-test accessions appear under two species names, no hard-panel accession does, "
+    "and 112 of the 120 fall within one block. The two copies carry different species "
+    "labels and are not pooled; where one of the two species is that panel's target, the "
+    "shared sequence therefore sits on both sides of the class boundary, which lowers the "
+    "ambiguity ceiling for that region rather than raising measured accuracy, because the "
+    "ceiling charges every sequence held in common between the classes as irreducible "
+    "error.")
+body(
+    "These groups are derived from deposited metadata and do not establish independent "
+    "provenance. The strain string is supplied by the submitter and is not verified by us "
+    "or by the archive, and standalone 16S deposits are not linked to a parent genome "
+    "assembly, so neither the identity of the physical isolate nor the number and "
+    "heterogeneity of the rRNA operons it carries can be confirmed from the record. Two "
+    "deposits of the same isolate recorded under differently formatted strings, or under "
+    "different catalogue numbers, are treated here as independent. The direction of that "
+    "error is toward optimism: under-merging inflates the effective number of independent "
+    "isolates and leaves some leakage across cross-validation folds possible. The opposite "
+    "error is worse in a different way, since merging every deposit that shares only a "
+    "bare collection prefix would pool unrelated isolates into a single unit and corrupt "
+    "the eligibility counts as well as the folds. The rule therefore errs toward "
+    "separation, and the independence claim throughout should be read as metadata-based "
+    "rather than provenance-verified.")
 
 H2("Region extraction")
 body(
@@ -317,9 +383,64 @@ body(
     "extracted region was retained only if its length fell between 0.75 and 1.30 times the "
     "expected length for that region; otherwise it was recorded as unavailable for that "
     "sequence, and these failures are reported rather than dropped silently.")
-ph("[AUTHOR: AQ06. Alignment-based transfer was used rather than a hidden Markov model "
-   "tool such as V-Xtractor. State this choice and its justification, and confirm strand "
-   "handling and the treatment of ambiguous bases within retained regions.]")
+body(
+    "Coordinate transfer was used in preference to a hidden Markov model extractor such as "
+    "V-Xtractor [9] because the comparison requires every method to see exactly the same "
+    "span. The models, the k-mer features and the identity baselines are scored on "
+    "identical strings, so a boundary that moves between records according to a learned "
+    "criterion would be confounded with the representation under test. Transferring fixed "
+    "Escherichia coli coordinates through a single global alignment gives a boundary rule "
+    "that is explicit, identical for every record and reproducible from the published "
+    "coordinates alone, with no external binary in the dependency chain. The cost is that "
+    "transfer degrades where the alignment itself is poor, a case in which a profile model "
+    "would often still locate the conserved flanks; the length window is the check on that "
+    "failure mode.")
+body(
+    "Across the 24,009 records analysed, 187,889 of 216,081 region cells were recovered "
+    "(87.0 percent). Recovery was essentially complete for the internal regions (V4 100.0 "
+    "percent, V5 to V8 at least 99.97 percent, V2 98.5 percent) and incomplete toward the "
+    "ends of the gene (V3 77.2 percent, V1 58.3 percent, V9 48.7 percent), where deposits "
+    "that begin or end inside the gene cannot supply the span. No record failed all nine "
+    "regions. An unavailable region removes that isolate from that region's data; it does "
+    "not alter the boundary applied to the records that pass, and region eligibility is "
+    "assessed on the surviving counts.")
+body(
+    "Strand handling was not implemented. Sequences were aligned in their deposited "
+    "orientation only and no reverse-complement check was performed, on the assumption "
+    "that a reverse-complemented deposit would fail the length window and be dropped. A "
+    "post hoc audit shows that assumption to be wrong. Realigning every record in both "
+    "orientations under the same aligner and scoring, 22 of 24,009 records (0.09 percent) "
+    "score higher reverse-complemented, and a reverse-complemented 16S gene still yields a "
+    "contiguous query span for most regions, with lengths inside the retention window, so "
+    "all 22 entered the analysis carrying mis-sliced sequence for eight or nine of the nine "
+    "regions. Ten are in the development set, 12 in the locked test (four in bartonella, "
+    "one in comamonadaceae, seven in rhizobium_agrobacterium) and none in the hard panels.")
+body(
+    "Because the locked test is scored once under a frozen plan, the confirmatory analysis "
+    "was not re-run with these records corrected. The frozen scoring code was instead "
+    "re-executed with the affected isolates removed, reusing the existing embedding cache; "
+    "before removal the re-execution reproduced every frozen per-block value exactly, which "
+    "establishes that the sensitivity analysis differs from the locked result in the "
+    "intended respect and no other. Bartonella was already ineligible under the freeze "
+    "because no region passed the eligibility gate, so two confirmatory blocks are "
+    "affected. Removing the minus-strand isolates moves the primary estimand from -0.211 to "
+    "-0.207 percentage points, a shift of 0.003 points, with a largest single-block shift "
+    "of 0.067 points; the bootstrap interval and the equivalence verdict are unchanged. The "
+    "defect is therefore immaterial to every conclusion reported here, but an orientation "
+    "check belongs in any reuse of this pipeline and is noted as such in S3 Text.")
+body(
+    "Ambiguous bases were carried through rather than filtered. N is the only non-ACGT "
+    "character present in the retrieved records; it occurs in 1,042 of the 187,889 retained "
+    "region slices (0.55 percent) and in 726 of 15,420 distinct region haplotypes (4.7 "
+    "percent). An N is treated as an ordinary mismatch by the aligner and by the identity "
+    "calculation, is skipped by the k-mer featurizer, which counts only windows composed "
+    "entirely of A, C, G and T, and is passed literally to each model's tokenizer. No "
+    "ambiguity expansion, imputation or exclusion was applied. The one quantity this could "
+    "flatter is the empirical ambiguity ceiling, since a slice differing from another only "
+    "at an ambiguous position counts as a separate haplotype and splitting a haplotype can "
+    "only raise the ceiling. Recomputing each confirmatory block's ceiling at the region it "
+    "used, with N-bearing isolates removed, changes it by at most 0.03 points and by 0.002 "
+    "points on average, so the reported ceilings are not an artefact of ambiguity codes.")
 
 H2("Models and representations")
 body(
@@ -341,6 +462,31 @@ body(
     "carrying it, which makes the representation a pure function of the sequence by "
     "construction and removes any dependence on batch composition. This property was "
     "verified: string-identical inputs produced bit-identical vectors in all nine regions.")
+body(
+    "Intermediate layers were swept for the two models whose internals could be extracted "
+    "and verified, at five depths corresponding to 0.25, 0.50, 0.75, 0.90 and 1.00 of "
+    "encoder depth: layers 2, 4, 7, 8 and 9 of the 10 hidden states exposed by HyenaDNA, "
+    "and layers 7, 14, 22, 26 and 29 of the 30 exposed by Nucleotide Transformer v2. The "
+    "sweep ran on the 13 hard panels with everything else held fixed, the same pooling "
+    "rule, linear probe, isolate-grouped five-fold split and seed; only the layer changed. "
+    "A correctness gate ran before any result was computed and aborts the analysis unless "
+    "the extracted final layer is numerically identical to the standard forward output "
+    "(allclose, absolute tolerance 1e-6); both models passed. DNABERT-2 and DNABERT-S were "
+    "not swept because they run their encoder on unpadded sequences internally and return "
+    "intermediate layers shaped total-tokens by hidden rather than batch by sequence by "
+    "hidden, so extracting them correctly would mean reproducing their unpad and repad "
+    "index logic.")
+body(
+    "The single layer-depth summary plotted in Fig 2d is a range, aggregated in this order. "
+    "For each model and each depth, balanced accuracy is averaged across the 13 panels, "
+    "giving five depth means; the range of those five, maximum minus minimum, is that "
+    "model's depth effect; the two model values are then averaged, giving 0.53 percentage "
+    "points. Because panels are averaged before the range is taken, this understates how "
+    "much depth can matter on an individual panel, and because the depth was chosen on the "
+    "same panels used for the comparison, any best-depth figure is optimistic rather than "
+    "a bound. The quantity is a difference between two balanced accuracies, the best and "
+    "worst depth, which is what makes it commensurable with the other two bars in that "
+    "panel: R2 minus R1 for the readout bar, and best minus worst model for the model bar.")
 
 H2("Readouts and comparison methods")
 body(
@@ -366,16 +512,36 @@ body(
     "4-, 5- and 6-mer frequency features, normalized within each k, with the vocabulary "
     "fitted on training folds only. C_random applies a Gaussian random projection of the "
     "C_kmer feature matrix to 256 dimensions, with entries drawn from N(0, 1/p) where p is "
-    "the number of k-mer features and 1/p is the variance. In the main analysis an "
-    "independent projection was drawn for each cross-validation fold, so results average "
-    "over projections; in the label-permutation control a single fixed-seed projection was "
-    "reused across folds. In both cases the same projection is applied to the training and "
-    "test partitions of a given fold.")
-ph("[AUTHOR: AQ24 and check 3. C_random was evaluated at a single projection seed. If the "
-   "manuscript interprets invariance to projection, repeat across seeds; otherwise state "
-   "that only one seed was used.]")
+    "the number of k-mer features and 1/p is the variance. The projection is drawn from a "
+    "generator seeded with 0. In the locked-test analysis and in the label-permutation "
+    "control the generator is reseeded within each fold, so one fixed projection is used "
+    "throughout; in the development readouts it is seeded once per block and region, so "
+    "folds within a cell receive different projections from one deterministic stream. In "
+    "every case the same projection is applied to the training and test partitions of a "
+    "given fold.")
+body(
+    "The confirmatory C_random values therefore rest on a single projection seed, and the "
+    "manuscript does not claim invariance to the projection on their basis. To establish "
+    "how much of that number is seed-specific, the locked-test C_random arm was recomputed "
+    "at 20 projection seeds, holding the folds, the chosen regions and the k-mer features "
+    "fixed, so that only the projection varies. Seed 0 reproduced all 20 reported block "
+    "values exactly. Across-block mean balanced accuracy was 96.21 percent with a standard "
+    "deviation of 0.09 points across seeds (range 96.02 to 96.36; the reported seed gives "
+    "96.16), and the median within-block standard deviation was 0.16 points, with a maximum "
+    "of 1.17 points in the smallest block. The comparison that uses C_random, best-of-four "
+    "R2 minus C_random, is +0.21 points at the reported seed and +0.16 points on average "
+    "across seeds (standard deviation 0.09, range +0.02 to +0.36), so every seed falls well "
+    "inside the 1-point equivalence margin and none reverses the direction of the "
+    "comparison. This is a post hoc robustness check and is reported as such; it is not "
+    "part of the frozen analysis.")
 
 H2("Cross-validation and region selection")
+body(
+    "A note on the implementation: the frozen plan specifies an isolate-grouped stratified "
+    "five-fold split, and the code applies StratifiedKFold to an isolate-level table in "
+    "which each isolate contributes one modal slice per region. Those are equivalent, "
+    "because one row per isolate makes the split grouped on isolate by construction. This "
+    "is recorded as an equivalence, not a deviation.")
 body(
     "Evaluation used five-fold stratified cross-validation with shuffling and "
     "random_state = 0, at the isolate level; records from one isolate were collapsed to "
@@ -401,12 +567,20 @@ body(
     "accuracy. It is an empirical, reference-specific quantity, not a universal maximum: it "
     "changes with reference sampling, class priors and labelling.")
 body(
-    "One residual mismatch should be stated. The ceiling is computed on the full block "
-    "population, whereas the reported accuracy is the mean of per-fold balanced accuracies, "
-    "each computed on a fold with its own class composition. The two are therefore close "
-    "but not formally comparable, and a small exceedance is possible. Across the locked "
-    "test this occurred in 2 of 40 block-by-method cells, both in the Veillonella block, "
-    "with a maximum excess of 0.30 percentage points.")
+    "Two aggregations of this ceiling are possible and they are not interchangeable. The "
+    "whole-block ceiling evaluates the equation once on the full block population, whereas "
+    "the reported accuracy is the mean of per-fold balanced accuracies, each computed on a "
+    "fold with its own class composition. A fold mean can exceed a whole-population bound, "
+    "and across the locked test and hard panels together 3 of 66 block-by-method cells did "
+    "so: both arms in Veillonella by 0.30 percentage points and k-mer counting in "
+    "Bradyrhizobium by 0.19. Figures reporting a ceiling therefore use the fold-matched "
+    "ceiling: the same equation applied to each held-out fold at the region that fold "
+    "selected, averaged over folds, which matches the aggregation of the accuracy it "
+    "bounds. It bounds all 66 cells and differs from the whole-block value by 0.001 "
+    "percentage points on average (range -1.84 to +1.78). Per-block values for both "
+    "aggregations are deposited. Like the whole-block version, the fold-matched ceiling is "
+    "computed on held-out composition, so it bounds what any sequence-based rule could "
+    "achieve on that fold rather than what a rule fitted on training data alone could.")
 
 H2("Statistical analysis")
 body(
@@ -423,11 +597,43 @@ body(
     "differences, and the percentile bootstrap interval is reported as distribution-free "
     "corroboration rather than as the test itself.")
 body(
-    "The confirmatory family comprised five tests: the primary contrast, and four secondary "
-    "contrasts (DNABERT-S, HyenaDNA, Nucleotide Transformer v2 and a best-of-four rule, "
-    "each against C_kmer) corrected by the Holm procedure within that family. All other "
-    "analyses, including the hard-panel, degradation, layer and region-selection "
+    "The precision plan sized the locked test using a development block-level standard "
+    "deviation of 0.01138. That value belongs to the best-model-minus-best-classical "
+    "contrast rather than to the pre-named primary contrast; the achieved standard "
+    "deviation for the primary was 0.00889, so the study was planned more conservatively "
+    "than it needed to be. The direction is favourable and is stated rather than left "
+    "implicit.")
+body(
+    "The confirmatory family comprised five tests with a HIERARCHICAL correction structure, "
+    "as recorded in the frozen plan: the primary contrast was tested unadjusted as the "
+    "single prespecified primary, and the four secondary contrasts (DNABERT-S, HyenaDNA, "
+    "Nucleotide Transformer v2 and a best-of-four rule, each against C_kmer) were corrected "
+    "by the Holm procedure among themselves. One correction was not applied across all five. "
+    "All other analyses, including the hard-panel, degradation, layer and region-selection "
     "experiments, are exploratory and are labelled as such.")
+body(
+    "Two families of tests are reported and they answer different questions, so they are "
+    "kept separate. The DIFFERENCE family tests the null of zero difference and is where "
+    "the Holm correction applies. The EQUIVALENCE family tests the null that the absolute "
+    "difference is at least 1.0 point; its prespecified decision rule is interval "
+    "containment, and no multiplicity adjustment was prespecified for it. Holm-adjusted "
+    "equivalence p-values are therefore reported as a post hoc sensitivity, not as the "
+    "frozen rule. Note also that the frozen rule requires the whole 95 percent interval to "
+    "fall inside the margin, whereas two one-sided tests at the 5 percent level correspond "
+    "to the 90 percent interval; the rule as frozen is therefore conservative, making "
+    "equivalence harder to declare than the nominal level implies. Both intervals are "
+    "reported so either can be checked.")
+body(
+    "The two-sided difference test is a percentile bootstrap over blocks: the estimand is "
+    "the mean paired per-block difference, the resampling unit is the block, B = 2,000 "
+    "draws, seed 1729 for the primary and 1736 for all four secondary contrasts, with the "
+    "interval taken at the 2.5th and 97.5th percentiles. The p-value is twice the smaller "
+    "tail proportion of the UNSHIFTED resampling distribution, which makes it an inversion "
+    "of the percentile interval rather than a shifted-null bootstrap test, and it is "
+    "described that way throughout. Its resolution floor follows from B: the smallest "
+    "non-zero two-sided value attainable is 0.001, and a zero tail count returns exactly "
+    "zero. One reported value sits at that floor and is given as a bound rather than a "
+    "measurement.")
 body(
     "For the primary contrast (n = 20 blocks, mean -0.2108 points, standard deviation "
     "0.8892), the component one-sided tests gave t = 3.969 (p = 4.1 x 10-4) against a "
@@ -436,6 +642,18 @@ body(
     "p = 4.1 x 10-4. The corresponding 90 percent intervals, [-0.555, +0.133] parametric "
     "and [-0.529, +0.105] by bootstrap, both lie entirely within the margin, which is the "
     "equivalent decision rule at the 5 percent level.")
+body(
+    "The best-of-four contrast requires a specific caution. It takes, for each block, the "
+    "maximum held-out balanced accuracy across the four models and subtracts C_kmer. The "
+    "selection input is therefore the same held-out quantity the contrast is computed from, "
+    "so held-out outcomes determine which model is credited. It is an ORACLE comparison, "
+    "not an operational rule, and no rule available in advance reproduces it: the per-block "
+    "winner is DNABERT-2 in 12 blocks, DNABERT-S in 5, Nucleotide Transformer v2 in 2 and "
+    "HyenaDNA in 1. The size of the selection effect can be read directly: the four "
+    "individual contrasts average -0.371 points, the per-block maximum gives +0.286 points, "
+    "so +0.657 points is attributable to maximising over four noisy measurements. The "
+    "deployable alternative, naming DNABERT-2 in advance as the frozen plan did, gives "
+    "-0.211 points.")
 
 H2("Software and availability")
 body(
@@ -443,7 +661,22 @@ body(
     "environments. The main environment used Python 3.11.18, NumPy 2.4.6, SciPy 1.17.1, "
     "scikit-learn 1.9.1, PyTorch 2.15.0, Transformers 5.22.1, Biopython 1.88 and joblib "
     "1.6.0. Nucleotide Transformer v2 required a separate environment with Transformers "
-    "pinned to 4.34.1 and the same PyTorch version.")
+    "pinned to 4.34.1 and the same PyTorch version. Both environments are deposited as "
+    "exported specifications and package locks. These versions were verified against those "
+    "deposited files and against the local checkpoint hashes; they were not verified "
+    "against external release records, and the four compatibility patches applied to the "
+    "two MosaicBERT repositories were NOT numerically validated against unpatched code, "
+    "because the unpatched code does not execute in this environment.")
+body(
+    "Computational cost, measured on that hardware. Retrieval took about 65 minutes; "
+    "slicing 12,356 development records took about 25 minutes on 8 cores; embedding 7,878 "
+    "unique slices took 45 seconds for DNABERT-2, 62 seconds for DNABERT-S, 474 seconds "
+    "for HyenaDNA and 187 seconds for Nucleotide Transformer v2; the 277 readout cells "
+    "took about 1 minute on 6 workers. All inference was on CPU. The locked test was run "
+    "to a pre-committed budget of at most 3 hours wall clock on the same machine. This is "
+    "relevant to the comparison: k-mer counting reaches the same accuracy at a small "
+    "fraction of the cost, which is part of why a margin of 1 point was judged the "
+    "smallest difference that would change a practical recommendation.")
 
 # ============================================================ RESULTS
 H("Results")
@@ -458,6 +691,16 @@ body(
     "retained and reported rather than discarded; in every case the reason was the scarcity "
     "of public full-length deposits for the organisms concerned (Table 1).")
 
+body(
+    "The 58 analysable blocks are not one homogeneous population and are never pooled into "
+    "a single estimate. They comprise 25 species-rank development blocks, 20 species-rank "
+    "locked-test blocks and 13 difficulty-selected hard panels, the last of which are "
+    "rank-mixed: the repository records no per-panel rank for that set, and 7 of the 13 are "
+    "infraspecific by their own definitions, six at subspecies or pathovar rank plus the "
+    "Clostridium botulinum physiological groups. The single development subspecies stratum "
+    "is excluded from the 25 and reported separately on exactly this reasoning, so the "
+    "same reasoning is stated here for the hard panels rather than left implicit. Each "
+    "experiment carries its own interval throughout.")
 table(["Experiment", "Blocks declared", "Blocks analysed", "Records", "Role"],
       [["Development", 31, 25, "12,356", "all analysis decisions"],
        ["Locked test", 22, 20, "6,933", "single confirmatory use"],
@@ -478,9 +721,13 @@ body(
     f"p-value of {P['p_two_sided']:.3f}. The interval lies entirely within the prespecified "
     "1-point margin, and two one-sided tests against that margin gave p = 4.1 x 10-4. "
     "Seventeen of the 20 blocks differed by less than one point. Point estimates in the "
-    "development set (+0.14 points) and the difficulty-selected set (-0.19 points) were "
-    "similar in magnitude, although the latter interval (-1.28 to +0.66) spans the margin "
-    "and does not establish equivalence at the same criterion (Fig 1, Table 2).")
+    "development set (+0.12 points, 95 percent interval -0.23 to +0.48) and the "
+    "difficulty-selected set (-0.19 points) were similar in magnitude, although the latter "
+    "interval (-1.27 to +0.66) spans the margin and does not establish equivalence at the "
+    "same criterion (Fig 1, Table 2). The development figure is the same contrast as the "
+    "other two, DNABERT-2 at the R2 readout minus C_kmer; an earlier version of this "
+    "comparison reported +0.14 points, which was the best of four models minus the best of "
+    "two classical comparators per block and so was selected twice over.")
 
 table(["Contrast", "Difference (points)", "95% CI", "p", "Holm p", "Interpretation"],
       [["DNABERT-2 vs k-mer (primary)", f"{pm:+.2f}", f"{plo:+.2f} to {phi:+.2f}",
@@ -489,13 +736,32 @@ table(["Contrast", "Difference (points)", "95% CI", "p", "Holm p", "Interpretati
          .replace("hyenadna", "HyenaDNA").replace("ntv2", "NTv2")
          .replace("best-of-4 R2 - C_kmer", "best-of-four vs k-mer"),
         f"{v['mean']*100:+.2f}", f"{v['ci95'][0]*100:+.2f} to {v['ci95'][1]*100:+.2f}",
-        f"{v['p_raw']:.3f}", f"{v['p_holm']:.3f}",
-        ("equivalent at 1 point" if v["verdict"].startswith("EQUIV")
+        ("<= 0.001" if k.startswith("hyenadna") else f"{v['p_raw']:.3f}"),
+        ("<= 0.004" if k.startswith("hyenadna") else f"{v['p_holm']:.3f}"),
+        ("oracle contrast; no equivalence verdict" if k.startswith("best-of-4")
+         else "equivalence tested, NOT established" if k.startswith("hyenadna")
+         else "equivalent at 1 point" if v["verdict"].startswith("EQUIV")
          else "inconclusive at 1 point")]
        for k, v in LT["secondary"].items()],
       caption="Table 2. Locked-test contrasts in percentage points of balanced accuracy.",
-      note="Secondary contrasts are Holm-corrected within their family of four. HyenaDNA is "
-           "reliably below k-mer counting but by less than the practical margin.")
+      note="The p columns test zero difference, not equivalence; secondary contrasts are "
+           "Holm-corrected within their family of four, and the primary is unadjusted as the "
+           "single prespecified primary. HyenaDNA's bootstrap p rests on one draw of 2,000 "
+           "and is reported as a bound; the better-resolved paired t gives p = 0.0077, "
+           "Holm-adjusted 0.031. Equivalence verdicts come from the separate two one-sided "
+           "tests reported in the text. Best-of-four is an oracle contrast selected on "
+           "held-out outcomes and carries no equivalence verdict.")
+body(
+    "Equivalence was tested formally for every arm, not inferred from interval width. "
+    "Against the 1-point margin the two one-sided tests give p = 4.1 x 10-4 for DNABERT-2, "
+    "4.9 x 10-5 for DNABERT-S and 1.4 x 10-3 for Nucleotide Transformer v2; Holm-adjusted "
+    "within the secondary family as a post hoc sensitivity, the latter two are 1.7 x 10-4 "
+    "and 2.9 x 10-3. All three therefore meet the equivalence criterion as a formal test. "
+    "HyenaDNA does NOT: its two one-sided tests give p = 0.351, with component values of "
+    "0.351 against the lower margin and 2.2 x 10-6 against the upper, and its 90 percent "
+    "interval of -1.40 to -0.37 lies outside the margin. Equivalence for HyenaDNA was "
+    "tested and not established, which is a different statement from an interval that "
+    "merely happens to be wide.")
 
 # --- Table 3: method performance
 import csv as _csv
@@ -513,7 +779,10 @@ table(_h, _r, caption="Table 3. Balanced accuracy of every method on the locked 
 H2("Controls")
 body(
     "A Gaussian random projection of the k-mer features reached 96.2 percent balanced "
-    "accuracy, nominally above every learned representation. This does not indicate that "
+    "accuracy, nominally above every learned representation. The confirmatory analysis drew "
+    "that projection at one seed, and recomputing the arm at 20 seeds gave 96.0 to 96.4 "
+    "percent, so the comparison does not turn on the particular projection (Methods). This "
+    "does not indicate that "
     "accuracy is unrelated to sequence content: a random projection approximately preserves "
     "pairwise distances, so it retains information from the features it compresses. "
     "Permuting labels through the complete supervised pipeline, with 20 permutations per "
@@ -533,7 +802,23 @@ body(
     "models; for DNABERT-2 the paired estimate was +2.83 points (95 percent CI +1.37 to "
     "+4.57, 25 blocks). The spread across the four models at the probe readout was 0.73 "
     "points, so readout-associated variation exceeded between-model variation by roughly "
-    "fourfold, and only the readout effect had an interval excluding zero. The unsupervised "
+    "fourfold on the development set, and only the readout effect had an interval excluding "
+    "zero.")
+body(
+    "That comparison was development-only in earlier versions of this work and is now "
+    "measured on the locked test as a labelled post hoc analysis, using the frozen folds "
+    "and the regions the frozen run actually selected; the reconstruction reproduces every "
+    "frozen per-block probe value exactly, so the two readouts sit on the same footing. "
+    "The readout effect replicates and is smaller: +1.98 points across the four models "
+    "(95 percent CI +0.69 to +3.61), with per-model values of +1.81 for DNABERT-2, +2.01 "
+    "for DNABERT-S, +1.90 for HyenaDNA and +2.21 for Nucleotide Transformer v2, every "
+    "interval excluding zero. Against a model spread of 0.78 points at the probe readout "
+    "on the same blocks, readout exceeds model identity by 2.5-fold on confirmatory data "
+    "rather than the fourfold seen in development. The confirmatory figure is the one to "
+    "quote; the development figure is retained only as the exploratory estimate it is. For "
+    "context, the intermediate-layer effect is smaller than either, at 0.53 points.")
+body(
+    "The unsupervised "
     "geometry statistic is reported separately because it is a pair-level area under the "
     "curve and cannot be placed on the accuracy scale; its value is that it disagrees with "
     "supervised performance. DNABERT-S scored 0.542 by geometry at staphylococcal V1 yet "
@@ -560,8 +845,14 @@ body(
     "interval. Trimming 10 bases from each end cost about 4 points of balanced accuracy for "
     "both methods, more than a tenfold increase in substitution error, which cost about 2 "
     "to 3 points (Fig 5, Table 5). An apparent noise-robustness advantage for DNABERT-2 was "
-    "attributable to a single small block; excluding it moved the estimate from +0.99 to "
-    "-0.06 points.")
+    "attributable to a single small block, Francisella. Two estimators of the same "
+    "condition are reported and they are not the same quantity: Table 5 gives the LEVEL "
+    "difference under 1 percent substitution, +0.85 points, while the leave-one-block-out "
+    "narrative uses the paired SHIFT from the clean baseline, +0.99 points, the two "
+    "differing exactly by the clean-condition difference of -0.14 points. Excluding "
+    "Francisella moves the shift estimator from +0.99 to -0.06 points and the level "
+    "estimator from +0.85 to -0.20 points, so the direction reverses under either. Only 9 "
+    "of the 20 blocks moved positively at all under this condition, and 6 did not move.")
 body(
     "Intermediate layers were evaluated for the two models whose internals could be "
     "extracted and verified. For HyenaDNA the best of five depths exceeded the final layer "
@@ -598,6 +889,56 @@ table(_h, _r, caption="Table 7. Region selection using training isolates only.",
       note="Regret is balanced accuracy lost relative to the best region identifiable in "
            "hindsight. Because several regions frequently tie at the maximum, a method can "
            "record zero regret without matching the single highest-scoring region.")
+
+H2("Sequence reuse and what it bounds")
+body(
+    "Grouping cross-validation on isolate does not make the folds sequence-disjoint, "
+    "because identical 16S sequences recur across strains. Measured at each block's modal "
+    "selected region, 5,552 of 5,977 isolate groups (92.9 percent) share their exact slice "
+    "with at least one other group, 1,348 (22.6 percent) sit in a haplotype carrying both "
+    "classes, and across folds 5,431 of 5,902 evaluated isolates (92.0 percent) have their "
+    "exact slice present in the training folds. The confirmatory result therefore "
+    "characterises performance WITHIN a known haplotype population; it is not a measurement "
+    "of generalisation to unseen sequence variants.")
+body(
+    "Three post hoc analyses quantify what that costs, all at a fixed region with the "
+    "splitter as the only difference. Rebuilding the folds so that no exact sequence "
+    "appears in both training and test is possible for 14 of the 20 blocks; the other six "
+    "have four or fewer distinct target haplotypes and cannot support the design at any "
+    "useful fold count, which is itself a measurement of how little independent sequence "
+    "variation the panels contain. The split was audited rather than assumed: exact "
+    "train-test overlap is zero and C_exact, which abstains when a test sequence is absent "
+    "from training, scores exactly 0.500 on every block. Under that split both primary arms "
+    "lose about 11 points, k-mer counting from 96.36 to 85.42 and DNABERT-2 from 96.16 to "
+    "84.92, and the paired contrast becomes -0.50 points with a 95 percent interval of "
+    "-3.20 to +2.07. The direction does not reverse and no model advantage appears, but the "
+    "block-level standard deviation rises fourteenfold, from 0.37 to 5.16 points, so "
+    "equivalence at a 1-point margin is INCONCLUSIVE rather than established on unseen "
+    "haplotypes. Repeating the exercise with single-linkage clustering at 99 percent "
+    "identity, audited to a maximum cross-fold identity of 0.9894, gives -1.47 points and "
+    "the same verdict on the 9 blocks that support it.")
+body(
+    "A direct test of the mechanism the models are supposed to supply gives a negative "
+    "result. If frozen representations generalise to unseen variants better than "
+    "composition counting, they should degrade less when exact matches are removed. They do "
+    "not: DNABERT-2 loses 11.24 points against k-mer counting's 10.94, a difference of "
+    "-0.30 points (95 percent interval -2.92 to +2.22), with the model degrading less in "
+    "only 3 of 14 blocks. Giving each representation its own regularisation strength by "
+    "nested inner cross-validation on a shared grid does not change this; under the "
+    "disjoint split tuning helps k-mer counting most. These analyses are post hoc and are "
+    "not part of the confirmatory family.")
+body(
+    "Decomposing the pooled metric by neighbour species shows where the difficulty sits. "
+    "Across 63 target-neighbour pairs, performance is governed almost entirely by whether "
+    "the two taxa share sequence at the evaluated region: pairs whose closest sequences "
+    "differ at all are resolved at 97 to 99 percent, while the 22 pairs whose maximum "
+    "cross-identity reaches 99.9 percent, in every case because the neighbour shares a "
+    "haplotype with the target, fall to 85.9 percent. Accuracy correlates with maximum "
+    "target-neighbour identity at Spearman -0.62 for k-mer counting and -0.58 for "
+    "DNABERT-2. The difference between the two methods stays within 0.25 points in every "
+    "divergence stratum while difficulty itself swings 13 points, so target-neighbour "
+    "sequence identity governs performance by about two orders of magnitude more than the "
+    "choice of representation.")
 
 H2("Where difficulty occurred")
 body(
@@ -662,6 +1003,34 @@ body(
     "tests rather than models of sequencing and PCR behaviour; in particular, end trimming "
     "is not an empirical primer-binding experiment. The analysis used reference sequences "
     "and no laboratory validation was performed.")
+body(
+    "The most consequential limitation concerns what the design can measure at all. "
+    "Because 92 percent of evaluated isolates share their exact regional sequence with the "
+    "training folds, the confirmatory equivalence result is a statement about discrimination "
+    "within an already-observed haplotype population. It does not transfer to unseen "
+    "variants, and the post hoc disjoint analyses show it does not survive there: the "
+    "verdict becomes inconclusive under both an exact and a 99 percent identity criterion. "
+    "Readers should take the confirmatory claim as bounded in that way rather than as a "
+    "general statement about frozen representations.")
+body(
+    "Two further limitations concern the inputs rather than the models. Independence "
+    "between units rests on the deposited strain string, which is submitter-supplied "
+    "metadata rather than verified isolate provenance, so the effective number of "
+    "independent isolates may be overstated and some leakage across folds cannot be "
+    "excluded; standalone 16S records carry no link to a parent genome assembly, so "
+    "neither isolate identity nor rRNA operon structure could be checked. And neighbour "
+    "species were chosen by expert judgement informed by the 16S identification "
+    "literature, with a rationale recorded for every panel in advance but a primary "
+    "citation for only four of them, so panel composition is documented and "
+    "pre-committed but not reproducible from a stated source list alone.")
+body(
+    "One defect in the pipeline is known and unrepaired. Region extraction assumes the "
+    "deposited orientation, and 22 of 24,009 records (0.09 percent) are deposited "
+    "reverse-complemented and were sliced in the wrong orientation rather than being "
+    "rejected. Leaving them out moves the primary estimand by 0.003 percentage points and "
+    "changes no verdict (Methods), so the reported results stand, but the pipeline as "
+    "published will mis-slice minus-strand input and should not be reused without an "
+    "orientation check.")
 ph("[AUTHOR: check 5. The condition described as copy variation introduces substitutions "
    "into a single deposited sequence. It does not use multiple verified 16S copies from one "
    "genome assembly, because standalone 16S deposits are not linked to parent genomes. "
@@ -690,11 +1059,18 @@ for s, d in [
                 "change preceded inspection of the locked test."),
     ("S4 Text", "Pre-registrations for the difficulty, degradation and layer extensions."),
     ("S1 Data", "Panel definitions for the development, locked-test and hard-panel sets, "
-                "committed before the corresponding sequences were retrieved."),
+                "committed before the corresponding sequences were retrieved, each with "
+                "the recorded rationale for target and neighbour selection and the "
+                "pre-declared difficulty-screen thresholds for the hard panels."),
     ("S2 Data", "Accession manifest with per-record species, strain, isolate group and "
-                "sequence checksum, and the manifest SHA-256."),
+                "sequence checksum, and the manifest SHA-256. The isolate group column "
+                "is the deposited-metadata key defined in Methods, not a verified "
+                "provenance identifier."),
     ("S3 Data", "Block-level results, per-method predictions and bootstrap outputs for "
-                "every experiment."),
+                "every experiment, together with the post hoc audits reported in Methods: "
+                "per-region extraction availability, the minus-strand record list and its "
+                "leave-out sensitivity analysis, the ambiguity-code effect on the ceiling, "
+                "the isolate-grouping audit and the 20-seed random-projection check."),
     ("S1 Code", "Analysis scripts for retrieval, region extraction, embedding, readouts, "
                 "the confirmatory analysis and all extensions."),
     ("S2 Code", "Synthetic validation fixtures with hand-computed expected values for the "
@@ -785,10 +1161,14 @@ for n, t_ in [
               "percentage points of balanced accuracy. (a) Per-block differences on the locked "
               "test set, ordered by magnitude; orange bars favour DNABERT-2 and blue bars "
               "favour k-mer counting. The grey shaded band spans the prespecified equivalence "
-              "margin of plus or minus 1 percentage point. (b) Mean paired difference with "
-              "95 percent bootstrap confidence intervals for the development, locked-test and "
-              "hard-panel sets; the development point is shown without an interval because it "
-              "informed the analysis plan. The shaded band again marks the margin."),
+              "margin of plus or minus 1 percentage point. Open circles mark the seven blocks "
+              "whose difference is exactly zero and which would otherwise show no bar at all. "
+              "(b) Mean paired difference with 95 percent bootstrap confidence intervals for "
+              "the development, locked-test and hard-panel sets. Every row is the same "
+              "contrast, DNABERT-2 at the R2 readout minus k-mer counting, so the three are "
+              "directly comparable; the development row is labelled exploratory because those "
+              "blocks informed every analysis decision and are burned for confirmatory use. "
+              "The shaded band again marks the margin."),
     ("Fig 2", "Readout, model and layer effects on the development set, with metrics kept "
               "strictly separate. (a) R0 unsupervised geometry for each model, reported as a "
               "pair-level area under the curve on its own axis because it is not comparable "
@@ -796,27 +1176,58 @@ for n, t_ in [
               "nearest-reference assignment (R1) to the linear probe (R2), both in balanced "
               "accuracy; the paired effect for DNABERT-2 is plus 2.83 points, 95 percent "
               "confidence interval plus 1.37 to plus 4.57. (c) Balanced accuracy across the "
-              "four models at the R2 readout, spanning 0.73 points. (d) The same-metric "
-              "spreads on a common axis; the layer bar is shaded grey because it was measured "
-              "on the hard panels rather than the development set."),
-    ("Fig 3", "Balanced accuracy of every method on the locked test set. The solid red vertical "
-              "line at 50.1 percent is the mean accuracy obtained when class labels are "
-              "permuted through the complete pipeline, and the dashed black line at 97.0 "
-              "percent is the mean empirical ambiguity ceiling for these blocks. Together they "
-              "bound what any method could achieve on these data."),
+              "four models at the R2 readout, spanning 0.73 points. (d) Three differences in "
+              "balanced accuracy on a common axis: R2 minus R1 for the readout bar, best "
+              "minus worst model for the model bar, and best minus worst depth for the layer "
+              "bar. The layer bar is shaded grey because it was measured on the 13 hard "
+              "panels rather than the development set; its aggregation is defined in "
+              "Methods."),
+    ("Fig 3", "Balanced accuracy of every method on the locked test set, averaged over the 20 "
+              "eligible blocks. The solid red vertical line at 50.1 percent is the mean "
+              "accuracy obtained when class labels are permuted through the complete "
+              "pipeline, and the dashed black line at 97.0 percent is the mean fold-matched "
+              "empirical ambiguity ceiling for these blocks, computed on the same "
+              "aggregation as Fig 7. Together they bound what any method could achieve on "
+              "these data. Bars begin at the axis minimum rather than at zero, so their "
+              "lengths should be read against those two reference lines and not as "
+              "ratios."),
     ("Fig 4", "Task difficulty. (a) Per-block difference between DNABERT-2 and k-mer counting "
               "plotted against k-mer error on the locked test set; the dotted vertical line at "
               "1 percentage point of error marks the saturation threshold, below which 10 of "
               "the 20 blocks fall. (b) Per-block differences on the 13 difficulty-selected "
-              "hard panels, ordered by magnitude."),
-    ("Fig 5", "Balanced accuracy of k-mer counting and DNABERT-2 under six sequence "
-              "degradation conditions, with identical degraded sequences supplied to both."),
-    ("Fig 6", "Regret in the region-selection task, defined as balanced accuracy lost relative "
-              "to the best region identifiable in hindsight for that method; lower is better. "
-              "(a) Locked-test set, 20 blocks. (b) Difficulty-selected hard panels, 13 blocks. "
-              "Note the differing horizontal scales."),
+              "hard panels, ordered by magnitude, with the pooled estimate and its 95 percent "
+              "bootstrap interval on the bottom row: minus 0.19 percentage points, interval "
+              "minus 1.27 to plus 0.66. The grey band marks the plus or minus 1 point "
+              "equivalence margin. The interval contains zero and also extends beyond the "
+              "margin, so it neither demonstrates a benefit nor establishes equivalence."),
+    ("Fig 5", "Sequence degradation on the 20 locked-test blocks, with identical degraded "
+              "sequences supplied to both methods. (a) Balanced accuracy of k-mer counting and "
+              "DNABERT-2 under six conditions; the vertical axis is truncated at 86 percent. "
+              "(b) The paired block-level difference for each condition with its 95 percent "
+              "bootstrap interval, which is where the uncertainty belongs because the analysis "
+              "is paired; the grey band marks the plus or minus 1 point margin. The three "
+              "substitution-based conditions have intervals that contain zero and extend "
+              "beyond the margin, and the apparent advantage at 1 percent substitution rests "
+              "on a single panel, Francisella."),
+    ("Fig 6", "Region selection using training isolates only. (a, b) Balanced accuracy achieved "
+              "at the selected region, drawn as points rather than bars because the values "
+              "differ by fractions of a point and any readable axis is truncated. (c, d) "
+              "Regret, defined as balanced accuracy lost relative to the best region "
+              "identifiable in hindsight for that same method; lower is better. Panels a and c "
+              "are the locked-test set, 20 blocks; panels b and d the difficulty-selected hard "
+              "panels, 13 blocks. Note the differing horizontal scales. Regret is plotted "
+              "rather than the best-region hit rate because the hit flag uses a strict "
+              "argmax and is pessimistic under ties: several regions frequently tie at the "
+              "maximum, so a method can record zero regret while not matching the single "
+              "argmax."),
     ("Fig 7", "Achieved balanced accuracy against the empirical ambiguity ceiling for each "
-              "block; the diagonal marks the ceiling."),
+              "block, for both arms, on the locked test set (circles, 20 blocks) and the "
+              "difficulty-selected hard panels (squares, 13 blocks). The ceiling is "
+              "fold-matched: the same formula applied to each held-out fold at that fold's "
+              "chosen region and then averaged over folds, which matches the aggregation of "
+              "the accuracy it bounds. A whole-block ceiling does not bound a mean of "
+              "per-fold accuracies and 3 of these 66 cells exceed one; none exceeds the "
+              "fold-matched ceiling. The diagonal marks the ceiling."),
 ]:
     p = doc.add_paragraph()
     r = p.add_run(f"{n}. ")

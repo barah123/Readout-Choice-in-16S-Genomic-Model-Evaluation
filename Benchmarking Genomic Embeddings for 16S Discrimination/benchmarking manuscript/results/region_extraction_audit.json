@@ -1,0 +1,147 @@
+{
+  "development": {
+    "records": 12356,
+    "region_cells": 111204,
+    "region_cells_available": 98976,
+    "availability_pct": 89.0,
+    "per_region_available": {
+      "V1": 8055,
+      "V2": 12278,
+      "V3": 10880,
+      "V4": 12356,
+      "V5": 12351,
+      "V6": 12356,
+      "V7": 12355,
+      "V8": 12355,
+      "V9": 5990
+    },
+    "per_region_available_pct": {
+      "V1": 65.19,
+      "V2": 99.37,
+      "V3": 88.05,
+      "V4": 100.0,
+      "V5": 99.96,
+      "V6": 100.0,
+      "V7": 99.99,
+      "V8": 99.99,
+      "V9": 48.48
+    },
+    "records_by_n_regions_recovered": {
+      "5": 18,
+      "6": 530,
+      "7": 3217,
+      "8": 4132,
+      "9": 4459
+    },
+    "records_losing_all_nine": 0,
+    "of_those_rescued_by_reverse_complement": 0,
+    "retained_slices_containing_N": 539,
+    "retained_slices_containing_N_pct": 0.5446,
+    "haplotypes_total": 7922,
+    "haplotypes_containing_N": 377
+  },
+  "locked_test": {
+    "records": 6933,
+    "region_cells": 62397,
+    "region_cells_available": 51351,
+    "availability_pct": 82.3,
+    "per_region_available": {
+      "V1": 2966,
+      "V2": 6667,
+      "V3": 3809,
+      "V4": 6933,
+      "V5": 6932,
+      "V6": 6931,
+      "V7": 6929,
+      "V8": 6930,
+      "V9": 3254
+    },
+    "per_region_available_pct": {
+      "V1": 42.78,
+      "V2": 96.16,
+      "V3": 54.94,
+      "V4": 100.0,
+      "V5": 99.99,
+      "V6": 99.97,
+      "V7": 99.94,
+      "V8": 99.96,
+      "V9": 46.93
+    },
+    "records_by_n_regions_recovered": {
+      "5": 76,
+      "6": 1480,
+      "7": 2309,
+      "8": 1684,
+      "9": 1384
+    },
+    "records_losing_all_nine": 0,
+    "of_those_rescued_by_reverse_complement": 0,
+    "retained_slices_containing_N": 359,
+    "retained_slices_containing_N_pct": 0.6991,
+    "haplotypes_total": 4709,
+    "haplotypes_containing_N": 237
+  },
+  "hard_panels": {
+    "records": 4720,
+    "region_cells": 42480,
+    "region_cells_available": 37562,
+    "availability_pct": 88.42,
+    "per_region_available": {
+      "V1": 2973,
+      "V2": 4705,
+      "V3": 3849,
+      "V4": 4720,
+      "V5": 4718,
+      "V6": 4719,
+      "V7": 4720,
+      "V8": 4719,
+      "V9": 2439
+    },
+    "per_region_available_pct": {
+      "V1": 62.99,
+      "V2": 99.68,
+      "V3": 81.55,
+      "V4": 100.0,
+      "V5": 99.96,
+      "V6": 99.98,
+      "V7": 100.0,
+      "V8": 99.98,
+      "V9": 51.67
+    },
+    "records_by_n_regions_recovered": {
+      "6": 264,
+      "7": 1361,
+      "8": 1404,
+      "9": 1691
+    },
+    "records_losing_all_nine": 0,
+    "of_those_rescued_by_reverse_complement": 0,
+    "retained_slices_containing_N": 144,
+    "retained_slices_containing_N_pct": 0.3834,
+    "haplotypes_total": 2789,
+    "haplotypes_containing_N": 112
+  },
+  "total_analysed": {
+    "records": 24009,
+    "region_cells": 216081,
+    "region_cells_available": 187889,
+    "records_losing_all_nine": 0,
+    "of_those_rescued_by_reverse_complement": 0,
+    "retained_slices_containing_N": 1042,
+    "haplotypes_total": 15420,
+    "haplotypes_containing_N": 726,
+    "availability_pct": 86.95,
+    "retained_slices_containing_N_pct": 0.5546,
+    "per_region_available_pct": {
+      "V1": 58.29,
+      "V2": 98.5,
+      "V3": 77.21,
+      "V4": 100.0,
+      "V5": 99.97,
+      "V6": 99.99,
+      "V7": 99.98,
+      "V8": 99.98,
+      "V9": 48.66
+    }
+  }
+}

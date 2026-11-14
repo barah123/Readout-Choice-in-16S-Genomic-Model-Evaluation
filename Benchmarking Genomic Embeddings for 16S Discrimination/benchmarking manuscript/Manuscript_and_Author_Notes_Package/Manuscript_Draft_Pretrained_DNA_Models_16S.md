@@ -18,7 +18,7 @@ We evaluated four pretrained DNA models, DNABERT-2, DNABERT-S, HyenaDNA, and Nuc
 
 ### Results
 
-Across 58 analyzed groups in the development, locked-test, and difficulty-selected experiments, the primary locked-test contrast, DNABERT-2 linear probe minus k-mer linear probe, was −0.21 percentage points (95% CI, −0.59 to 0.16; n = 20 blocks). The interval was within the prespecified ±1-point margin, and a two one-sided tests procedure yielded p = 0.0001. DNABERT-S and Nucleotide Transformer v2 also met the reported equivalence criterion on the locked test. HyenaDNA performed modestly worse than k-mer features, with a Holm-adjusted p value of 0.004; its interval was not wholly within the equivalence margin. The average difference on 13 difficulty-selected groups was −0.19 percentage points (95% CI, −1.27 to 0.66), which did not establish equivalence at the ±1-point margin. Readout method was associated with substantially greater variation in performance than model identity. Sequence perturbations reduced accuracy in both primary methods, while model differences varied across conditions and were sensitive to individual panels. A random projection of k-mer features performed similarly to the original features; a separate label-permutation analysis was reported to yield near-chance accuracy.
+Across 58 analyzed groups in three separately reported strata (development, locked-test, and difficulty-selected; not pooled), the primary locked-test contrast, DNABERT-2 linear probe minus k-mer linear probe, was −0.21 percentage points (95% CI, −0.59 to 0.16; n = 20 blocks). The interval was within the prespecified ±1-point margin, and a paired-t two one-sided tests procedure yielded p = 4.1 × 10⁻⁴, with a distribution-free bootstrap interval as corroboration. DNABERT-S and Nucleotide Transformer v2 also met the equivalence criterion as a formal test (p_TOST = 4.9 × 10⁻⁵ and 1.4 × 10⁻³). HyenaDNA performed modestly worse than k-mer features (Holm-adjusted bootstrap p ≤ 0.004, at the resolution floor of a 2,000-draw bootstrap; paired-t Holm-adjusted p = 0.031); its interval was not wholly within the equivalence margin, and formal equivalence was tested and not established (p_TOST = 0.351). The average difference on 13 difficulty-selected groups was −0.19 percentage points (95% CI, −1.27 to 0.66), which did not establish equivalence at the ±1-point margin. Readout method was associated with greater variation in performance than model identity, confirmed on the locked test as a post hoc analysis: the nearest-reference to linear-probe change was +1.98 percentage points (95% CI, +0.69 to +3.61) against a 0.78-point model spread, a ratio of 2.5 (development: +2.89 points, 0.73-point spread, ratio 4.0). Sequence perturbations reduced accuracy in both primary methods, while model differences varied across conditions and were sensitive to individual panels. A random projection of k-mer features performed similarly to the original features; a separate label-permutation analysis was reported to yield near-chance accuracy.
 
 ### Conclusions
 
@@ -42,7 +42,7 @@ We asked whether four frozen pretrained DNA models improve classification of a t
 
 ### Study design and analysis phases
 
-This was a computational benchmarking study with one development phase, one locked confirmatory test, and subsequent extension analyses. The main report lists 25 development groups, 20 locked-test groups, and 13 difficulty-selected groups, for 58 analyzed groups. The study-design table reports 31 development groups declared, 26 eligible, and 25 analyzed; 22 locked-test groups declared, 20 eligible and analyzed; and 15 hard panels declared, 13 eligible and analyzed. In total, 68 groups were declared, 59 were eligible, and 58 entered the main analyses. The report states that 30,797 sequence records were downloaded and 24,009 entered analyses. [AQ01]
+This was a computational benchmarking study with one development phase, one locked confirmatory test, and subsequent extension analyses. The main report lists 25 development groups, 20 locked-test groups, and 13 difficulty-selected groups, for 58 analyzed groups. The study-design table reports 31 development groups declared, 26 eligible, and 25 analyzed; 22 locked-test groups declared, 20 eligible and analyzed; and 15 hard panels declared, 13 eligible and analyzed. In total, 68 groups were declared, 59 were eligible, and 58 entered the main analyses — 58 = 59 eligible minus the one subspecies stratum reported separately. The 58 are not one homogeneous population and are never pooled into a single estimate: 25 species-rank development blocks, 20 species-rank locked-test blocks, and 13 rank-mixed hard panels, of which 7 are infraspecific by their own definitions. The locked-test split population is 6,599 isolate groups (6,760 across all 22 declared blocks, less 161 in the two blocks failing the eligibility gate). The report states that 30,797 sequence records were downloaded and 24,009 entered analyses. [AQ01]
 
 Each group consisted of one target taxon and three to six related taxa. Eligibility required at least 10 target isolates and at least two neighbor species with at least five isolates each. Taxonomic rank was retained, and subspecies comparisons were not pooled with species-level panels. The development and locked-test groups were reported to have no overlap at the family level. The locked-test analysis plan was committed before the first confirmatory sequence was downloaded. The report records a 94-minute interval between plan commitment and the first download. [AQ02]
 
@@ -50,13 +50,13 @@ The locked-test primary contrast was prespecified as DNABERT-2 with the R2 linea
 
 ### Sequence acquisition and taxonomic panels
 
-Sequences were retrieved from NCBI. Sequence-level accession, isolate, and taxonomy metadata were incorporated during later phases of the project. The pilot report states that 794 of 796 staphylococcal records and 469 of 469 Bacillus-group records had usable strain metadata after the pipeline was rebuilt. [AQ04]
+Sequences were retrieved from NCBI with accession, isolate and taxonomy metadata attached at fetch time. The unit of independence is the isolate group, formed from the deposited strain string (esummary `strain`, else the `strain` key parsed from `subtype`/`subname`), with placeholder values and bare culture-collection prefixes treated as missing and the accession used instead; no normalization was applied beyond that, so no case folding, no punctuation stripping and no catalogue cross-reference. A usable strain string was present for 23,459 of 24,009 analyzed records (97.7%). Aggressive renormalization would merge only 45 of 23,605 groups (0.19%), and 313 groups hold more than one record (717 records, largest group 6). The grouping key is submitter-deposited metadata, not verified independent provenance, and standalone 16S deposits carry no parent-genome link; the resulting error is under-merging, which is optimistic rather than conservative, and is stated as a limitation. [AQ04 resolved]
 
 The study used both species-level and subspecies-level comparisons. The single development subspecies stratum was reported separately. Difficulty screening evaluated 53 candidate groups, of which 13 met the hard-panel eligibility criteria. The authors report that selection of hard panels was based on ambiguity ceilings and k-mer accuracy, not model performance. [AQ05]
 
 ### 16S regions and sequence processing
 
-Candidate observations were extracted from 16S variable regions V1-V9, with the number of evaluable regions varying by panel. The region-ranking data report between six and nine regions for the locked set and seven to nine for hard panels. [AQ06]
+Candidate observations were extracted from 16S variable regions V1-V9, with the number of evaluable regions varying by panel. The region-ranking data report between six and nine regions for the locked set and seven to nine for hard panels. Extraction transferred Escherichia coli J01695 coordinates through a global Biopython PairwiseAligner alignment rather than using an HMM extractor, so that every method scores the same span; a region was retained only within 0.75 to 1.30 times its expected length, which recovered 187,889 of 216,081 region cells (87.0 percent), complete for V4 to V8 and lowest for the terminal regions V1 and V9. Ambiguous bases were retained, with N the only non-ACGT character present, treated as a mismatch by the aligner and skipped by the k-mer featurizer. No strand normalization was performed, and an audit found 22 of 24,009 records deposited reverse-complemented and silently mis-sliced; removing them moves the primary estimand by 0.003 percentage points and changes no verdict.
 
 The primary classification analyses used clean reference sequences. For region ranking, each method selected a region using training isolates and was evaluated on held-out isolates. The report also includes sequence perturbations: substitutions at two error rates, removal of 10 bases from each end, copy-to-copy 16S variation, and combined perturbation. [AQ07]
 
@@ -66,7 +66,9 @@ Four published pretrained models were evaluated without retraining the encoders:
 
 Three readout approaches were considered. R0 measured unsupervised geometric separation of embeddings using pairwise AUC; R1 used nearest-reference assignment; R2 used a supervised linear probe. R0 is a geometric discrimination statistic, not balanced classification accuracy. Therefore, numerical differences between R0 and R2 should not be described as a change in accuracy unless both are recalculated on the same endpoint. [AQ09]
 
-An intermediate-layer sweep evaluated five depths for HyenaDNA and Nucleotide Transformer v2 using 13 hard panels. The extracted final-layer output was checked against the standard forward output before analysis. DNABERT-2 and DNABERT-S intermediate layers were not tested because their internal unpadding behavior required additional implementation and validation. [AQ10]
+An intermediate-layer sweep evaluated five depths for HyenaDNA and Nucleotide Transformer v2 on the 13 hard panels, at 0.25, 0.50, 0.75, 0.90 and 1.00 of encoder depth: layers 2, 4, 7, 8 and 9 of the 10 hidden states exposed by HyenaDNA, and layers 7, 14, 22, 26 and 29 of the 30 exposed by NTv2. Everything else was held fixed — the same masked-mean pooling, the same linear probe, the same isolate-grouped five-fold split, the same seed; only the layer changed. A correctness gate ran before any result was computed and aborts the analysis unless the extracted final layer is numerically identical to the standard forward output (allclose, absolute tolerance 1e-6); both models passed. DNABERT-2 and DNABERT-S were not swept because they run their encoder on unpadded sequences internally and return intermediate layers shaped (total tokens, hidden) rather than (batch, sequence, hidden), so extracting them correctly would mean reproducing their unpad/repad index logic. [AQ10]
+
+The single layer-depth summary plotted in Figure 2d is a **range**, aggregated in this order: for each model and each depth, balanced accuracy is averaged across the 13 panels, giving five depth means; the range of those five (maximum minus minimum) is that model's depth effect; the two model values are then averaged, giving 0.53 percentage points. Because panels are averaged before the range is taken, this understates how much depth can matter on an individual panel; and because the depth was chosen on the same panels used for the comparison, any best-depth figure is optimistic rather than a bound. The quantity is a difference between two balanced accuracies — the best and the worst depth — which is what makes it commensurable with the other two bars in that panel: R2 minus R1 for the readout bar, and best minus worst model for the model bar.
 
 ### Classical comparison methods
 
@@ -74,17 +76,23 @@ The primary classical comparator was k-mer feature counting using 4-, 5-, and 6-
 
 The revised report also describes a label-permutation analysis through the complete supervised pipeline, with 20 groups and 20 permutations. Permuted accuracies were approximately 50.1% for k-mer features and random-projected k-mers, and 50.2% for DNABERT-2, compared with observed accuracy around 96%. [AQ11]
 
+An implementation note: the frozen plan specifies an isolate-grouped stratified five-fold split, and the code applies `StratifiedKFold` to an isolate-level table in which each isolate contributes one modal slice per region. These are equivalent, because one row per isolate makes the split grouped on isolate by construction. This is recorded as an equivalence, not a deviation.
+
 ### Outcomes and empirical ambiguity ceiling
 
 The primary outcome was paired difference in species-balanced accuracy between the DNABERT-2 linear-probe method and the k-mer linear-probe method across locked-test blocks. The primary margin was ±0.010 balanced-accuracy units, equivalent to ±1 percentage point. The authors report that this margin was set before the confirmatory test. [AQ12]
 
+The frozen precision plan sized the locked test using a development block-level SD of 0.01138. That SD belongs to the best-model-minus-best-classical contrast, not to the pre-named primary contrast; the achieved locked-test SD for the primary was 0.00889, so the study was planned more conservatively than it needed to be. The direction is favourable and is recorded here rather than left implicit.
+
 The project calculated a reference-specific empirical sequence-ambiguity ceiling based on observed sequences, isolate units, species-balanced weighting, and the evaluated region. This ceiling is not a universal biological maximum. It depends on the composition and sampling of the reference population. [AQ13]
+
+Two aggregations are possible and are not interchangeable. The whole-block ceiling evaluates the equation once on the full block population, whereas the reported accuracy is the mean of per-fold balanced accuracies, each computed on a fold with its own class composition; a fold mean can exceed a whole-population bound, and 3 of 66 block-by-method cells across the locked test and hard panels did so (both arms in *Veillonella* by 0.30 points, k-mer in *Bradyrhizobium* by 0.19). Figures reporting a ceiling therefore use the **fold-matched** ceiling — the same equation applied to each held-out fold at the region that fold selected, averaged over folds — which matches the aggregation of the accuracy it bounds, bounds all 66 cells, and differs from the whole-block value by 0.001 points on average (range −1.84 to +1.78). Per-block values for both aggregations are deposited. Like the whole-block version it is computed on held-out composition, so it bounds what any sequence-based rule could achieve on that fold rather than what a rule fitted on training data alone could.
 
 Secondary outcomes included method-specific accuracy, results by hard-panel status, robustness to sequence perturbations, intermediate-layer performance, and the accuracy and regret of support-selected regions. The best-region reference used to calculate regret, how ties were handled, and whether it was common across methods require explicit definition. [AQ14]
 
 ### Statistical analysis
 
-For the locked primary contrast, the project reports paired block-level bootstrap intervals based on 2,000 draws with seed 1729. The mean difference was −0.00211 balanced-accuracy units, with a 95% interval of −0.00595 to +0.00163. A two-sided bootstrap test of zero difference yielded p = 0.253. Equivalence and difference testing address distinct hypotheses (Lakens, 2017). The authors also report a formal two one-sided tests procedure against the ±0.010 margin, with p = 0.0001, and a 90% interval of approximately −0.0053 to +0.0011. [AQ15]
+For the locked primary contrast, the project reports paired block-level bootstrap intervals based on 2,000 draws with seed 1729. The mean difference was −0.00211 balanced-accuracy units, with a 95% interval of −0.00595 to +0.00163. A two-sided bootstrap test of zero difference yielded p = 0.253. Equivalence and difference testing address distinct hypotheses (Lakens, 2017). The authors also report a formal two one-sided tests procedure against the ±0.010 margin. The primary test is a **paired-t TOST**, p = 4.1 × 10⁻⁴ (component one-sided values 4.11 × 10⁻⁴ and 3.72 × 10⁻⁶), with a parametric 90% interval of −0.00555 to +0.00133; the bootstrap 90% interval, −0.00529 to +0.00105, is distribution-free corroboration rather than independent replication, since both procedures analyse the same block-level differences. [AQ15]
 
 Four secondary locked-test contrasts were adjusted using Holm's procedure. The hard-panel extension used a paired block bootstrap across 13 panels. The report characterizes that result as not supporting the hypothesis of model improvement; its 95% interval, −0.0128 to +0.0066, crosses zero and extends beyond the ±0.010 equivalence margin. It therefore does not establish equivalence at that margin.
 
@@ -96,11 +104,11 @@ Four secondary locked-test contrasts were adjusted using Holm's procedure. The h
 
 The development benchmark analyzed 25 species-rank blocks across six bacterial phyla. The report gives a mean difference of +0.14 percentage points for the best linear-probe model relative to the best classical comparator, with a 95% block-bootstrap interval of −0.32 to +0.57 points. A family-grouped sensitivity analysis using 22 blocks yielded −0.01 points (95% CI, −0.48 to +0.42). These were development results and informed the locked analysis rather than serving as the confirmatory test. [AQ17]
 
-In the locked test, DNABERT-2:R2 minus C_kmer was −0.21 percentage points (95% CI, −0.59 to +0.16; 20 blocks). The entire reported interval fell within the prespecified ±1-point margin. The revised analysis reported TOST p = 0.0001, with a 90% interval of approximately −0.53 to +0.11 points. These results support practical equivalence for this prespecified contrast in the locked-test population, for the stated endpoint and prespecified margin. The interval does not show that the approaches are identical in every group or setting.
+In the locked test, DNABERT-2:R2 minus C_kmer was −0.21 percentage points (95% CI, −0.59 to +0.16; 20 blocks). The entire reported interval fell within the prespecified ±1-point margin. The revised analysis reported paired-t TOST p = 4.1 × 10⁻⁴, with a 90% interval of −0.56 to +0.13 points (bootstrap 90% interval −0.53 to +0.11). These results support practical equivalence for this prespecified contrast in the locked-test population, for the stated endpoint and prespecified margin. The interval does not show that the approaches are identical in every group or setting.
 
 The report lists 17 of 20 blocks as within ±1 percentage point, one favoring the model by more than one point, and two favoring k-mer by more than one point. Mean balanced accuracy was 96.1% for k-mer counting and 95.9% for DNABERT-2 in the primary results table. A separate clean robustness summary gives slightly different values because it fixes one region per panel rather than reselecting across folds. These analysis variants should remain separately labeled.
 
-DNABERT-S and NTv2 had locked-test intervals inside the ±1-point margin, according to the supplied results. HyenaDNA was lower than k-mer by 0.88 percentage points (95% CI, −1.48 to −0.38; Holm-adjusted p = 0.004). Although the difference was statistically distinguishable from zero, the interval was not wholly inside the equivalence margin. The best-of-four model comparison was +0.29 points, but did not survive Holm correction (p = 0.075) and should not be interpreted as evidence of model complementarity.
+DNABERT-S and NTv2 met the equivalence criterion as a formal test, not merely by interval width: p_TOST = 4.9 × 10⁻⁵ and 1.4 × 10⁻³ respectively, Holm-adjusted within the secondary family as a post hoc sensitivity to 1.7 × 10⁻⁴ and 2.9 × 10⁻³. HyenaDNA was lower than k-mer by 0.88 percentage points (95% CI, −1.48 to −0.38). Its raw bootstrap p rests on a single draw of 2,000 and is therefore reported as ≤ 0.001, Holm-adjusted ≤ 0.004; the better-resolved paired-t gives p = 0.0077, Holm-adjusted 0.031. Although the difference was statistically distinguishable from zero, the interval was not wholly inside the equivalence margin, and equivalence was formally tested and **not** established (p_TOST = 0.351, component one-sided values 0.351 and 2.17 × 10⁻⁶). The best-of-four model comparison was +0.29 points, but did not survive Holm correction (p = 0.075) and should not be interpreted as evidence of model complementarity.
 
 ### Performance of individual methods and controls
 
@@ -116,7 +124,17 @@ An earlier small analysis had reported DNABERT-2 at chance on *Staphylococcus au
 
 ### Difficulty-selected panels
 
-The hard-panel analysis included 13 eligible groups chosen using ambiguity and k-mer performance, without using model scores for selection. Mean k-mer accuracy was approximately 81.8%, compared with approximately 96.1% in the locked test. The mean DNABERT-2 minus k-mer difference was −0.19 percentage points (95% CI, −1.28 to +0.66). Four panels favored DNABERT-2 by more than one point, three favored k-mer by more than one point, and six were within the prespecified ±1-point band. The interval contains zero but extends beyond the equivalence margin. Thus, the result did not show a reliable average advantage for DNABERT-2, but it did not establish equivalence within ±1 point.
+### Sequence reuse and what the confirmatory result bounds
+
+Isolate-grouped cross-validation does not make the folds sequence-disjoint, because identical 16S sequences recur across strains. At each block's modal selected region, 5,552 of 5,977 isolate groups (92.9%) share their exact slice with at least one other group, 1,348 (22.6%) sit in a haplotype carrying both classes, and across folds 5,431 of 5,902 evaluated isolates (**92.0%**) have their exact slice present in the training folds. The confirmatory result therefore characterises discrimination **within a known haplotype population**; it is not a measurement of generalisation to unseen variants.
+
+Three post hoc analyses quantify the cost, all at a fixed region with the splitter as the only difference. Exact-sequence-disjoint folds are feasible for 14 of 20 blocks; the other six have ≤4 distinct target haplotypes. The split was audited, not assumed: exact train–test overlap is zero and `C_exact`, which abstains when a test sequence is absent from training, scores exactly 0.500 on every block (against 90.62% under the published design). Both primary arms then lose ~11 points — k-mer 96.36 → 85.42, DNABERT-2 96.16 → 84.92 — and the paired contrast is −0.50 pp (95% CI, −3.20 to +2.07). The direction does not reverse and no model advantage appears, but the block-level SD rises 14-fold, from 0.37 to 5.16 pp, so equivalence at ±1 point is **inconclusive** rather than established on unseen haplotypes. Single-linkage clustering at 99% identity, audited to a maximum cross-fold identity of 0.9894, gives −1.47 pp and the same verdict on the 9 blocks that support it.
+
+A direct test of the mechanism gives a negative result. DNABERT-2 loses 11.24 points against k-mer's 10.94 when exact matches are removed — a difference of −0.30 pp (95% CI, −2.92 to +2.22), with the model degrading less in only 3 of 14 blocks. Giving each representation its own regularisation strength by nested inner cross-validation on a shared grid does not change this; under the disjoint split, tuning helps k-mer most. (The grid's lower boundary, C = 0.01, is selected in most fold-arm decisions, so the tuned figures are a lower bound rather than a converged optimum.)
+
+Decomposing the pooled metric by neighbour species locates the difficulty. Across 63 target–neighbour pairs, performance is governed almost entirely by whether the two taxa share sequence at the evaluated region: pairs whose closest sequences differ at all resolve at 97–99%, while the 22 pairs reaching ≥99.9% maximum cross-identity — in every case because the neighbour shares a haplotype with the target — fall to 85.9%. Accuracy correlates with maximum target–neighbour identity at Spearman −0.62 (k-mer) and −0.58 (DNABERT-2). The method difference stays within 0.25 points in every divergence stratum while difficulty swings 13 points, so target–neighbour sequence identity governs performance by about two orders of magnitude more than the choice of representation.
+
+The hard-panel analysis included 13 eligible groups chosen using ambiguity and k-mer performance, without using model scores for selection. Mean k-mer accuracy was approximately 81.8%, compared with approximately 96.1% in the locked test. The mean DNABERT-2 minus k-mer difference was −0.19 percentage points (95% CI, −1.27 to +0.66). Four panels favored DNABERT-2 by more than one point, three favored k-mer by more than one point, and six were within the prespecified ±1-point band. The interval contains zero but extends beyond the equivalence margin. Thus, the result did not show a reliable average advantage for DNABERT-2, but it did not establish equivalence within ±1 point.
 
 The post hoc correlation between task difficulty and relative model advantage, observed in five locked-test groups, was not supported in the separate hard-panel extension. The report gives the largest individual hard-panel difference as −5.0 points for *Bradyrhizobium*, favoring k-mer features. This correlation should be presented as exploratory and non-replicated, not as a confirmatory result.
 
@@ -223,13 +241,13 @@ Counts are those in the source study-design table. The development subspecies st
 
 | Contrast                     |   Mean difference (pts) | 95% CI         |     p | p (Holm)   | Verdict                                        |
 |:-----------------------------|------------------------:|:---------------|------:|:-----------|:-----------------------------------------------|
-| DNABERT-2 vs k-mer (PRIMARY) |                   -0.21 | [-0.59, +0.16] | 0.253 | ;           | EQUIVALENT (practically negligible difference) |
+| DNABERT-2 vs k-mer (PRIMARY) |                   -0.21 | [-0.59, +0.16] | 0.253 | — (unadjusted) | EQUIVALENT (practically negligible difference) |
 | DNABERT-S vs k-mer           |                   -0.11 | [-0.47, +0.21] | 0.58  | 0.580      | EQUIVALENT (practically negligible difference) |
-| HyenaDNA vs k-mer            |                   -0.88 | [-1.48, -0.38] | 0.001 | 0.004      | INCONCLUSIVE at this margin                    |
+| HyenaDNA vs k-mer            |                   -0.88 | [-1.48, -0.38] | ≤0.001 | ≤0.004     | INCONCLUSIVE; equivalence tested, NOT established (p_TOST = 0.351) |
 | NTv2 vs k-mer                |                   -0.28 | [-0.68, +0.11] | 0.168 | 0.336      | EQUIVALENT (practically negligible difference) |
-| best-of-4 vs k-mer           |                    0.29 | [+0.03, +0.57] | 0.025 | 0.075      | EQUIVALENT (practically negligible difference) |
+| best-of-4 vs k-mer           |                    0.29 | [+0.03, +0.57] | 0.025 | 0.075      | ORACLE contrast — no equivalence verdict |
 
-Differences and intervals are percentage points. The displayed p-values are tests of zero difference, not equivalence p-values. The primary TOST is reported separately. Best-of-four is a hindsight comparison and is not a deployable model-choice rule.
+Differences and intervals are percentage points. The displayed p-values are tests of zero difference, not equivalence p-values; the primary is unadjusted as the single prespecified primary, and the four secondary contrasts are Holm-corrected among themselves. HyenaDNA's bootstrap p rests on one draw of 2,000 and is reported as a bound; the better-resolved paired t gives p = 0.0077, Holm-adjusted 0.031. Equivalence verdicts come from the separate two one-sided tests: p_TOST = 4.1 × 10⁻⁴ (DNABERT-2), 4.9 × 10⁻⁵ (DNABERT-S), 1.4 × 10⁻³ (NTv2), 0.351 (HyenaDNA, not established). Best-of-four is an oracle contrast selected on held-out outcomes: the four individual contrasts average −0.371 pp, the per-block maximum gives +0.286 pp, so +0.657 pp is selection. It is not a deployable model-choice rule and carries no equivalence verdict.
 
 ### Table 3. Locked-test balanced accuracy
 
@@ -252,7 +270,7 @@ Differences and intervals are percentage points. The displayed p-values are test
 | DNABERT-S      | 72.2                | 91.3                       |                       94.2 |
 | HyenaDNA       | 67.0                | 90.9                       |                       93.9 |
 | NTv2           | 72.4                | 91.2                       |                       94   |
-| k-mer counting | ;                    | ;                           |                       94.7 |
+| k-mer counting | — (no embedding)    | — (no embedding)           |                       94.7 |
 
 R0 and R1/R2 are different endpoints. No percentage-point readout effect or thirty-fold ratio is inferred from subtracting them.
 
@@ -305,30 +323,53 @@ Reported regret and hit rates require the method-specific oracle and tie definit
 
 ## Figure legends
 
-### Figure 1. Paired classification differences in the locked test and supporting phases
+Figure legends below are the submission legends. Each was written against the rebuilt figure and every number in them was checked against the frozen outputs. Images are embedded here for review; PLOS Computational Biology requires figures as separate TIFF or EPS files at submission, which is why the PLOS build carries legends only — the files are in `figures/plos_tiff/`.
 
-Display block-specific differences in balanced accuracy for the prespecified DNABERT-2 linear-probe contrast with the k-mer baseline. Show the prespecified +/-1-point equivalence limits and the block-level estimate and confidence interval. Label development as exploratory and the hard-panel extension separately. Do not label all phases as formal equivalence replications.
+### Figure 1. Paired differences on the locked test and supporting phases
+
+Paired differences between DNABERT-2 with a linear probe and k-mer counting, in percentage points of balanced accuracy. (a) Per-block differences on the locked test set, ordered by magnitude; orange bars favour DNABERT-2 and blue bars favour k-mer counting. The grey shaded band spans the prespecified equivalence margin of ±1 percentage point. Open circles mark the seven blocks whose difference is exactly zero and which would otherwise show no bar at all. (b) Mean paired difference with 95% bootstrap confidence intervals for the development, locked-test and hard-panel sets. Every row is the same contrast, DNABERT-2 at the R2 readout minus k-mer counting, so the three are directly comparable; the development row is labelled exploratory because those blocks informed every analysis decision and are burned for confirmatory use. The shaded band again marks the margin.
+
+![](../figures/fig1_main_result.png)
+
 
 ### Figure 2. Representation geometry and supervised classification
 
-Show development pair-AUC results for geometric separation separately from balanced accuracy for nearest-reference and linear-probe classification. Model-specific results should retain their metric labels. A common numerical axis does not make the endpoints interchangeable. Remove ratio labels that describe AUC-to-accuracy differences as accuracy effects.
+Readout, model and layer effects on the development set, with metrics kept strictly separate. (a) R0 unsupervised geometry for each model, reported as a pair-level area under the curve on its own axis because it is not comparable to balanced accuracy and must not be subtracted from it. (b) Change from nearest-reference assignment (R1) to the linear probe (R2), both in balanced accuracy; the paired effect for DNABERT-2 is +2.83 points, 95% CI +1.37 to +4.57. (c) Balanced accuracy across the four models at the R2 readout, spanning 0.73 points. (d) Three differences in balanced accuracy on a common axis: R2 minus R1 for the readout bar, best minus worst model for the model bar, and best minus worst depth for the layer bar. The layer bar is shaded grey because it was measured on the 13 hard panels rather than the development set; its aggregation is defined in Methods.
+
+![](../figures/fig2_readout_dominates.png)
+
 
 ### Figure 3. Locked-test classification methods and compressed k-mer features
 
-Show mean balanced accuracy across eligible locked-test blocks for frozen model/probe combinations, k-mer/probe classification, Gaussian-projected k-mer features, alignment, and exact lookup. Specify whether error bars describe between-block standard deviation or uncertainty in the mean. Describe the projected features as sequence-derived, not biologically random. The label-permutation null should be a separate panel if its underlying outputs are available.
+Balanced accuracy of every method on the locked test set, averaged over the 20 eligible blocks. The solid red vertical line at 50.1% is the mean accuracy obtained when class labels are permuted through the complete pipeline, and the dashed black line at 97.0% is the mean fold-matched empirical ambiguity ceiling for these blocks, computed on the same aggregation as Figure 7. Together they bound what any method could achieve on these data. Bars begin at the axis minimum rather than at zero, so their lengths should be read against those two reference lines and not as ratios.
+
+![](../figures/fig3_methods_and_random.png)
+
 
 ### Figure 4. Task difficulty and the hard-panel extension
 
-Show locked-test accuracy distribution and the difficulty-selected comparisons. Label the hard-panel paired estimate with its interval. State that the interval extends outside the +/-1-point equivalence margin. Highlight any post hoc difficulty association as exploratory rather than confirmed.
+(a) Per-block difference between DNABERT-2 and k-mer counting plotted against k-mer error on the locked test set; the dotted vertical line at 1 percentage point of error marks the saturation threshold, below which 10 of the 20 blocks fall. (b) Per-block differences on the 13 difficulty-selected hard panels, ordered by magnitude, with the pooled estimate and its 95% bootstrap interval on the bottom row: −0.19 percentage points, interval −1.27 to +0.66. The grey band marks the ±1 point equivalence margin. The interval contains zero and also extends beyond the margin, so it neither demonstrates a benefit nor establishes equivalence.
+
+![](../figures/fig4_difficulty.png)
+
 
 ### Figure 5. Sensitivity to sequence perturbation
 
-Show DNABERT-2 and k-mer performance for clean references, two substitution rates, fixed end trimming, copy variation, and the combined perturbation. Express error bars using the specified paired block analysis. The clean robustness baseline uses one fixed region per panel and need not equal the fold-reselected primary baseline. Note the influential Francisella result and the simplified nature of the perturbations.
+Sequence degradation on the 20 locked-test blocks, with identical degraded sequences supplied to both methods. (a) Balanced accuracy of k-mer counting and DNABERT-2 under six conditions; the vertical axis is truncated at 86%. (b) The paired block-level difference for each condition with its 95% bootstrap interval, which is where the uncertainty belongs because the analysis is paired; the grey band marks the ±1 point margin. The three substitution-based conditions have intervals that contain zero and extend beyond the margin, and the apparent advantage at 1% substitution rests on a single panel, *Francisella*.
+
+![](../figures/fig5_robustness.png)
+
 
 ### Figure 6. Region-selection performance on held-out isolates
 
-Show selected-region accuracy and regret for the locked-test and hard-panel sets. Identify whether the oracle is method-specific and describe tie handling. Display the number of panels and repeated support/query evaluations without treating folds as independent panels.
+Region selection using training isolates only. (a, b) Balanced accuracy achieved at the selected region, drawn as points rather than bars because the values differ by fractions of a point and any readable axis is truncated. (c, d) Regret, defined as balanced accuracy lost relative to the best region identifiable in hindsight for that same method; lower is better. Panels a and c are the locked-test set, 20 blocks; panels b and d the difficulty-selected hard panels, 13 blocks. Note the differing horizontal scales. Regret is plotted rather than the best-region hit rate because the hit flag uses a strict argmax and is pessimistic under ties: several regions frequently tie at the maximum, so a method can record zero regret while not matching the single argmax.
 
-### Figure 7. Observed performance and reference-specific sequence ambiguity
+![](../figures/fig6_region_ranking.png)
 
-Show accuracy and the empirical ambiguity measure using matched isolate weights, labels, and observed regions. Identify any comparisons in which the reference-population ceiling and held-out accuracy are not calculated on the same distribution. Resolve the Veillonella discrepancy before describing every marker as a strict test-set bound.
+
+### Figure 7. Observed performance and empirical sequence ambiguity
+
+Achieved balanced accuracy against the empirical ambiguity ceiling for each block, for both arms, on the locked test set (circles, 20 blocks) and the difficulty-selected hard panels (squares, 13 blocks). The ceiling is fold-matched: the same formula applied to each held-out fold at that fold's chosen region and then averaged over folds, which matches the aggregation of the accuracy it bounds. A whole-block ceiling does not bound a mean of per-fold accuracies and 3 of these 66 cells exceed one; none exceeds the fold-matched ceiling. The diagonal marks the ceiling.
+
+![](../figures/fig7_ceiling.png)
+

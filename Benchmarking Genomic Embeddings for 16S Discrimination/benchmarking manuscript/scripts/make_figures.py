@@ -4,6 +4,7 @@ Writes PNG (300 dpi) and PDF (vector) for each figure into ../figures/.
 House style: no chart junk, no gridlines competing with data, colourblind-safe palette,
 consistent fonts, every panel readable at single-column width.
 """
+import csv
 import json
 import os
 import sys
@@ -49,7 +50,7 @@ C = {
     "model":   "#D55E00",   # vermillion
     "random":  "#999999",   # grey
     "align":   "#56B4E9",   # sky
-    "exact":   "#CC79A7",   # pink
+    "exact":   "#4D4D4D",   # dark grey — was #CC79A7, which collided with ntv2 below
     "ceiling": "#000000",
     "dnabert2": "#D55E00", "dnabert_s": "#E69F00",
     "hyenadna": "#009E73", "ntv2": "#CC79A7",
@@ -96,7 +97,10 @@ def save(fig, name):
             im = im.convert("RGB")
         im.save(path, format="TIFF", compression="tiff_lzw", dpi=(300, 300))
         buf.close()
-        w, h = fig.get_size_inches()
+        # Measure the SAVED raster, not fig.get_size_inches(): savefig runs with
+        # bbox_inches="tight", so the file is larger than the declared figure size and a
+        # figure declared inside the limit can land outside it.
+        w, h = im.size[0] / 300.0, im.size[1] / 300.0
         ok_w = 2.63 <= w <= 7.5
         ok_h = h <= 8.75
         mb = os.path.getsize(path) / 1e6
@@ -111,6 +115,35 @@ def load(p):
         return json.load(f)
 
 
+def _boot_ci(d, seed=1729, n_boot=4000):
+    rng = np.random.default_rng(seed)
+    draws = d[rng.integers(0, len(d), size=(n_boot, len(d)))].mean(axis=1)
+    return float(d.mean()), float(np.percentile(draws, 2.5)), float(np.percentile(draws, 97.5))
+
+
+def development_primary_contrast():
+    """The MATCHED development contrast: DNABERT-2:R2 minus C_kmer, paired over blocks.
+
+    An earlier version of Figure 1b hardcoded 0.14, which is the stored `model - classical`
+    value in block_level_results.json. That quantity is a DOUBLE ORACLE: the best of four
+    models per block (DNABERT-2 in 20/25, DNABERT-S 3, NTv2 1, HyenaDNA 1) AND the best of
+    two classical comparators per block (C_kmer 17/25, C_align 8/25). Plotting it beside the
+    locked-test and hard-panel rows put a twice-selected number on a shared axis with two
+    pre-named contrasts, and it was the only positive row.
+
+    This recomputes the same contrast the other two rows use, at each block's selected region.
+    """
+    bl = load(os.path.join(ROOT, "phase2_pilot", "block_level_results.json"))
+    rr = load(os.path.join(ROOT, "phase2_pilot", "readout_results_full.json"))
+    sp = {k: v for k, v in bl.items() if v["rank"] == "species"}
+    d = []
+    for b, v in sp.items():
+        cell = rr.get(f"{b}|{v['region']}")
+        if cell and "C_kmer" in cell and "dnabert2:R2_linear" in cell:
+            d.append(cell["dnabert2:R2_linear"] - cell["C_kmer"])
+    return np.array(d)
+
+
 # ================================================================ Figure 1
 def fig1_main_result():
     """Forest plot: per-group difference on the locked test, plus the three replications."""
@@ -120,12 +153,22 @@ def fig1_main_result():
     d = np.array([pb[b]["delta"] * 100 for b in names])
 
     fig, (ax, ax2) = plt.subplots(
-        1, 2, figsize=(7.2, 4.6), gridspec_kw={"width_ratios": [2.6, 1]})
+        1, 2, figsize=(6.9, 4.6), gridspec_kw={"width_ratios": [2.6, 1]})
 
     y = np.arange(len(names))
     cols = [C["model"] if v > 0 else C["kmer"] for v in d]
     ax.barh(y, d, color=cols, height=0.68)
     ax.axvline(0, color="k", lw=0.9)
+    # Seven of the 20 blocks differ by exactly zero and would otherwise render as no bar at
+    # all, indistinguishable from a missing block. Mark them as points on the zero line.
+    # (comamonadaceae at -0.002 and proteus_morganellaceae at +0.008 pp are near-zero but
+    # not exact, and keep their hairline bars.)
+    zero = [i for i, v in enumerate(d) if abs(v) < 1e-12]
+    if zero:
+        ax.plot([0] * len(zero), [y[i] for i in zero], "o", color="white",
+                markeredgecolor="#333333", markeredgewidth=1.1, ms=4.5, zorder=5,
+                ls="none", label="difference exactly zero")
+        ax.legend(loc="upper left", fontsize=7.5, handletextpad=0.3, borderpad=0.3)
     ax.set_yticks(y)
     ax.set_yticklabels([n.replace("_", " ") for n in names])
     ax.set_xlabel("DNABERT-2 − k-mer  (percentage points)")
@@ -133,9 +176,11 @@ def fig1_main_result():
     ax.axvspan(-1, 1, color="k", alpha=0.055, zorder=0)
     ax.set_ylim(-1.3, len(names) - 0.3)
 
-    # replication panel
+    # replication panel — every row is the SAME contrast, DNABERT-2:R2 minus C_kmer
+    dev = development_primary_contrast()
+    dm, dlo, dhi = _boot_ci(dev)
     reps = [
-        ("Development\n(25 groups)", 0.14, None, None),
+        ("Development\n(25 groups,\nexploratory)", dm * 100, dlo * 100, dhi * 100),
         ("Locked test\n(20 groups)", r["primary"]["mean"] * 100,
          r["primary"]["ci95"][0] * 100, r["primary"]["ci95"][1] * 100),
     ]
@@ -159,7 +204,7 @@ def fig1_main_result():
     ax2.set_yticks(yy)
     ax2.set_yticklabels([x[0] for x in reps])
     ax2.set_ylim(-0.6, len(reps) - 0.4)
-    ax2.set_xlabel("mean difference (pts)")
+    ax2.set_xlabel("mean difference  (percentage points)")
     ax2.set_title("b", loc="left", fontweight="bold", fontsize=12)
 
     fig.tight_layout(w_pad=2.2)
@@ -213,6 +258,8 @@ def fig2_readout_dominates():
     ax.set_xlim(-0.25, 1.25)
     ax.set_ylim(0.90, 0.96)
     ax.set_ylabel("balanced accuracy")
+    # Not drawn on the plot (the annotation was removed), but NOT dead: this is the source
+    # of the paired effect quoted in the Fig 2 legend — +2.83 pts, 95% CI [+1.37, +4.57].
     mu, lo, hi, n = paired_ci("dnabert2:R1", "dnabert2:R2")
     ax.set_title("b", loc="left", fontweight="bold", fontsize=12)
     ax.legend(loc="lower right", fontsize=8)
@@ -251,7 +298,9 @@ def fig2_readout_dominates():
         if v == v:
             ax.text(v + 0.09, y_, f"{v:.2f}", va="center", fontsize=8, fontweight="bold")
     ax.set_yticks(yy); ax.set_yticklabels(labs, fontsize=8)
-    ax.set_xlabel("spread (balanced-accuracy pts)")
+    # Every bar is a difference between two balanced accuracies: R2 minus R1 for the readout
+    # bar, best minus worst model for the model bar, best minus worst depth for the layer bar.
+    ax.set_xlabel("difference in balanced accuracy\n(percentage points)")
     ax.set_xlim(0, max(v for v in bars if v == v) * 1.38)
     ax.set_title("d", loc="left", fontweight="bold", fontsize=12)
 
@@ -279,14 +328,25 @@ def fig3_methods_and_random():
         vals = [b[key] for b in blocks if key in b and b[key] == b[key]]
         if vals:
             means.append(np.mean(vals) * 100); labels.append(lab); colors.append(col)
-    ceil = np.mean([v["ceiling"] for v in r["per_block"].values()]) * 100
+    # Fold-matched, matching Figure 7 and the aggregation of the accuracies it bounds. The
+    # whole-block ceiling this previously averaged does not bound a mean of per-fold
+    # accuracies; both happen to round to the same displayed value here.
+    cpath = os.path.join(RES, "fold_matched_ceiling_audit.csv")
+    if os.path.exists(cpath):
+        with open(cpath) as f:
+            crows = [x for x in csv.DictReader(f) if x["set"] == "locked test"]
+        ceil = float(np.mean([float(x["ceiling_fold_matched"]) for x in crows])) * 100
+        ceil_label = f"fold-matched ambiguity ceiling, {ceil:.1f}%"
+    else:
+        ceil = np.mean([v["ceiling"] for v in r["per_block"].values()]) * 100
+        ceil_label = f"ambiguity ceiling, {ceil:.1f}%"
 
-    fig, ax = plt.subplots(figsize=(4.6, 3.4))
+    fig, ax = plt.subplots(figsize=(5.0, 3.6))
     y = np.arange(len(means))[::-1]
     ax.barh(y, means, color=colors, height=0.68)
-    ax.axvline(ceil, color="k", ls="--", lw=1.1)
-    ax.text(ceil - 0.3, y[0] + 0.75, f"ceiling {ceil:.1f}%", fontsize=7.5,
-            ha="right", va="center")
+    # Both reference lines go in a legend rather than on-plot text: the permutation line
+    # previously carried no label at all, and a legend labels both consistently.
+    ax.axvline(ceil, color="k", ls="--", lw=1.1, zorder=4, label=ceil_label)
     for yi, v in zip(y, means):
         ax.text(v - 0.4, yi, f"{v:.1f}", va="center", ha="right",
                 color="white", fontsize=7.5, fontweight="bold")
@@ -294,14 +354,17 @@ def fig3_methods_and_random():
     ax.set_xlim(88, 99)
     ax.set_xlabel("balanced accuracy (%), locked test")
 
-
     # label-permutation control: the test that shows the task is actually learned
     pp = os.path.join(RES, "label_permutation_control.json")
     if os.path.exists(pp):
-        s = load(pp)["summary"]
-        perm = np.mean([v["permuted"] for v in s.values()]) * 100
-        ax.axvline(perm, color="#B00020", ls="-", lw=1.4, zorder=4)
+        perm_sum = load(pp)["summary"]
+        perm = np.mean([v["permuted"] for v in perm_sum.values()]) * 100
+        ax.axvline(perm, color="#B00020", ls="-", lw=1.4, zorder=4,
+                   label=f"label-permuted floor, {perm:.1f}%")
         ax.set_xlim(min(48, perm - 2), 99)
+    # above the axes: every bar spans the full width, so an in-axes legend would sit on data
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.01), ncol=1, fontsize=7.5,
+              framealpha=0, handlelength=2.2, labelspacing=0.35)
     fig.tight_layout()
     save(fig, "fig3_methods_and_random")
 
@@ -323,8 +386,8 @@ def fig4_difficulty():
     ax.axvline(1, color=C["random"], ls=":", lw=1.1)
     ax.text(1.25, ax.get_ylim()[1] * 0.82, "10 of 20 groups\nsaturated", fontsize=7.3,
             color="#444", va="top")
-    ax.set_xlabel("k-mer error (pts) — how much room there is")
-    ax.set_ylabel("DNABERT-2 − k-mer (pts)")
+    ax.set_xlabel("k-mer error (percentage points) — how much room there is")
+    ax.set_ylabel("DNABERT-2 − k-mer  (percentage points)")
     ax.set_title("a", loc="left", fontweight="bold", fontsize=12)
 
     ax = axes[1]
@@ -351,8 +414,24 @@ def fig4_difficulty():
                  "nostoc_anabaena": "Nostoc / Anabaena",
                  "bradyrhizobium": "Bradyrhizobium"}
         ax.set_yticklabels([short.get(n, n.replace("_", " ")) for n in names], fontsize=7.2)
-        ax.set_xlabel("DNABERT-2 − k-mer (pts)")
+        ax.set_xlabel("DNABERT-2 − k-mer  (percentage points)")
         ax.set_title("b", loc="left", fontweight="bold", fontsize=12)
+        # the pooled estimate, with the equivalence margin it fails to stay inside
+        ax.axvspan(-1, 1, color="k", alpha=0.055, zorder=0)
+        m, lo, hi = a["mean"] * 100, a["ci"][0] * 100, a["ci"][1] * 100
+        yp = -1.15
+        ax.plot([lo, hi], [yp, yp], color="k", lw=1.6, solid_capstyle="round", zorder=5)
+        for e in (lo, hi):
+            ax.plot([e, e], [yp - .22, yp + .22], color="k", lw=1.2, zorder=5)
+        ax.plot(m, yp, "o", ms=6.5, color=C["model"], markeredgecolor="white",
+                markeredgewidth=1, zorder=6)
+        ax.set_ylim(yp - 0.9, len(names) - 0.35)
+        ax.axhline(-0.5, color="#BBBBBB", lw=0.7)
+        ax.set_yticks(list(yy) + [yp])
+        ax.set_yticklabels([short.get(n, n.replace("_", " ")) for n in names]
+                           + [f"pooled  {m:+.2f}\n[{lo:+.2f}, {hi:+.2f}]"], fontsize=7.2)
+        for t in ax.get_yticklabels()[-1:]:
+            t.set_fontweight("bold")
     except FileNotFoundError:
         pass
     fig.tight_layout(w_pad=2.0)
@@ -370,17 +449,36 @@ def fig5_robustness():
     km = [r[c]["_summary"]["kmer_mean"] * 100 for c in conds]
     d2 = [r[c]["_summary"]["dnabert2_mean"] * 100 for c in conds]
 
-    fig, ax = plt.subplots(figsize=(5.4, 3.3))
+    fig, (ax, ax2) = plt.subplots(2, 1, figsize=(5.6, 5.2),
+                                  gridspec_kw={"height_ratios": [1.45, 1]}, sharex=True)
     x = np.arange(len(conds))
     w = 0.38
     ax.bar(x - w / 2, km, w, label="k-mer counting", color=C["kmer"])
     ax.bar(x + w / 2, d2, w, label="DNABERT-2", color=C["model"])
-    ax.set_xticks(x); ax.set_xticklabels([nice[c] for c in conds], fontsize=7.4)
     ax.set_ylim(86, 98)
     ax.set_ylabel("balanced accuracy (%)")
     ax.legend(loc="upper right")
+    ax.set_title("a", loc="left", fontweight="bold", fontsize=12)
 
-    fig.tight_layout()
+    # (b) the paired block-level difference with its 95% bootstrap interval. The per-arm
+    # bars above carry no uncertainty because the analysis is paired; the interval belongs
+    # on the difference, which is what the frozen plan estimates.
+    mu = np.array([r[c]["_summary"]["delta_mean"] * 100 for c in conds])
+    lo = np.array([r[c]["_summary"]["ci"][0] * 100 for c in conds])
+    hi = np.array([r[c]["_summary"]["ci"][1] * 100 for c in conds])
+    ax2.axhspan(-1, 1, color="k", alpha=0.055, zorder=0)
+    ax2.axhline(0, color="k", lw=0.9, zorder=1)
+    for xi, m_, l_, h_ in zip(x, mu, lo, hi):
+        ax2.plot([xi, xi], [l_, h_], color="k", lw=1.5, solid_capstyle="round", zorder=3)
+        ax2.plot([xi - .09, xi + .09], [l_, l_], color="k", lw=1.1, zorder=3)
+        ax2.plot([xi - .09, xi + .09], [h_, h_], color="k", lw=1.1, zorder=3)
+    ax2.plot(x, mu, "o", ms=6, color=C["model"], markeredgecolor="white",
+             markeredgewidth=1, zorder=5, ls="none")
+    ax2.set_xticks(x); ax2.set_xticklabels([nice[c] for c in conds], fontsize=7.4)
+    ax2.set_ylabel("DNABERT-2 − k-mer\n(percentage points)")
+    ax2.set_title("b", loc="left", fontweight="bold", fontsize=12)
+
+    fig.tight_layout(h_pad=1.4)
     save(fig, "fig5_robustness")
 
 
@@ -393,59 +491,98 @@ def fig6_region_ranking():
         return
     s = load(p)
     sets = [k for k in ("locked_test", "hard_panels") if k in s]
-    fig, axes = plt.subplots(1, len(sets), figsize=(3.6 * len(sets), 3.3), squeeze=False)
-    for i, (ax, setname) in enumerate(zip(axes[0], sets)):
-        d = s[setname]
-        arms = [a for a in ["C_kmer"] + [f"{m}:R2" for m in MODELS] if a in d]
-        reg = [d[a]["regret"] * 100 for a in arms]
-        labs = ["k-mer" if a == "C_kmer" else PRETTY[a.split(":")[0]] for a in arms]
-        cols = [C["kmer"] if a == "C_kmer" else C[a.split(":")[0]] for a in arms]
-        y = np.arange(len(arms))[::-1]
-        ax.barh(y, reg, color=cols, height=0.66)
-        ax.set_yticks(y); ax.set_yticklabels(labs)
-        ax.set_xlabel("regret (pts) — lower is better")
-        ax.set_title("ab"[i], loc="left", fontweight="bold", fontsize=12)
-    fig.tight_layout(w_pad=2.0)
+    nice = {"locked_test": "locked test", "hard_panels": "hard panels"}
+    fig, axes = plt.subplots(2, len(sets), figsize=(3.6 * len(sets), 5.4), squeeze=False)
+    letters = iter("abcd")
+    # Row 1: accuracy actually achieved at the selected region. Row 2: regret against that
+    # method's own best region. Accuracy was previously omitted, so the figure showed the
+    # shortfall without the level it is a shortfall from.
+    for row, key, xlab in [(0, "acc", "balanced accuracy (%) at the selected region"),
+                           (1, "regret", "regret (percentage points) — lower is better")]:
+        for col, setname in enumerate(sets):
+            ax = axes[row][col]
+            d = s[setname]
+            arms = [a for a in ["C_kmer"] + [f"{m}:R2" for m in MODELS] if a in d]
+            val = [d[a][key] * 100 for a in arms]
+            labs = ["k-mer" if a == "C_kmer" else PRETTY[a.split(":")[0]] for a in arms]
+            cols = [C["kmer"] if a == "C_kmer" else C[a.split(":")[0]] for a in arms]
+            y = np.arange(len(arms))[::-1]
+            if key == "acc":
+                # Dot plot, not bars: these accuracies sit near 96% and differ by fractions
+                # of a point, so any readable axis is truncated — and a truncated baseline
+                # on a BAR chart misrepresents the ratios. Dots carry no such implication.
+                for yi, v_, c_ in zip(y, val, cols):
+                    ax.plot([min(val) - 10, v_], [yi, yi], color="#DDDDDD", lw=1.2, zorder=1)
+                    ax.plot(v_, yi, "o", ms=7, color=c_, markeredgecolor="white",
+                            markeredgewidth=1, zorder=3)
+            else:
+                ax.barh(y, val, color=cols, height=0.66)
+            ax.set_yticks(y); ax.set_yticklabels(labs)
+            ax.set_xlabel(xlab, fontsize=8)
+            if key == "acc":
+                lo = min(val)
+                ax.set_xlim(lo - 1.2, min(100, max(val) + 0.8))
+                n = d[arms[0]]["n"]
+                ax.set_title(f"{next(letters)}", loc="left", fontweight="bold", fontsize=12)
+                ax.text(1.0, 1.06, f"{nice[setname]} ({n} blocks)", transform=ax.transAxes,
+                        ha="right", va="bottom", fontsize=8.5, fontweight="bold")
+            else:
+                ax.set_title(f"{next(letters)}", loc="left", fontweight="bold", fontsize=12)
+    fig.tight_layout(w_pad=2.0, h_pad=2.6)
     save(fig, "fig6_region_ranking")
 
 
 # ================================================================ Figure 7
 def fig7_ceiling():
-    """Where 16S difficulty lives: achieved accuracy against the information ceiling."""
-    pts = []
-    for setname, pth, sumpth in [
-        ("locked test", os.path.join(ROOT, "phase4_locked_test", "locked_test_scores.json"),
-         None),
-        ("hard panels", os.path.join(ROOT, "phase7_extensions", "hard_scores.json"), None)]:
-        if not os.path.exists(pth):
-            continue
-        sc = load(pth)
-        for b, v in sc.items():
-            if v.get("_status") != "ok" or not v.get("_block_eligible"):
-                continue
-            ch = Counter(v["_chosen_regions"]).most_common(1)[0][0]
-            ceil = (v.get("_ceilings") or {}).get(ch)
-            if ceil is None or ceil != ceil:
-                continue
-            pts.append((setname, b, ceil * 100, v["C_kmer"] * 100,
-                        v["dnabert2:R2"] * 100))
+    """Achieved accuracy against the ambiguity ceiling, on a matched aggregation.
 
-    fig, ax = plt.subplots(figsize=(4.8, 4.2))
-    for setname, mk in [("locked test", "o"), ("hard panels", "s")]:
-        sub = [p for p in pts if p[0] == setname]
-        if not sub:
-            continue
-        ax.scatter([p[2] for p in sub], [p[3] for p in sub], marker=mk, s=38,
-                   color=C["kmer"], edgecolor="white", linewidth=0.7,
-                   label=f"k-mer, {setname}", zorder=3, alpha=0.9)
+    The reported accuracy is the mean over five outer folds of per-fold balanced accuracy.
+    The ceiling published alongside it was evaluated once on the WHOLE block, so the two
+    were not aggregated over the same thing and a fold mean can exceed a whole-population
+    bound: 3 of 66 cells did, and the figure nevertheless annotated the diagonal "no method
+    can exceed this". The ceiling plotted here is fold-matched — the same formula applied to
+    each held-out fold at that fold's chosen region, then averaged over folds — which bounds
+    all 66 cells and differs from the whole-block value by +0.001 pp on average
+    (scripts/audit_fold_matched_ceiling.py).
+
+    Both arms are now drawn. Earlier the DNABERT-2 value was computed and silently discarded,
+    so the figure showed only the k-mer baseline.
+    """
+    path = os.path.join(RES, "fold_matched_ceiling_audit.csv")
+    if not os.path.exists(path):
+        print("  [skip] fig7 — run scripts/audit_fold_matched_ceiling.py first")
+        return
+    with open(path) as f:
+        rows = list(csv.DictReader(f))
+
+    fig, ax = plt.subplots(figsize=(5.2, 4.4))
     lim = [50, 102]
     ax.plot(lim, lim, "k--", lw=1, zorder=1)
-    ax.text(99, 96, "ceiling\n(no method can\nexceed this)", fontsize=7, ha="right",
-            color="#444")
+
+    for setname, mk in [("locked test", "o"), ("hard panels", "s")]:
+        sub = [r for r in rows if r["set"] == setname]
+        if not sub:
+            continue
+        x = [float(r["ceiling_fold_matched"]) * 100 for r in sub]
+        ax.scatter(x, [float(r["C_kmer"]) * 100 for r in sub], marker=mk, s=34,
+                   color=C["kmer"], edgecolor="white", linewidth=0.6, zorder=3, alpha=0.9,
+                   label=f"k-mer, {setname}")
+        ax.scatter(x, [float(r["dnabert2_R2"]) * 100 for r in sub], marker=mk, s=34,
+                   color=C["model"], edgecolor="white", linewidth=0.6, zorder=3, alpha=0.9,
+                   label=f"DNABERT-2, {setname}")
+
+    # The diagonal is labelled away from the data, which previously overprinted the
+    # top-right cluster and was barely legible.
+    # The region above the diagonal is empty by construction, so the label goes there and
+    # cannot overprint either the data or the legend.
+    ax.annotate("fold-matched ambiguity ceiling\n(attainable maximum)",
+                xy=(66, 66), xytext=(53, 82), fontsize=7.5, color="#444", ha="left",
+                arrowprops=dict(arrowstyle="-", lw=0.7, color="#888",
+                                shrinkA=2, shrinkB=3))
     ax.set_xlim(lim); ax.set_ylim(lim)
-    ax.set_xlabel("information ceiling (%)")
+    ax.set_xlabel("empirical ambiguity ceiling (%), fold-matched")
     ax.set_ylabel("achieved balanced accuracy (%)")
-    ax.legend(loc="lower right")
+    ax.legend(loc="lower right", fontsize=7.5)
 
     fig.tight_layout()
     save(fig, "fig7_ceiling")

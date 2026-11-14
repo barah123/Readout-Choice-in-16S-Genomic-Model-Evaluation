@@ -1,0 +1,335 @@
+{
+  "source": "phase4_locked_test/locked_test_scores.json",
+  "n_eligible_blocks": 20,
+  "blocks": [
+    "acetobacteraceae",
+    "brucella_ochrobactrum",
+    "comamonadaceae",
+    "cutibacterium",
+    "flavobacteriaceae",
+    "francisella",
+    "fusobacterium",
+    "granulicatella",
+    "leuconostoc",
+    "methylobacterium",
+    "nocardia",
+    "paenibacillus",
+    "porphyromonas",
+    "proteus_morganellaceae",
+    "rhizobium_agrobacterium",
+    "rothia_micrococcaceae",
+    "sphingomonas",
+    "stenotrophomonas",
+    "streptomyces",
+    "veillonella"
+  ],
+  "units": "balanced-accuracy units (multiply by 100 for percentage points)",
+  "frozen_margin": 0.01,
+  "frozen_plan_reference": "S2 Text / FREEZE.md section 7",
+  "family_structure": {
+    "difference_family": {
+      "members": [
+        "dnabert2:R2 - C_kmer",
+        "dnabert_s:R2 - C_kmer",
+        "hyenadna:R2 - C_kmer",
+        "ntv2:R2 - C_kmer",
+        "best-of-4 R2 - C_kmer"
+      ],
+      "structure": "hierarchical: primary tested unadjusted; Holm applied across the four secondary contrasts only"
+    },
+    "equivalence_family": {
+      "members": [
+        "dnabert2:R2 - C_kmer",
+        "dnabert_s:R2 - C_kmer",
+        "hyenadna:R2 - C_kmer",
+        "ntv2:R2 - C_kmer",
+        "best-of-4 R2 - C_kmer"
+      ],
+      "prespecified_rule": "whole 95% bootstrap CI inside +-0.010; no multiplicity adjustment was prespecified",
+      "added_here": "component one-sided TOST p-values, plus Holm across the four secondary equivalence tests, reported as a post hoc sensitivity"
+    }
+  },
+  "bootstrap_difference_test": {
+    "estimator": "mean paired per-block difference",
+    "resampling_unit": "block",
+    "n_boot": 2000,
+    "seed_primary": 1729,
+    "seed_secondary": 1736,
+    "interval": "percentile, 2.5th and 97.5th",
+    "p_definition": "2 * min(Pr[mean* <= 0], Pr[mean* >= 0]) over the UNSHIFTED resampling distribution; an inversion of the percentile interval, not a shifted-null bootstrap test",
+    "smallest_nonzero_two_sided_p": 0.001,
+    "note": "a zero tail count returns exactly 0.0 and must be reported as < 0.0010, never as a measured value"
+  },
+  "difference_family_results": {
+    "dnabert2:R2 - C_kmer": {
+      "mean": -0.002107730076512421,
+      "ci95": [
+        -0.005949046106311794,
+        0.0016252556407515355
+      ],
+      "ci90": [
+        -0.0052259962245158505,
+        0.0011409694737666706
+      ],
+      "p_two_sided": 0.253,
+      "seed": 1729,
+      "p_paired_t": 0.30240605084829647,
+      "correction": "none (single prespecified primary)"
+    },
+    "dnabert_s:R2 - C_kmer": {
+      "mean": -0.0010641135214538243,
+      "ci95": [
+        -0.00468412099036552,
+        0.0020705816882513406
+      ],
+      "ci90": [
+        -0.004145404080635847,
+        0.0017209595223410114
+      ],
+      "p_two_sided": 0.58,
+      "seed": 1736,
+      "p_paired_t": 0.5657969386939439,
+      "p_holm_bootstrap": 0.58,
+      "p_holm_paired_t": 0.5657969386939439
+    },
+    "hyenadna:R2 - C_kmer": {
+      "mean": -0.00884567732402422,
+      "ci95": [
+        -0.014830970937721157,
+        -0.0037731176154393335
+      ],
+      "ci90": [
+        -0.013857384384006218,
+        -0.0044768151778288795
+      ],
+      "p_two_sided": 0.001,
+      "seed": 1736,
+      "p_paired_t": 0.0077112775397864715,
+      "p_holm_bootstrap": 0.004,
+      "p_holm_paired_t": 0.030845110159145886
+    },
+    "ntv2:R2 - C_kmer": {
+      "mean": -0.0028083808341480276,
+      "ci95": [
+        -0.006832716098233437,
+        0.0011317302892643374
+      ],
+      "ci90": [
+        -0.00613913281169601,
+        0.0005355194178890183
+      ],
+      "p_two_sided": 0.168,
+      "seed": 1736,
+      "p_paired_t": 0.19711239421548937,
+      "p_holm_bootstrap": 0.336,
+      "p_holm_paired_t": 0.39422478843097875
+    },
+    "best-of-4 R2 - C_kmer": {
+      "mean": 0.0028617961094579646,
+      "ci95": [
+        0.0002611559187582986,
+        0.005705482107122362
+      ],
+      "ci90": [
+        0.0006438254884692025,
+        0.005298197761536374
+      ],
+      "p_two_sided": 0.025,
+      "seed": 1736,
+      "p_paired_t": 0.060565609932999746,
+      "p_holm_bootstrap": 0.07500000000000001,
+      "p_holm_paired_t": 0.18169682979899923
+    }
+  },
+  "equivalence_family_results": {
+    "dnabert2:R2 - C_kmer": {
+      "n": 20,
+      "mean": -0.002107730076512421,
+      "sd": 0.008891968592254709,
+      "se": 0.0019883046226074636,
+      "t_lower": 3.969346464194029,
+      "p_lower": 0.0004108826954464056,
+      "t_upper": -6.089474388805845,
+      "p_upper": 3.714857918482261e-06,
+      "p_tost": 0.0004108826954464056,
+      "ci90": [
+        -0.0055457728387625985,
+        0.0013303126857377567
+      ],
+      "bootstrap_corroboration": {
+        "n_boot": 20000,
+        "p_lower": 0.0001,
+        "p_upper": 0.0,
+        "p_tost": 0.0001,
+        "resolution_floor": 5e-05,
+        "ci90": [
+          -0.005287749159807856,
+          0.0010495385209605547
+        ]
+      },
+      "verdict_frozen_rule_95pct_CI_containment": "EQUIVALENT (whole CI inside margin)",
+      "verdict_tost_alpha_0.05": "EQUIVALENT",
+      "correction": "none (single prespecified primary)"
+    },
+    "dnabert_s:R2 - C_kmer": {
+      "n": 20,
+      "mean": -0.0010641135214538243,
+      "sd": 0.008142533398407956,
+      "se": 0.0018207258187902568,
+      "t_lower": 4.90787046919752,
+      "p_lower": 4.884703513421761e-05,
+      "t_upper": -6.076759832408563,
+      "p_upper": 3.815977404923389e-06,
+      "p_tost": 4.884703513421761e-05,
+      "ci90": [
+        -0.0042123902755081665,
+        0.0020841632326005183
+      ],
+      "bootstrap_corroboration": {
+        "n_boot": 20000,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "resolution_floor": 5e-05,
+        "ci90": [
+          -0.004074448484530368,
+          0.0017080752813916624
+        ]
+      },
+      "verdict_frozen_rule_95pct_CI_containment": "EQUIVALENT (whole CI inside margin)",
+      "verdict_tost_alpha_0.05": "EQUIVALENT",
+      "p_tost_holm": 0.0001675297051090314,
+      "verdict_tost_holm": "EQUIVALENT"
+    },
+    "hyenadna:R2 - C_kmer": {
+      "n": 20,
+      "mean": -0.00884567732402422,
+      "sd": 0.013279167108856255,
+      "se": 0.0029693120339981936,
+      "t_lower": 0.3887508832884359,
+      "p_lower": 0.3508912791662355,
+      "t_upper": -6.3468160665648945,
+      "p_upper": 2.1667577073667095e-06,
+      "p_tost": 0.3508912791662355,
+      "ci90": [
+        -0.01398001218965575,
+        -0.0037113424583926904
+      ],
+      "bootstrap_corroboration": {
+        "n_boot": 20000,
+        "p_lower": 0.33245,
+        "p_upper": 0.0,
+        "p_tost": 0.33245,
+        "resolution_floor": 5e-05,
+        "ci90": [
+          -0.013790932811334675,
+          -0.004331780556647571
+        ]
+      },
+      "verdict_frozen_rule_95pct_CI_containment": "INCONCLUSIVE at this margin",
+      "verdict_tost_alpha_0.05": "NOT DECLARED",
+      "p_tost_holm": 0.3508912791662355,
+      "verdict_tost_holm": "NOT DECLARED"
+    },
+    "ntv2:R2 - C_kmer": {
+      "n": 20,
+      "mean": -0.0028083808341480276,
+      "sd": 0.009395979004896093,
+      "se": 0.002101004777010849,
+      "t_lower": 3.422942796010043,
+      "p_lower": 0.0014262352888002995,
+      "t_upper": -6.096312095192294,
+      "p_upper": 3.6616209733557864e-06,
+      "p_tost": 0.0014262352888002995,
+      "ci90": [
+        -0.006441297131240623,
+        0.000824535462944568
+      ],
+      "bootstrap_corroboration": {
+        "n_boot": 20000,
+        "p_lower": 0.0003,
+        "p_upper": 0.0,
+        "p_tost": 0.0003,
+        "resolution_floor": 5e-05,
+        "ci90": [
+          -0.0062710627139239946,
+          0.0005165180850109448
+        ]
+      },
+      "verdict_frozen_rule_95pct_CI_containment": "EQUIVALENT (whole CI inside margin)",
+      "verdict_tost_alpha_0.05": "EQUIVALENT",
+      "p_tost_holm": 0.002852470577600599,
+      "verdict_tost_holm": "EQUIVALENT"
+    },
+    "best-of-4 R2 - C_kmer": {
+      "n": 20,
+      "mean": 0.0028617961094579646,
+      "sd": 0.006414615584918389,
+      "se": 0.0014343516497407093,
+      "t_lower": 8.96697550547177,
+      "p_lower": 1.478518562402113e-08,
+      "t_upper": -4.9766066025945745,
+      "p_upper": 4.188242627725785e-05,
+      "p_tost": 4.188242627725785e-05,
+      "ci90": [
+        0.0003816116086314985,
+        0.00534198061028443
+      ],
+      "bootstrap_corroboration": {
+        "n_boot": 20000,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "resolution_floor": 5e-05,
+        "ci90": [
+          0.0006646459953150106,
+          0.005244995231188601
+        ]
+      },
+      "verdict_frozen_rule_95pct_CI_containment": "EQUIVALENT (whole CI inside margin)",
+      "verdict_tost_alpha_0.05": "EQUIVALENT",
+      "p_tost_holm": 0.0001675297051090314,
+      "verdict_tost_holm": "EQUIVALENT"
+    }
+  },
+  "best_of_four": {
+    "selection_input": "per-block held-out cross-validated balanced accuracy (the same quantity the contrast is computed from)",
+    "selection_uses_heldout_outcomes": true,
+    "character": "oracle (post hoc per-block maximum), not an operational rule",
+    "per_block_argmax": {
+      "acetobacteraceae": "dnabert_s",
+      "brucella_ochrobactrum": "dnabert2",
+      "comamonadaceae": "hyenadna",
+      "cutibacterium": "dnabert2",
+      "flavobacteriaceae": "dnabert2",
+      "francisella": "dnabert2",
+      "fusobacterium": "dnabert2",
+      "granulicatella": "dnabert2",
+      "leuconostoc": "dnabert2",
+      "methylobacterium": "dnabert_s",
+      "nocardia": "dnabert2",
+      "paenibacillus": "ntv2",
+      "porphyromonas": "dnabert_s",
+      "proteus_morganellaceae": "dnabert2",
+      "rhizobium_agrobacterium": "dnabert2",
+      "rothia_micrococcaceae": "dnabert2",
+      "sphingomonas": "ntv2",
+      "stenotrophomonas": "dnabert_s",
+      "streptomyces": "dnabert_s",
+      "veillonella": "dnabert2"
+    },
+    "argmax_counts": {
+      "dnabert2": 12,
+      "dnabert_s": 5,
+      "hyenadna": 1,
+      "ntv2": 2
+    },
+    "mean_of_four_individual_contrasts": -0.003706475439034623,
+    "best_of_four_contrast": 0.0028617961094579646,
+    "selection_gap": 0.006568271548492588,
+    "operational_prenamed_rule": {
+      "rule": "always DNABERT-2:R2, named from development before unsealing",
+      "contrast": -0.002107730076512421
+    }
+  }
+}

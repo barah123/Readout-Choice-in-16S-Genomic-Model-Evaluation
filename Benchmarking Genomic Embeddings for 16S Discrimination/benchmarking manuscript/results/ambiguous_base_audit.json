@@ -1,0 +1,170 @@
+{
+  "per_block": {
+    "acetobacteraceae": {
+      "region": "V2",
+      "n_units": 233,
+      "n_units_with_N": 1,
+      "ceiling_bal_as_computed": 0.9821428571428572,
+      "ceiling_bal_N_units_removed": 0.982142857142857,
+      "delta_pp": 2.220446049250313e-14
+    },
+    "brucella_ochrobactrum": {
+      "region": "V6",
+      "n_units": 305,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 0.7861899513180856,
+      "ceiling_bal_N_units_removed": 0.7861899513180856,
+      "delta_pp": 0.0
+    },
+    "comamonadaceae": {
+      "region": "V5",
+      "n_units": 515,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 0.9958677685950416,
+      "ceiling_bal_N_units_removed": 0.9958677685950416,
+      "delta_pp": 0.0
+    },
+    "cutibacterium": {
+      "region": "V2",
+      "n_units": 206,
+      "n_units_with_N": 3,
+      "ceiling_bal_as_computed": 0.9999999999999999,
+      "ceiling_bal_N_units_removed": 1.0,
+      "delta_pp": -1.1102230246251565e-14
+    },
+    "flavobacteriaceae": {
+      "region": "V2",
+      "n_units": 324,
+      "n_units_with_N": 2,
+      "ceiling_bal_as_computed": 0.9999999999999991,
+      "ceiling_bal_N_units_removed": 1.0000000000000009,
+      "delta_pp": -1.7763568394002505e-13
+    },
+    "francisella": {
+      "region": "V4",
+      "n_units": 55,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 0.9193548387096775,
+      "ceiling_bal_N_units_removed": 0.9193548387096775,
+      "delta_pp": 0.0
+    },
+    "fusobacterium": {
+      "region": "V2",
+      "n_units": 129,
+      "n_units_with_N": 1,
+      "ceiling_bal_as_computed": 0.9999999999999996,
+      "ceiling_bal_N_units_removed": 1.0000000000000002,
+      "delta_pp": -6.661338147750939e-14
+    },
+    "granulicatella": {
+      "region": "V3",
+      "n_units": 171,
+      "n_units_with_N": 1,
+      "ceiling_bal_as_computed": 1.0000000000000002,
+      "ceiling_bal_N_units_removed": 0.9999999999999999,
+      "delta_pp": 3.3306690738754696e-14
+    },
+    "leuconostoc": {
+      "region": "V1",
+      "n_units": 409,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 1.0000000000000004,
+      "ceiling_bal_N_units_removed": 1.0000000000000004,
+      "delta_pp": 0.0
+    },
+    "methylobacterium": {
+      "region": "V8",
+      "n_units": 317,
+      "n_units_with_N": 1,
+      "ceiling_bal_as_computed": 0.9259259259259256,
+      "ceiling_bal_N_units_removed": 0.925925925925926,
+      "delta_pp": -4.440892098500626e-14
+    },
+    "nocardia": {
+      "region": "V5",
+      "n_units": 405,
+      "n_units_with_N": 3,
+      "ceiling_bal_as_computed": 0.9999999999999996,
+      "ceiling_bal_N_units_removed": 1.0,
+      "delta_pp": -4.440892098500626e-14
+    },
+    "paenibacillus": {
+      "region": "V1",
+      "n_units": 233,
+      "n_units_with_N": 2,
+      "ceiling_bal_as_computed": 1.0000000000000002,
+      "ceiling_bal_N_units_removed": 0.9999999999999999,
+      "delta_pp": 3.3306690738754696e-14
+    },
+    "porphyromonas": {
+      "region": "V2",
+      "n_units": 50,
+      "n_units_with_N": 3,
+      "ceiling_bal_as_computed": 0.9999999999999996,
+      "ceiling_bal_N_units_removed": 1.0,
+      "delta_pp": -4.440892098500626e-14
+    },
+    "proteus_morganellaceae": {
+      "region": "V2",
+      "n_units": 679,
+      "n_units_with_N": 2,
+      "ceiling_bal_as_computed": 0.9879032258064507,
+      "ceiling_bal_N_units_removed": 0.9878542510121471,
+      "delta_pp": 0.004897479430365781
+    },
+    "rhizobium_agrobacterium": {
+      "region": "V6",
+      "n_units": 433,
+      "n_units_with_N": 1,
+      "ceiling_bal_as_computed": 0.9918032786885241,
+      "ceiling_bal_N_units_removed": 0.991803278688524,
+      "delta_pp": 1.1102230246251565e-14
+    },
+    "rothia_micrococcaceae": {
+      "region": "V7",
+      "n_units": 402,
+      "n_units_with_N": 3,
+      "ceiling_bal_as_computed": 0.9973544973544965,
+      "ceiling_bal_N_units_removed": 0.9973333333333326,
+      "delta_pp": 0.002116402116392191
+    },
+    "sphingomonas": {
+      "region": "V6",
+      "n_units": 181,
+      "n_units_with_N": 2,
+      "ceiling_bal_as_computed": 0.9935064935064928,
+      "ceiling_bal_N_units_removed": 0.9935064935064928,
+      "delta_pp": 0.0
+    },
+    "stenotrophomonas": {
+      "region": "V2",
+      "n_units": 468,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 0.9939814814814815,
+      "ceiling_bal_N_units_removed": 0.9939814814814815,
+      "delta_pp": 0.0
+    },
+    "streptomyces": {
+      "region": "V2",
+      "n_units": 364,
+      "n_units_with_N": 7,
+      "ceiling_bal_as_computed": 0.9841880341880334,
+      "ceiling_bal_N_units_removed": 0.983914437772924,
+      "delta_pp": 0.027359641510937838
+    },
+    "veillonella": {
+      "region": "V8",
+      "n_units": 98,
+      "n_units_with_N": 0,
+      "ceiling_bal_as_computed": 0.8493795464270433,
+      "ceiling_bal_N_units_removed": 0.8493795464270433,
+      "delta_pp": 0.0
+    }
+  },
+  "summary": {
+    "n_blocks": 20,
+    "max_abs_delta_pp": 0.027359641510937838,
+    "mean_delta_pp": 0.0017186761528703576,
+    "blocks_with_any_N_unit": 14
+  }
+}

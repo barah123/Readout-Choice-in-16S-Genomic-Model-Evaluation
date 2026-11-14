@@ -22,3 +22,9 @@ Benchmarking Genomic Embeddings for 16S Discrimination/phase7_extensions/extC_em
 
 # Third-party article kept locally as a style reference, not redistributed
 Benchmarking Genomic Embeddings for 16S Discrimination/benchmarking manuscript/Manuscript_and_Author_Notes_Package/journal.pcbi.*.pdf
+
+# Zipped snapshot of the manuscript folder - build artifact, regenerable from its contents
+Benchmarking Genomic Embeddings for 16S Discrimination/benchmarking manuscript.zip
+
+# Office lock files
+~$*

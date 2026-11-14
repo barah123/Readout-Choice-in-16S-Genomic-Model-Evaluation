@@ -71,14 +71,51 @@ case folding, no punctuation stripping, no cross-referencing to culture-collecti
 **This is deposited metadata, not verified provenance.** Two deposits of the same physical
 isolate under differently formatted strain strings would be treated as independent, and
 standalone 16S records carry no link to a parent genome assembly. The manuscript states this
-as a limitation.
+as a limitation, in Methods ("Isolate grouping") and again in Discussion Limitations, with
+the direction of the error named: under-merging inflates the effective number of independent
+isolates, so the independence claim is optimistic rather than conservative.
+
+**How much the missing normalization costs, measured** (`audit_isolate_grouping.py`,
+output `results/isolate_grouping_audit.json`):
+
+| quantity | development | locked test | hard panels | total analysed |
+|---|---|---|---|---|
+| records | 12,356 | 6,933 | 4,720 | 24,009 |
+| records with a usable strain string | 11,999 (97.11%) | 6,785 (97.87%) | 4,675 (99.05%) | 23,459 (97.71%) |
+| isolate groups | 12,188 | 6,760 | 4,657 | 23,605 |
+| groups merged by aggressive renormalization | 29 | 8 | 8 | 45 (0.19%) |
+| groups holding >1 record | 135 | 128 | 50 | 313 |
+| records in those groups | 303 | 301 | 113 | 717 (max group 6) |
+| accessions returned under >1 species query | 113 | 7 | 0 | 120 (112 within one block) |
+
+Aggressive renormalization = upper-case the strain string and delete every non-alphanumeric
+character, then re-derive the groups within species. It bounds the *formatting* component of
+the missing normalization at 0.19% of groups. It does not bound catalogue equivalence (one
+isolate deposited under an ATCC number and its DSM equivalent), which is unresolvable from
+the records.
+
+Two consequences worth stating plainly, and now stated in the manuscript. First, grouping
+binds on only 313 of 23,605 groups, so grouped cross-validation is close to record-level
+cross-validation and the independence of the remaining units rests entirely on the deposits
+being genuinely distinct. Second, cross-listed accessions are not merged; the two copies
+carry different species labels, so where one of the two species is that panel's target the
+shared sequence sits on both sides of the class boundary. The ceiling charges every
+sequence held in common between the classes as irreducible error (`err = sum(min(a, b))`,
+`build_blocks_full.ceilings`), so this *lowers* the ceiling rather than raising measured
+accuracy.
 
 **Neighbor selection** was made on a documented rule (most frequently confusable congeners,
 or closest relatives by published phylogeny) with a one-line rationale recorded per panel in
-the committed definition files. **Per-panel primary citations were not recorded.** This is a
-genuine gap: the rationales are author judgement informed by the literature, not traceable
-to a specific source for each panel. Either add citations per panel or describe the rule as
-expert selection rather than literature-derived.
+the committed definition files, before the corresponding sequences were fetched. All 53
+declared development and locked-test blocks carry such a rationale (31 in `S6`, 22 in `S5`).
+**Per-panel primary citations were not recorded.** Four of the 53 name a source, in every
+case Chakravorty et al. 2007 (reference 1); the rest record the reasoning but no citation.
+**Resolved by description, not by retrofitting**: the manuscript now calls this expert
+selection informed by the 16S identification literature, explicitly not traceable to a named
+source per panel, and says so rather than attaching citations after the fact. The 15 hard
+panels are separate and were never literature-selected: candidates with documented 16S
+conservation were filtered by a pre-declared quantitative screen (ceiling <= 0.97 and k-mer
+balanced accuracy <= 0.95 at the best region) run with classical methods only.
 
 ## 4. Region coordinates, lengths, strand, N handling, tie rules, processing order
 
@@ -107,14 +144,58 @@ imputed.
 So uracil conversion precedes both filters, and a sequence written in RNA alphabet is not
 rejected by the alphabet check.
 
-**N handling:** N is permitted in the retained alphabet {A, C, G, T, N} at the sequence level.
+**N handling:** N is permitted in the retained alphabet {A, C, G, T, N} at the sequence level,
+and N is the **only** non-ACGT character actually present in the 24,009 retrieved records.
 In k-mer featurization any k-mer containing N is skipped, so Ns contribute no features. They
-are not excluded from length counts and are not imputed.
+are not excluded from length counts, not imputed, and are passed literally to every model
+tokenizer. Measured extent (`audit_region_extraction.py`): 1,042 of 187,889 retained slices
+(0.55%) and 726 of 15,420 distinct region haplotypes (4.7%) contain at least one N.
 
-**Strand:** no strand normalization or reverse-complement search was performed. Records are
-used in the orientation deposited; the global alignment to a forward-strand reference means a
-reverse-complemented deposit would fail the length window and be dropped rather than silently
-mis-sliced. This was not separately audited.
+Direction of the bias on the ceiling: an N-bearing slice is a distinct string, so it **splits**
+a haplotype, and splitting can only decrease `sum(min(a,b))` and increase
+`sum(max(a/2n_pos, b/2n_neg))`. Ns therefore make the empirical ambiguity ceiling look *more*
+generous, never less. Measured extent (`audit_ambiguous_bases.py`, confirmatory blocks at the
+region each used, N-bearing isolates removed): max |Δ| = 0.027 pp, mean 0.002 pp. Negligible.
+
+**Strand — CORRECTION. The claim previously recorded here is false.**
+
+Previously recorded: "a reverse-complemented deposit would fail the length window and be
+dropped rather than silently mis-sliced. This was not separately audited."
+
+It has now been audited (`audit_strand_sensitivity.py`), and the opposite is true. A
+reverse-complemented 16S still aligns globally to the forward reference with a contiguous
+query span for most regions, and those spans fall inside the 0.75–1.30× window, so such
+records are **retained and silently mis-sliced**, exactly the failure mode the note claimed
+was impossible.
+
+Detection rule: a record is minus-strand if its reverse complement scores higher than its
+deposited orientation against J01695, under the same aligner and scoring used for extraction.
+
+| set | records | minus-strand | blocks affected |
+|---|---|---|---|
+| development | 12,356 | 10 | bacteroides, borrelia, burkholderia, escherichia_shigella, helicobacter (×3), legionella (×2), prevotella |
+| locked test | 6,933 | 12 | bartonella (4), comamonadaceae (1), rhizobium_agrobacterium (7) |
+| hard panels | 4,720 | 0 | — |
+| **total** | **24,009** | **22 (0.09%)** | |
+
+All 22 were retained for 8 or 9 of the 9 regions.
+
+Sensitivity (no re-run of the frozen analysis): `score_test.score_block` was re-executed for
+the affected locked-test blocks with those isolates removed, reusing the existing embedding
+cache. Fidelity check — before removal the re-execution reproduced every frozen per-block
+value **exactly**, for all of `C_kmer`, `dnabert2:R2`, `C_random`, `C_exact`, `C_align`.
+Bartonella was already ineligible under the freeze (`no_eligible_region`), so only 2 of the 20
+confirmatory blocks are affected.
+
+| quantity | as run | minus-strand dropped |
+|---|---|---|
+| primary `dnabert2:R2 − C_kmer` | −0.2108 pp | −0.2074 pp |
+| 95% CI | [−0.5949, +0.1625] | [−0.5916, +0.1697] |
+| p | 0.253 | 0.257 |
+| verdict | EQUIVALENT | EQUIVALENT |
+
+Largest single-block shift 0.067 pp. Conclusion: the defect is real, immaterial to every
+reported result, and now stated in Methods and Limitations as an unrepaired pipeline defect.
 
 **Modal-sequence tie rule:** where an isolate contributes several records to one region, the
 isolate is represented by `Counter(...).most_common(1)[0][0]`, which under a tie returns the
@@ -130,18 +211,32 @@ small minority (6 records across 3 isolates in the staphylococcal panel).
 7.718 × 10⁻⁴ against 1/p = 7.698 × 10⁻⁴. The manuscript's "N(0, 1/p)" is correct with 1/p
 read as variance; say so explicitly.
 
-**CORRECTION — the seed differs between two scripts, and the Methods text is accurate for
-only one of them.**
+**CORRECTION — the seed behaviour differs across three scripts, and an earlier version of
+this note got the confirmatory case backwards.**
 
-- `run_readouts_full.py` (main analysis) draws the projection from the **shared, advancing**
-  generator, so a **different** projection is used for every fold and every cell.
-- `label_permutation_control.py` creates a **fresh generator from a fixed seed**, so the
-  **same** projection is used in every fold.
+- `run_readouts_full.py` (development readouts) seeds once per **cell** and draws inside the
+  fold loop from that advancing generator, so a **different** projection is used per fold.
+- `score_test.py` (the **locked test**, which is what the confirmatory numbers come from)
+  reseeds **inside** the fold loop (`rng = np.random.default_rng(SEED)` at line 122), so the
+  **same** fixed projection, seed 0, is used in every fold.
+- `label_permutation_control.py` likewise creates a fresh fixed-seed generator per fold.
 
-Both are legitimate random projections and neither invalidates a result, but the Methods
-sentence stating a single fixed seed applies only to the permutation control. The main-run
-behaviour should be described as an independent draw per fold, which is arguably the stronger
-design because it averages over projections rather than depending on one.
+So the confirmatory `C_random` arm rests on **one** projection, not an average over
+projections. An earlier version of this note said the main analysis averaged over folds; that
+is true only of the development readouts. The Methods text has been rewritten accordingly.
+
+**Seed robustness, measured** (`audit_random_projection_seeds.py`; folds, chosen regions and
+k-mer features held fixed so only the projection varies; 20 seeds × 20 blocks):
+
+- Seed 0 reproduces all 20 reported locked-test `C_random` values **exactly**.
+- Across-block mean 96.215%, SD **0.087 pp** across seeds, range 96.020–96.358; reported seed
+  0 gives 96.164%.
+- Per-block: median within-block SD 0.155 pp, max 1.174 pp (francisella, n = 55 units).
+- The comparison that actually uses this arm, best-of-four R2 − `C_random`: +0.214 pp at seed
+  0; across seeds mean +0.163 pp, SD 0.087, range +0.020 to +0.358. **Every seed is well
+  inside the ±1 pp margin and none reverses the sign.**
+
+Reported in Methods as a post hoc robustness check, explicitly outside the frozen analysis.
 
 **Alignment and exact-match ties and abstentions.** `C_align` is tie-aware: all training
 neighbours within 1 × 10⁻⁹ of the minimum distance are collected and the score is the

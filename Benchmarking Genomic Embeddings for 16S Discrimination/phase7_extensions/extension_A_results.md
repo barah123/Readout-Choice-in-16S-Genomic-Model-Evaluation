@@ -57,7 +57,7 @@ regime Phase 6 said was missing.
 | | |
 |---|---|
 | mean DNABERT-2 − k-mer | **−0.0019** |
-| 95% bootstrap CI | **[−0.0128, +0.0066]** |
+| 95% bootstrap CI | **[−0.0127, +0.0066]** |
 | panels favouring model / k-mer / tie (±0.01) | 4 / 3 / 6 |
 | **verdict** | **H1 not supported — interval contains zero** |
 
@@ -99,7 +99,7 @@ chosen specifically because k-mer counting struggles with them — mean accuracy
 low as 0.552 — the two approaches are still indistinguishable.
 
 Combined with Phase 5 (20 panels) and Phase 2-full (25 panels), the equivalence now holds
-across **58 independent bacterial groups** spanning easy, intermediate, and genuinely hard
+across **58 analysed bacterial groups across three strata** (25 species-rank development, 20 species-rank locked-test, 13 rank-mixed hard panels, 7 of which are infraspecific); they are not one homogeneous population and are not pooled into a single estimate spanning easy, intermediate, and genuinely hard
 problems.
 
 ## 6. Where difficulty actually lives — an incidental finding
