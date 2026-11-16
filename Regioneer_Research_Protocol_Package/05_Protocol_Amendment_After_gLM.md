@@ -1,9 +1,13 @@
-# Protocol amendment 1 (rev 4): re-ranking Protocol 1 after the gLM pilot
+# Protocol amendment 1 (rev 5): re-ranking Protocol 1 after the gLM pilot
 
 **Status:** proposed amendment to `01_Regioneer_Benchmark_and_Tool_Protocol.md` v1.0.
-**Date:** 2026-11-16. **Supersedes revs 1–3** of this file.
+**Date:** 2026-11-16. **Supersedes revs 1–4** of this file.
 
-**New in rev 4:** the amplicon-span check has been RUN (§2B), and it changes three things —
+**New in rev 5:** Step 1c has been run — the k-mer/encoder comparison AT amplicon length.
+Equivalence transfers; §2C records it and §9's demotion is now supported at regioneer's own
+unit rather than by extrapolation. Rev 4's Finding 3 is correspondingly narrowed.
+
+**Rev 4 added:** the amplicon-span check has been RUN (§2B), and it changes three things —
 the best candidate assay is not the one the field uses, the ICC at assay spacing is worse
 than at region spacing, and headroom grows with length so the gLM equivalence cannot be
 assumed to transfer. §7 and the execution plan (§12) are updated accordingly.
@@ -166,13 +170,53 @@ blocks with >20% collisions at V4 strict, moving to V3–V4 resolved 2 (`rothia`
 0.93→0.89, `rhizobium` 0.74→0.70). For protocol 2 this means the addressable set grows but
 its hard core does not.
 
-**Finding 3 — headroom GROWS with length, so the gLM equivalence must not be assumed to
-transfer.** The gap between the ceiling and k-mer accuracy is **1.58 pp across strict regions
-and 2.19 pp across amplicons**. Rev 1's near-lossless argument was asserted by analogy to
-31–107 nt spans; at 253–488 nt it weakens, and there is measurably more room for a better
-method. **The method arm cannot be retired on gLM's evidence at regioneer's unit.** This
-materially qualifies §9 below: demote the learned arm on cost, but run the k-mer-versus-encoder
-comparison at assay length before concluding anything about it.
+**Finding 3 — headroom GROWS with length.** The gap between the ceiling and k-mer accuracy is
+**1.58 pp across strict regions and 2.19 pp across amplicons**. Rev 1's near-lossless argument
+was asserted by analogy to 31–107 nt spans; at 253–488 nt it weakens, and there is measurably
+more room for a better method. Whether anything *claims* that room is a separate question,
+answered in §2C.
+
+---
+
+## 2C. Step 1c — the equivalence transfers to amplicon length
+
+§2B left one question open: more headroom exists at amplicon length, but ceilings bound what
+*any* method can do and say nothing about whether methods differ. Step 1c measures it
+directly, like for like with gLM — same probe, same isolate-grouped folds, same pooling,
+conditional endpoint, 12,566 unique amplicon slices embedded with DNABERT-2
+(`scripts/step1c_amplicon_methods.py` → `results/step1c_amplicon_methods.json`).
+
+| Span | nt | k-mer | DNABERT-2 | Δ (pp) | 95% CI | Verdict at ±1 pp |
+|---|---|---|---|---|---|---|
+| V2 strict | 106 | 95.17 | 94.84 | −0.33 | [−0.93, +0.15] | equivalent |
+| V4 strict | 107 | 94.22 | 94.21 | −0.00 | [−0.43, +0.43] | equivalent |
+| A_V4 | 253 | 94.31 | 94.25 | −0.06 | [−0.38, +0.23] | equivalent |
+| A_V1V2 | 294 | 95.76 | 95.57 | −0.19 | [−0.48, +0.08] | equivalent |
+| A_V6V8 | 401 | 96.06 | 95.75 | −0.31 | [−0.62, −0.02] | equivalent |
+| A_V3V4 | 429 | 94.53 | 94.18 | −0.35 | [−1.03, +0.14] | inconclusive |
+| A_V1V3 | 488 | 95.81 | 96.04 | **+0.23** | [−0.17, +0.69] | equivalent |
+
+**The equivalence transfers.** Six of seven spans are equivalent at the ±1 pp margin and the
+seventh is inconclusive, not favourable. No span shows a DNABERT-2 advantage whose interval
+excludes zero. The largest positive difference anywhere is +0.23 pp at the longest amplicon,
+with an interval spanning zero.
+
+**And the extra headroom goes unclaimed by either arm.** At A_V1V3 the ceiling is 98.67 and
+the arms reach 95.81 and 96.04 — DNABERT-2 closes 0.23 pp of a 2.86 pp gap. At A_V1V2 it is
+*worse* than k-mer. So §2B's larger headroom at amplicon length is not room a frozen encoder
+exploits; it is room neither composition counting nor a frozen representation reaches. What
+occupies it is a real open question — plausibly within-species and intragenomic variation
+rather than anything a better sequence representation would recover — and it is not an
+argument for the learned arm.
+
+**Consequence.** §9's demotion of the learned arm is now supported **at regioneer's own unit**
+rather than extrapolated from 31–107 nt spans. The pure-classical package in §18 follows
+without the length caveat that rev 4 had to carry.
+
+**Scope, unchanged.** This remains the conditional endpoint — no primers, no amplification, no
+read layout. It speaks to §11.1's *secondary* endpoint. H4 is still why nothing here
+transports to U, and the assay-length pilot with in-silico PCR is still the step that changes
+that.
 
 ---
 
@@ -405,10 +449,8 @@ and ρ at assay spacing. Outputs deposited.
 72 blocks for a calibration slope, 144 for a curve, against 105 for the method contrast. All
 exceed §7.1's 30–60.
 
-**Step 1c — the one Step 1 could not answer.** Run B4 and one encoder at the re-sliced
-amplicon spans. §2B shows headroom is larger at amplicon length, so length transfer of the
-gLM equivalence is an open empirical question, not an inference. The sequences and checkpoints
-exist; this is compute, not development.
+**Step 1c — DONE (§2C).** Equivalence transfers: 6 of 7 spans equivalent, none favouring the
+encoder, and the extra headroom claimed by neither arm.
 
 **Step 1b — in parallel, off the critical path.** Secure Tier 2 public mock-community data
 with usable primer metadata. This has been carried as an aside through three revisions, which
