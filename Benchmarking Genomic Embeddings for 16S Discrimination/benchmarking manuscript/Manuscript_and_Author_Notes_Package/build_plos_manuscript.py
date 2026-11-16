@@ -379,7 +379,13 @@ H2("Region extraction")
 body(
     "Each sequence was aligned globally to the Escherichia coli J01695 reference using the "
     "Biopython PairwiseAligner (match +2, mismatch -1, gap open -5, gap extend -2), and "
-    "Escherichia coli coordinates for V1 to V9 were transferred through the alignment. An "
+    "Escherichia coli coordinates for V1 to V9 were transferred through the alignment. "
+    "The evaluated spans are short, and their lengths matter for how every result below "
+    "should be read: V1 31 nt, V2 106, V3 65, V4 107, V5 58, V6 58, V7 57, V8 52 and V9 "
+    "31 nt, a range of 31 to 107 nt with a median of 58. These are the strict "
+    "hypervariable spans, not the amplicons used in practice, which include conserved "
+    "flanks and are two to four times longer (the 515F-806R V4 amplicon is about 253 nt "
+    "and V3-V4 about 460 nt). An "
     "extracted region was retained only if its length fell between 0.75 and 1.30 times the "
     "expected length for that region; otherwise it was recorded as unavailable for that "
     "sequence, and these failures are reported rather than dropped silently.")
@@ -513,7 +519,12 @@ body(
     "fitted on training folds only. C_random applies a Gaussian random projection of the "
     "C_kmer feature matrix to 256 dimensions, with entries drawn from N(0, 1/p) where p is "
     "the number of k-mer features and 1/p is the variance. The projection is drawn from a "
-    "generator seeded with 0. In the locked-test analysis and in the label-permutation "
+    "generator seeded with 0. The distance-preserving properties of such a projection "
+    "follow from the Johnson-Lindenstrauss lemma [13]; that result concerns preservation "
+    "of pairwise distances and is cited as background only, not as evidence that the "
+    "projected space is sufficient for linear classification, which is an empirical "
+    "question answered by the measured accuracy. In the locked-test analysis and in the "
+    "label-permutation "
     "control the generator is reseeded within each fold, so one fixed projection is used "
     "throughout; in the development readouts it is seeded once per block and region, so "
     "folds within a cell receive different projections from one deterministic stream. In "
@@ -594,8 +605,10 @@ body(
     "difference below this value would not change which region a recommendation tool would "
     "return and is smaller than the fold-to-fold variation observed within single blocks. "
     "The two one-sided tests were computed as paired t tests on the block-level "
-    "differences, and the percentile bootstrap interval is reported as distribution-free "
-    "corroboration rather than as the test itself.")
+    "differences [12], and the percentile bootstrap interval is reported as "
+    "distribution-free corroboration rather than as the test itself. The two procedures "
+    "analyse the same block-level differences, so the bootstrap is a sensitivity analysis "
+    "on the same comparison and not independent replication of it.")
 body(
     "The precision plan sized the locked test using a development block-level standard "
     "deviation of 0.01138. That value belongs to the best-model-minus-best-classical "
@@ -886,7 +899,7 @@ table(_h, _r, caption="Table 6. Intermediate-layer comparison on the hard panels
 
 _h, _r = _rows("table7_region_ranking.csv")
 table(_h, _r, caption="Table 7. Region selection using training isolates only.",
-      note="Regret is balanced accuracy lost relative to the best region identifiable in "
+      note="Regret differences are computed from unrounded means: DNABERT-2 minus k-mer is -0.0879 points, shown as -0.09, which is not the difference of the rounded 0.65 and 0.57 displayed in the table. Regret is balanced accuracy lost relative to the best region identifiable in "
            "hindsight. Because several regions frequently tie at the maximum, a method can "
            "record zero regret without matching the single highest-scoring region.")
 
@@ -911,7 +924,14 @@ body(
     "from training, scores exactly 0.500 on every block. Under that split both primary arms "
     "lose about 11 points, k-mer counting from 96.36 to 85.42 and DNABERT-2 from 96.16 to "
     "84.92, and the paired contrast becomes -0.50 points with a 95 percent interval of "
-    "-3.20 to +2.07. The direction does not reverse and no model advantage appears, but the "
+    "-3.20 to +2.07. In the matched fixed-region control the contrast is -0.20 points with "
+    "an interval of -0.39 to -0.02 that excludes zero: with region-selection variance "
+    "removed the design is precise enough to detect a small advantage to k-mer counting, "
+    "consistent with the uniformly negative sign of all four model contrasts in Table 2. "
+    "The effect remains far inside the 1-point margin, which is the distinction an "
+    "equivalence test is designed to draw: detectable and negligible are not exclusive. "
+    "The direction does not reverse under the disjoint split and no model advantage "
+    "appears, but the "
     "block-level standard deviation rises fourteenfold, from 0.37 to 5.16 points, so "
     "equivalence at a 1-point margin is INCONCLUSIVE rather than established on unseen "
     "haplotypes. Repeating the exercise with single-linkage clustering at 99 percent "
@@ -928,6 +948,32 @@ body(
     "disjoint split tuning helps k-mer counting most. These analyses are post hoc and are "
     "not part of the confirmatory family.")
 body(
+    "Because the ranking of methods differs between the two regimes, the reordering was "
+    "tested rather than described. Degradation from the isolate-disjoint to the "
+    "sequence-disjoint design ranges from -9.64 points for HyenaDNA to -13.96 for "
+    "Nucleotide Transformer v2. Testing the paired change across splitters for every arm "
+    "against C_kmer, four of the five contrasts are indistinguishable from zero: random "
+    "projection +0.26 (95 percent interval -0.90 to +1.92), DNABERT-2 -0.30 (-2.92 to "
+    "+2.22), DNABERT-S +1.26 (-2.19 to +4.68) and HyenaDNA +1.29 (-2.00 to +5.16). Only "
+    "Nucleotide Transformer v2 separates, at -3.02 points (-5.66 to -0.24), degrading more "
+    "than the baseline. Across all 15 pairwise contrasts, the 4 that exclude zero all "
+    "involve that model, and none survives Holm correction across the 15. Bootstrapping "
+    "the ranking itself, DNABERT-S is the best arm in 41.9 percent of replicates and "
+    "HyenaDNA in 31.7 percent, and the full six-way ordering reproduces in 4.0 percent. "
+    "The apparent reordering is therefore not resolvable at 14 blocks, with a weak "
+    "indication that Nucleotide Transformer v2 fares worse on unseen sequence. It is "
+    "reported here so the question is closed rather than left open in a table.")
+body(
+    "One feature of the tuned-readout analysis bears on how much weight any tuned contrast "
+    "can carry. Under sequence-disjoint folds, inner cross-validation improved held-out "
+    "accuracy for C_kmer (+2.86 points) and DNABERT-2 (+2.76) but reduced it for DNABERT-S "
+    "(-1.48), HyenaDNA (-1.49) and Nucleotide Transformer v2 (-1.13). Selection that "
+    "degrades held-out performance for three of six arms indicates selection noise at this "
+    "sample size rather than a real optimisation gain. In addition the grid selects its "
+    "lower boundary, C = 0.01, in most fold-arm decisions, so these values describe a "
+    "finite search that stopped at the edge of its range rather than an optimised result; "
+    "extending the grid downward is outstanding work.")
+body(
     "Decomposing the pooled metric by neighbour species shows where the difficulty sits. "
     "Across 63 target-neighbour pairs, performance is governed almost entirely by whether "
     "the two taxa share sequence at the evaluated region: pairs whose closest sequences "
@@ -938,7 +984,63 @@ body(
     "DNABERT-2. The difference between the two methods stays within 0.25 points in every "
     "divergence stratum while difficulty itself swings 13 points, so target-neighbour "
     "sequence identity governs performance by about two orders of magnitude more than the "
-    "choice of representation.")
+    "choice of representation. One stratum should not be read as structure: the 99 to 99.9 "
+    "percent bin holds 2 pairs from a single block and reports 100.00 for both methods, so "
+    "the apparent non-monotonicity across bins is an artefact of that cell's size.")
+
+# --- Tables 8-10: post hoc disjointness, readout confirmation, divergence
+_sd = json.load(open(os.path.join(RES, "sequence_disjoint_results.json")))
+_md = json.load(open(os.path.join(RES, "similarity_disjoint_results.json")))
+_r1 = json.load(open(os.path.join(RES, "r1_locked_test_results.json")))
+_dv = json.load(open(os.path.join(RES, "divergence_stratified_results.json")))
+
+_ARMS = [("C_kmer", "k-mer counting"), ("C_random", "Random projection"),
+         ("dnabert2:R2", "DNABERT-2"), ("dnabert_s:R2", "DNABERT-S"),
+         ("hyenadna:R2", "HyenaDNA"), ("ntv2:R2", "NTv2"), ("C_exact", "Exact match")]
+_iso = _sd["summary"]["isolate_disjoint"]["mean_accuracy"]
+_seq = _sd["summary"]["sequence_disjoint"]["mean_accuracy"]
+table(["Method", "Isolate-disjoint (%)", "Sequence-disjoint (%)", "Change (points)"],
+      [[lab, f"{_iso[k]*100:.2f}", f"{_seq[k]*100:.2f}", f"{(_seq[k]-_iso[k])*100:+.2f}"]
+       for k, lab in _ARMS if k in _iso and k in _seq],
+      caption="Table 8. Exact-sequence-disjoint evaluation, 14 evaluable blocks.",
+      note="Post hoc; not part of the confirmatory family. Region fixed at each block's "
+           "modal selected region so that the splitter is the only difference. The split "
+           "was audited: train-test exact overlap is zero in every fold and exact matching "
+           "scores exactly 50.00 percent, as it must when no test sequence appears in "
+           "training. The primary contrast is -0.50 points (95 percent interval -3.20 to "
+           "+2.07), inconclusive at the 1-point margin; the block-level standard deviation "
+           "rises from 0.37 to 5.16 points. Single-linkage clustering at 99 percent "
+           "identity, audited to a maximum cross-fold identity of 0.9894, gives -1.47 "
+           "points on the 9 blocks that support it.")
+
+_pm = _r1["summary"]["per_model"]
+_nm = {"dnabert2": "DNABERT-2", "dnabert_s": "DNABERT-S",
+       "hyenadna": "HyenaDNA", "ntv2": "NTv2"}
+table(["Model", "R1 nearest reference (%)", "R2 linear probe (%)",
+       "R1 to R2 (points)", "95% CI"],
+      [[_nm[m], f"{_pm[m]['R1']*100:.2f}", f"{_pm[m]['R2']*100:.2f}",
+        f"{_pm[m]['R1_to_R2']*100:+.2f}",
+        f"{_pm[m]['ci95'][0]*100:+.2f} to {_pm[m]['ci95'][1]*100:+.2f}"]
+       for m in ["dnabert2", "dnabert_s", "hyenadna", "ntv2"]],
+      caption="Table 9. Readout effect measured on the locked test, 20 blocks.",
+      note="Post hoc. Folds and per-fold regions are those of the frozen run; the "
+           "reconstruction reproduces every frozen per-block probe value exactly. The mean "
+           "readout effect is +1.98 points (95 percent interval +0.69 to +3.61) against a "
+           "model spread of 0.78 points at the probe readout, a ratio of 2.5 on "
+           "confirmatory data against 4.0 in development.")
+
+_bins = _dv["summary"]["bins_by_max_target_neighbour_identity"]
+table(["Max target-neighbour identity", "Pairs", "Blocks", "k-mer (%)",
+       "DNABERT-2 (%)", "Difference (points)"],
+      [[b["bin"], str(b["n_pairs"]), str(b["n_blocks"]), f"{b['C_kmer']*100:.2f}",
+        f"{b['dnabert2']*100:.2f}", f"{b['difference_pp']:+.2f}"] for b in _bins],
+      caption="Table 10. Performance by target-neighbour sequence divergence.",
+      note="Post hoc; 63 target-neighbour pairs across 20 blocks, decomposing the pooled "
+           "classifier rather than retraining per neighbour. The 99 to 99.9 percent row "
+           "holds 2 pairs from one block and is uninformative; the apparent "
+           "non-monotonicity across rows is an artefact of that cell. Accuracy correlates "
+           "with maximum identity at Spearman -0.62 for k-mer counting and -0.58 for "
+           "DNABERT-2, while the method difference stays within 0.25 points in every row.")
 
 H2("Where difficulty occurred")
 body(
@@ -1003,6 +1105,20 @@ body(
     "tests rather than models of sequencing and PCR behaviour; in particular, end trimming "
     "is not an empirical primer-binding experiment. The analysis used reference sequences "
     "and no laboratory validation was performed.")
+body(
+    "A scope condition follows from the length of the evaluated spans. Single "
+    "hypervariable regions at Escherichia coli coordinates are 31 to 107 nucleotides, "
+    "median 58, whereas the amplicons used in practice are two to four times longer "
+    "because they carry conserved flanks. Two consequences follow. At these lengths a "
+    "canonical 4-, 5- and 6-mer profile approaches a lossless encoding of the sequence, so "
+    "the classical baseline sits close to the information ceiling by construction, which "
+    "is part of why it is so hard to beat and is a reason to expect the result rather than "
+    "a surprise. And spans this short sit well outside the context lengths these models "
+    "were pretrained on, which is a plausible mechanism for the weak unsupervised geometry "
+    "reported above, where pair-level area under the curve is 0.67 to 0.74 while a linear "
+    "probe on the same representations reaches about 94 percent. Whether the equivalence "
+    "reported here extends to full-length amplicons is open and is not tested by this "
+    "design.")
 body(
     "The most consequential limitation concerns what the design can measure at all. "
     "Because 92 percent of evaluated isolates share their exact regional sequence with the "
