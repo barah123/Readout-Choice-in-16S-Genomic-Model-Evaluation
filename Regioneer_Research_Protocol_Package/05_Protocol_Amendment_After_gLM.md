@@ -1,7 +1,12 @@
-# Protocol amendment 1 (rev 3): re-ranking Protocol 1 after the gLM pilot
+# Protocol amendment 1 (rev 4): re-ranking Protocol 1 after the gLM pilot
 
 **Status:** proposed amendment to `01_Regioneer_Benchmark_and_Tool_Protocol.md` v1.0.
-**Date:** 2026-11-16. **Supersedes rev 1 and rev 2** of this file.
+**Date:** 2026-11-16. **Supersedes revs 1–3** of this file.
+
+**New in rev 4:** the amplicon-span check has been RUN (§2B), and it changes three things —
+the best candidate assay is not the one the field uses, the ICC at assay spacing is worse
+than at region spacing, and headroom grows with length so the gLM equivalence cannot be
+assumed to transfer. §7 and the execution plan (§12) are updated accordingly.
 
 **What changed in rev 3.** A viability appraisal proposed moving the study's centre of
 gravity from the method contrast to resolvability, and supplied a decisive check. That check
@@ -125,6 +130,49 @@ project fails if a calibrated resolution probability is no better than the raw e
 indicator. On deposited data the raw indicator explains 23% of between-block variance and the
 properly weighted quantity explains 96%. The gap between naive and calibrated is already
 demonstrated, before any block is curated.
+
+---
+
+## 2B. The amplicon-span check, run
+
+The cached full-length locked-test records (6,761 across 20 blocks) were re-sliced at
+primer-trimmed amplicon inserts alongside the strict regions, and haplotypes, collisions,
+ceilings and k-mer accuracy recomputed per span
+(`scripts/step1_amplicon_span_check.py` → `results/step1_amplicon_spans.json`).
+
+| Span | nt | Haplotypes | Collision fraction | Ceiling | k-mer | Headroom |
+|---|---|---|---|---|---|---|
+| V4 strict | 107 | 32 | 0.284 | 95.53 | 94.22 | 1.31 |
+| **A_V4** 515F–806R | 253 | 51 | 0.246 | 96.04 | 94.31 | 1.73 |
+| **A_V1V2** 27F–338R | 294 | 171 | **0.067** | **98.55** | 95.76 | 2.78 |
+| **A_V6V8** 939F–1378R | 401 | 69 | 0.207 | 97.60 | 96.06 | 1.55 |
+| **A_V3V4** 341F–806R | 429 | 74 | 0.218 | 96.56 | 94.53 | 2.03 |
+| **A_V1V3** 27F–534R | 488 | 189 | **0.058** | **98.67** | 95.81 | 2.86 |
+
+Aggregate: strict regions 27 haplotypes, collision 0.449, ceiling 90.73; amplicons 111
+haplotypes, collision 0.159, ceiling 97.49.
+
+**Finding 1 — region content beats length, and the field's default assays are the weaker
+choice.** V1–V2 at 294 nt resolves better than V3–V4 at 429 nt (collision 0.067 against
+0.218; ceiling 98.55 against 96.56). The two most widely used amplicons, V4 and V3–V4, are the
+*worst* of the five tested for target-versus-neighbour discrimination. This is a direct,
+practically useful result of exactly the kind regioneer exists to produce, and it argues
+against any framing in which "longer amplicon" is the recommendation.
+
+**Finding 2 — length partly splits shared haplotypes, but a hard core persists.** Of the 8
+blocks with >20% collisions at V4 strict, moving to V3–V4 resolved 2 (`rothia` 0.25→0.00,
+`stenotrophomonas` 0.31→0.01), improved 1 (`veillonella` 0.63→0.10) and left 5 unchanged
+(`brucella` 0.77→0.75, `francisella` 0.96→0.96, `methylobacterium` 0.85→0.81, `proteus`
+0.93→0.89, `rhizobium` 0.74→0.70). For protocol 2 this means the addressable set grows but
+its hard core does not.
+
+**Finding 3 — headroom GROWS with length, so the gLM equivalence must not be assumed to
+transfer.** The gap between the ceiling and k-mer accuracy is **1.58 pp across strict regions
+and 2.19 pp across amplicons**. Rev 1's near-lossless argument was asserted by analogy to
+31–107 nt spans; at 253–488 nt it weakens, and there is measurably more room for a better
+method. **The method arm cannot be retired on gLM's evidence at regioneer's unit.** This
+materially qualifies §9 below: demote the learned arm on cost, but run the k-mer-versus-encoder
+comparison at assay length before concluding anything about it.
 
 ---
 
@@ -260,21 +308,26 @@ than replicates, and that 20–40 blocks would suffice. **That is too optimistic
 roughly 1.5 to 3**, because predictions within a block are not independent.
 
 Each block contributes one prediction per candidate assay, so cells accumulate faster than
-blocks. But on gLM's locked-test panels the within-block intraclass correlation of
-resolvability is **ICC = 0.50** at a ceiling ≥ 0.99 criterion (0.45 at ≥ 0.95), giving a
-**design effect of 4.6**. The 8.2 usable regions per block therefore count as about 1.8
-independent predictions.
+blocks — but only to the extent that those predictions are independent, and they are not.
+**ICC has now been measured at both spacings** (§2B data):
 
-| Calibration target | Effective cells | **Blocks required** |
-|---|---|---|
-| Calibration slope with a usable interval | ~100 | **56** |
-| Three-bin calibration curve | ~200 | **112** |
-| ECE to ±0.05, worst case | ~385 | **215** |
+| Spacing | m | ρ | Calibration slope | Three-bin curve |
+|---|---|---|---|---|
+| gLM's 9 strict regions | 8.2 | 0.496 | 56 | 112 |
+| **regioneer's 5 candidate amplicons** | 5.0 | **0.649** | **72** | **144** |
 
-So the reframing buys a **minimum viable study at ~56 blocks instead of ~105**, which is
-real but not transformative; a proper calibration curve costs about the same as the method
-contrast. §7.1's curation target of 30–60 blocks is adequate only for the minimal version, at
-the very top of its range.
+**ρ is worse at assay spacing, not better**, and the reason is structural: candidate amplicons
+**nest** — V1–V2 ⊂ V1–V3, V4 ⊂ V3–V4 — so they are more correlated than adjacent distinct
+regions. An appraisal suggested ρ ≈ 0.2 might bring this inside §7.1's existing 30–60 target.
+Measured, it does not: ρ = 0.649.
+
+Nor does adding candidate assays rescue it. At the measured ρ, going from 4 to 12 assays per
+panel moves the slope requirement only from 63 to 54 blocks, because each extra nested assay
+contributes little independent information.
+
+So: the reframing still buys a cheaper **minimum** — **72 blocks against the method contrast's
+105** — but a proper calibration curve costs **more** (144). §7.1's 30–60 target is adequate
+for neither.
 
 Three caveats, all of which argue for the conservative end: the ICC is itself estimated from
 20 blocks; "resolvable" here is a ceiling-threshold proxy rather than an assay-level outcome;
@@ -337,20 +390,54 @@ answered. Adaptation remains live under protocol 2.
 
 ---
 
-## 10. Next steps, in order
+## 10. Execution plan
 
-1. **Two-hour check, before anything else.** Count distinct observed-amplicon haplotypes per
-   species, and exact k-mer-profile collisions at k = 4, 6, 8, as a function of span length,
-   across blocks already in hand. This tests directly whether the classical baseline is near
-   the information ceiling at amplicon length — which rev 1 asserted by analogy to gLM's
-   31–107 nt spans rather than measuring. It also calibrates the §7.2 threshold empirically.
-2. **Run the §7.1 pilot (2–4 groups) at assay length**, with Track A amplicons through §8.2's
-   in-silico PCR. One pilot tests whether the gLM equivalence transports to 253–460 nt,
-   supplies the §14 SD in the right units on the right endpoint, and exercises the
-   feasibility code H4 depends on.
-3. **Make the §11.3 fold-matching edit and the §7.2 unit change.** Both small, both
-   unambiguous, neither depends on the H3 debate.
-4. **Write the §8 ladder into §16** before curation starts.
+Revised after external review of an earlier ordering, which correctly identified that the
+estimand decision had been made to gate on a pilot that was itself gated on it.
+
+**0a — choose the primary estimand. Today, no new data needed.** A strategic choice, not a
+statistical one. Separating it from 0b removes the circularity.
+
+**Step 1 — DONE (§2B).** Amplicon re-slice, haplotypes, collisions, ceilings, k-mer accuracy,
+and ρ at assay spacing. Outputs deposited.
+
+**0b — set the block target. Settled by Step 1, not by the pilot.** At the measured ρ = 0.649:
+72 blocks for a calibration slope, 144 for a curve, against 105 for the method contrast. All
+exceed §7.1's 30–60.
+
+**Step 1c — the one Step 1 could not answer.** Run B4 and one encoder at the re-sliced
+amplicon spans. §2B shows headroom is larger at amplicon length, so length transfer of the
+gLM equivalence is an open empirical question, not an inference. The sequences and checkpoints
+exist; this is compute, not development.
+
+**Step 1b — in parallel, off the critical path.** Secure Tier 2 public mock-community data
+with usable primer metadata. This has been carried as an aside through three revisions, which
+is how such items die. It is the difference between a tool and a proposal.
+
+**Step 2 — protocol edits needing no new data.** Decisions 1, 2, 3, 6 below, plus three items
+raised in review and not previously captured:
+
+- **Freeze §15's abstention thresholds, with a stated basis, before the locked set is
+  touched.** Once resolvability is primary these *are* the primary decision rule. This is the
+  item most likely to be fudged under pressure, because a small adjustment visibly improves
+  the headline.
+- **State the 2 × 2 explicitly.** Evaluation *regime* (isolate-grouped, sequence-disjoint) and
+  *endpoint* (resolvability, method contrast) are orthogonal. Name which cells are
+  confirmatory and which descriptive; "both regimes co-primary, resolvability primary" is not
+  well formed.
+- **Write the de-scoping ladder into §16** before curation starts.
+
+**Step 3 — assay-length pilot (§7.1's 2–4 groups).** Its job is now to exercise the in-silico
+PCR path that H4 depends on and to confirm the block target, not to establish it.
+
+**Step 4 — curation**, two frames, with an **adequacy gate at 4 → 5**: fewer than ~20 blocks
+having both adequate haplotype diversity and adequate reference support → report case studies
+under §7.1's own instruction and drop the population claim.
+
+**Step 5 — freeze and locked evaluation**, single use, against the 2 × 2 declared in Step 2.
+
+**Step 6 — release.** Documentation, fixtures and packaging only: **build Steps 3–5 inside the
+package from the start**, or the analysis gets written as scripts and rewritten later.
 
 ---
 
