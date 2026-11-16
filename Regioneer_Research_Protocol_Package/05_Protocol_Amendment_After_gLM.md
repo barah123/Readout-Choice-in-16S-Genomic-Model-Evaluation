@@ -1,199 +1,277 @@
-# Protocol amendment 1: regioneer after the gLM benchmark
+# Protocol amendment 1 (rev 2): re-ranking Protocol 1 after the gLM pilot
 
 **Status:** proposed amendment to `01_Regioneer_Benchmark_and_Tool_Protocol.md` v1.0.
-**Date:** 2026-11-16.
-**Trigger:** completion of the gLM 16S region benchmark, including its post hoc
-sequence-disjoint, similarity-disjoint, tuned-readout and divergence-stratified analyses.
+**Date:** 2026-11-16. **Supersedes rev 1** of this file.
 
-This document does not rewrite the protocol. It records which protocol questions the gLM
-study has already answered, which it has made harder, and which it leaves untouched, and
-proposes the specific section edits that follow. Every number cited is from a deposited
-result file in the gLM repository, named at the point of use.
+**What changed in rev 2, and why.** Rev 1 read as a corrective to v1.0. That framing was
+wrong on three counts, all identified in external appraisal and verified here:
 
----
+1. **It used a secondary-endpoint result to restructure the primary endpoint.** v1.0 §11.1
+   defines U as *end-to-end*, with failed products counted incorrect, and states in the same
+   paragraph that conditional sequence classification "is a secondary endpoint; do not let it
+   replace the end-to-end result." The gLM benchmark modelled no primers, no amplification and
+   no read layout. It measured that secondary endpoint, on 31–107 nt spans that are not assays
+   under §5.
+2. **Most of its proposals already exist in v1.0**, as secondary or supporting clauses. The
+   honest operation is promotion, not correction.
+3. **It misstated v1.0's block target** as "10–60". §14's 10/20/40/60 are counts to *examine
+   in a precision simulation*; the curation target is §7.1's "approximately 30–60
+   non-overlapping taxonomic blocks."
 
-## 1. The headline
-
-**The protocol anticipated this outcome and said what to do about it.** H3 already declined
-to assume that frozen representations beat classical methods; H1 and H2 were written to be
-recoverable "even if H3 fails"; Gate 2 required competitive k-mer controls; §9.3 anticipated
-exact-sequence collisions; and §18 already commits: *"If classical methods win: publish the
-benchmark and deploy the simpler method."* gLM has run H3 ahead of schedule and returned a
-clear answer.
-
-What changes is not whether regioneer is viable but **what it is for**. The ranking function
-is weaker than assumed and the resolvability function is stronger. The evidence supports
-moving the second to the centre of the tool and demoting the first.
+Rev 2 is therefore a **re-ranking memo**. For each item: what v1.0 already says, what the gLM
+pilot shows, and what should move. Two items require real debate — the block-count estimate
+and the learned arm — and they are marked as such.
 
 ---
 
-## 2. Evidence base
+## 1. What the gLM pilot does and does not license
 
-| Finding | Value | Source |
+**Licensed, endpoint-independently.** A 256-dimension Gaussian random projection of k-mer
+counts reached 96.2% on the locked test, above all four learned models, and frozen embeddings
+degraded no more slowly than k-mer counting when exact sequence matches were removed
+(−0.30 pp, 95% CI [−2.92, +2.22], p = 0.837; better in 3 of 14 blocks). That argument is about
+whether the learned space does representational work. It does not depend on which endpoint is
+scored, and it supports a **research-investment** decision.
+
+**Not licensed.** Any claim about U. U contains amplification and read-feasibility terms that
+gLM set to zero by construction.
+
+**H4 is the reason, not a side note.** Rev 1 listed H4 — amplification constraints can change
+the preferred assay — as "untouched". H4 is precisely the mechanism by which end-to-end U
+diverges from conditional accuracy. If H4 holds, a method's conditional discrimination need
+not determine its U-ranking. H4 being open is *why* the gLM result cannot be transported to
+the primary endpoint.
+
+**One asymmetry worth preserving.** The ambiguity ceiling is a property of the reference
+library, not of a classifier or an endpoint. If a target and a neighbour share an identical
+observed amplicon, no sequence-only method separates them, whatever the amplification does.
+So **collision ⟹ unresolvable end-to-end** holds one-way and endpoint-independently, and an
+abstention rule built on collisions is valid now. The converse — no collision ⟹ resolvable —
+requires the amplification term and must wait for H4.
+
+**Throughout this memo**, any statement sourced to gLM is qualified as *conditional-endpoint,
+sequence-only, sub-assay-length*.
+
+---
+
+## 2. What v1.0 already contains
+
+| Proposal | Already in v1.0 as | Operation |
 |---|---|---|
-| Frozen DNABERT-2 vs k-mer, locked test | −0.21 pp, 95% CI [−0.59, +0.16], TOST p = 4.1 × 10⁻⁴ | `locked_test_results.json` |
-| Random 256-dim projection of k-mer counts | 96.2%, above all four models | `locked_test_scores.json` |
-| Exact-sequence overlap, held-out vs training | **92.0%** of evaluated isolates | `sequence_disjoint_results.json` |
-| Accuracy cost of removing that overlap | **≈ 11 pp**, both arms | same |
-| Contrast under sequence-disjoint folds | −0.50 pp [−3.20, +2.07], **inconclusive** | same |
-| Do embeddings generalise better to unseen sequence? | −0.30 pp [−2.92, +2.22], p = 0.837; better in 3 of 14 blocks | same |
-| Block-level SD, isolate-grouped → sequence-disjoint | **0.37 pp → 5.16 pp (14×)** | same |
-| 99%-identity similarity-disjoint | −1.47 pp, same verdict, audit max cross-fold identity 0.9894 | `similarity_disjoint_results.json` |
-| Region-ranking regret, locked test | k-mer 0.65 pp, DNABERT-2 0.57 pp; paired −0.09 pp [−0.46, +0.26] | `region_ranking_summary.json` |
-| Best-region hit rate | **37% (k-mer), 44% (DNABERT-2)** | same |
-| Difficulty vs divergence | near-binary on shared haplotypes: 13-pt swing between strata, method gap ≤ 0.25 pp in every stratum | `divergence_stratified_results.json` |
-| Evaluated span length | **31–107 nt**, median 58 | frozen region coordinates |
+| Exact-match leakage diagnostic | **B2**, a mandatory baseline (§10.1) | print adjacent to every headline accuracy, not buried in a baselines table |
+| Report regret with hit rate | §11.4 top-k hit rate with tie handling | pair them in the same display as §11.2 regret |
+| Overlap reporting | §9.3 already *requires* overlap counts and shared hashes | promote to blocking (Gate 6) |
+| Resolvability / abstention | §3 Q1 and Q5; §5 *Unresolvable*; §11.3; §15 flag set | promote from secondary to primary |
+| Cheap non-learned control | §10.1's anti-straw-man rule and B4 | add the random projection explicitly |
+| Haplotype-aware curation | §7.2 eligibility, stated in isolate groups | change the unit (see §4) |
+| Pilot to estimate block-level variability | §14, already prescribed | execute it, at assay length |
+| Tie tolerance in ranking | §10.4, 0.01 accuracy units | vindicated; keep |
+
+v1.0 anticipated almost all of this. The genuinely new content is two items: an external
+estimate of block-level SD, and the proposal to change the learned arm's status.
 
 ---
 
-## 3. Disposition of the hypotheses
+## 3. §11.3 — the ceiling must be fold-matched, with a demonstration
 
-**H3 — frozen embeddings may improve some panels.** *Answered: no, for frozen
-representations on short regions.* Equivalence on the locked test; no advantage on
-difficulty-selected panels; and, decisively, no slower degradation when exact matches are
-removed, which was the one mechanism that would have justified them. A random projection of
-k-mer counts matched every learned representation. **Fine-tuning (protocol 2) is now the only
-live route for learned representations**; frozen embeddings should not be on regioneer's
-critical path.
+v1.0's A_ceiling is a whole-population quantity over weights w(s,y). U in §11.1 is a nested
+mean evaluated per fold. These are not comparable, and the pooled quantity can sit **below** a
+legitimately attainable accuracy. Minimal counterexample, verified:
 
-**H2 — estimates deteriorate under held-out evaluation.** *Confirmed, and it is the dominant
-effect in the whole study.* Not a caveat but the main result: ~11 points, with variance
-rising 14-fold.
+- fold 1: target `a`, neighbour `b` → fold ceiling **1.000**
+- fold 2: target `c`, neighbour `a` → fold ceiling **1.000**
+- pooled over both folds → A_ceiling **0.750**
 
-**H1 — the preferred assay varies across panels.** *Untouched and still live.* gLM fixed one
-region per block for most analyses and did not test assay-level variation across panels.
+Pooling manufactures a collision between `a`-as-target and `a`-as-neighbour that exists in no
+evaluation fold. This is the mechanism behind the 3 of 66 block-by-method cells that exceeded
+a whole-block ceiling in gLM, while none exceeded the fold-matched version.
 
-**H4 — amplification constraints change the preferred assay.** *Untouched.* gLM modelled no
-primers, no amplification, no read layout.
+**Edit:** compute A_ceiling per evaluation fold using that fold's weights, then aggregate by
+the identical nested-mean scheme used for U. State that the whole-population ceiling is a
+separate descriptive quantity about the reference library and bounds nothing. Two lines, no
+cost, and it protects the endpoint this memo proposes to make primary.
 
 ---
 
-## 4. Proposed section amendments
+## 4. §7.2 — eligibility is specified in the wrong unit, and conflicts with §7.1
 
-### §3 Hypotheses — restate H3 as closed
-Record that H3 has been tested externally for frozen representations on single short regions
-and was not supported, cite the gLM benchmark, and narrow the remaining H3 to adapted or
-fine-tuned representations under protocol 2. Do not re-run the frozen-embedding comparison as
-a primary arm.
+§7.2 asks for "at least 5 distinct genome/isolate groups per species, preferably 10 or more."
+Under heavy amplicon sharing, isolate-group count and distinct-haplotype count diverge, and it
+is the second that determines whether a block can support a sequence-disjoint split. In gLM,
+only **14 of 20** blocks supported exact-disjoint folds and **9 of 20** at 99% identity; the
+rest had ≤4 distinct target haplotypes.
 
-### §9.2 Split hierarchy — promote sequence-disjointness from add-on to primary
-§9.3 currently treats a sequence-novelty challenge set as an *addition* to a realistic
-primary evaluation. gLM shows the two regimes give different verdicts: equivalence holds under
-isolate grouping and becomes inconclusive once exact sequences are separated. A design in
-which the primary analysis retains 92% sequence overlap cannot distinguish a method that
-generalises from one that looks up.
+**Edit:** add a second eligibility criterion in §7.2 — *distinct observed-amplicon haplotypes
+per species, at the evaluated assay*. This is **assay-dependent**: a block may be eligible at
+V1–V3 and ineligible at V4, which §7.2's current single-number form cannot express. Rev 1 put
+this in §14; it belongs in eligibility.
 
-Proposed: report **both regimes as co-primary**, pre-declared, with the sequence-disjoint
-regime carrying the generalisation claim and the isolate-grouped regime carrying the
-operational claim. Single-linkage clustering on the identity graph is the construction that
-guarantees every cross-fold pair falls below threshold; greedy or centroid clustering does
-not. Audit the realised split directly — gLM's audit reports maximum cross-fold identity and
-verifies that an exact-match classifier scores exactly 0.500 under a correct disjoint split.
+**The conflict with §7.1, and its resolution.** §7.1 requires "easy, intermediate, and
+intrinsically ambiguous panels" and forbids excluding hard panels because methods perform
+poorly. A haplotype-diversity rule excludes exactly the intrinsically ambiguous blocks — which
+are the evidence the resolvability endpoint needs. Declare **two frames**:
 
-### §10.2 Frozen learned representations — demote to a reference arm
-Keep one frozen encoder as a reference, drop the rest. The full checkpoint/pooling/strand
-apparatus in §10.2 is disproportionate to an arm now known to be equivalent to k-mer counting
-and to a random projection of it. **Retain the random-projection control**: it is the cheapest
-and most informative single comparator gLM identified, and it bounds any claim that a learned
-space is doing representational work.
+- **Diversity-eligible frame** — blocks meeting the haplotype criterion; carries the
+  method-contrast endpoint.
+- **Full frame** — every curated block including the ineligible ones; carries resolvability
+  and abstention.
 
-### §10.4 Candidate ranking rule — the tie tolerance was right, the ranking is weak
-§10.4's prespecified tie tolerance of 0.01 accuracy units is vindicated: regions tie often
-enough that a method can record near-zero regret while matching the single best region well
-under half the time. But that same fact undercuts the ranking as a product. Report **regret
-and hit rate together, always**, and state plainly that a low hit rate with low regret means
-the choice rarely matters rather than that the recommender is accurate.
+Low-haplotype blocks are not curation failures. They are results, and they are the ones the
+tool exists to flag.
 
-### §11 Endpoints — make resolvability primary, ranking secondary
-§11.3's ambiguity ceiling and collision tables are currently supporting analysis. The
-divergence stratification says this is where the information is: performance is governed by
-whether target and neighbour share sequence at the evaluated assay, not by graded divergence.
+---
 
-Proposed reordering:
-- **Primary:** per-assay resolvability — empirical ceiling, target-neighbour collision table,
-  and an explicit abstention when no candidate clears a prespecified criterion.
-- **Secondary:** U(p, â) and recommendation regret, retained as now.
+## 5. §9 — promote the sequence-disjoint regime to co-primary
 
-Note also that the ceiling must be aggregated the same way as the accuracy it bounds. A
-whole-population ceiling does not bound a mean of per-fold accuracies; in gLM 3 of 66
-block-by-method cells exceeded one, while none exceeded the fold-matched version.
+§9.3 currently frames sequence novelty as an *addition* to a realistic primary evaluation and
+warns about its induced selection bias. That caution is well placed, which is why the
+proposal is co-primary status rather than replacement.
 
-### §14 Precision planning — the block counts are low by two orders of magnitude
-§14 proposes examining "realistic block counts such as 10, 20, 40, 60". Those are adequate
-under isolate grouping and not remotely adequate under sequence-disjoint evaluation. Using
-gLM's measured block-level SDs, n = (1.96·SD/h)²:
+gLM's grounds: equivalence held under isolate grouping (−0.21 pp) and became **inconclusive**
+once exact sequences were separated (−0.50 pp, 95% CI [−3.20, +2.07]), with both arms losing
+≈11 points and the block-level SD rising from 0.37 to 5.16 pp. A primary analysis in which
+92% of evaluated units share a sequence with training cannot distinguish generalisation from
+lookup. *(conditional-endpoint, sequence-only, sub-assay-length.)*
 
-| 95% CI half-width | Isolate-grouped (SD 0.37 pp) | Sequence-disjoint (SD 5.16 pp) |
+**Edit:** report **both regimes, pre-declared and co-primary** — isolate-grouped carrying the
+operational claim, sequence-disjoint carrying the generalisation claim. Use single-linkage
+clustering on the identity graph, which is the construction that guarantees every cross-fold
+pair falls below threshold; greedy and centroid methods do not. **Audit the realised split**:
+report maximum cross-fold identity, and verify that B2 scores exactly 0.500 under a correct
+disjoint split, which is a necessary condition.
+
+**Gate 6 (new):** no generalisation claim from an evaluation whose train/test exact-sequence
+overlap has not been measured and reported. This promotes an existing §9.3 reporting
+requirement to blocking.
+
+---
+
+## 6. §11 — resolvability primary, ranking secondary
+
+gLM's region-ranking results: regret 0.65 pp (k-mer) against 0.57 pp (DNABERT-2), paired
+difference −0.09 pp [−0.46, +0.26], with best-region hit rates of **37% and 44%**. Regions tie
+often enough that a selector misses the argmax more than half the time at almost no cost.
+§10.4's prespecified 0.01 tie tolerance is vindicated; the ranking as a *product* is not.
+
+Separately, difficulty is near-binary on shared sequence rather than graded with divergence:
+a 13-point swing between strata, with the method gap ≤0.25 pp in every stratum.
+
+**Edit:**
+- **Primary:** per-assay resolvability — fold-matched ceiling, target–neighbour collision
+  table, and explicit abstention when no candidate clears a prespecified criterion.
+- **Secondary:** U(p, â) and regret, retained as now, with regret and hit rate always
+  displayed together and a note that low regret with a low hit rate means the choice rarely
+  matters, not that the selector is accurate.
+
+The abstention half of this is licensed now (§1, one-way asymmetry). The positive
+resolvability claim awaits H4.
+
+---
+
+## 7. §14 — execute the pilot v1.0 already prescribes, at assay length
+
+v1.0 §14 already says no fixed sample size is defensible before surveying blocks and
+prescribes a development-only pilot to estimate block-level paired variability. Rev 1
+performed that procedure with external data; it was **executing §14, not correcting it**.
+
+What needs changing is the illustrative grid. Using gLM's SD of 5.16 pp, t-based:
+
+| 95% CI half-width | Isolate-grouped (SD 0.37) | Sequence-disjoint (SD 5.16) |
 |---|---|---|
-| ±1.00 pp | 1 | **102** |
-| ±0.75 pp | 1 | **182** |
-| ±0.50 pp | 2 | **409** |
-| ±0.25 pp | 9 | **1,637** |
+| ±1.00 pp | 1 | **105** |
+| ±0.50 pp | 2 | **415** |
 
-**If the sequence-disjoint regime is co-primary, regioneer needs on the order of 100 blocks
-for a ±1 pp interval, not 40–60.** This is the single most consequential planning consequence
-and it should be settled before curation scope is fixed, not after. Note the SD is itself
-estimated from 14 blocks and is therefore uncertain; treat 100 as a floor.
+**This estimate is soft and must be presented as such.** SD is estimated from 14 blocks, so
+its own 95% interval is [3.74, 8.31] pp, and since n scales as SD² the requirement spans
+**≈55 to ≈265 blocks**. Those 14 blocks are also a *selected* subsample — the more
+haplotype-diverse ones, i.e. the frame §4 proposes to curate for — so the direction of bias is
+not obvious. Plan against the upper end, or declare the arm powered for ±2 pp.
 
-A second feasibility constraint: in gLM, only 14 of 20 blocks could support exact-disjoint
-folds at all, and 9 of 20 at 99% identity, because the excluded blocks had ≤4 distinct target
-haplotypes. Panel curation must therefore select for **haplotype diversity**, not only isolate
-count, or blocks will be unusable in the regime that matters.
+**And the grid may answer the wrong estimand.** §14's n is for a between-method contrast. If
+§6 is adopted and resolvability becomes primary, the planning quantity is a block-level
+proportion: **≈96 blocks for ±10 pp, ≈384 for ±5 pp** at worst case. Recompute for whichever
+endpoint ends up primary.
 
-### §16 Gates — add one
-Proposed Gate 6: *no generalisation claim from an evaluation whose train/test exact-sequence
-overlap has not been measured and reported.* gLM's experience is that this quantity is large,
-invisible by default, and decisive.
-
-### §18 Interpretation rules — the first rule now applies
-"If classical methods win: publish the benchmark and deploy the simpler method." That branch
-is now taken for frozen representations. The practical consequence is a **pure-classical R
-package**: no torch, no GPU, no model checkpoints, no `trust_remote_code`, far lighter
-dependencies and a far easier release. This is a gain for a translational deliverable, not a
-loss.
+Against §7.1's target of 30–60 blocks, every one of these numbers is larger. That is the
+substantive planning consequence and it should be settled before curation scope is fixed.
 
 ---
 
-## 5. What gLM cannot settle
+## 8. §16 — a de-scoping ladder, because no gate catches scope
 
-**Region length is the big one.** gLM evaluated strict hypervariable spans of 31–107 nt
-(median 58). regioneer's unit is the assay — primer pair, trimming, read layout — i.e. real
-amplicons of roughly 253 nt (515F-806R V4) to 460 nt (V3–V4). At 31–107 nt a canonical
-4/5/6-mer profile approaches a lossless encoding of the sequence, so the classical baseline
-sits near the information ceiling **by construction**. That argument weakens as amplicons
-lengthen, and the gLM equivalence result should not be assumed to transfer. This is a genuine
-open question and regioneer's design is the right one to answer it.
+v1.0 commits to a four-way taxonomy crosswalk, dual extraction with boundary auditing, 30–60
+curated blocks, validated in-silico PCR over a degenerate primer table, seven mandatory
+baselines including a Qscore replication, two to four learned encoders with full provenance, a
+multi-factor simulation grid, DADA2 read-processing validation, three empirical tiers ending
+in wet-lab work, a CLI with twelve unit-test classes, and ten figure classes — on a 13–16 week
+schedule. Gates 1–5 check **validity, not scope**. Nothing forces "this is too big, cut X."
 
-Also untouched: amplification and primer-coverage constraints (H4); full-length versus short
-assays (secondary Q3); intragenomic copy variation with genome-linked copies, which gLM could
-not address because standalone 16S deposits carry no parent-genome link and Tier A complete
-genomes fix properly; and open-panel rejection.
+This memo adds pressure: a co-primary regime, a larger block target, and — if both regimes and
+both endpoints go co-primary — a compounding design and multiplicity burden.
+
+**Edit — declare the ladder now, with date triggers, not judgement calls:**
+
+- **Tier 1, defensible core.** Blocks under corrected §7.2; Track R regions *and* Track A
+  assays for a small primer set (V4, V3–V4, V1–V3, full-length); B0–B5; both evaluation
+  regimes; U, resolvability, regret and hit rate; error-free plus one error profile. This is a
+  complete paper on its own.
+- **Tier 2, if time allows.** B6 Qscore; one frozen encoder as reference arm; wider simulation
+  grid; empirical Tiers 1–2.
+- **Tier 3, defer explicitly.** Prospective wet-lab validation; Shiny interface; additional
+  encoders; full factorial stress grid.
 
 ---
 
-## 6. Net effect on the deliverable
+## 9. §10.2 — demote the learned arm, do not delete it
 
-| | v1.0 | After this amendment |
+**Rev 1 proposed dropping it. That was wrong and is withdrawn.** The contribution this memo
+claims — a benchmark establishing when 16S cannot resolve, plus evidence against reaching for
+a language model — requires evidence in *this study's* endpoint. Citing gLM supplies evidence
+at a different endpoint and sub-assay length.
+
+**Edit:** retain **one** frozen encoder as a reference arm under the same splits. It converts
+a citation into a result for roughly one line in a table. Drop the rest, and compress §10.2's
+checkpoint/pooling/strand apparatus accordingly. Add the **random-projection control**, which
+is the cheapest and most informative single comparator gLM identified and bounds any claim
+that a learned space is doing representational work.
+
+§18's dependency argument is unaffected: ship the package pure-classical and keep the encoder
+arm in the analysis repository. §15 already separates the CLI from optional components.
+
+**H3 disposition:** restate as *deprioritised on cost-effectiveness grounds for frozen
+representations at sub-assay length*, resting on the random-projection control, **not** as
+answered. Adaptation remains live under protocol 2.
+
+---
+
+## 10. Next steps, in order
+
+1. **Two-hour check, before anything else.** Count distinct observed-amplicon haplotypes per
+   species, and exact k-mer-profile collisions at k = 4, 6, 8, as a function of span length,
+   across blocks already in hand. This tests directly whether the classical baseline is near
+   the information ceiling at amplicon length — which rev 1 asserted by analogy to gLM's
+   31–107 nt spans rather than measuring. It also calibrates the §7.2 threshold empirically.
+2. **Run the §7.1 pilot (2–4 groups) at assay length**, with Track A amplicons through §8.2's
+   in-silico PCR. One pilot tests whether the gLM equivalence transports to 253–460 nt,
+   supplies the §14 SD in the right units on the right endpoint, and exercises the
+   feasibility code H4 depends on.
+3. **Make the §11.3 fold-matching edit and the §7.2 unit change.** Both small, both
+   unambiguous, neither depends on the H3 debate.
+4. **Write the §8 ladder into §16** before curation starts.
+
+---
+
+## 11. Decisions required
+
+| # | Decision | Can be taken |
 |---|---|---|
-| Headline function | rank candidate assays | report resolvability and abstain when unresolvable; rank secondarily |
-| Learned representations | main arm | one frozen reference arm; adaptation deferred to protocol 2 |
-| Evaluation regime | isolate-grouped primary, novelty as challenge set | both co-primary, sequence-disjoint carries generalisation |
-| Block target | 10–60 | ~100+ for ±1 pp, curated for haplotype diversity |
-| Runtime dependencies | torch, checkpoints, GPU profiling | pure classical |
-| Scientific contribution | a better recommender | a leakage-resistant benchmark that establishes when 16S *cannot* resolve, plus the evidence for not using a language model |
+| 1 | Sequence-disjoint regime co-primary (§5) | **now** |
+| 2 | §11.3 fold-matching and §7.2 unit/two-frame edits (§3, §4) | **now** |
+| 3 | De-scoping ladder into §16 (§8) | **now**, before curation |
+| 4 | Resolvability primary, ranking secondary (§6) | abstention half now; positive half after step 2 |
+| 5 | Block-count target and which endpoint it is powered for (§7) | after step 2 supplies an assay-length SD |
+| 6 | Learned arm reduced to one reference encoder (§9) | **now** |
 
----
-
-## 7. Decisions required
-
-1. Accept or reject sequence-disjoint evaluation as co-primary. **Everything in §14 depends on
-   this**, and the honest reading of gLM is that a 92%-overlap primary cannot support a
-   generalisation claim.
-2. Confirm the block-count target against curation capacity. If ~100 blocks is not reachable,
-   the sequence-disjoint arm should be declared descriptive from the outset rather than
-   reported as underpowered after the fact.
-3. Confirm the shift of resolvability to primary and ranking to secondary.
-4. Decide whether a frozen encoder is retained at all, or whether the gLM benchmark is simply
-   cited and the arm dropped.
-5. Decide whether to run a short amplicon-length pilot before committing, since that is the
-   one assumption gLM leaves genuinely open and it conditions the whole rationale.
+Decisions 1, 2, 3 and 6 are independent of the open scientific questions. Decisions 4 and 5
+should wait for the assay-length pilot, which is the step that converts gLM's
+conditional-endpoint finding into something that speaks to U.
