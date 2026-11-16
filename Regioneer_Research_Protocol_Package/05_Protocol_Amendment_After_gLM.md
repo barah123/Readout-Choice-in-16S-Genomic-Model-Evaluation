@@ -1,7 +1,14 @@
-# Protocol amendment 1 (rev 2): re-ranking Protocol 1 after the gLM pilot
+# Protocol amendment 1 (rev 3): re-ranking Protocol 1 after the gLM pilot
 
 **Status:** proposed amendment to `01_Regioneer_Benchmark_and_Tool_Protocol.md` v1.0.
-**Date:** 2026-11-16. **Supersedes rev 1** of this file.
+**Date:** 2026-11-16. **Supersedes rev 1 and rev 2** of this file.
+
+**What changed in rev 3.** A viability appraisal proposed moving the study's centre of
+gravity from the method contrast to resolvability, and supplied a decisive check. That check
+has now been run on deposited gLM results (§2A). It confirms the reframing by a wider margin
+than the appraisal claimed, corrects which quantity carries it, and — against the appraisal's
+expectation — shows the reframing does **not** dissolve the sample-size problem. §6 and §7 are
+rewritten accordingly.
 
 **What changed in rev 2, and why.** Rev 1 read as a corrective to v1.0. That framing was
 wrong on three counts, all identified in external appraisal and verified here:
@@ -69,6 +76,55 @@ sequence-only, sub-assay-length*.
 
 v1.0 anticipated almost all of this. The genuinely new content is two items: an external
 estimate of block-level SD, and the proposal to change the learned arm's status.
+
+---
+
+## 2A. The empirical case for the reframing, and one correction to it
+
+A variance decomposition over the 20 locked-test blocks × 6 methods, on deposited results:
+
+| Source | Share of total variance in balanced accuracy |
+|---|---|
+| Between **block** | **98.41%** |
+| Between **method** | **0.30%** |
+| Residual | 1.28% |
+
+**Block identity explains 324 times what method identity explains.** Whatever determines the
+answer, it is a property of the panel, not of the comparison procedure. This is the strongest
+single argument for demoting the method contrast, and it is stronger than the ≈50× the
+appraisal estimated.
+
+**But the quantity is the ceiling, not the collision indicator.** The appraisal proposed
+regressing accuracy on the fraction of target genomes sharing an observed sequence with a
+neighbour. Both predictors were tested against block-mean accuracy:
+
+| Predictor | R² | p |
+|---|---|---|
+| Collision fraction (share a sequence with any neighbour) | **0.234** | 0.030 |
+| Empirical ambiguity ceiling at the evaluated region | **0.964** | 2 × 10⁻¹⁴ |
+
+The collision indicator is weak because a target sequence colliding with *some* neighbour
+sequence does not make the *class* unresolvable. `proteus_morganellaceae` has a collision
+fraction of 0.967 and 98.1% accuracy; `rhizobium_agrobacterium` 0.914 and 98.0%; `rothia`
+0.875 and 99.3%. The ceiling weights how many isolates sit on each side of each shared
+haplotype; the indicator does not. **§11.3 already defines the right quantity.**
+
+**The mechanism.** Across all 33 blocks, accuracy sits a near-constant distance below the
+fold-matched ceiling — **2.11 pp (SD 2.48)** — and that distance is method-independent:
+0.92 pp for k-mer counting against 1.13 pp for DNABERT-2 on the locked test. The shortfall is
+the same order as the entire between-method spread (0.78 pp). Accuracy is approximately
+*ceiling minus a small constant*, which is why the ceiling predicts it and the method does
+not.
+
+One caveat to state whenever this is reported: the ceiling bounds accuracy by construction, so
+a high R² is partly mechanical. The non-trivial content is the **uniformity** of the
+shortfall. That is what converts a bound into a usable predictor.
+
+**This clears the appraisal's own kill criterion in advance.** Its criterion 1 was that the
+project fails if a calibrated resolution probability is no better than the raw exact-collision
+indicator. On deposited data the raw indicator explains 23% of between-block variance and the
+properly weighted quantity explains 96%. The gap between naive and calibrated is already
+demonstrated, before any block is curated.
 
 ---
 
@@ -157,8 +213,13 @@ Separately, difficulty is near-binary on shared sequence rather than graded with
 a 13-point swing between strata, with the method gap ≤0.25 pp in every stratum.
 
 **Edit:**
-- **Primary:** per-assay resolvability — fold-matched ceiling, target–neighbour collision
-  table, and explicit abstention when no candidate clears a prespecified criterion.
+- **Primary:** per-assay resolvability, carried by the **fold-matched ambiguity ceiling**
+  (§2A: R² = 0.96 against block accuracy, where a raw collision indicator gives 0.23), with
+  the target–neighbour collision table as a supporting display and explicit abstention when
+  no candidate clears a prespecified criterion. The open research problem is estimating that
+  ceiling under **reference incompleteness** — a target with 3 sequenced genomes and a
+  neighbour with 500 gives a badly biased sample of true haplotype diversity — which is what
+  converts a database lookup into a calibrated statement.
 - **Secondary:** U(p, â) and regret, retained as now, with regret and hit rate always
   displayed together and a note that low regret with a low hit rate means the choice rarely
   matters, not that the selector is accurate.
@@ -168,32 +229,64 @@ resolvability claim awaits H4.
 
 ---
 
-## 7. §14 — execute the pilot v1.0 already prescribes, at assay length
+## 7. §14 — recomputed against both candidate estimands
 
 v1.0 §14 already says no fixed sample size is defensible before surveying blocks and
 prescribes a development-only pilot to estimate block-level paired variability. Rev 1
 performed that procedure with external data; it was **executing §14, not correcting it**.
 
-What needs changing is the illustrative grid. Using gLM's SD of 5.16 pp, t-based:
+What needs changing is the illustrative grid, and the answer now depends on which estimand
+§11 makes primary.
+
+### 7.1 If the method contrast stays primary
+
+Using gLM's block-level SD of 5.16 pp under sequence-disjoint folds, t-based:
 
 | 95% CI half-width | Isolate-grouped (SD 0.37) | Sequence-disjoint (SD 5.16) |
 |---|---|---|
 | ±1.00 pp | 1 | **105** |
 | ±0.50 pp | 2 | **415** |
 
-**This estimate is soft and must be presented as such.** SD is estimated from 14 blocks, so
-its own 95% interval is [3.74, 8.31] pp, and since n scales as SD² the requirement spans
-**≈55 to ≈265 blocks**. Those 14 blocks are also a *selected* subsample — the more
-haplotype-diverse ones, i.e. the frame §4 proposes to curate for — so the direction of bias is
-not obvious. Plan against the upper end, or declare the arm powered for ±2 pp.
+The SD is estimated from 14 blocks, so its own 95% interval is [3.74, 8.31] pp; since n scales
+as SD², the requirement spans **≈55 to ≈265 blocks**. Those 14 blocks are also a *selected*
+subsample — the more haplotype-diverse ones, i.e. the frame §4 proposes to curate for — so the
+direction of bias is not obvious. Plan against the upper end, or declare the arm powered for
+±2 pp.
 
-**And the grid may answer the wrong estimand.** §14's n is for a between-method contrast. If
-§6 is adopted and resolvability becomes primary, the planning quantity is a block-level
-proportion: **≈96 blocks for ±10 pp, ≈384 for ±5 pp** at worst case. Recompute for whichever
-endpoint ends up primary.
+### 7.2 If resolvability becomes primary — and it does not dissolve the problem
 
-Against §7.1's target of 30–60 blocks, every one of these numbers is larger. That is the
-substantive planning consequence and it should be settled before curation scope is fixed.
+The appraisal argued that moving to a calibration deliverable makes blocks test cases rather
+than replicates, and that 20–40 blocks would suffice. **That is too optimistic, by a factor of
+roughly 1.5 to 3**, because predictions within a block are not independent.
+
+Each block contributes one prediction per candidate assay, so cells accumulate faster than
+blocks. But on gLM's locked-test panels the within-block intraclass correlation of
+resolvability is **ICC = 0.50** at a ceiling ≥ 0.99 criterion (0.45 at ≥ 0.95), giving a
+**design effect of 4.6**. The 8.2 usable regions per block therefore count as about 1.8
+independent predictions.
+
+| Calibration target | Effective cells | **Blocks required** |
+|---|---|---|
+| Calibration slope with a usable interval | ~100 | **56** |
+| Three-bin calibration curve | ~200 | **112** |
+| ECE to ±0.05, worst case | ~385 | **215** |
+
+So the reframing buys a **minimum viable study at ~56 blocks instead of ~105**, which is
+real but not transformative; a proper calibration curve costs about the same as the method
+contrast. §7.1's curation target of 30–60 blocks is adequate only for the minimal version, at
+the very top of its range.
+
+Three caveats, all of which argue for the conservative end: the ICC is itself estimated from
+20 blocks; "resolvable" here is a ceiling-threshold proxy rather than an assay-level outcome;
+and the effective-cell targets are conventional rules of thumb from prediction-model
+validation, not derived for this design.
+
+### 7.3 What follows
+
+Whichever estimand is chosen, **every number here exceeds §7.1's 30–60 planning target**, and
+the honest options are: raise the curation target toward ~60 and accept the minimal
+calibration deliverable; or declare the study a calibrated case series under §7.1's own
+instruction and drop the population claim. Decide before curation scope is fixed, not after.
 
 ---
 
@@ -269,7 +362,7 @@ answered. Adaptation remains live under protocol 2.
 | 2 | §11.3 fold-matching and §7.2 unit/two-frame edits (§3, §4) | **now** |
 | 3 | De-scoping ladder into §16 (§8) | **now**, before curation |
 | 4 | Resolvability primary, ranking secondary (§6) | abstention half now; positive half after step 2 |
-| 5 | Block-count target and which endpoint it is powered for (§7) | after step 2 supplies an assay-length SD |
+| 5 | Block-count target and which endpoint it is powered for (§7) | after step 2 supplies an assay-length SD; note every option exceeds §7.1's 30–60 |
 | 6 | Learned arm reduced to one reference encoder (§9) | **now** |
 
 Decisions 1, 2, 3 and 6 are independent of the open scientific questions. Decisions 4 and 5
