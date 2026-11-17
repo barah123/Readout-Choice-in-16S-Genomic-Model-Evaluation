@@ -1,9 +1,13 @@
-# Protocol amendment 1 (rev 5): re-ranking Protocol 1 after the gLM pilot
+# Protocol amendment 1 (rev 6): re-ranking Protocol 1 after the gLM pilot
 
 **Status:** proposed amendment to `01_Regioneer_Benchmark_and_Tool_Protocol.md` v1.0.
-**Date:** 2026-11-16. **Supersedes revs 1–4** of this file.
+**Date:** 2026-11-16. **Supersedes revs 1–5** of this file.
 
-**New in rev 5:** Step 1c has been run — the k-mer/encoder comparison AT amplicon length.
+**New in rev 6:** the reference-incompleteness study has been run (§2D) and the proposed
+primary contribution FAILS its own kill criterion. §2A's variance argument is also demoted,
+being invalid for a paired estimand.
+
+**Rev 5 added:** Step 1c has been run — the k-mer/encoder comparison AT amplicon length.
 Equivalence transfers; §2C records it and §9's demotion is now supported at regioneer's own
 unit rather than by extrapolation. Rev 4's Finding 3 is correspondingly narrowed.
 
@@ -99,9 +103,14 @@ A variance decomposition over the 20 locked-test blocks × 6 methods, on deposit
 | Residual | 1.28% |
 
 **Block identity explains 324 times what method identity explains.** Whatever determines the
-answer, it is a property of the panel, not of the comparison procedure. This is the strongest
-single argument for demoting the method contrast, and it is stronger than the ≈50× the
-appraisal estimated.
+answer, it is a property of the panel, not of the comparison procedure.
+
+**This is descriptive colour, not an argument, and must not be used as one.** The method
+estimand is a *paired within-block difference*; a small share of total variance is precisely
+the regime pairing exists to handle, and a consistent 0.5 pp effect can be real while
+explaining almost no variance across heterogeneous blocks. A reviewer will say so. The
+defensible grounds for demoting the method contrast are the three independent evaluations
+with no interval favouring the encoder (§2C) and the absence of remaining open content.
 
 **But the quantity is the ceiling, not the collision indicator.** The appraisal proposed
 regressing accuracy on the fraction of target genomes sharing an observed sequence with a
@@ -217,6 +226,79 @@ without the length caveat that rev 4 had to carry.
 read layout. It speaks to §11.1's *secondary* endpoint. H4 is still why nothing here
 transports to U, and the assay-length pilot with in-silico PCR is still the step that changes
 that.
+
+---
+
+## 2D. Reference incompleteness — the proposed contribution fails its kill criterion
+
+Rev 5 claimed this risk was "already retired", on the grounds that a properly weighted ceiling
+explains R² = 0.96 of block accuracy where a raw collision indicator explains 0.23. **That
+argument was wrong.** Both quantities are measured on sequences in hand; the comparison is
+about weighting, not extrapolation. The open problem is a target with 3 sequenced genomes
+against a neighbour with 500, where the colliding haplotypes have not been observed and the
+ceiling must be *estimated*. gLM ran at 92% exact overlap — the regime where observed
+diversity is near-complete and no extrapolation is needed — so it could not speak to this.
+
+Tested properly (`scripts/step2_reference_incompleteness.py` →
+`results/step2_reference_incompleteness.json`): treat each block's full reference as truth,
+subsample to d genomes per species, recompute the ceiling from the reduced reference, and ask
+whether the error is predictable. 8,000 subsample evaluations over 20 blocks × 4 spans ×
+5 depths × 20 replicates.
+
+**Result 1 — the naive estimate is near-unbiased but very noisy.**
+
+| Depth (genomes/species) | Mean bias (pp) | SD (pp) | % optimistic |
+|---|---|---|---|
+| 2 | +0.05 | **4.14** | 65.2 |
+| 3 | +0.19 | 3.74 | 64.2 |
+| 5 | −0.03 | 3.03 | 63.9 |
+| 10 | −0.06 | 2.12 | 63.2 |
+| 20 | −0.07 | 1.56 | 54.8 |
+
+**Result 2 — coverage does not predict the error. This is the kill criterion and it fails.**
+Regressing bias on Good-Turing incompleteness (1 − C) gives **R² = 0.006** overall, and
+0.022 / 0.001 / 0.006 / 0.002 / 0.000 at depths 2/3/5/10/20. The p-values are small only
+because n = 8,000; the effect is nil.
+
+**Result 3 — a depth-keyed uncertainty band does not transport either.** In-sample, 95% bands
+cover as designed. Calibrated on half the blocks and tested on the held-out half, coverage
+falls to **0.70–0.83** against a nominal 0.95. The uncertainty is block-specific, not
+depth-determined.
+
+**Result 4 — but the operational problem is real, and now has a number.**
+
+| Depth | Naive calls "resolvable" | Of those, WRONG |
+|---|---|---|
+| 2 | 83.1% | **20.5%** |
+| 3 | 81.1% | 18.6% |
+| 5 | 77.8% | 16.1% |
+| 10 | 71.6% | 10.9% |
+| 20 | 69.6% | **7.9%** |
+
+At two genomes per species a naive calculator over-promises resolvability one time in five.
+
+**What this changes.** The claimed statistical contribution — a *calibrated* resolvability
+probability under reference incompleteness — is **not demonstrated**, and the two obvious
+mechanisms for it both fail. What survives is a **well-weighted calculator plus an
+empirically-grounded abstention rule keyed to reference depth**, which is a resource
+contribution rather than a statistical one. §15's abstention threshold, previously without
+empirical basis, now has one: the false-positive rate by depth above.
+
+**Three caveats, all of which matter.**
+
+1. **The "truth" here is itself a sample.** The full reference is the very thing whose
+   incompleteness is at issue, so this measures robustness to *further* subsampling, not to
+   true incompleteness. It is the best available test without new data, and it is not the
+   whole question.
+2. **One estimator was tested, not all.** Good-Turing coverage and a depth-keyed percentile
+   band are the obvious candidates, not the only ones; a hierarchical or species-abundance
+   model might do better. The failure is of the obvious approach, not a proof of impossibility.
+3. **Twenty blocks, split ten and ten** for the out-of-sample test. Small.
+
+**Consequence for §7's block target.** Curating 72 blocks to demonstrate a contribution that
+has just failed its own test is not defensible. Either identify an estimator that passes this
+test first — on data already in hand, at no curation cost — or re-scope to the calculator and
+abstention-rule deliverable, which does not need 72 blocks.
 
 ---
 
