@@ -1,0 +1,625 @@
+{
+  "summary": {
+    "n_species": 94,
+    "queried": "NCBI assembly, latest refseq",
+    "caveat": "these species passed the gLM eligibility gate (>=10 isolates per target, >=5 per neighbour), so every column is an upper bound on what would be seen across bacteria generally",
+    "complete": {
+      "median": 9.0,
+      "q1": 4.0,
+      "q3": 22.5,
+      "zero": 1,
+      "share_at_or_above": {
+        "2": 0.8404255319148937,
+        "5": 0.6914893617021277,
+        "12": 0.39361702127659576,
+        "20": 0.26595744680851063,
+        "63": 0.1276595744680851
+      }
+    },
+    "complete_or_chromosome": {
+      "median": 10.0,
+      "q1": 4.0,
+      "q3": 23.25,
+      "zero": 0,
+      "share_at_or_above": {
+        "2": 0.8723404255319149,
+        "5": 0.7340425531914894,
+        "12": 0.4148936170212766,
+        "20": 0.2765957446808511,
+        "63": 0.1595744680851064
+      }
+    },
+    "any_assembly_level": {
+      "median": 59.0,
+      "q1": 22.25,
+      "q3": 145.5,
+      "zero": 0,
+      "share_at_or_above": {
+        "2": 1.0,
+        "5": 0.9893617021276596,
+        "12": 0.8723404255319149,
+        "20": 0.776595744680851,
+        "63": 0.48936170212765956
+      }
+    },
+    "deposits_16S": {
+      "median": 63.5,
+      "q1": 22.5,
+      "q3": 113.75,
+      "zero": 0,
+      "share_at_or_above": {
+        "2": 1.0,
+        "5": 0.9574468085106383,
+        "12": 0.851063829787234,
+        "20": 0.7553191489361702,
+        "63": 0.5
+      }
+    }
+  },
+  "by_species": {
+    "Abiotrophia defectiva": {
+      "complete": 2,
+      "complete_or_chromosome": 2,
+      "any_assembly_level": 30,
+      "deposits_16S": 11
+    },
+    "Acetobacter aceti": {
+      "complete": 3,
+      "complete_or_chromosome": 3,
+      "any_assembly_level": 7,
+      "deposits_16S": 28
+    },
+    "Acetobacter pasteurianus": {
+      "complete": 16,
+      "complete_or_chromosome": 16,
+      "any_assembly_level": 32,
+      "deposits_16S": 112
+    },
+    "Acidovorax avenae": {
+      "complete": 1,
+      "complete_or_chromosome": 15,
+      "any_assembly_level": 18,
+      "deposits_16S": 76
+    },
+    "Actinomyces israelii": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 6,
+      "deposits_16S": 7
+    },
+    "Actinomyces naeslundii": {
+      "complete": 4,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 44,
+      "deposits_16S": 51
+    },
+    "Actinomyces odontolyticus": {
+      "complete": 9,
+      "complete_or_chromosome": 9,
+      "any_assembly_level": 25,
+      "deposits_16S": 62
+    },
+    "Actinomyces viscosus": {
+      "complete": 1,
+      "complete_or_chromosome": 2,
+      "any_assembly_level": 11,
+      "deposits_16S": 10
+    },
+    "Agrobacterium tumefaciens": {
+      "complete": 62,
+      "complete_or_chromosome": 66,
+      "any_assembly_level": 241,
+      "deposits_16S": 129
+    },
+    "Arthrobacter globiformis": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 10,
+      "deposits_16S": 129
+    },
+    "Bartonella bacilliformis": {
+      "complete": 8,
+      "complete_or_chromosome": 8,
+      "any_assembly_level": 49,
+      "deposits_16S": 4
+    },
+    "Bartonella clarridgeiae": {
+      "complete": 2,
+      "complete_or_chromosome": 2,
+      "any_assembly_level": 3,
+      "deposits_16S": 4
+    },
+    "Bartonella henselae": {
+      "complete": 17,
+      "complete_or_chromosome": 17,
+      "any_assembly_level": 67,
+      "deposits_16S": 18
+    },
+    "Bartonella quintana": {
+      "complete": 4,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 24,
+      "deposits_16S": 5
+    },
+    "Brevibacillus brevis": {
+      "complete": 7,
+      "complete_or_chromosome": 8,
+      "any_assembly_level": 24,
+      "deposits_16S": 128
+    },
+    "Brucella abortus": {
+      "complete": 84,
+      "complete_or_chromosome": 139,
+      "any_assembly_level": 400,
+      "deposits_16S": 41
+    },
+    "Brucella canis": {
+      "complete": 11,
+      "complete_or_chromosome": 14,
+      "any_assembly_level": 75,
+      "deposits_16S": 30
+    },
+    "Brucella melitensis": {
+      "complete": 77,
+      "complete_or_chromosome": 145,
+      "any_assembly_level": 735,
+      "deposits_16S": 114
+    },
+    "Brucella suis": {
+      "complete": 27,
+      "complete_or_chromosome": 31,
+      "any_assembly_level": 120,
+      "deposits_16S": 16
+    },
+    "Carnobacterium maltaromaticum": {
+      "complete": 6,
+      "complete_or_chromosome": 7,
+      "any_assembly_level": 162,
+      "deposits_16S": 128
+    },
+    "Chryseobacterium gleum": {
+      "complete": 1,
+      "complete_or_chromosome": 3,
+      "any_assembly_level": 12,
+      "deposits_16S": 32
+    },
+    "Chryseobacterium indologenes": {
+      "complete": 23,
+      "complete_or_chromosome": 24,
+      "any_assembly_level": 81,
+      "deposits_16S": 131
+    },
+    "Comamonas testosteroni": {
+      "complete": 10,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 30,
+      "deposits_16S": 188
+    },
+    "Cutibacterium acnes": {
+      "complete": 59,
+      "complete_or_chromosome": 66,
+      "any_assembly_level": 569,
+      "deposits_16S": 152
+    },
+    "Cutibacterium avidum": {
+      "complete": 21,
+      "complete_or_chromosome": 21,
+      "any_assembly_level": 146,
+      "deposits_16S": 26
+    },
+    "Cutibacterium granulosum": {
+      "complete": 3,
+      "complete_or_chromosome": 3,
+      "any_assembly_level": 53,
+      "deposits_16S": 8
+    },
+    "Delftia acidovorans": {
+      "complete": 19,
+      "complete_or_chromosome": 20,
+      "any_assembly_level": 77,
+      "deposits_16S": 121
+    },
+    "Elizabethkingia meningoseptica": {
+      "complete": 9,
+      "complete_or_chromosome": 9,
+      "any_assembly_level": 99,
+      "deposits_16S": 131
+    },
+    "Flavobacterium psychrophilum": {
+      "complete": 62,
+      "complete_or_chromosome": 119,
+      "any_assembly_level": 337,
+      "deposits_16S": 81
+    },
+    "Francisella noatunensis": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 24,
+      "deposits_16S": 9
+    },
+    "Francisella novicida": {
+      "complete": 11,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 43,
+      "deposits_16S": 5
+    },
+    "Francisella philomiragia": {
+      "complete": 7,
+      "complete_or_chromosome": 7,
+      "any_assembly_level": 60,
+      "deposits_16S": 17
+    },
+    "Francisella tularensis": {
+      "complete": 65,
+      "complete_or_chromosome": 71,
+      "any_assembly_level": 946,
+      "deposits_16S": 24
+    },
+    "Fusobacterium mortiferum": {
+      "complete": 5,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 20,
+      "deposits_16S": 5
+    },
+    "Fusobacterium necrophorum": {
+      "complete": 6,
+      "complete_or_chromosome": 7,
+      "any_assembly_level": 179,
+      "deposits_16S": 18
+    },
+    "Fusobacterium nucleatum": {
+      "complete": 87,
+      "complete_or_chromosome": 87,
+      "any_assembly_level": 115,
+      "deposits_16S": 113
+    },
+    "Fusobacterium varium": {
+      "complete": 9,
+      "complete_or_chromosome": 10,
+      "any_assembly_level": 40,
+      "deposits_16S": 15
+    },
+    "Gluconobacter oxydans": {
+      "complete": 4,
+      "complete_or_chromosome": 4,
+      "any_assembly_level": 33,
+      "deposits_16S": 53
+    },
+    "Granulicatella adiacens": {
+      "complete": 6,
+      "complete_or_chromosome": 6,
+      "any_assembly_level": 30,
+      "deposits_16S": 28
+    },
+    "Granulicatella elegans": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 7,
+      "deposits_16S": 4
+    },
+    "Kocuria rhizophila": {
+      "complete": 16,
+      "complete_or_chromosome": 17,
+      "any_assembly_level": 81,
+      "deposits_16S": 108
+    },
+    "Komagataeibacter xylinus": {
+      "complete": 4,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 14,
+      "deposits_16S": 41
+    },
+    "Leuconostoc citreum": {
+      "complete": 15,
+      "complete_or_chromosome": 18,
+      "any_assembly_level": 105,
+      "deposits_16S": 162
+    },
+    "Leuconostoc lactis": {
+      "complete": 15,
+      "complete_or_chromosome": 15,
+      "any_assembly_level": 78,
+      "deposits_16S": 166
+    },
+    "Leuconostoc mesenteroides": {
+      "complete": 83,
+      "complete_or_chromosome": 86,
+      "any_assembly_level": 347,
+      "deposits_16S": 103
+    },
+    "Lysobacter enzymogenes": {
+      "complete": 5,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 14,
+      "deposits_16S": 29
+    },
+    "Methylobacterium extorquens": {
+      "complete": 14,
+      "complete_or_chromosome": 14,
+      "any_assembly_level": 37,
+      "deposits_16S": 54
+    },
+    "Methylobacterium mesophilicum": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 8,
+      "deposits_16S": 16
+    },
+    "Methylobacterium populi": {
+      "complete": 11,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 16,
+      "deposits_16S": 88
+    },
+    "Methylobacterium radiotolerans": {
+      "complete": 4,
+      "complete_or_chromosome": 4,
+      "any_assembly_level": 23,
+      "deposits_16S": 159
+    },
+    "Micrococcus luteus": {
+      "complete": 41,
+      "complete_or_chromosome": 43,
+      "any_assembly_level": 394,
+      "deposits_16S": 112
+    },
+    "Morganella morganii": {
+      "complete": 88,
+      "complete_or_chromosome": 91,
+      "any_assembly_level": 787,
+      "deposits_16S": 134
+    },
+    "Nocardia asteroides": {
+      "complete": 4,
+      "complete_or_chromosome": 4,
+      "any_assembly_level": 17,
+      "deposits_16S": 65
+    },
+    "Nocardia brasiliensis": {
+      "complete": 8,
+      "complete_or_chromosome": 8,
+      "any_assembly_level": 30,
+      "deposits_16S": 79
+    },
+    "Nocardia cyriacigeorgica": {
+      "complete": 6,
+      "complete_or_chromosome": 6,
+      "any_assembly_level": 167,
+      "deposits_16S": 105
+    },
+    "Nocardia farcinica": {
+      "complete": 5,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 73,
+      "deposits_16S": 103
+    },
+    "Nocardia nova": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 20,
+      "deposits_16S": 53
+    },
+    "Novosphingobium aromaticivorans": {
+      "complete": 3,
+      "complete_or_chromosome": 3,
+      "any_assembly_level": 9,
+      "deposits_16S": 22
+    },
+    "Ochrobactrum anthropi": {
+      "complete": 12,
+      "complete_or_chromosome": 12,
+      "any_assembly_level": 71,
+      "deposits_16S": 104
+    },
+    "Paenibacillus alvei": {
+      "complete": 0,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 22,
+      "deposits_16S": 107
+    },
+    "Paenibacillus larvae": {
+      "complete": 13,
+      "complete_or_chromosome": 13,
+      "any_assembly_level": 71,
+      "deposits_16S": 162
+    },
+    "Paenibacillus polymyxa": {
+      "complete": 53,
+      "complete_or_chromosome": 56,
+      "any_assembly_level": 150,
+      "deposits_16S": 123
+    },
+    "Porphyromonas asaccharolytica": {
+      "complete": 2,
+      "complete_or_chromosome": 2,
+      "any_assembly_level": 10,
+      "deposits_16S": 14
+    },
+    "Porphyromonas endodontalis": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 70,
+      "deposits_16S": 3
+    },
+    "Porphyromonas gingivalis": {
+      "complete": 50,
+      "complete_or_chromosome": 51,
+      "any_assembly_level": 114,
+      "deposits_16S": 27
+    },
+    "Porphyromonas somerae": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 12,
+      "deposits_16S": 6
+    },
+    "Propionibacterium freudenreichii": {
+      "complete": 46,
+      "complete_or_chromosome": 47,
+      "any_assembly_level": 144,
+      "deposits_16S": 28
+    },
+    "Proteus mirabilis": {
+      "complete": 248,
+      "complete_or_chromosome": 257,
+      "any_assembly_level": 1812,
+      "deposits_16S": 183
+    },
+    "Proteus vulgaris": {
+      "complete": 10,
+      "complete_or_chromosome": 10,
+      "any_assembly_level": 63,
+      "deposits_16S": 152
+    },
+    "Providencia rettgeri": {
+      "complete": 26,
+      "complete_or_chromosome": 26,
+      "any_assembly_level": 193,
+      "deposits_16S": 152
+    },
+    "Providencia stuartii": {
+      "complete": 31,
+      "complete_or_chromosome": 32,
+      "any_assembly_level": 240,
+      "deposits_16S": 58
+    },
+    "Rhizobium etli": {
+      "complete": 5,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 7,
+      "deposits_16S": 62
+    },
+    "Rhizobium leguminosarum": {
+      "complete": 104,
+      "complete_or_chromosome": 106,
+      "any_assembly_level": 536,
+      "deposits_16S": 145
+    },
+    "Rothia dentocariosa": {
+      "complete": 12,
+      "complete_or_chromosome": 12,
+      "any_assembly_level": 53,
+      "deposits_16S": 29
+    },
+    "Rothia mucilaginosa": {
+      "complete": 9,
+      "complete_or_chromosome": 10,
+      "any_assembly_level": 58,
+      "deposits_16S": 24
+    },
+    "Sinorhizobium meliloti": {
+      "complete": 64,
+      "complete_or_chromosome": 65,
+      "any_assembly_level": 329,
+      "deposits_16S": 98
+    },
+    "Sphingobium yanoikuyae": {
+      "complete": 11,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 65,
+      "deposits_16S": 75
+    },
+    "Sphingomonas paucimobilis": {
+      "complete": 5,
+      "complete_or_chromosome": 6,
+      "any_assembly_level": 27,
+      "deposits_16S": 77
+    },
+    "Sphingopyxis alaskensis": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 6,
+      "deposits_16S": 7
+    },
+    "Stenotrophomonas maltophilia": {
+      "complete": 109,
+      "complete_or_chromosome": 124,
+      "any_assembly_level": 899,
+      "deposits_16S": 108
+    },
+    "Stenotrophomonas rhizophila": {
+      "complete": 15,
+      "complete_or_chromosome": 16,
+      "any_assembly_level": 81,
+      "deposits_16S": 106
+    },
+    "Streptomyces albus": {
+      "complete": 4,
+      "complete_or_chromosome": 4,
+      "any_assembly_level": 43,
+      "deposits_16S": 67
+    },
+    "Streptomyces coelicolor": {
+      "complete": 6,
+      "complete_or_chromosome": 6,
+      "any_assembly_level": 12,
+      "deposits_16S": 69
+    },
+    "Streptomyces griseus": {
+      "complete": 5,
+      "complete_or_chromosome": 5,
+      "any_assembly_level": 135,
+      "deposits_16S": 135
+    },
+    "Streptomyces lividans": {
+      "complete": 9,
+      "complete_or_chromosome": 10,
+      "any_assembly_level": 98,
+      "deposits_16S": 24
+    },
+    "Streptomyces venezuelae": {
+      "complete": 10,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 68,
+      "deposits_16S": 76
+    },
+    "Variovorax paradoxus": {
+      "complete": 16,
+      "complete_or_chromosome": 17,
+      "any_assembly_level": 51,
+      "deposits_16S": 130
+    },
+    "Veillonella atypica": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 54,
+      "deposits_16S": 19
+    },
+    "Veillonella dispar": {
+      "complete": 1,
+      "complete_or_chromosome": 1,
+      "any_assembly_level": 10,
+      "deposits_16S": 25
+    },
+    "Veillonella parvula": {
+      "complete": 11,
+      "complete_or_chromosome": 11,
+      "any_assembly_level": 220,
+      "deposits_16S": 41
+    },
+    "Veillonella rogosae": {
+      "complete": 4,
+      "complete_or_chromosome": 4,
+      "any_assembly_level": 12,
+      "deposits_16S": 13
+    },
+    "Weissella confusa": {
+      "complete": 29,
+      "complete_or_chromosome": 29,
+      "any_assembly_level": 162,
+      "deposits_16S": 223
+    },
+    "Xanthomonas campestris": {
+      "complete": 202,
+      "complete_or_chromosome": 234,
+      "any_assembly_level": 725,
+      "deposits_16S": 114
+    },
+    "Xanthomonas oryzae": {
+      "complete": 339,
+      "complete_or_chromosome": 355,
+      "any_assembly_level": 654,
+      "deposits_16S": 111
+    }
+  }
+}
